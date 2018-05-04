@@ -1,6 +1,6 @@
 const path = require('path')
-const isProdMode = !Object.is(process.env.NODE_ENV, 'production')
-const baseUrl = process.env.BASE_URL || (isProdMode ? 'http://api.usoftmall.com' : 'http://10.1.51.125:8080/platform-b2c/')
+const isProdMode = Object.is(process.env.NODE_ENV, 'production')
+const baseUrl = process.env.BASE_URL || (isProdMode ? 'http://192.168.253.60:9090/platform-b2c/' : 'http://192.168.253.121:9090/platform-b2c')
 const commonUrl = process.env.COMMON_URL || (isProdMode ? 'https://api-inquiry.usoftmall.com/' : 'http://218.17.158.219:24000/')
 
 module.exports = {
@@ -34,18 +34,16 @@ module.exports = {
     /*
     ** Run ESLINT on save
     */
-    extractCSS: { allChunks: true },
     extend(config, { dev, isClient, isServer }) {
       config.resolve.alias['~utils'] = path.join(__dirname, 'utils')
-      config.resolve.alias['~components'] = path.join(__dirname, 'components')
-      config.resolve.alias['~plugins'] = path.join(__dirname, 'plugins')
-      config.resolve.alias['~store'] = path.join(__dirname, 'store')
-      config.resolve.alias['~assets'] = path.join(__dirname, 'assets')
-      // config.module.rules.push({
-      //   test: /\.scss$/,
-      //   loader: 'style-loader!css-loader!sass-loader'
-      // })
-
+      config.module.rules.push({
+        test: /\.(scss|css)$/,
+        loader: 'vue-style-loader!css-loader!sass-loader'
+      })
+      config.module.rules.push({
+        test: /\.js$/,
+        loader: 'babel-loader'
+      })
       if (isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -75,40 +73,43 @@ module.exports = {
     ]
   },
   css: [
-    '~assets/scss/app.scss'
+    { src: '~assets/scss/app.scss', lang: 'scss' }
+    /* {
+      src: 'swiper/dist/css/swiper.css'
+    } */ /* , {
+      src: 'element-ui/lib/theme-default/index.css'
+    } */
   ],
   dev: !isProdMode,
   env: {
     baseUrl,
     commonUrl
   },
-  plugins: [
-    {
-      src: '~plugins/axios.js'
-    },
-    {
-      src: '~plugins/vue-filter.js'
-    }, {
-      src: '~plugins/mixin.js'
-    }, {
-      src: '~plugins/swiper.js',
-      ssr: false
-    }, {
-      src: '~plugins/vue-loading.js',
-      ssr: false
-    }, {
-      src: '~plugins/vue-empty.js',
-      ssr: false
-    }, {
-      src: '~plugins/element-ui.js',
-      ssr: true
-    }, {
-      src: '~plugins/filters.js',
-      ssr: false
-    }, {
-      src: '~plugins/jsonp.js',
-      ssr: false
-    }],
+  plugins: [{
+    src: '~plugins/axios.js'
+  }, {
+    src: '~plugins/vue-filter.js'
+  }, {
+    src: '~plugins/mixin.js'
+  }, {
+    src: '~plugins/swiper.js',
+    ssr: false
+  }, {
+    src: '~plugins/vue-loading.js',
+    ssr: false
+  }, {
+    src: '~plugins/vue-empty.js',
+    ssr: false
+  }, {
+    src: '~plugins/element-ui.js',
+    ssr: true
+  }, {
+    src: '~plugins/filters.js',
+    ssr: false
+  }, {
+    src: '~plugins/jsonp.js',
+    ssr: false
+  }],
   // proxyTable: ['/api/**', '/search/**', '/user/**', '/login/**', '/register/**', '/logout/**', '/static/**', '/vendor**', '/user**', '/trade/**', '/recommendation/**', '/store-service/**', '/basic/**', '/logout**', '/operation/**', '/help**', '/product**', '/store**', '/order/proxy**', '/report/**', '/store/**#/**', '/kdn/**', '/product/**Submit', '/admin**', '/product/**Submit/**', '/release/**', '/auth/store/**', '/produce/**', '/file**', '/rate/**', '/log/**', '/help-service/**', '/keyword/**', '/tip/**', '/UASBatchPutOnProperty**', '/UASBatchPutOnProperty/**']
   /**
    * http-proxy configuration example: {
@@ -116,8 +117,6 @@ module.exports = {
    *    '/api/product/**': 'https://api-product.example.com'
    *   }
    */
-  modules: [
-  ],
   proxyTable: {
     '/api/**': baseUrl,
     '/search/**': baseUrl,
@@ -162,6 +161,10 @@ module.exports = {
     '/UASBatchPutOnProperty**': baseUrl,
     '/UASBatchPutOnProperty/**': baseUrl,
     '/seek/**': baseUrl,
-    '/inquiry/**': commonUrl
+    '/inquiry/**': commonUrl,
+    '/b2b/**': baseUrl,
+    '/commodity-service/**': baseUrl,
+    '/background/**': baseUrl,
+    '/goods/**': baseUrl
   }
 }
