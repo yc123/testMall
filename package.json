@@ -30,6 +30,7 @@
     "prod": "cross-env NODE_ENV=production nuxt",
     "build": "cross-env NODE_ENV=production node server.js",
     "start": "cross-env NODE_ENV=production node server.js",
+	"prod-start": "cross-env NODE_ENV=production BASE_URL=http://api.usoftmall.com/ node server.js"
     "generate": "cross-env NODE_ENV=production nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
