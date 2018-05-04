@@ -1,6 +1,6 @@
 const path = require('path')
 const isProdMode = !Object.is(process.env.NODE_ENV, 'production')
-const baseUrl = process.env.BASE_URL || (isProdMode ? 'http://192.168.253.60:9090/platform-b2c/' : 'http://10.1.51.125:8080/platform-b2c/')
+const baseUrl = process.env.BASE_URL || (isProdMode ? 'http://api.usoftmall.com' : 'http://10.1.51.125:8080/platform-b2c/')
 const commonUrl = process.env.COMMON_URL || (isProdMode ? 'https://api-inquiry.usoftmall.com/' : 'http://218.17.158.219:24000/')
 
 module.exports = {
