@@ -1,0 +1,30 @@
+<style>
+.margin-bottom-10 {
+	margin-bottom: 10px;
+}
+</style>
+<div class="span12-fluid sortable">
+	<div class="box span12">
+		<div class="box-header well">
+			<h2>
+				<i class="icon-user"></i> 买家付款有效期维护
+			</h2>
+		</div>
+		<div class="box-content row text-center">
+			<form name="tradePropertyForm" class="form-inline row" role="form">
+				<div class="form-group col-xs-6">
+					<p class="form-control-static">买家付款有效期</p>
+					<div class="col-xs-6 input-group">
+						<input type="text" class="form-control" ng-disabled="!edit" ng-pattern="/^[0-9]*[1-9][0-9]*$/" ng-model="property.info" placeholder="买家付款有效期">
+						<div class="input-group-addon">天</div>
+					</div>
+				</div>
+				<div class="form-group col-xs-4 text-left">
+					<button ng-if="!edit" class="btn btm-sm btm-primary" ng-click="modify()">修改</button>
+					<button ng-if="edit" class="btn btm-sm btm-primary" ng-click="save()">保存</button>
+					<button ng-if="edit" class="btn btm-sm btm-primary" ng-click="cancle()">取消</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

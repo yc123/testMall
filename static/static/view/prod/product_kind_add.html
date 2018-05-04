@@ -1,0 +1,36 @@
+<!-- 类目添加模态框，添加一个新的类目 -->
+<div class="modal-header">
+	<h3 class="modal-title">
+		<i class="fa fa-fw fa-sitemap text-default"></i>
+		<span> 添加类目</span>
+	</h3>
+</div>
+<form name="myForm" novalidate ng-submit="save()">
+	<div class="modal-body">
+		<div class="form-group">
+			<label>类目中文名称</label> <input type="text" name="nameCn"
+				ng-model="kind.nameCn" class="form-control"
+				placeholder="输入2-10个中英文字描述" required autofocus>
+			<div class="tooltip in bottom control-tooltip"
+				ng-show="myForm.nameCn.$dirty && myForm.nameCn.$invalid">
+				<div class="tooltip-arrow"></div>
+				<span class="tooltip-inner">请输入2-10个中英文字的类目描述</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>类目英文名称</label> <input type="text" name="nameEn"
+				ng-model="kind.nameEn" class="form-control"
+				placeholder="输入2-10个英文字名称">
+			<div class="tooltip in bottom control-tooltip"
+				ng-show="myForm.nameEn.$dirty && myForm.nameEn.$invalid">
+				<div class="tooltip-arrow"></div>
+				<span class="tooltip-inner">请输入2-10个的英文名称</span>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" type="submit"
+			ng-disabled="myForm.$invalid">确认</button>
+		<button class="btn btn-default" ng-click="cancel()" type="button">取消</button>
+	</div>
+</form>

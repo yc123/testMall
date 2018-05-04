@@ -1,0 +1,160 @@
+<style>
+	/*显示记录条数*/
+	.text-rt{
+		text-align: right;
+	}
+	.record-stort{
+		line-height: 40px;
+		font-size: 14px;
+		margin-bottom: 0;
+	}
+	.record-stort em{
+		font-family: "Microsoft Yahei", "微软雅黑";
+		color: #229ee6;
+		font-style: inherit;
+		font-weight: inherit;
+		background: none;
+	}
+	/*表格样式*/
+	.application-tab table tbody tr{
+		height: 70px;
+	}
+	.application-tab table tr th,.application-tab table tr td{
+		border: #cfedfe 1px solid;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.application-tab .table-bordered{
+		border-top: #cfedfe 1px solid;
+	}
+	.application-tab table tr th{
+		background: #cfedfe;
+		height: 35px;
+	}
+	.application-tab table tbody tr:hover{
+		background: #e4f3fc;
+	}
+	.application-tab table tbody tr .btn{
+		border: none;
+		width: 60px;
+		height: 22px;
+		line-height: 22px;
+		color: #fff;
+		display: inline-block;
+		margin-bottom: 5px;
+		padding: 0;
+		font-size: 12px;
+		border-radius: 2px;
+	}
+	.application-tab table tbody tr .btn:hover{
+		background: #219ee6 ;
+	}
+	.application-tab table tbody tr .apply-bg{
+		background: #fb9c06;
+	}
+	.application-tab table tbody tr .detail-bg{
+		background: #3ba9e9;
+	}
+	.application-tab table tbody tr .wait{
+		color:#e02f2f ;
+	}
+	.application-tab table tbody tr .no-pass{
+		color: #219ee6;
+	}
+	.application-tab table thead th p i{
+		color: #219ee6;
+		/*margin-left: 4px;*/
+	}
+	.application-tab table thead th p:hover{
+		cursor: pointer;
+	}
+	.application-tab .status{
+		width: 80px;
+		height: 21px;
+		text-align: center;
+		font-size: 14px;
+		border: none;
+		padding: 0;
+		padding-left: 2px;
+		text-align: center;
+	}
+	.blue{
+		color: #3ba9e9 !important;
+	}
+	.red{
+		color: #f00 !important;
+	}
+</style>
+<div class="row-fluid sortable" ng-controller="ViolationsListCtrl">
+	<div class="row">
+		<div class="text-rt col-sm-12">
+			<p class="record-stort">显示1-10条记录，&nbsp;&nbsp;共<em ng-bind="violationsTableParams.total()">1000</em>条</p>
+		</div>
+	</div>
+	<!--表格-->
+	<div class="application-tab">
+		<table class="table table-bordered" ng-table="violationsTableParams">
+			<thead>
+				<tr>
+					<th width="140">序号</th>
+					<th width="220">违规类型</th>
+					<th width="220">处置方式</th>
+					<th width="220">
+						<p ng-click="changeShorting()" style="margin: 0;">处置时间
+							<i class="fa fa-long-arrow-up" ng-if="isShow === 'ALL' || isShow == 'UP'"></i>
+							<i class="fa fa-long-arrow-down" ng-if="isShow === 'ALL' || isShow == 'DOWN'"></i>
+						</p>
+					</th>
+					<th width="220">最后修改时间</th>
+					<th width="220">操作人</th>
+					<th width="100">
+						<select class="form-control status" ng-model="violationsStatus" ng-change="setViolationsStatus(violationsStatus)">
+							<option value="" selected>状态</option>
+							<option ng-value="'EXECUTING'">执行中</option>
+							<option ng-value="'COMPLAINT'">申述中</option>
+							<option ng-value="'SUCCESS'">申诉成功</option>
+							<option ng-value="'DONE'">处置完成</option>
+						</select>
+					</th>
+					<th width="120">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="violations in $data">
+					<td ng-bind="$index + 1">0001</td>
+					<td>
+						<p ng-if="violations.type === 'FICTITIOUS_TRADE'">虚假交易</p>
+						<p ng-if="violations.type === 'FICTITIOUS_ADVERTISE'">虚假宣传</p>
+						<p ng-if="violations.type === 'FICTITIOUS_DELIVERY'">虚假发货</p>
+						<p ng-if="violations.type === 'BAD_CONTENT'">传播不健康内容</p>
+						<p ng-if="!violations.type">虚假交易</p>
+					</td>
+					<td>
+						<p ng-if="violations.disposition === 'CLOSE_10'">暂停营业10天</p>
+						<p ng-if="violations.disposition === 'CLOSE_30'">暂停营业30天</p>
+						<p ng-if="violations.disposition === 'CLOSE_90'">暂停营业90天</p>
+						<p ng-if="violations.disposition === 'CLOSE_PERMANENT'">永久关闭店铺</p>
+						<p ng-if="!violations.disposition" class="blue">违规店铺</p>
+					</td>
+					<td ng-bind="violations.createTime | date: 'yyyy-MM-dd HH:mm:ss'">2017-05-09 10:28:30</td>
+					<td ng-bind="violations.updateTime | date: 'yyyy-MM-dd HH:mm:ss'">2017-05-09 10:28:30</td>
+					<td>
+						<span ng-if="violations.restoreOperator" ng-bind="violations.restoreOperator.name"></span>
+						<span ng-if="violations.authOperator && !violations.restoreOperator" ng-bind="violations.authOperator.name"></span>
+						<span ng-if="violations.complaintOperator && !violations.authOperator && !violations.restoreOperator" ng-bind="violations.complaintOperator.name"></span>
+						<span ng-if="violations.disposeOperator && !violations.complaintOperator && !violations.authOperator && !violations.restoreOperator" ng-bind="violations.disposeOperator.name"></span>
+					</td>
+					<td>
+						<p ng-bind="violations.status | violationsStatus" ng-class="{ 'red': violations.status === 'COMPLAINT' }"></p>
+					</td>
+					<td>
+						<a href="javascript:void(0)" ng-click="showViolationsInfo(violations)" class="detail-bg btn">查看详情</a>
+					</td>
+				</tr>
+				<tr ng-if="!$data || $data.length <= 0">
+					<td colspan="8">暂时违规记录！</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

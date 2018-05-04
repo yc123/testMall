@@ -1,0 +1,150 @@
+<style>
+	#messageBoardDetail a {
+		text-decoration: none;
+	}
+	.question {
+		width: 80%;
+		min-height: 100px;
+		margin-top: 30px;
+		margin-left: 15px;
+		padding: 5px 15px;
+		border: 2px solid #ccc;
+		word-break: break-all;
+	}
+	#messageBoardDetail .imgs li {
+		float: left;
+		list-style: none;
+		line-height: 75px;
+		margin-right: 35px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		width: 102px;
+		height: 79px;
+		text-align: center;
+		cursor: pointer;
+	}
+	#messageBoardDetail .imgs img{
+		display: inline-block;
+		max-width: 100px;
+		max-height: 75px;
+	}
+	#messageBoardDetail textarea {
+		position: relative;
+		padding: 10px 10px;
+		height: 250px;
+		width: 255px;
+		margin: 0px;
+	}
+	#messageBoardDetail .textnum {
+		position: absolute;
+		top: 250px;
+		text-align: right;
+		right: 30px;
+		width: 235px;
+		background: #fff;
+	}
+	#messageBoardDetail .clearfix{
+		clear: both;
+	}
+</style>
+<div class="box f14" id="messageBoardDetail">
+	<div class="box-header well" data-original-title>
+		<i class="fa fa-commenting-o"></i> 留言详情
+	</div>
+	<div class="box-content">
+		<ul class="fullscreen" style="padding: 10px;">
+			<div class="form-group row">
+				<div class="col-sm-3">
+					<label>问题类型：</label>
+					<span ng-bind="messageBoard.type"></span>
+				</div>
+				<div class="col-sm-3">
+					<label>留言身份：</label>
+					<span ng-show="messageBoard.role=='buyer'">买家</span>
+					<span ng-show="messageBoard.role=='seller'">卖家</span>
+				</div>
+				<div class="text-right col-sm-offset-3 col-sm-3" ng-show="messageBoard.status == 810">
+					<button class="btn btn-default" data-toggle="dropdown">操作</button>
+					<div class="dropdown-menu" style="padding: 15px;">
+						<textarea ng-model="messageBoard.answer" maxlength="500"></textarea>
+						<span class="textnum"><span ng-bind="messageBoard.answer.length || 0"></span>/500</span>
+						<button class="btn btn-primary btn-block" type="button" ng-click="handle()" ng-disabled="!messageBoard.answer || messageBoard.answer.length==0">处理</button>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-4">
+					<label>留言者姓名：</label>
+					<span ng-bind="messageBoard.userName"></span>
+				</div>
+				<div class="col-xs-4">
+					<label>留言时间：</label>
+					<span ng-bind="messageBoard.createDate | date : 'yyyy-MM-dd HH:mm'"></span>
+				</div>
+			</div>
+
+			<div class="row form-group">
+				<div class="col-xs-4">
+					<label>留言者手机：</label>
+					<span ng-bind="messageBoard.userTel"></span>
+				</div>
+				<div class="col-xs-4">
+					<label>留言者邮箱：</label>
+					<span ng-bind="messageBoard.email"></span>
+				</div>
+			</div>
+			<br />
+			<div class="form-group row">
+				<label class="col-xs-2">问题描述：</label>
+				<span class="col-xs-offset-6 col-xs-3">
+					<label>留言页面：</label>
+					<a ng-href="{{messageBoard.submitUrl}}" ng-bind="messageBoard.submitTitle" target="_blank"></a>
+				</span>
+				<div class="question" ng-bind="messageBoard.question"></div>
+			</div>
+			<div ng-if="messageBoard.imgs" class="imgs">
+				<label>留言图片：</label>
+				<ul>
+					<li ng-repeat="img in messageBoard.imgs" ng-click="showImgs(img.img)">
+						<img ng-src="{{img.img}}"  ng-click="showImgs(img.img)">
+					</li>
+				</ul>
+			</div>
+			<br />
+
+			<div class="clearfix">
+				<label>留言状态：</label>
+				<span ng-if="messageBoard.status == 810">待处理</span>
+				<span ng-if="messageBoard.status == 811">已处理</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box f14" ng-if="messageBoard.status == 811">
+	<div class="box-header well" data-original-title>
+		<i class="fa fa-user"></i> 处理结果
+	</div>
+	<div class="box-content">
+		<div class="form-group">
+			<label>处理人：</label>
+			<span ng-bind="messageBoard.handler.userName">已处理</span>
+		</div>
+		<div class="form-group">
+			<label>处理时间：</label>
+			<span ng-bind="messageBoard.handleDate | date : 'yyyy-MM-dd HH:mm'"></span>
+		</div>
+		<div class="form-group row">
+			<label class="col-xs-2">回复：</label>
+			<div class="question" ng-bind="messageBoard.answer"></div>
+		</div>
+	</div>
+</div>
+<div id="image-box" style="display: none">
+	<div class="x-floating-wrap"></div>
+	<div class="x-floating">
+        <div id="item-content">
+            <div class="x-close-wrap"><a href="javascript:void(0);">&times;</a></div>
+            <div class="img"><img/></div>
+        </div>
+	</div>
+</div>

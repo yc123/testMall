@@ -1,0 +1,127 @@
+<style>
+.span {
+	margin-top: 15px;
+}
+
+h4 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.row.searchInputGroup {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+.price {
+	color: #009B44;
+}
+
+td {
+	line-height: 1.1;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>买家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>交易信息<i class="fa fa-angle-double-right"></i></li>
+		<li>历史转账信息</li>
+	</ul>
+</div>
+<div class="row searchInputGroup">
+	<div class="col-xs-3">
+		<h4>历史转账信息</h4>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group">
+				<input type="search" class="form-control" ng-model="keyword"
+					ng-search="search()" ng-change="upper()" placeholder="根据转账的流水单号搜索">
+				<span class="input-group-btn">
+					<button ng-click="search()" class="btn btn-primary" type="button">搜索</button>
+				</span>
+			</div>
+	</div>
+</div>
+<div>
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{historyTransferTableParams.total()}}</span>条
+		</p>
+	</div>
+</div>
+</br>
+<div class="span">
+	<table ng-table="historyTransferTableParams"
+		class="table table-bordered table-striped text-center">
+		<thead>
+			<tr class="tr-default">
+				<th width="40" class="text-center">序号</th>
+				<th width="120" class="text-center">转账流水号</th>
+				<th width="90" class="text-center">金额</th>
+				<th width="110" class="text-center">付款时间</th>
+				<th width="110" class="text-center">生成时间</th>
+				<th width="120" class="text-center">收款人账户</th>
+				<th width="120" class="text-center">付款人账户</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="bankTransfer in $data">
+				<td class="text-center">{{$index+1}}</td>
+				<td ng-bind="bankTransfer.banktranssn" class="text-center"></td>
+				<td class="text-center price text-num"><span ng-bind="$data.currency"></span>{{bankTransfer.total | number}}</td>
+				<td ng-bind="bankTransfer.transferTime | date : 'yyyy年MM月dd日'" class="text-center"></td>
+				<td ng-bind="bankTransfer.tranferCreateTime | date : 'yyyy年MM月dd日'" class="text-center"></td>
+				<td class="text-center"><span ng-bind="bankTransfer.receiveAccount.accountname"></span>&nbsp;
+					<span ng-bind="bankTransfer.receiveAccount.bankname"></span>&nbsp;
+					<span ng-bind="bankTransfer.receiveAccount.filterNum"></span>&nbsp;
+				</td>
+				<td class="text-center"><span ng-bind="bankTransfer.payAccount.accountname"></span>&nbsp;
+					<span ng-bind="bankTransfer.payAccount.bankname"></span>&nbsp; <span
+					ng-bind="bankTransfer.payAccount.filterNum"></span>&nbsp;</td>
+			</tr>
+			<tr ng-if="$data.length == 0">
+				<td colspan="10" class="text-center"
+					style="line-height: 40px; font-size: 20px;"><i
+					class="fa fa-smile-o fa-lg"></i> 您没有转账的历史记录</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

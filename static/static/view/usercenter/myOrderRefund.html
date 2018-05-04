@@ -1,0 +1,184 @@
+<style>
+/* TODO huxz  */
+/* 文本的样式 */
+.text-left-c {
+	text-align: left;
+}
+
+.text-normal {
+	font-size: 16px;
+}
+
+.text-align-top {
+	vertical-align: top;
+}
+
+.btn-style {
+	height: 30px;
+	width: 90px;
+	margin: 0 10px -2px;
+}
+
+.align-left {
+	float: left;
+}
+
+.align-right {
+	float: right;
+}
+
+.dis-inline {
+	display: inline-block;
+}
+
+/* 清除浮动 */
+.clear-f {
+	clear: both;
+}
+
+/* 操作区域 */
+.content-area {
+	margin: 10px;
+}
+
+/* 右侧订单详情 */
+.order-text {
+	color: black;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.order-detail {
+	width: 280px;
+	/* height: 300px; */
+	float: left;
+	/* 边框 */
+	border: 1px black solid;
+}
+
+.order-detail>div {
+	margin: -1px;
+	padding: 10px;
+	/* 边框 */
+	border: 1px black solid;
+}
+
+.order-detail div span:first-child {
+	width: 100px;
+	display: inline-block;
+}
+/* 内容呈现区域或操作区域 */
+.content {
+	padding: 0 10px 15px;
+	margin-left: 279px;
+	/* 边框 */
+	border: 1px black solid;
+}
+
+.content select {
+	height: 30px;
+	line-height: 30px;
+}
+
+.content textarea {
+	width: 540px;
+	height: 100px;
+	max-width: 540px;
+	max-height: 100px;
+	font-size: 14px;
+}
+
+.content>div {
+	margin-top: 10px;
+}
+
+.content span {
+	height: 30px;
+	line-height: 30px;
+}
+
+.reason-area {
+	height: 30px;
+	width: 100%;
+	margin: -1px 0;
+}
+
+.line-space {
+	margin-top: 10px;
+}
+
+.textarea-default {
+	margin-left: 54px;
+}
+
+#mem {
+	width: 50px;
+	vertical-align: top;
+}
+/* 原因 */
+</style>
+<div class="content-area clear-f">
+	<!-- 订单信息显示区域 Start -->
+	<div class="order-detail order-text text-left-c">
+		<div>
+			<p><span>订单号 ：</span><span>2188659779302941</span></p>
+			<p><span>下单时间 ：</span><span>2016-09-08 15:23:47</span></p>
+			<p><span>订单状态 ：</span><span>待付款</span></p>
+		</div>
+		<div>
+			<p><span>货品金额 ：</span><span>34.20  元</span></p>
+			<p><span>运费 ：</span><span>0.00 元</span></p>
+			<p><span>实付款 ： </span><span>34.20  元</span></p>
+		</div>
+		<div>
+			<a href="#">查看订单详情</a><br/>
+		</div>
+	</div><!-- 订单信息显示区域 End -->
+	<!-- 操作内容显示区域 Start -->
+	<div class="content">
+		<h2>申请退款</h2>
+		<!-- 原因 -->
+		<div class="text-normal">
+			<div class="dis-inline reason-area">
+				<span>原因：</span>
+				<select class="text-normal">
+	         		<option value="迟迟不发货">迟迟不发货</option>
+	          		<option value="卖家取消交易">卖家取消交易</option>
+	          		<option value="其他">其他</option>
+	        	</select>
+	        	<span class="dis-inline align-right"><input class="btn-style" type="button" value="取消返回"/></span>
+	        	<span class="dis-inline align-right"><input class="btn-style" type="button" value="确认提交"/></span>
+			</div>
+			<div class="line-space">
+				<span class="dis-inline text-align-top" id="mem">备注：</span>
+	        	<span class="dis-inline"><textarea></textarea></span>
+			</div>
+		</div>
+		<!-- 状态 -->
+		<div class="text-normal">
+			<span class="dis-inline">提交时间：<span>2016年 6月 18日  15:20</span></span><br/>
+			<span class="dis-inline">处理状态：<span>评审中</span></span>
+		</div>
+		<!-- 反馈及其评价 -->
+		<div class="text-normal">
+			<div>
+				<span class="dis-inline text-align-top">客服反馈：</span>
+	        	<span class="dis-inline textarea-default"><textarea></textarea></span>
+			</div>
+			<span class="dis-inline line-space">服务评价：
+				<select class="text-normal">
+					<option value="非常满意">非常满意</option>
+					<option value="基本满意">基本满意</option>
+					<option value="一般">一般</option>
+					<option value="不满意">不满意</option>
+					<option value="强烈不满">强烈不满</option>
+					<option value="其他">其他</option>
+	        	</select>
+			</span><br/>
+			<div>
+				<span class="dis-inline text-align-top">留言建议：</span>
+	        	<span class="dis-inline textarea-default"><textarea></textarea></span>
+			</div>
+		</div>
+	</div><!-- 操作内容显示区域 End -->
+</div>

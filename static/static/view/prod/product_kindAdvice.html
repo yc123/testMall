@@ -1,0 +1,57 @@
+<style>
+.advice-item {
+	padding-left: 30px;
+	/* border-top: solid 1px #5bc0de; */
+	border-left: solid 3px #5bc0de;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+</style>
+
+<!-- 用于普通用户对类目结构设置有意见，提建议的页面 -->
+<div class="main-content">
+	<div class="panel panel-default panel-shadow">
+		<div class="panel-title">
+			<h4>
+				<span class="fa fa-fw fa-sitemap"></span> <span>对类目结构调整的建议</span>
+			</h4>
+		</div>
+		<div class="panel-body">
+			<form name="myForm">
+				<p>
+				尊敬的用户： <br>
+				您好！非常感谢您为我们的产品提出宝贵的建议，我们会努力做出更优秀的产品以回报广大用户。
+				</p>
+				<div class="advice-item">
+					<h3>1、请输入您的建议方案</h3>
+					<div class="row">
+						<div class="col-sm-8">
+							<textarea name="schema" ng-model="advice.schema" class="form-control" rows="5" 
+								ng-minlength="15"
+								placeholder="请描述您的建议方案描述，较多时可分几个点逐个列出，至少15个字符...">
+							</textarea>
+						</div>
+					</div>
+				</div>
+				<div class="advice-item">
+					<h3>2、请输入您的建议理由</h3>
+					<div class="row">
+						<div class="col-sm-8">
+							<textarea name="reason" ng-model="advice.reason" class="form-control" rows="5"
+								ng-minlength="15"
+								placeholder="请陈述您建议这样调整的理由，至少15个字符...">
+							</textarea>
+						</div>
+					</div>
+				</div>
+				<p>
+				您的调整建议将会提交给我们的工作人员，我们会以专业的角度去分析您的建议，如果合理我们会及时调整我们的电子器件类目结构。
+				</p>
+				<div>
+					<br />
+					<button type="button" class="btn btn-primary" ng-click="submit()">提交您的建议</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

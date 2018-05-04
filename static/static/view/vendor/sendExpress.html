@@ -1,0 +1,131 @@
+<style>
+.head {
+	border: 1px solid #ddd;
+	margin-top: 15px;
+	padding-left: 10px;
+}
+.body {
+	margin-top: 15px;
+	border: 1px solid #ddd;
+	padding: 25px;
+}
+.saddr {
+	border: 1px solid #ddd;
+	margin-bottom: 20px;
+}
+.lhead {
+	background-color: 	#D3D3D3;
+	width: 100%;
+	padding: 10px;
+}
+.lbody {
+	width: 100%;
+	padding: 10px 55px;	
+}
+.more {
+	padding-left: 25px;
+}
+.rmore {
+	border-top: 1px dashed #ddd;
+	margin-top: 15px;
+	padding-top: 15px;
+}
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>物流管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>我要寄快递</li>
+	</ul>
+</div>
+<div class="head"><h2>我要寄快递</h2></div>
+
+<div class="body">
+	<div class="saddr">
+		<div class="lhead">寄件人地址</div>
+
+		<div class="lbody">
+			<a class="text-primary">使用新地址</a>
+			<a class="more">展开查看更多常用发货地址<i class="fa fa-w fa-angle-up"></i></a>
+		</div>
+	</div>
+	
+	<div class="saddr">
+		<div class="lhead">收件人地址</div>
+
+		<div class="lbody">
+			<form class="form">	
+				<div class="form-group">
+					<label class="form-label"><span class="text-inverse">*</span>收件人</label>
+					<div class="row">
+						<div class="col-xs-4">
+							<input type="text" class="form-control input input-sm">
+						</div>
+					</div>
+				</div>				
+				<div class="form-group">
+					<label class="form-label"><span class="text-inverse">*</span>地址</label>
+					<div class="row" style="margin-bottom: 5px;">
+						<div class="col-xs-4">
+							<select class="form-control">
+								<option>深圳</option>
+								<option>北京</option>								
+								<option>上海</option>
+								<option>广州</option>
+							</select>
+						</div>
+					</div> 
+					<div class="row">
+						<div class="col-xs-4">
+							<input type="text" class="form-control input input-sm">
+						</div>
+					</div>
+				</div>				
+				<div class="form-group">
+					<label for="name"><span class="text-inverse">*</span>手机号</label>
+					<div class="row">
+						<div class="col-xs-4">
+							<input type="text" class="form-control input input-sm">
+						</div>
+					</div>
+				</div>				
+				<div class="form-group">
+					<label for="name">邮编</label>
+					<div class="row">
+						<div class="col-xs-4">
+							<input type="text" class="form-control input input-sm">
+						</div>
+					</div>
+				</div>				
+				<div class="form-group">
+					<label for="name">电话</label>
+					<div class="row">
+						<div class="col-xs-2">
+							<input type="text" class="form-control input input-sm">
+						</div>
+						<div class="col-xs-4">
+							<input type="text" class="form-control input input-sm">
+						</div>
+						<div class="col-xs-2">
+							<input type="text" class="form-control input input-sm">
+						</div>
+					</div>
+				</div>				
+			</form>
+			<div class="rmore"><a class="more">展开查看更多常用收货地址<i class="fa fa-w fa-angle-up"></i></a></div>
+		</div>
+	</div>
+	
+</div>

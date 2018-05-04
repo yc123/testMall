@@ -1,0 +1,237 @@
+<style>
+.margintop {
+	margin-top: 2px;
+}
+
+.form-group .similar {
+	position: absolute;
+    margin-top: 30px;
+    margin-left: 201px;
+    width: 342.66px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-top: none;
+    z-index: 20;
+}
+
+.form-group .similarEn {
+	position: absolute;
+    margin-top: 100px;
+    margin-left: 201px;
+    width: 342.66px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-top: none;
+    z-index: 20;
+}
+
+.form-group .similar ul {
+	margin-bottom: 0px;
+}
+
+.form-group .similar ul li {
+	font-size: 14px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.form-group .similar ul li:hover, .form-group .similar ul li.active {
+	background: #eee;
+}
+</style>
+<div class="main-content">
+	<div class="panel panel-default">
+		<div class="panel-title">
+			<h4>
+				<span class="glyphicon glyphicon-star"></span> <span>品牌基本信息</span>
+			</h4>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" name="form1" novalidate>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">中文品牌：</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control input-sm" name="nameCn" autofocus
+							ng-model="brand.nameCn" placeholder="输入品牌名称，例如：松下" autocomplete="off"
+							typeahead="brand.nameCn for brand in getSimilarBrands($viewValue)"
+							typeahead-on-select="onAssociateClick($item)"
+							ng-blur="getBrandName(brand.nameCn, 'cn')">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>英文品牌：</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control input-sm" name="nameEn" required autofocus
+							ng-model="brand.nameEn" placeholder="输入品牌名称，例如：Panasonic" autocomplete="off"
+							typeahead="brand.nameEn for brand in getSimilarBrands($viewValue)"
+							typeahead-on-select="onAssociateClick($item)"
+							ng-blur="getBrandName(brand.nameEn, 'en')">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">制造商：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control input-sm" name="vendor"
+							ng-model="brand.vendor" placeholder="输入品牌厂商，例如：松下">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>官网地址：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control input-sm" name="vendor" required
+							ng-model="brand.url" placeholder="输入品牌官网地址，例如：http://panasonic.cn/" autocomplete="off">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Logo：</label>
+					<div class="col-sm-10">
+						<img class="img-thumbnail" ng-src="{{imageUrl}}"
+							style="width: 150px; height: 90px;" ng-click="showImageDialog()">
+						<span class="help-block">品牌Logo，建议图片尺寸在150*90像素左右</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>简介：</label>
+					<div class="col-sm-10">
+						<summernote height="150" lang="zh-CN"
+							show-image-dialog="showImageDialog()" ng-model="brand.brief" required></summernote>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>销售区域：</label>
+					<div class="col-sm-10">
+						<label class="checkbox-inline" ng-repeat="area in areas">
+							<input type="checkbox" name="area" ng-model="area.checked" value="area" style="margin-top: 1px;">
+							<span ng-bind="area.value"></span>
+						</label>
+						<hr />
+						<div class="well well-sm">
+							<div class="form-group" ng-repeat="e in extraAreas">
+								<div class="col-sm-4">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm"
+											ng-model="e.value"> <span class="input-group-btn">
+											<button class="btn btn-default btn-sm" type="button"
+												ng-click="removeExtraAreas($index)">删除</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<a ng-click="addExtraAreas()"><span
+										class="fa fa-plus-square fa-fw"></span>&nbsp;其他销售区域</a>
+								</div>
+								<div class="col-sm-8 text-muted">
+									如果您的品牌销售区域不在上述范围，您可以手动添加其他销售区域</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 产品图片插入modal Start -->
+	<script type="text/ng-template" id="offer/image/insert.html">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="close()">×</button>
+			<h4 class="modal-title">插入图片</h4>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-xs-7" style="padding: 20px;">
+					<p class="help-block">提示：选择的图片单张大小不超过3MB，支持jpg,jpeg,gif,bmp,png</p>
+					<div class="upload-container" ng-disabled="getImages().length == images.length">
+						<div id="uploadify" on-success="onUploadSuccess($data)" uploadify="{buttonText:'选择图片'}"></div>
+					</div>
+				</div>
+				<div class="col-xs-5">
+					<h3>预览</h3>
+					<div class="image-content">
+						<img class="img-thumbnail" ng-src="{{image.src}}"
+							style="width: 150px; height: 90px;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div class="pull-right"><a ng-click="confirm()" class="btn btn-primary" ng-disabled="!image.src">确定</a></div>
+		</div>
+		</script>
+	<!-- 产品图片插入modal End -->
+	<div class="panel panel-default">
+		<div class="panel-title">
+			<h4>
+				<span class="glyphicon glyphicon-star"></span> <span>品牌应用</span>
+			</h4>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" name="form2" novalidate>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>主打产品：</label>
+					<div class="col-sm-10">
+						<textarea rows="3" class="form-control input-sm" name="series"
+							ng-model="brand.series" placeholder="输入主要生产产品，例如：车载继电器" required></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>应用领域：</label>
+					<div class="col-sm-10">
+						<div>
+							<label class="checkbox-inline" ng-repeat="app in apps"> 
+								<input type="checkbox" name="application" ng-model="app.checked"
+									value="app" style="margin-top: 1px;"> <span ng-bind="app.value"></span>
+							</label> 
+						</div>
+						<hr>
+						<div class="well well-sm">
+							<div class="form-group" ng-repeat="e in extraApp">
+								<div class="col-sm-4">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm"
+											ng-model="e.value"> <span class="input-group-btn">
+											<button class="btn btn-default btn-sm" type="button"
+												ng-click="removeExtraApp($index)">删除</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2">
+									<a ng-click="addExtraApp()"><span
+										class="fa fa-plus-square fa-fw"></span>&nbsp;其他领域</a>
+								</div>
+								<div class="col-sm-9 text-muted">
+									如果您的品牌应用领域不在上述范围，您可以手动添加其他领域</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">主要成就：</label>
+					<div class="col-sm-10">
+						<summernote height="150" lang="zh-CN"
+							show-image-dialog="showImageDialog()"
+							ng-model="brand.achievement"></summernote>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="text-center">
+		<div class="form-group">
+			<span>点击阅读<a href="">《优软商城品牌定义规则》</a></span>
+		</div>
+		<div class="form-group"> <!--  " -->
+			<button type="button" class="btn btn-warning" ng-click="save()" ng-disabled="form1.$invalid || form2.$invalid">
+				<strong>确认无误，提交</strong>
+			</button>
+		</div>
+	</div>
+</div>

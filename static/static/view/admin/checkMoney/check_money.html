@@ -1,0 +1,64 @@
+<div class="row-fluid sortable">		
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 付款申请
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;">
+				<div class="row">
+					<div class="col-sm-1">
+						共<span class="badge">{{checkMoneyTableParams.total()}} </span>条
+					</div>
+					<div class="col-sm-7">
+						<!--<div class="btn-group" role="group" aria-label="...">
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='notsettled'}" ng-click="setActive('notsettled')">待结算</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='settled'}" ng-click="setActive('settled')">已结算</button>
+						</div>-->
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input class="form-control" placeholder="请输企业UU查询"
+								ng-model="keyword"  ng-search="onSearch()" size="16" type="text">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="button" ng-click="onSearch()">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<table ng-table="checkMoneyTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+					<thead>
+						<tr>
+							<th width="50">序号</th>
+							<th width="auto">企业名称</th>
+							<th width="150">企业简称</th>
+							<th width="150">企业UU</th>
+							<th width="150">注册时间</th>
+							<th width="150" ng-show="active=='notsettled'">操作</th>
+						
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="enter in $data">
+							<td class="text-center" ng-bind="$index+1"></td>
+							<td ng-bind="enter.enName"></td>
+							<td ng-bind="enter.enShortname"></td>
+							<td ng-bind="enter.uu"></td>
+							<td ng-bind="enter.enDate | date: 'yyyy-MM-dd HH:mm'"></td>
+							<td ng-show="active=='notsettled'">
+								<a ng-show="active=='notsettled'" ng-click="ensureSettled(enter)">
+									<button type="button" class="btn btn-default btn-sm" 
+									>申请付款</button></a>
+							</td>
+						</tr>
+						<tr ng-if="$data.length == 0">
+							<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的企业</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a id="bottom"></a>
+			<!-- ng-tableEnd -->
+		</div>
+	</div><!--/span-->
+</div><!--/row-->

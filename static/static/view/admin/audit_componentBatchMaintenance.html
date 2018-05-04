@@ -1,0 +1,75 @@
+<div class="box">
+	<div class="box-header well" data-original-title>
+		<i class="icon-user"></i> 器件批量建档审批
+	</div>
+	<div class="box-content">
+		<!-- ng-tableStart -->
+		<div class="fullscreen" style="padding: 10px;">
+			<div class="from-group text-right">
+				<a ng-href="#/audit/componentSubmitBatch/detail/list"><button class="btn btn-success btn-sm">发起器件建档任务</button></a>
+				<p></p>				
+			</div>
+			<div class="row">
+				<div class="col-sm-1">
+					共<span class="badge">{{componentTableParams.total()}} </span>条
+				</div>
+				<div class="col-sm-5">
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='all'}" ng-click="setActive('all')">全部</button>
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='unAudited'}" ng-click="setActive('unAudited')">待审核</button>
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='pass'}" ng-click="setActive('pass')">已通过</button>
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='forbidden'}" ng-click="setActive('forbidden')">未通过</button>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="input-group" style="float: right">
+						<input type="search" class="form-control ng-pristine ng-valid ng-touched" ng-model="keyword" 
+							ng-search="onSearch()" placeholder="按申请单号搜索">
+						<div class="input-group-btn">
+							<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table ng-table="componentTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+				<thead>
+					<tr>
+						<th width="30"></th>
+						<th width="150">申请单号</th>
+						<th width="100">申请人</th>
+						<th width="150">提交时间</th>
+						<th width="100">审核状态</th>
+						<th width="100" ng-show="active!='unAudited'">审批人</th>
+						<th width="150" ng-show="active!='unAudited'">审批时间</th>
+						<th width="auto">审核意见</th>
+						<th width="100">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="component in $data">
+						<td class="text-center">{{($index + 1)}}</td>
+						<td>{{component.submitId}}
+						</td>
+						<td>{{component.submiter.userName}}</td>
+						<td>{{component.createDate | date: "yyyy-MM-dd HH:mm"}}</td>
+						<td>{{component.auditStatus | statusAndTypeFilter}}</td>
+						<td ng-bind="component.auditer.userName" ng-show="active!='unAudited'"></td>
+						<td ng-bind="component.auditDate | date: 'yyyy-MM-dd HH:mm'"  ng-show="active!='unAudited'"></td>
+						<td ng-bind="component.remark"></td>
+						<td>
+							<a ng-href="#/audit/componentBatchMaintenance/detail/{{component.submitId}}">
+								<button type="button" class="btn btn-default btn-sm"
+								>查 看</button>
+							</a>
+							
+						</td>
+					</tr>
+					<tr ng-if="$data.length == 0">
+						<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的品牌资料</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- ng-tableEnd -->
+	</div>
+</div><!--/span-->

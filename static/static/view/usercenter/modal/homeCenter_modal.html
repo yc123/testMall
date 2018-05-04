@@ -1,0 +1,58 @@
+<style>
+    .modal-content {
+        width: 409px;
+    }
+    .modal-header {
+        background: #5078cb;
+        text-align: center;
+    }
+    .modal-header p {
+        color: #fff;
+    }
+    .modal-header i {
+        font-size: 12px;
+        position: absolute;
+        right: 7px;
+        top: 7px;
+        color: #fff;
+        cursor: pointer;
+    }
+    .modal-body {
+        height: 145px;
+        color: #666;
+        font-size: 14px;
+        padding: 27px 20px;
+        line-height: 20px;
+    }
+    .modal-body span {
+        color: #e83825;
+        cursor: pointer;
+    }
+    .modal-body .mall-btn-default {
+        height: 28px;
+        line-height: 28px;
+        width: 140px;
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        background: #5078cb;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 25px;
+    }
+</style>
+<div>
+    <div class="modal-header">
+        <img src="static/img/user/images/safeSetting.png" alt="">
+        <p>安全设置</p>
+       <!-- <i class="glyphicon glyphicon-remove" ng-click="cancel()"></i>-->
+    </div>
+    <div class="modal-body">
+        你的账户的安全等级过低，请 <span ng-hide="userInfo.pwdEnable" ng-click="goLink('pwd')"> 修改密码 </span>
+        <span ng-hide="userInfo.haveUserQuestion" ng-click="goLink('question')"> 设置密保问题 </span>
+        <span  ng-hide="userInfo.userEmail" ng-click="goLink('email')"> 绑定邮箱 </span>
+        来保障您的账户安全！
+        <a class="mall-btn-default" ng-click="goLink('sec')" >立即前往</a>
+    </div>
+</div>

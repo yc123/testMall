@@ -1,0 +1,209 @@
+body{
+    font-family: "Microsoft Yahei", "微软雅黑";
+}
+#floors-container {
+    width: 1190px;
+    padding: 0;
+    margin: auto;
+}
+#floors-lift {
+    position: fixed;
+    margin-left: -70px;
+    width: 60px;
+    bottom: 20%;
+    opacity: 0;
+   /* border: 2px solid #5078cb;*/
+    font-size: 14px;
+    height: 224px;
+    pointer-events: none;
+}
+#floors-lift li{
+    width: 60px;
+    height: 45px;
+    margin-bottom: 1px;
+}
+#floors-lift .floors-lift-item {
+    text-align: center;
+}
+#floors-lift .floors-lift-item a {
+    display: block;
+    width: 60px;
+    height: 45px;
+    text-decoration: none;
+    background-color: #b7dfff;
+    color: #fff;
+    padding-top: 5px;
+    overflow: hidden;
+}
+#floors-lift .floors-lift-item a span:last-child{
+    font-size: 12px;
+    padding-top: 5px;
+    display: inline-block;
+}
+#floors-lift .floors-lift-item a:hover {
+    cursor: pointer;
+    background-color: #90ceff;
+    color: #fff;
+}
+#floors-lift .floors-lift-item.active a {
+    background-color: #90ceff;
+    color: #fff;
+}
+
+#floors {
+    padding: 0;
+}
+.floor {
+    display: inline-block;
+}
+.floor h2{
+    width: 100%;
+    height: 70px;
+    font-size: 24px;
+    padding-top: 0;
+    margin: 0;
+    line-height: 100px;
+    color: #333;
+}
+.floor .floor-item {
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+.floor .floor-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    text-align: center;
+}
+.floor .floor-item a:hover{
+    /*cursor: default;*/
+}
+.floor .floor-item a[href='']{
+    cursor: default;
+}
+.floor .floor-item .floor-content {
+    position: absolute;
+    text-align: center;
+}
+.floor .floor-item.tiny {
+    display: none;
+    width: 600px;
+    height: 46px;
+    float: right;
+}
+.floor .floor-item.tiny img {
+    width: 600px;
+    height: 46px;
+}
+.floor .floor-item.large {
+    width: 360px;
+    height: 400px;
+    border: 1px solid #d8d8d8;
+}
+.floor .floor-item.large img {
+    width: 226px;
+    height: 226px;
+    margin-top: 40px;
+}
+.floor .floor-item.large .floor-content {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+}
+.floor .floor-item.large .floor-item-name {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 0 15px;
+}
+.floor .floor-item.large .floor-item-body {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+.floor .floor-item.medium {
+    width: 390px;
+    height: 200px;
+}
+.floor .floor-item.medium img {
+    position: absolute;
+    bottom: 50px;
+    right: 52px;
+    width: 100px;
+    height: 100px;
+}
+.floor .floor-item.medium .floor-content {
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+}
+.floor .floor-item.medium .floor-item-name {
+    color: rgb(87, 87, 87);
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: left;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 300px;
+    word-wrap: break-word;
+}
+.floor .floor-item.medium .floor-item-body {
+    margin-right: 150px;
+    color: rgb(87, 87, 87);
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+}
+.floor .floor-item.small {
+    width: 220px;
+    height: 200px;
+}
+.floor .floor-item.small img {
+    margin-top: 15px;
+    width: 70px;
+    height: 70px;
+}
+.floor .floor-item.small .floor-content {
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+}
+.floor .floor-item.small .floor-item-name {
+    color: rgb(87, 87, 87);
+    font-size: 16px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-break: break-word;
+}
+.floor .floor-item.small .floor-item-body {
+    color: rgb(87, 87, 87);
+    font-size: 14px;
+    line-height: 18px;
+}
+.floor .floor-item.medium, .floor .floor-item.small {
+    border-bottom: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+}
+.floor .floor-item:nth-child(3), .floor .floor-item:nth-child(4), .floor .floor-item:nth-child(5) {
+    border-top: 1px solid #d8d8d8;
+}
+.floor .floor-item:hover{
+    /*background: rgba(0,0,0,0.02) !important;*/
+    /*border: #5078cb 1px solid;*/
+}
+.floor .floor-item:hover img{
+    transform: scale(1.1);
+}

@@ -1,0 +1,56 @@
+<!-- 产品类目选择 Start -->
+<div class="panel panel-default panel-shadow">
+	<div class="panel-title">
+		<h4>
+			<i class="fa fa-star"></i> <span>请选择您要编辑的类目</span>
+		</h4>
+		<!-- <h5 class="pull-right">
+			<span>对类目设置有建议，请<a href="#">点此反馈</a></span>
+		</h5> -->
+	</div>
+	<div class="panel-body">
+		<div class="choose-body">
+			<div class="choose-item">
+				<ul class="list-unstyled">
+					<li ng-repeat="k in kinds[0]" ng-class="{active: k.$active}"><a
+						ng-click="onItemClick(k, 0)">{{k.nameCn}}<span class="caret"
+							ng-show="!k.isLeaf"></span></a></li>
+				</ul>
+			</div>
+			<div class="choose-item">
+				<ul class="list-unstyled" ng-show="kinds[1].length>0">
+					<li ng-repeat="k in kinds[1]" ng-class="{active: k.$active}"><a
+						ng-click="onItemClick(k, 1)">{{k.nameCn}}<span class="caret"
+							ng-show="!k.isLeaf"></span></a></li>
+				</ul>
+			</div>
+			<div class="choose-item">
+				<ul class="list-unstyled" ng-show="kinds[2].length>0">
+					<li ng-repeat="k in kinds[2]" ng-class="{active: k.$active}"><a
+						ng-click="onItemClick(k, 2)">{{k.nameCn}}<span class="caret"
+							ng-show="!k.isLeaf"></span></a></li>
+				</ul>
+			</div>
+			<div class="choose-item">
+				<ul class="list-unstyled" ng-show="kinds[3].length>0">
+					<li ng-repeat="k in kinds[3]" ng-class="{active: k.$active}"><a
+						ng-click="onItemClick(k, 3)">{{k.nameCn}}<span class="caret"
+							ng-show="!k.isLeaf"></span></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="choose-result">
+			<ol class="breadcrumb">
+				<span class="text-muted">您当前选择的类目：</span>
+				<li ng-repeat="a in actives">{{a.nameCn}}</li>
+			</ol>
+			<div class="pull-right">
+				<button type="button" class="btn btn-inverse" ng-click="next()" title="只能对叶子类目节点进行编辑"
+					ng-disabled="!enableNext">
+					<strong>下一步，填写详细信息 →</strong>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 产品类目选择 End -->

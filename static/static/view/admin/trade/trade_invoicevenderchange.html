@@ -1,0 +1,67 @@
+<div class="row-fluid sortable">		
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 卖家换货出货单
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;">
+				<div class="row">
+					<div class="col-sm-1">
+						共<span class="badge">{{invoiceForChTableParams.total()}} </span>条
+					</div>
+					<div class="col-sm-7">
+						<div class="btn-group" role="group" aria-label="...">
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='inbound'}" ng-click="setActive('inbound')">待收货</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='received'}" ng-click="setActive('received')">已收货</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='toreceivemoney'}" ng-click="setActive('toreceivemoney')">待收款</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='moneyreceived'}" ng-click="setActive('moneyreceived')">已收款</button>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input placeholder="请输入订单号查询" class="form-control"
+								ng-model="keyword"  ng-search="onSearch()" size="16" type="text">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="button" ng-click="onSearch()">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<table ng-table="invoiceForChTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+					<thead>
+						<tr>
+							<th class="text-center" width="30"></th>
+							<th class="text-center" width="150">出货单号</th>
+							<th class="text-center" width="150">供应商企业名称</th>
+							<th class="text-center" width="120">金额</th>
+							<th class="text-center" width="70">数量</th>
+							<th class="text-center" width="150">创建时间</th>
+							<th class="text-center" width="80">出货单状态</th>
+							<th class="text-center" width="140" ng-show="active=='inbound'">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="invoice in $data">
+							<td class="text-center">{{($index + 1)}}</td>
+							<td class="text-center"><a target="_blank" ng-href="admin#/trade/invoicevenderchange/{{invoice.invoiceid | EncryptionFilter}}">{{invoice.invoiceid}}</a></td>
+							<td class="text-center">{{invoice.sellername}}</td>
+							<td class="text-center text-num">{{invoice.currencyName}}&nbsp;{{invoice.price | number:2}}</td>
+							<td class="text-center">{{invoice.changeQty}}</td>
+							<td class="text-center">{{invoice.createtime | date: "yyyy-MM-dd HH:mm"}}</td>
+							<td class="text-center">{{invoice.status | statusAndTypeFilter}}</td>
+							<td class="text-center" ng-show="active=='inbound'">
+								<a ng-show="active=='inbound' && invoice.status == 404" ng-click="ensureAccept(invoice)">
+									<button type="button" class="btn btn-default btn-sm"
+									>确认收货</button>
+								</a>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- ng-tableEnd -->
+		</div>
+	</div><!--/span-->
+</div><!--/row-->

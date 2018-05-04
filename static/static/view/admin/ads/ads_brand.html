@@ -1,0 +1,27 @@
+<div class="row-fluid sortable">
+    <div class="box span12">
+        <div class="box-header well" data-original-title>
+            <h2><i class="icon-user"></i> <a ng-click="load('weight')">已推广品牌 </a> / <a ng-click="load('disweight')">所有品牌</a></h2>
+        </div>
+        <div class="box-content">
+            <!-- ng-tableStart -->
+            <div class="fullscreen" style="padding: 10px;overflow-y:auto;">
+                <table ng-table="brandsTableParams" class="table table-condensed table-bordered table-striped">
+                    <tr ng-repeat="brand in $data">
+                        <td data-title="'英文品牌名'" filter="{nameCn: 'text'}">{{brand.nameEn}}</td>
+                        <td data-title="'中文品牌名'" filter="{nameCn: 'text'}">{{brand.nameCn}}</td>
+                        <td data-title="'权重'" >{{brand.weight}}</td>
+                        <td data-title="'操作'">
+                            <button ng-click="updateweight(brand)" class="btn btn-danger btn-sm" ng-if="!brand.weight"><i class="fa fa-check"></i> 推广</button>
+                            <button ng-click="disweight(brand)" class="btn btn-danger btn-sm" ng-if="brand.weight"><i class="fa fa-check"></i> 解除推广</button>
+                            <button ng-click="updateweight(brand)" class="btn btn-danger btn-sm" ng-if="brand.weight"><i class="fa fa-check"></i> 修改推广</button>
+                            <input type="number" style="height: 30px"  ng-model="brand.inputWeight"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- ng-tableEnd -->
+        </div>
+    </div><!--/span-->
+
+</div><!--/row-->

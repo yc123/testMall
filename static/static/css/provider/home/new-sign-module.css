@@ -1,0 +1,108 @@
+.new-sign-module {
+    width: 280px;
+    height: 360px;
+    padding-left: 20px;
+    border-right: 1px solid #D6D3CE;
+    border-bottom: 1px solid #D6D3CE;
+    border-top: 1px solid #D6D3CE;
+}
+
+.new-sign-module .head {
+    height: 60px;
+}
+
+.new-sign-module .head .title {
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+    font-family: "Microsoft Yahei", "微软雅黑";
+    font-weight: 600;
+    display: inline-block;
+}
+
+.new-sign-module .new-store {
+    display: inline-block;
+    height: 70px;
+    padding-bottom: 0px;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 260px;
+}
+
+.new-sign-module .new-store .img, .new-sign-module .head .img {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+}
+
+.new-sign-module .new-store .content {
+    width: 200px;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.new-sign-module .new-store .content .name {
+    font-size: 16px;
+    font-family: "Microsoft Yahei", "微软雅黑";
+    color: #6D6B66;
+    width: 190px;
+    line-height: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.new-sign-module .new-store .content .subject {
+    font-size: 14px;
+    font-family: "Microsoft Yahei", "微软雅黑";
+    color: #777570;
+    line-height: 17px;
+}
+
+.new-sign-module .sign {
+    height: 80px;
+    box-shadow: 0px -5px 20px 0px #E3E1DE;
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+.new-sign-module .count {
+    font-size: 16px;
+    font-family: "Microsoft Yahei", "微软雅黑";
+    padding: 5px;
+}
+
+.new-sign-module .count span {
+    color: #328CFE;
+}
+
+.sign button {
+    background-color: #3D76C6;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    height: 30px;
+    width: 160px;
+    border: #3D76C6;
+}
+
+.sign div.img, .sign div.content {
+    display: inline-block;
+}
+
+.sign div.img img {
+    margin-bottom: 25px;
+}
+
+.sign div.content {
+    font-size: 0px;
+    padding-left: 3px;
+    height: 70px;
+}
+
+.new-sign-module ul {
+    font-size: 0px;
+}

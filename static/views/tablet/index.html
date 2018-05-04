@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title i18n="home.title">scm</title>
+<link rel="stylesheet" href="static/lib/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="static/css/index.css" />
+<base target="_blank" />
+</head>
+<body>
+	<!-- header begin -->
+	<div ng-include src="'static/view/common/header.html'"></div>
+	<!-- header end -->
+	<!-- main content begin -->
+	<div id="wrapper">
+		<!-- content top (logo & search) begin -->
+		<div class="row-fluid">
+			<!-- logo begin -->
+			<div class="span4 text-success">
+				<img src="static/img/all/logo_bl_.png">
+			</div>
+			<!-- logo end -->
+			<!-- search begin -->
+			<div class="span6" ng-controller="SearchCtrl">
+				<!-- search input begin -->
+				<div class="input-prepend input-append">
+					<div class="btn-group">
+						<button class="btn btn-info dropdown-toggle"
+							data-toggle="dropdown">
+							产品<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">产品</a></li>
+							<li><a href="#">企业</a></li>
+							<li><a href="#">求购</a></li>
+							<li><a href="#">讯息</a></li>
+						</ul>
+					</div>
+					<input class="input-xlarge" type="text" placeholder="输入关键字">
+					<button class="btn btn-info" type="button">
+						<i class="icon-search icon-white"></i>
+					</button>
+				</div>
+				<!-- search input end -->
+				<!-- hot words begin -->
+				<ul class="inline hotword">
+					<li ng-repeat="hotword in hotwords"><a href="#">{{hotword}}</a></li>
+					<li><span class="muted">|</span></li>
+					<li><a href="#">搜索排行榜</a></li>
+				</ul>
+				<!-- hot words end -->
+			</div>
+			<!-- search end -->
+			<!-- right begin -->
+			<div class="span2">
+				<ul class="menu-small  pull-right">
+					<li><a href="#" class="text-warning">手机客户端</a></li>
+					<li><a href="#" class="text-warning">UU客户端</a></li>
+				</ul>
+			</div>
+			<!-- right end -->
+		</div>
+		<!-- content top (logo & search) end -->
+		<!-- content navigation begin -->
+		<div class="navbar navbar-custom">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li class="active"><a href="#"><strong>首页</strong></a></li>
+					<li><a href="#">SomeLink</a></li>
+					<li><a href="#">SomeLink</a></li>
+					<li><a href="admin">企业空间</a></li>
+					<li class="divider-vertical"></li>
+					<li><a href="purc"><strong>供应链</strong></a></li>
+					<li><a href="#">采购管理</a></li>
+					<li><a href="#">销售管理</a></li>
+					<li class="divider-vertical"></li>
+					<li><a href="#"><strong>商业圈</strong></a></li>
+					<li><a href="#">商业讯息</a></li>
+					<li><a href="#">行业动态</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- content navigation end -->
+		<!-- content top info begin -->
+		<div id="content-top" class="row-fluid">
+			<!-- top left begin -->
+			<div class="span3" ng-controller="MarketCtrl">
+				<ul id="markets" role="menu" class="menu-small unstyled">
+					<h5>市场动态</h5>
+					<li ng-repeat="market in markets"><span
+						ng-class="getMarketClass(market.type)">{{market.type}}</span> <a
+						href="#">{{market.title}}</a></li>
+				</ul>
+				<ul id="infos" role="menu" class="menu-small unstyled">
+					<h5>行业资讯</h5>
+					<li ng-repeat="info in infos"><span class="muted">[{{info.type}}]</span><a
+						href="#">{{info.title}}</a></li>
+				</ul>
+			</div>
+			<!-- top left end -->
+			<!-- center images begin -->
+			<div class="span6" ng-controller="CarouselCtrl">
+				<carousel interval="5000"> <slide
+					ng-repeat="slide in slides" active="slide.active"> <img
+					ng-src="{{slide.image}}" style="margin: auto;">
+				<div class="carousel-caption">
+					<h4>{{slide.text}}</h4>
+					<p>{{slide.desc}}</p>
+				</div>
+				</slide> </carousel>
+				<div id="featured">
+					<ul class="tabcell link-horizontal">
+						<li><a href="#">col1</a></li>
+						<li><a href="#">col2</a></li>
+						<li><a href="#">col3</a></li>
+						<li><a href="#">col4</a></li>
+						<li><a href="#">col5</a></li>
+						<li><a href="#">col6</a></li>
+					</ul>
+					<ul class="tabcell link-horizontal">
+						<li><a href="#">col1</a></li>
+						<li><a href="#">col2</a></li>
+						<li><a href="#">col3</a></li>
+						<li><a href="#">col4</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- center images end -->
+			<!-- top right begin -->
+			<div class="span3">
+				<div style="min-height: 150px">
+					<tabset> <tab heading="新手入门" ng-mouseover="select()">
+					<ul class="menu-small">
+						<li><span class="muted">[新手卖家]</span><a href="#">如何发布新产品</a></li>
+						<li><span class="muted">[新手卖家]</span><a href="#">如何给客户报价</a></li>
+						<li><span class="muted">[新手入门]</span><a href="#">出现问题怎么办</a></li>
+					</ul>
+					</tab> <tab heading="安全贸易" ng-mouseover="select()">
+					<ul class="menu-small">
+						<li><span class="muted">[安全贸易]</span><a href="#">如何贸易更安全</a></li>
+						<li><span class="muted">[商家认证]</span><a href="#">如何获得商家认证</a></li>
+						<li><span class="muted">[买家保障]</span><a href="#">如何获得保障服务</a></li>
+					</ul>
+					</tab> <tab heading="优软规则" ng-mouseover="select()">
+					<ul class="menu-small">
+						<li><a href="#">优软商务平台使用条款</a></li>
+						<li><a href="#">违规信息发布处理规则</a></li>
+						<li><a href="#">会员用户特权</a></li>
+					</ul>
+					</tab></tabset>
+				</div>
+				<div style="min-height: 150px">
+					<tabset> <tab heading="我是采购商" ng-mouseover="select()">
+					<ul class="purc tabcell">
+						<li><a href="#"><i class="purc4"></i>发布<br>询价单</a></li>
+						<li><a href="#"><i class="purc5"></i>招募<br>供应商</a></li>
+					</ul>
+					<ul class="purc tabcell" style="border-top: 1px solid #fff;">
+						<li><a href="#"><i class="purc1"></i>采购<br>门户</a></li>
+						<li><a href="#"><i class="purc2"></i>询价<br>采购</a></li>
+						<li><a href="#"><i class="purc3"></i>供应商<br>管理</a></li>
+					</ul>
+					</tab> <tab heading="我是供应商" ng-mouseover="select()">
+					<ul class="tabcell">
+						<li><a href="#" class="text-warning">收到的询价单</a></li>
+						<li><a href="#" class="text-warning">管理我的报价</a></li>
+					</ul>
+					<ul class="menu-small" style="border-top: 1px dotted #52a015;">
+						<li><a href="#">如何对询价单进行报价</a></li>
+						<li><a href="#">如何报价才能抓住供应商</a></li>
+					</ul>
+					</tab></tabset>
+				</div>
+			</div>
+			<!-- top right end -->
+		</div>
+		<!-- content top info end -->
+		<!-- fixed right bottom begin -->
+		<div class="fixed-btn" style="right: 30px; bottom: 20px;">
+			<a href="#" target="_self"><i class="gotop"></i><em>回到顶部</em></a> <a
+				href="#" target="_self"><i class="setting"></i> <em>基本设置</em> </a> <a
+				href="#" target="_self"><i class="feedback"></i><em>我要反馈</em> </a>
+		</div>
+		<!-- fixed right bottom end -->
+		<div ng-view></div>
+	</div>
+	<!-- main content end -->
+	<!-- footer begin -->
+	<div ng-include src="'static/view/common/footer.html'"></div>
+	<!-- footer end -->
+	<script type="text/javascript" src="static/lib/require.js"
+		data-main="static/js/main/main.js"></script>
+</body>
+</html>

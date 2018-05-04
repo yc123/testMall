@@ -1,0 +1,172 @@
+<style>
+    .modal-dialog {
+        width: 527px;
+    }
+    .modal-dialog .modal-header {
+        display: flex;
+        justify-content: space-between;
+        height: 44px;
+        line-height: 44px;
+        background: #4290f7;
+        padding: 0 0 0 66px;
+    }
+    .modal-dialog .modal-header div {
+        font-size: 14px;
+        color: #fff;
+    }
+    .modal-dialog .modal-header a {
+        color: #fff;
+        margin: 4px 8px 0 0;
+        font-size: 18px;
+        opacity: 1;
+    }
+    .modal-dialog .modal-body {
+        min-height: 257px;
+    }
+    .modal-dialog .modal-body .fl {
+        width: 50%;
+    }
+    .modal-dialog .modal-body .fr {
+        width: 50%;
+    }
+    .modal-dialog .modal-body >div .form-row {
+        margin-bottom: 15px;
+    }
+    .modal-dialog .modal-body >div .form-row select,
+    .modal-dialog .modal-body >div .form-row input {
+        display: inline-block;
+        border-radius: 2px;
+        height: 28px;
+    }
+    .modal-dialog .modal-body >div .form-row >span i {
+        color: #f62d37;
+    }
+    .modal-dialog .modal-body >div .form-row span {
+        display: inline-block;
+        text-align: right;
+        font-size: 14px;
+    }
+    .modal-dialog .modal-body .fl .form-row >input {
+        width: 139px;
+    }
+    .modal-dialog .modal-body .fl .form-row span {
+        width: 98px;
+    }
+    .modal-dialog .modal-body .fr .form-row span {
+        width: 108px;
+    }
+    .modal-dialog .modal-body .fr .form-row select,
+    .modal-dialog .modal-body .fr .form-row >input {
+        width: 101px;
+    }
+    .modal-dialog .modal-body .fr .form-row select {
+        padding: 0 15px;
+    }
+    .modal-dialog .modal-body .delivery-time {
+        font-size: 16px !important;
+    }
+    .modal-dialog .modal-body .fr .delivery-time input {
+        width: 46px;
+    }
+    .modal-dialog .modal-body .expand-form .fl .delivery-time input {
+        width: 64px;
+    }
+    .modal-dialog .modal-body .fr .com-switch-green .checkbox,
+    .modal-dialog .modal-body .fr .com-switch-green .checkbox span{
+        width: 34px;
+        vertical-align: middle;
+    }
+    .modal-dialog .modal-body .expand-form{
+        clear: both;
+        height: 32px;
+    }
+    .modal-dialog .modal-body .expand-form .fr {
+        position: relative;
+    }
+    .modal-dialog .modal-body .expand-form .fr .fa {
+        position: absolute;
+        right: 0;
+        top: 8px;
+    }
+    .modal-dialog .modal-body .expand-form .fr .delivery-time input {
+        width: 64px;
+    }
+    .modal-dialog .modal-body .expand-form .fr .fa-minus-circle {
+        right: 18px;
+    }
+    .modal-dialog .modal-footer {
+        text-align: center;
+    }
+    .modal-dialog .modal-footer .com-btn-submit {
+        background: #4290f7;
+        margin-left: 16px;
+    }
+</style>
+<div class="modal-header">
+    <div>型号：<span ng-bind="seek.code"></span></div>
+    <div>品牌：<span ng-bind="seek.brand"></span></div>
+    <a ng-click="cancel()" class="close">&times;</a>
+</div>
+<div class="modal-body">
+    <div class="fl">
+        <div class="form-row">
+            <span><i>*</i>库存：</span>
+            <input type="number" ng-model="formData.reserve" ng-blur="checkReserve()" class="form-control">
+        </div>
+        <div class="form-row">
+            <span>最小包装数量：</span>
+            <input type="number" ng-modal="formData.minPackQty" ng-blur="checkMinPacyQty()" class="form-control">
+        </div>
+        <div class="form-row">
+            <span><i>*</i>包装方式：</span>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-row">
+            <span><i>*</i>生产日期：</span>
+            <input type="text" class="form-control">
+        </div>
+    </div>
+    <div class="fr">
+        <div class="form-row">
+            <span>起拍：</span>
+            <input type="number" ng-model="formData.minBuyQty" ng-blur="checkMinBuyQty()" class="form-control">
+        </div>
+        <div class="delivery-time form-row">
+            <span><i>*</i>交期：</span>
+            <input type="number" ng-model="formData.minDate" ng-blur="checkMinDate()" class="form-control">-<input type="number" ng-model="formData.maxDate" ng-blur="checkMaxDate()" class="form-control">
+        </div>
+        <div class="form-row">
+            <span>自营/寄售：</span>
+            <select class="form-control select-adder">
+                <option value="1">自营</option>
+                <option value="2">寄售</option>
+            </select>
+        </div>
+        <div class="com-switch-green form-row">
+            <span>可拆卖：</span>
+            <span class="checkbox" ng-class="{'active': formData.breakUp}" ng-click="formData.breakUp = !formData.breakUp">
+                <span><em></em></span>
+            </span>
+        </div>
+    </div>
+    <div class="expand-form" ng-repeat="price in prices track by $index">
+        <div class="fl">
+            <div class="delivery-time form-row">
+                <span><i>*</i>价格梯度：</span>
+                <input type="number" class="form-control">-<input type="number" class="form-control">
+            </div>
+        </div>
+        <div class="fr">
+            <div class="form-row">
+                <span><i>*</i>单价：</span>
+                <input type="number" class="form-control">
+            </div>
+            <i class="fa fa-plus-circle" ng-click="addPrices()"></i>
+            <i class="fa fa-minus-circle" ng-click="subPrices($index)"></i>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <span class="com-btn-cancel com-btn-level1" ng-click="cancel()">取消</span>
+    <span class="com-btn-submit com-btn-level1">确定</span>
+</div>

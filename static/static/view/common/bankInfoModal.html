@@ -1,0 +1,132 @@
+<style>
+	.margin15 {
+		margin: 0 7px 0 0;
+		font-size: 14px;
+		font-weight: normal;
+		width: 67px;
+	}
+
+	.divinline {
+		display: inline-block;
+	}
+	.modal-header {
+		padding: 15px 18px;
+		border-bottom: 1px solid #ddd;
+	}
+	.divinline .form-control {
+		opacity: 1;
+		width: 241px;
+		border-radius: 0;
+		position:relative;
+	}
+	.divinline .select-down{
+		float:left;
+		width: 241px;
+		max-height:230px;
+		overflow-y: scroll;
+		border-radius: 3px;
+		border:1px solid #5078cb;
+		position:absolute;
+		background: #fff;
+		top:34px;
+		z-index:1000;
+	}
+	.divinline .select-down li{
+		line-height: 32px;
+		padding:6px;
+		padding-left:12px;
+	}
+	.divinline .select-down li:hover{
+		background: #5078cb;
+		color:#fff;
+		cursor:pointer;
+	}
+	.divinline .select-down li.active{
+		background: #5078cb;
+		color:#fff;
+		cursor:pointer;
+	}
+	.modal-content {
+		width: 482px;
+	}
+	.modal-body .form-group .warn-message {
+		color: #f41b1b;
+		font-size: 12px;
+		margin-left: 10px;
+	}
+	.modal-body .remind-message {
+		width: auto;
+		font-size: 12px;
+		position: relative;
+		left: -15px;
+		bottom: 3px;
+	}
+	.modal-footer {
+		text-align: center;
+		border: none;
+		padding-top: 0;
+	}
+	.modal-footer button {
+		margin-right: 10px;
+	}
+</style>
+<div class="modal-header" style="position:relative">
+	<h3 class="modal-title" style="font-weight: 700">{{title}}</h3>
+	<span style="color:#cbcaca;width:10px;height:10px;position:absolute;top:15px;right:15px;"><i class="fa fa-close" style="font-size: 14px;" ng-click="cancel()"></i></span>
+</div>
+<form class="form-horizontal add-bank-account" style="margin-left: 17px;" name="myForm" novalidate>
+	<div class="modal-body">
+			<div class="form-group">
+		    	<label class="margin15"><b class="text-inverse">*&nbsp;</b>开户银行</label>
+		    	<div class="divinline" style="position:relative;margin-right:25px;">
+					<!--<select class="form-control select-adder">-->
+						<!--<option>请选择开户银行</option>-->
+						<!--<option value="1">1</option>-->
+						<!--<option value="2">2</option>-->
+					<!--</select>-->
+		    		<input name="bankname" ng-model="account.bankname" ng-change="checkAccount(1)" autocomplete="off" type="text" class="form-control" placeholder="请选择开户银行" required style="width:216px;border-right:transparent;border-radius:3px 0 0 3px;" ng-keydown="onKeyUp()" ng-focus="getItemFocus()" ng-blur="onItemBlur()">
+					<i class="select-adder" style="display:inline-block;width:25px;height:34px;border:1px solid #ddd;position:absolute;right:-25px;top:0;border-radius:0 3px 3px 0;border-left:transparent" ng-click="showList()"></i>
+					<ul class="select-down" ng-if="showBankFrame && matchData" id="ulContent">
+						<li ng-click="fitBankToAccount(bank)" ng-repeat="bank in resultList" ng-class="{'active': $index==selectIndex}">{{bank}}</li>
+					</ul>
+		  		</div>
+				<span class="warn-message" ng-if="account.bankname && !matchData">请填写正确的开户银行</span>
+				<span class="warn-message" ng-if="myForm.bankname.$touched && myForm.bankname.$invalid">开户银行不能为空</span>
+		  	</div>
+			<div class="form-group">
+				<label class="margin15"><b class="text-inverse">*&nbsp;</b>开户支行</label>
+				<div class="divinline">
+					<input name="branchname" type="text" class="form-control" ng-model="account.branchname" ng-change="checkAccount(2)" autocomplete="off"
+						   placeholder="例如：侨香支行" ng-required="true">
+				</div>
+				<span class="warn-message" ng-if="account.branchname && branchPattError">请填写正确的开户支行</span>
+				<span class="warn-message" ng-if="account.branchname && !branchPattError && branchError">请勿超过20个字</span>
+				<span class="warn-message" ng-if="myForm.branchname.$touched && myForm.branchname.$invalid">开户支行不能为空</span>
+			</div>
+		  	<div class="form-group">
+		  		<label class="margin15"><b class="text-inverse">*&nbsp;</b>银行账号</label>
+		  		<div class="divinline">
+		  			<input name="number" ng-model="account.number" type="text" class="form-control" 
+		  			placeholder="请填写银行账号" ng-required="true" ng-change="checkAccount(3)" autocomplete="off">
+		  		</div>
+				<span class="warn-message" ng-if="account.number && numberPattError">请填写正确的银行账号</span>
+				<span class="warn-message" ng-if="account.number && !numberPattError && numberError">请勿超过30个字符</span>
+				<span class="warn-message" ng-if="account.number && !numberPattError && !numberError && repeatError">该银行账号已存在</span>
+				<span class="warn-message" ng-if="myForm.number.$touched && myForm.number.$invalid">银行账号不能为空</span>
+		  	</div>
+			<div class="form-group">
+				<label class="margin15"><b class="text-inverse">*&nbsp;</b>开户名称</label>
+				<div class="divinline">
+					<input name="accountname" type="text" class="form-control" ng-model="account.accountname"
+						   placeholder="请填写开户人姓名或企业名称" ng-required="true" ng-change="checkAccount(4)" autocomplete="off">
+				</div>
+				<span class="warn-message" ng-if="account.accountname && nameError">请勿超过50个字</span>
+				<span class="warn-message" ng-if="myForm.accountname.$touched && myForm.accountname.$invalid">开户名称不能为空</span>
+			</div>
+		<label class="remind-message"><b class="text-inverse">*&nbsp;</b>为保障您的资金安全，账户信息加密显示且不可修改，只能删除后重新提交。</label>
+	</div>
+</form>
+<div class="modal-footer">
+	<button class="com-btn-level1 com-btn-cancel" ng-click="cancel()">取消</button>
+	<input type="submit" class="com-btn-submit com-btn-level1" ng-click="confirm()" value="确定" />
+</div>

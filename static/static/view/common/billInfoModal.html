@@ -1,0 +1,97 @@
+<style type="text/css">
+.margin15 {
+	margin-left: 15px; 
+	margin-right: 15px;
+	font-size: 15px;
+	font-weight: 500;
+	width: 16%;
+}
+
+h3.modal-title {
+	font-size: 17px;
+	line-height: 1;
+}
+
+.auto-br {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+#body {
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+
+div.title {
+	background-color: #F3F3F3;
+}
+
+#body .row {
+	margin-bottom: 10px;
+	word-break: break-all;
+}
+
+.close {
+	font-size: 22px;
+}
+</style>
+<div class="modal-header title">
+	<button type="button" class="close" ng-click="dismiss()"><span >×</span></button>
+	<h3 class="modal-title">发票详细信息</h3>
+</div>
+<form class="form-horizontal" name="myForm" novalidate>
+	<div class="modal-body" id="body">
+			<div class="row">
+				<div class="col-md-5 text-right">开票抬头:</div>
+				<div class="col-md-7" ng-bind="bill.head"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-5 text-right">发票类型:</div>
+				<div class="col-md-7" ng-bind="bill.kind==1206 ? '增值税（普通）发票': '增值税（专用）发票'"></div>
+			</div>
+			<div class="row">
+		    	<div class="col-md-5 text-right">收票人:</div>
+		    	<div class="col-md-7" ng-bind="bill.name"></div>
+		  	</div>
+		  	<div class="row">
+		  		<div class="col-md-5 text-right">收票人电话:</div>
+		  		<div class="col-md-7" ng-bind="bill.telephone"></div>
+		  	</div>
+			<div class="row">
+				<div class="col-md-5 text-right">座机号码:</div>
+				<div class="col-md-7" ng-bind="bill.landlineNumber"></div>
+			</div>
+		  	<div class="row">
+		  		<div class="col-md-5 text-right">收票人地址:</div>
+		  		<div class="col-md-7 auto-br">
+		  			<span ng-bind="bill.area"></span>
+		  			<span ng-bind="bill.detailAddress"></span>
+		  		</div>
+		  	</div>
+		  	<div class="row" ng-show="bill.companyAddress">
+		  		<div class="col-md-5 text-right">公司地址:</div>
+		  		<div class="col-md-7" ng-bind="bill.companyAddress"></div>
+		  	</div>
+		  	<div class="row" ng-show="bill.companyTaxNumber">
+		  		<div class="col-md-5 text-right">税务登记号:</div>
+		  		<div class="col-md-7" ng-bind="bill.companyTaxNumber"></div>
+		  	</div>
+		  	<div class="row" ng-show="bill.companyPhone">
+		  		<div class="col-md-5 text-right">公司电话:</div>
+		  		<div class="col-md-7" ng-bind="bill.companyPhone"></div>
+		  	</div>
+		  	<div class="row" ng-show="bill.bankName">
+		  		<div class="col-md-5 text-right">开户银行:</div>
+		  		<div class="col-md-7" ng-bind="bill.bankName"></div>
+		  	</div>
+		  	<div class="row" ng-show="bill.bankAccount">
+		  		<div class="col-md-5 text-right">开户银行账户:</div>
+		  		<div class="col-md-7" ng-bind="bill.bankAccount"></div>
+		  	</div>
+		  	<div class="row" ng-show="bill.attachUrl">
+		  		<div class="col-md-5 text-right">开票资料附件:</div>
+		  		<div class="col-md-7"><a ng-href="{{bill.attachUrl}}" target="_blank">点击查看</a></div>
+		  	</div>
+	</div>
+</form>

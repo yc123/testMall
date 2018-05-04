@@ -1,0 +1,330 @@
+<style>
+	body{
+		font-family: "Microsoft Yahei", "微软雅黑";
+	}
+.enterprise-info h2{
+	text-align: center;
+	line-height: 40px;
+	font-size: 18px;
+	color: #333;
+}
+.hr1{
+	width: 100%;
+	height: 1px;
+	margin: 0 auto;
+	border-bottom: #3ba9e9 1px solid;
+	margin: 10px 0;
+}
+.enterprise-lnfo-list{
+	width: 98%;
+	margin: 0 auto;
+	color: #333;
+}
+.enterprise-lnfo-list .row{
+	line-height: 30px;
+	width: 96%;
+	margin: 0 auto;
+}
+.enterprise-lnfo-list .row .col-md-2{
+	width: 80px;
+	padding-right: 0;
+}
+.enterprise-lnfo-list .row .col-md-4{
+	width: 400px;
+}
+/*查看大图*/
+.hover-show{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 100%;
+	background: rgba(0,0,0,.5);
+}
+.hover-show a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	color: #fff;
+	text-align: center;
+	line-height: 147px;
+}
+.hover-show a i{
+	margin-right: 5px;
+}
+.hover-show span.delete{
+	position: absolute;
+	z-index: 100;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	right: 0;
+	top: 0;
+	color: #fff;
+	font-size: 14px;
+	line-height: 30px;
+}
+/*资质证明*/
+.qualification{
+	width: 100%;
+	margin: 0 auto;
+	padding-left: 50px;
+	display: inline-block;
+}
+.qualification li{
+	width: 124px;
+	height: 147px;
+	float: left;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	margin-right: 50px;
+}
+.qualification li .img img{
+	width: 124px;
+	height: 147px;
+}
+.qualification li:hover .hover-show{
+	top: 0;
+}
+	/*推荐*/
+	.recommend{
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		background: #e8f5fd;
+		border-top: #3ba9e9 3px solid;
+		text-align: center;
+		margin-top: 20px;
+	}
+	.recommend .hot-icon i{
+		width: 17px;
+		height: 17px;
+		display: inline-block;
+		position: relative;
+		top: 3px;
+		margin-right: 3px;
+		background: url("static/img/icon/store-hot-icon.png");
+	}
+	.recommend .hot-icon i.hot{
+		background-position: -1px 0;
+	}
+	.recommend .hot-icon i.new{
+		background-position: 0 -19px;
+	}
+	.recommend .hot-icon i.new-apply{
+		background-position: 0 -39px;
+	}
+	.recommend .recommend-list{
+		width: 700px;
+		margin: 0 auto;
+		font-size: 14px;
+	}
+	.recommend .recommend-list label{
+		margin-right: 185px;
+		font-weight: inherit;
+		color: #666;
+		font-size: 14px;
+	}
+	.recommend .recommend-list label:last-child{
+		margin-right: 0;
+	}
+	.recommend .recommend-list b{
+		font-size: 14px;
+		color: #ccc;
+		background: #fff;
+		margin-left: 8px;
+		height: 13px;
+		position: relative;
+		top: 2px;
+	}
+	.recommend-list label input{
+		display: none;
+	}
+	.recommend-list label label{
+		width: 10px;
+		height: 10px;
+		display: inline-block;
+		background: url("static/img/icon/check-icon.png") no-repeat;
+		background-position: -1px -3px;
+		position: relative;
+		top: 6px;
+	}
+	.recommend-list label input:checked + label{
+		background-position: -14px -3px;
+	}
+	.recommend .recommend-list label:checked em:before{
+		content: "\f0c8";
+	}
+	.back-store {
+		width: 100%;
+		margin: 0 auto;
+		height: 36px;
+		text-align: center;
+		margin-top: 30px;
+	}
+	.back-store button{
+		width: 100px;
+		height: 36px;
+		line-height: 36px;
+		text-align: center;
+		font-size: 14px;
+		color: #fff;
+		border: none;
+		background: #3ba9e9;
+	}
+	/*表格样式*/
+	.application-tab table tbody tr{
+		height: 50px;
+	}
+	.application-tab table tr th,.application-tab table tr td{
+		border: #cfedfe 1px solid;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.application-tab .table-bordered{
+		border-top: #cfedfe 1px solid;
+	}
+	.application-tab table tr th{
+		background: #cfedfe;
+		height: 35px;
+	}
+	.application-tab table tbody tr:hover{
+		background: #e4f3fc;
+	}
+	.text-left{
+		text-align: left !important;
+	}
+	.padding-left-30{
+		padding-left: 30px !important;
+	}
+</style>
+<div class="enterprise-info" ng-controller="EnterpriseInfoCtrl">
+	<h2 ng-bind="store.enterprise.enName">深圳市优软商城科技有限公司</h2>
+	<div class="enterprise-lnfo-list">
+		<div class="row">
+			<div class="col-md-2">电话</div>
+			<div class="col-md-4" ng-bind="store.enterprise.enTel">0755-02356985</div>
+			<div class="col-md-2">官网地址</div>
+			<div class="col-md-4" ng-bind="store.enterprise.enUrl">http://www.usoftmall.com/</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">传真</div>
+			<div class="col-md-4" ng-bind="store.enterprise.enFax">0755-02356985</div>
+			<div class="col-md-2">地址</div>
+			<div class="col-md-4" style="line-height: 20px; padding-top: 5px;" ng-bind="store.enterprise.address">广东省深圳市南山区高新科技产业园英唐大厦6市南山区高新科技产业园英唐大厦6楼楼</div>
+		</div>
+		<div class="hr1"></div>
+		<div class="row">
+			<div class="col-md-2">企业全称</div>
+			<div class="col-md-4" ng-bind="store.enterprise.enName">深圳市优软商城科技有限公司</div>
+			<div class="col-md-2">法定代表人</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.representative"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">企业简称</div>
+			<div class="col-md-4" ng-bind="store.enterprise.enShortname">优软商城</div>
+			<div class="col-md-2">信用代码</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.creditCode">231313654541521313</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">公司资质</div>
+			<div class="col-md-4">
+				<span ng-if="store.enType === 'MAINLAND'">中国大陆</span>
+				<span ng-if="store.enType === 'HK'">香港</span>
+			</div>
+			<div class="col-md-2">注册资本</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.capital">202000万</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">名称</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.name">深圳市优软商城科技有限公司</div>
+			<div class="col-md-2">成立时间</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.setUpDate">2017年8月10日</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">类型</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.type">深圳市优软商城科技有限公司</div>
+			<div class="col-md-2">经营范围</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.businessScope">电子零配件</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">住所</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.address">广东省深圳市南山区</div>
+			<div class="col-md-2">公司状态</div>
+			<div class="col-md-4" ng-bind="store.auditInfo.status">正常</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">公司简介</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" style="background: #eff8fd; line-height: 25px; padding: 15px;" ng-bind="store.description">
+				优软科技测试店铺来自于优软 闲暇时为自己沏上一杯清茶，不知从何时开始迷上了喝茶，或许是觉得自己的生活需要如同这壶淡淡的清茶一样简单安宁。 “茶里乾坤大，壶中日月长”品茶之余，便是悟茶之道，喜欢在茶壶里寻找岁月的芳香。 人生如茶，头苦，二甘，三回味，希望自己的生活如茶般有滋有味，在孤寂的时候不凋落，在快乐的时候不张扬，在痛苦的时不宣泄，做一个灵魂中带有茶香的女子。 “小鼎煎茶面曲池，白须道士竹间棋”煮一壶茶，听一琴曲，守住内心的那一方明镜，淡淡地生活，淡淡地牵挂，淡淡地爱，无需羡慕他人。怀着一颗素心行走在红尘里，不浮不躁，不抱怨，勇敢的面对属于自己的风景。 “天下熙熙皆为利来，天下攘攘皆为利往”人人都在为生存而奔波忙碌，生活的压力和紧绷的心弦，让那份轻松的心情越来越远。但爱茶之人，总能在一盏茶里，寻找到那份心静、心安、心清的状态。爱茶之人，尤为愿意让自己活得简洁，总能在压抑或沮丧时，闻着沁人心脾的茶香，让心中的阴霾便刻就化为乌有。 纷扰的红尘，谁能于千万人之中，遇见你所要遇见的人，谁又能于一杯清茶中，读懂我的那一杯清欢？茶中相遇，要的是一份相知与懂得，无需寒暄，只为了这份缘分。今天的重逢，或许是因为前世的约定，希望你我就这样简简单单于茶中相遇，没有相见恨晚，也没有失之交臂，碰巧你来时，我也在。 饮酒是自欺、自醉，品茶则是自醒、自解。世间之人，多半恋酒，认为一切烦恼之事，可以一碗喝下，却不知醉后愁更甚。而饮茶则可清神，几盏淡茶，静观人世浮沉，品后烦恼自消。或许我们不懂得陆羽《茶经》里的文化，不懂得各种茶所隐藏的玄妙，也不懂得壶中的日月，但只需品上一杯适合自己口味的茶，便可清心自在、了无闲事。 茶有浓淡，有冷暖，亦有悲欢。
+			</div>
+		</div>
+		<div class="row" ng-if="qualifications && qualifications.length > 0">
+			<div class="col-md-2">资质证明</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="qualification">
+					<li ng-repeat="qualification in qualifications">
+						<div class="img"><img ng-src="{{qualification.resourceUrl}}"></div>
+						<div class="hover-show">
+							<!-- 图片预览 -->
+							<a ng-click="showImg(qualification.resourceUrl)"><i class="fa fa-search"></i>查看</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- 企业寄售协议操作记录 -->
+		<div ng-if="showRecords" class="application-tab" style="width: 98%;margin: 0 auto;">
+			<div class="row" style="width: 100%">
+				<div class="col-md-12">
+					<div style="width: 100%;line-height: 50px;font-size: 14px;color: #3ba9e9;">
+						签订企业寄售协议记录
+					</div>
+					<table class="table" ng-table="recordsTableParams">
+						<thead>
+						<tr>
+							<th>序号</th>
+							<th>ID</th>
+							<th>操作人</th>
+							<th>操作时间</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="record in $data">
+							<td style="text-align: center;" ng-bind="((recordsTableParams.page() - 1) * 10 + $index + 1) | indexId"></td>
+							<td class="text-left padding-left-30" ng-bind="record.userUU"></td>
+							<td class="text-left padding-left-30" ng-bind="record.userName"></td>
+							<td style="text-align: center;" ng-bind="record.operateTime | date: 'yyyy-MM-dd HH:mm:ss'"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--推荐相关内容 -->
+	<div class="recommend">
+		<div class="recommend-list hot-icon" ng-if="store.status === 'OPENED'">推荐成为：
+			<label>
+				<i class="hot"></i>热销
+				<input type="checkbox" id="hot"/><!-- ng-checked="store.tagsObject['SALES_LIST']" ng-click="tagStoreWithTag(store, 'SALES_LIST')" -->
+				<label for="hot"></label>
+			</label>
+			<label><i class="new"></i>新入驻
+				<input type="checkbox" id="new">
+				<label for="new"></label>
+			</label>
+			<label><i class="new-apply"></i>优秀供应商
+				<input type="checkbox" id="new-apply" ng-checked="store.tagsObject['EXCELLENCE_LIST']" ng-click="tagStoreWithTag(store, 'EXCELLENCE_LIST')">
+				<label for="new-apply"></label>
+			</label>
+		</div>
+	</div>
+	<div class="back-store"><a ng-href="{{'store/' + storeUuid}}" target="_blank"><button>前往店铺</button></a></div>
+</div>

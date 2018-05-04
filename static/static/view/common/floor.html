@@ -1,0 +1,29 @@
+<div id="floors-container" ng-controller="FloorsCtrl">
+    <ul id="floors-lift" class="list-unstyled">
+        <li ng-repeat="f in floors" class="floors-lift-item" id="fl_{{$index}}">
+            <a ng-click="scrollFloor(f.floorNumber)" >
+                <span ng-bind="'F' + f.floorNumber"></span><br/>
+                <span ng-bind="f.name"></span>
+            </a>
+        </li>
+    </ul>
+    <ul id="floors">
+        <li class="floor" ng-repeat="f in floors" id="floor-{{f.floorNumber}}">
+            <h2>
+                F<span ng-bind="f.floorNumber">楼层号</span>&nbsp;
+                <span ng-bind="f.name">楼层名称</span>
+            </h2>
+            <ul class="list-unstyled clearfix">
+                <li ng-repeat="fi in f.items" class="floor-item {{fi.size}}" ng-style="{'background-color': fi.backGroundColor||'#ffffff', 'border-color': fi.borderColor || '#d8d8d8'}">
+                    <a href="{{fi.hrefUrl}}" target="_blank">
+                        <img ng-src="{{fi.pictureUrl}}" class="floor-item-img"/>
+                        <div class="floor-content">
+                            <p ng-if="fi.name" ng-bind="fi.name" class="floor-item-name"></p>
+                            <p ng-if="fi.body" ng-bind-html="fi.body" class="floor-item-body"></p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

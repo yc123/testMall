@@ -1,0 +1,1122 @@
+<!--右侧主体部分-->
+<style>
+	.oder .oder_list dl span.wd01{
+		width: 2% !important;
+		border-bottom: #cfcfcf 1px dashed;
+	}
+	.oder .oder_list dl span.wd02{
+		width: 30%;
+		border-bottom: #cfcfcf 1px dashed;
+	}
+
+	.oder .oder_list dl span.border-bottom-cfcfcf {
+		border-bottom: #cfcfcf 1px dashed;
+	}
+
+	.oder .oder_list dl span.wd03{
+		width: 12%;
+	}
+	.oder .oder_list dl span{
+		width: 16%;
+	}
+	.oder .oder_list dl .pro_xq p{
+		position: relative;
+		right: 0;
+		top: 25px;
+		float: left;
+		margin-left: 10px;
+		width: 235px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		line-height: 25px;
+	}
+
+	.oder_list dl dd.see-more {
+		text-align: right;
+		height: 30px;
+		line-height: 30px;
+		padding-right: 50px;
+		font-size: 14px;
+	}
+
+	.see-more:hover {
+		cursor: pointer;
+	}
+
+	.color-black {
+		color: #323232!important;
+	}
+
+	.padding-left-22 {
+		padding-left: 22px;
+	}
+	.oder .text-center{
+		/*margin-top: 43px;*/
+		margin-left: 33px;
+		padding-bottom: 10px;
+		font-size: 14px;
+	}
+	.oder .text-center .col-xs-offset-3 img{
+		height: 75px;
+		margin: 40px 0 0 21px;
+	}
+	.oder .text-center .col-xs-3{
+		margin: 56px 0;
+		line-height: 25px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.oder .text-center .col-xs-3 p{
+		font-size: 12px;
+	}
+	.oder .text-center .col-xs-3 a{
+		font-size: 12px;
+		color: #5078cb;
+	}
+	.oder .text-center .col-xs-3 i{
+		color: #5078cb;
+		font-size: 12px;
+	}
+	.oder .oder_list dl dt,.oder .oder_list dl dt span,.oder .oder_list dl dd.line01,.oder .oder_list dl dd.line01 span{height: 40px;line-height: 40px;}
+
+	.oder_list dl dd.line02 {
+		border-bottom: none;
+	}
+
+	ul.pagination.ng-table-pagination > li > a > span {
+		height: 17px;
+		line-height: 17px;
+	}
+
+	div.ng-table-pager  input.page-number {
+		vertical-align: inherit;
+		display: inline-block;
+		width: 40px;
+		height: 31px;
+		padding: 6px 6px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #9B9792;
+		text-align: center;
+		background-color: #F6F5F4;
+		background-image: none;
+		border: 1px solid #ccc;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	}
+
+	div.ng-table-pager a.page-a {
+		color: #fff;
+		cursor: pointer;
+		background-color: #4574E8;
+		border-color: #4574E8;
+		padding: 6px 6px;
+		font-size: 14px;
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+		text-decoration: none;
+		height: 31px;
+	}
+
+	div.ng-table-pager div.page-go-block {
+		float: right;
+		margin-left: 20px;
+		margin-top: 20px;
+		font-size: 0px;
+		height: 31px;
+		line-height: 31px;
+	}
+
+	.seller-contact-info {
+		position: absolute;
+		z-index: 2;
+		height: 210px;<!--506-->
+		border: 1px solid #E7E5E2;
+		opacity: 1;
+		background-color: white;
+		width: 600px;
+		top: 40px;
+		left: -549px;
+		border: 1px solid #E7E5E2;
+		-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		box-shadow: 0 5px 15px rgba(0,0,0,.5);
+	}
+
+	.display-none {
+		display: none;
+	}
+
+	.ng-table-pager .ng-table-pagination a{
+		color: #4574E8 !important;
+		height: 31px;
+	}
+
+	.ng-table-pager .ng-table-pagination li.active a {
+		background-color: #4574E8;
+		color: white !important;
+	}
+
+	.order-border-bottom-solid {
+		border-bottom: #cfcfcf 1px solid !important;
+	}
+
+	.order-border-bottom-dashed {
+		border-bottom: #cfcfcf 1px dashed !important;
+	}
+
+	.seller-contact .contact-title {
+		height: 26px;
+		background-color: #5078cb;
+		text-align: right;
+		padding-right: 15px;
+		line-height: 26px;
+		color: white;
+	}
+
+	.oder .oder_list dl dd.line01 .seller-contact .contact-title a, .oder .oder_list dl dd.line01 .seller-contact .contact-title a:hover {
+		color: white !important;
+	}
+	.seller-contact .contact-title a:hover > i {
+		color: white !important;
+	}
+
+	.seller-contact .contact-seller-info {
+		margin-left: 24px;
+		margin-right: 24px;
+		background-color: #5078cb;
+		color: #ffffff;
+		margin-top: 15px;
+		margin-bottom: 12px;
+		border-radius: 4px;
+		font-family: "Microsoft Yahei", "微软雅黑";
+		height: 150px;
+	}
+
+	.seller-contact .contact-seller-info div {
+		text-align: left;
+		font-size: 14px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.seller-contact .contact-seller-info .company-name {
+		text-align: center;
+		font-size: 18px;
+		padding-top: 15px;
+	}
+
+	.seller-contact .send-message {
+		width: 553px;
+		height: 258px;
+		background-color: #F7F7F6;
+		padding-left: 13px;
+		padding-top: 15px;
+		border-radius: 4px;
+	}
+
+	.oder_list dl .pro_xq:hover a,.oder_list dl .pro_xq:active a{
+		color: #333;
+		text-decoration: none;
+	}
+	.oder_list dl .pro_xq img {
+		border: none;
+	}
+
+	.seller-contact .send-button .send{
+		width: 100px;
+		background-color: #3A76E3;
+		color: white;
+		display: inline-block;
+		border-radius: 3px;
+		height: 32px;
+		line-height: 32px;
+	}
+
+	.action-link {
+		color: #323232 !important;
+		text-decoration: none !important;
+	}
+
+	.action-link:hover {
+		color: #5078cb !important;
+		text-decoration: none !important;
+	}
+
+	.order-operation {
+		padding: 4px 8px;
+		background-color: #5078cb;
+		color: white;
+		border-radius: 3px;
+	}
+
+	.order-operation-disabled {
+		padding: 4px 8px;
+		background-color: #C3C0B9;
+		color: #333333;
+		border-radius: 3px;
+	}
+
+	.clock-mind {
+		font-size: 12px;
+		color: #C2BEB7;
+		line-height: 20px;
+		height: 20px;
+	}
+
+	.operate-height {
+		height: 31px;
+		line-height: 31px;
+		position: relative;
+	}
+
+	.ship-notify {
+		position: absolute;
+		line-height: 20px;
+		left: 0;
+		top: 32px;
+		z-index: 155;
+		width: 140px;
+		border: 1px solid #3A75E6;
+		padding: 5px 10px;
+		color: #1C54CA;
+	}
+
+	.ship-notify .arrow {
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		background-color: #3a75e6;
+		transform: rotate(44deg);
+		-ms-transform: rotate(44deg);
+		-moz-transform: rotate(44deg);
+		-webkit-transform: rotate(44deg);
+		-o-transform: rotate(44deg);
+		top: -6px;
+		left: 113px;
+	}
+
+	.ship-notify .content {
+		margin: -5px -10px;
+		z-index: 5;
+		background-color: white;
+		position: relative;
+		padding: 5px 10px;
+	}
+
+	.seller-ship-tip{
+		display: inline-block;
+		width: 20px;
+		height: 30px;
+		position: absolute;
+	}
+
+	.notice-ship-tip {
+		position: fixed;
+		width: 300px;
+		height: 145px;
+		background-color: white;
+		font-size: 14px;
+		top: 50%;
+		left: 50%;
+		margin: -78px 0 0 -150px;
+		box-shadow: 1px 6px 5px #C0BCBA
+	}
+
+	.notice-ship-tip .confirm {
+		width: 90px;
+		padding: 5px 10px;
+		background-color: #3A76E4;
+		border: none;
+		color: white;
+		font-size: 14px;
+	}
+
+	.notice-ship-tip .notice-head {
+		height: 28px;
+		background-color: #3C77C6;
+	}
+
+	.notice-ship-tip .notice-content .title {
+		line-height: 31px;
+		height: 31px;
+		text-align: center;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		color: #2E2E2E;
+	}
+	.notice-ship-tip .notice-content .tip {
+		color: #86837E;
+		line-height: 23px;
+		text-align: center;
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+	.sx{
+		width: 14px;
+		text-align: center;
+		line-height: 5px;
+		display: inline-block;
+		position: relative;
+		top: 2px;
+	}
+	.sx div{
+		height: 7px;
+		width: 14px;
+		display: inline-block;
+		position: relative;
+		font-size: 16px;
+		color: #d5d6dd;
+		background: url("static/img/icon/filter.png") no-repeat;
+	}
+	.sx div.up{
+		background-position: 0 0;
+	}
+	.sx div.up.active,.sx div.up:hover{
+		background-position: -14px 0;
+	}
+	.sx div.desc{
+		background-position: 0 -7px;
+	}
+	.sx div.desc.active,.sx div.desc:hover{
+		background-position: -14px -7px;
+	}
+	.filter{
+		position: relative;
+	}
+	.filter:hover .hover-show {
+		display: inline-block;
+	}
+	.filter i{
+		margin-left: 4px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.filter:hover .fa-angle-up {
+		-webkit-transform: rotateZ(180deg);
+		-moz-transform: rotateZ(180deg);
+		-o-transform: rotateZ(180deg);
+		-ms-transform: rotateZ(180deg);
+		transform: rotateZ(180deg);
+	}
+	.filter:hover a.filter-a{
+		color: #5078cb;
+	}
+	.filter .hover-show{
+		width: 76%;
+		height: auto;
+		position: absolute;
+		background-color: #fff;
+		margin-top: -1px;
+		border: 1px solid #e8e8e8;
+		border-top: none;
+		display: none;
+		left: 20px;
+		top: 40px;
+		z-index: 200;
+	}
+	.filter .hover-show a{
+		width: 100%;
+		height: 25px;
+		display: inline-block;
+		line-height: 25px;
+		text-align: center;
+		font-size: 14px;
+		font-weight: normal;
+		float: left;
+	}
+	.filter .hover-show a:hover{
+		background: #5078cb;
+		color: #fff !important;
+	}
+
+	/*搜索时间筛选*/
+	.screen .sreach input{
+		border: #dfdfdf 1px solid;
+		height: 34px;
+		width: 300px;
+		box-shadow: none;
+	}
+	.screen .sreach .date{
+		margin-right: 6px;
+	}
+	.screen .sreach .date input{
+		width: 180px;
+		text-align: center;
+	}
+	.screen .sreach .date input:hover{
+		cursor: pointer;
+	}
+	.screen .sreach .date em{
+		float: left;
+		line-height: 34px;
+		color: #999;
+		margin: 0 5px;
+	}
+	.screen .sreach a.seek{
+		width: 80px;
+		height: 34px;
+		background: #5078cb;
+		color: #fff;
+		line-height: 34px;
+		float: none;
+	}
+	.screen .sreach a.seek:hover{
+		background: #3f7ae3;
+	}
+	.screen .sreach .form-control{
+		border-radius: 1px;
+	}
+	.data-input{
+		float: left;
+		position: relative;
+	}
+	.data-input button.open{
+		position: absolute;
+		right: 1px;
+		top: 1px;
+		width: 20px;
+		height: 32px;
+		background: url(static/img/user/images/xiala.png) right no-repeat #fff !important;
+		background-position-x: 100% !important;
+		border: none;
+	}
+	.screen .sreach .date input.form-control{
+		padding: 6px 6px;
+	}
+	.oder .oder_list dl span.trash{ width: 10%;}
+	.oder .oder_list dl span.trash i{
+		color: #999;
+		font-size: 16px;
+	}
+	.oder .oder_list dl span.trash:hover i{
+		color: #5078cb;
+		cursor: pointer;
+	}
+	/*弹出框*/
+	.com-del-box{
+		position: fixed;
+		z-index: 2;
+		height: 152px;
+		opacity: 1;
+		background-color: white;
+		width: 310px;
+		-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		margin: -155px 0 0 -75px;
+		top: 55%;
+		left: 50%;
+	}
+	.com-del-box .title{
+		height: 30px;
+		background-color: #5078cb;
+		text-align: right;
+		padding-right: 15px;
+		line-height: 30px;
+	}
+	.com-del-box .title a{
+		color: white;
+		font-size: 16px;
+	}
+	.com-del-box .content{
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.com-del-box .content p{
+		line-height: 50px;
+		font-size: 14px;
+		padding-top: 10px;
+	}
+	.com-del-box .content p i{
+		color: #5078cb;
+		font-size: 16px;
+		margin-right: 10px;
+	}
+	.com-del-box .content div{
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.com-del-box .content div a{
+		width: 55px;
+		height: 26px;
+		line-height: 26px;
+		display: inline-block;
+		text-align: center;
+		font-size: 14px;
+	}
+	.com-del-box .content div a:first-child{
+		background: #b4b5b9;
+		color: #333;
+		margin-right: 10px;
+	}
+	.com-del-box .content div a:last-child{
+		background: #5078cb;
+		color: #fff;
+	}
+	.com-del-box .content div a:hover{
+		background: #3f7ae3;
+		color: #fff;
+	}
+	.pagination{
+		margin: 0;
+	}
+	.oder_list dl{
+		padding-bottom: 20px;
+	}
+	.filter-i i{
+		font-size: 12px;
+		font-weight: bold;
+	}
+	.filter-i i.active{
+		color: #5078CB;
+	}
+	.border-bt-16{
+		border-top: #ecf2fd 16px solid
+	}
+	.border-bt-16:nth-of-type(1){
+		border-top: none;
+	}
+
+	/*补充*/
+	.operate-height .ship-btn:hover + .ship-content,.operate-height .ship-btn:hover + .pay{
+		display: inline-block !important;
+	}
+	.ship-content,.pay{
+		display: none;
+		width: 165px;
+	}
+	.ship-content .content{
+		font-size: 12px;
+		color: #333;
+		padding: 5px;
+	}
+	.pay{
+		min-width: 275px;
+		right: 0;
+		left: inherit;
+		padding: 0;
+	}
+	.pay .arrow{
+		right: 34px;
+		left: inherit;
+	}
+	.pay .content{
+		padding: 0;
+		margin: 0;
+	}
+	.pay .content .title{
+		width: 100%;
+		height: 28px;
+		text-align: center;
+		line-height: 28px;
+		background: #f6f9ff;
+		font-size: 14px;
+	}
+	.pay .content .title em{
+		font-weight: bold;
+		color: #333;
+	}
+	.color999{
+		color: #999 !important;
+	}
+	.color333{
+		color: #333 !important;
+	}
+	.red{
+		color: #f00 !important;
+	}
+	.pay .content ul{
+		width: 100%;
+		margin: 0 auto;
+		display: inline-block;
+		padding-top: 5px;
+	}
+	.pay .content ul li{
+		width: 100%;
+		float: left;
+		height: 20px;
+		line-height: 20px;
+		font-size: 12px;
+	}
+	.pay .content ul li em{
+		width: 14px;
+		height: 14px;
+		display: inline-block;
+		border-radius: 100%;
+		line-height: 14px;
+		color: #fff;
+		background: #5078cb;
+		float: left;
+		position: relative;
+		top: 3px;
+		margin-left: 20px;
+		text-align: left;
+		padding-left: 3px;
+	}
+	.pay .content ul li div{
+		float: left;
+		margin: 0 5px;
+	}
+	.pay .content ul li div.price{
+		color: #f00;
+		max-width: 105px;
+		text-align: left;
+		min-width: 60px;
+	}
+	.pay .content ul li div.status{
+		color: #5078cb;
+	}
+	.pay .content .tip-01{
+		width: 100%;
+		height: 28px;
+		line-height: 28px;
+		background: #eff0f2;
+		font-size: 12px;
+	}
+    /*含运费*/
+    .oder_list dl b.freight{
+        font-size: 12px;
+        color: #999;
+    }
+    .oder_list dl b.total{
+        margin-right: 0;
+    }
+    .com-sub-pager .pagination li:first-child a, .pagination li:last-child a{
+        font-size: 12px;
+    }
+	.oder_list dl .pro_xq a.unstand{
+		cursor: default ;
+	}
+	.oder_list dl .pro_xq a.unstand em{
+		color: #666 !important;
+	}
+	.oder_list dl .pro_xq a.unstand:hover em{
+		color: #666 !important;
+	}
+
+	.oder01 ul li a {
+		font-size: 13px;
+		font-weight: bold;
+	}
+
+</style>
+<div class="user_right fr">
+	<!--订单中心-->
+	<div class="oder">
+		<div class="oder01" style="margin-bottom: 16px;">
+			<ul>
+				<li ng-class="{'active' : status == 'all'}" ng-click="toggleStatus('all')"><a> 所有订单(<em ng-class="{'color-black': !AllOrderInfo['all']}" ng-bind="AllOrderInfo['all'] || 0"></em>)</a></li>
+				<li ng-class="{'active' : status == 'tobepaid'}" ng-click="toggleStatus('tobepaid')"><a>待付款（<em ng-class="{'color-black': !AllOrderInfo['tobepaid']}" ng-bind="AllOrderInfo['tobepaid'] || 0"></em>）</a></li>
+				<li ng-class="{'active' : status == 'tobedeliver'}" ng-click="toggleStatus('tobedeliver')"><a>待卖家发货（<em ng-class="{'color-black': !AllOrderInfo['tobedeliver']}" ng-bind="AllOrderInfo['tobedeliver'] || 0"></em>）</a></li>
+				<li ng-class="{'active' : status == 'tobereceive'}" ng-click="toggleStatus('tobereceive')"><a>待收货（<em ng-class="{'color-black': !AllOrderInfo['tobereceive']}" ng-bind="AllOrderInfo['tobereceive'] || 0"></em>）</a></li>
+				<li ng-class="{'active' : status == 'success'}" ng-click="toggleStatus('success')"><a>成功的订单（<em ng-class="{'color-black': !AllOrderInfo['success']}" ng-bind="AllOrderInfo['success'] || 0"></em>）</a></li>
+				<li ng-class="{'active' : status == 'unavailable'}" ng-click="toggleStatus('unavailable')"><a>取消的订单（<em ng-class="{'color-black': !AllOrderInfo['unavailable']}" ng-bind="AllOrderInfo['unavailable'] || 0"></em>）</a></li>
+				<li ng-class="{'active' : status == 'tobecomment'}" ng-click="toggleStatus('tobecomment')"><a>待评价（<em ng-class="{'color-black': !AllOrderInfo['tobecomment']}" ng-bind="AllOrderInfo['tobecomment'] || 0"></em>）</a></li>
+			</ul>
+		</div>
+		<!--搜索时间筛选-->
+		<div class="screen">
+			<div class="sreach fr">
+				<div class="date fl">
+					<div class="data-input">
+						<input type="text" ng-model="startDate"
+							   class="form-control select-adder" placeholder="起始时间"
+							    datepicker-popup="yyyy-MM-dd HH:mm:ss"
+							   is-open="condition.startDateOpen"
+							   max-date="endDate" current-text="今天" clear-text="清除" close-text="关闭"
+							   datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+                               ng-click="openDatePicker($event, condition, 'startDateOpen',1)"
+							   ng-change="onDateCondition(true)"/>
+							<button class="open" ng-click="openDatePicker($event, condition, 'startDateOpen')"></button>
+					</div>
+
+					<em>–</em>
+					<div class="data-input">
+						<input type="text" ng-model="endDate"
+								 class="form-control select-adder" placeholder="结束时间"
+								 datepicker-popup="yyyy-MM-dd HH:mm:ss"
+								 is-open="condition.endDateOpen"
+								 min-date="startDate" current-text="今天" clear-text="清除" close-text="关闭"
+								 datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+                                 ng-click="openDatePicker($event, condition, 'endDateOpen',2)"
+								 ng-change="onDateCondition(false)"/>
+								<button class="open" ng-click="openDatePicker($event, condition, 'endDateOpen')"></button>
+						</div>
+				</div>
+				<div class="sreach-input fr">
+					<input type="search" placeholder="订单号/产品信息/商家名称" class="form-control" ng-model="keyword" ng-search="search()"/>
+					<a class="seek" href="javascript:void(0)" ng-click="search()">搜索</a>
+					<a class="seek" href="javascript:void(0)" style="margin-left: 5px;display: none;">导出订单</a>
+				</div>
+			</div>
+		</div>
+		<div class="oder_list" style="margin-top: 0;">
+			<dl style="display: inline-block;" class="all_oder">
+				<dt>
+                    <span class="wd01" style="border-bottom: none;">
+                        <!--<label for="checkon"><input type="checkbox" id="checkon" name="checkbox"/></label>-->
+                    </span>
+					<span class="wd02 padding-left-22 text-left" style="border-bottom: none; padding-left: 0px;">产品信息</span>
+					<span class="wd03 text-left">单价</span>
+					<span class="wd03 text-left filter-i">购买数量
+						<i ng-class="{'active':sortingState.state == 'orderBybatchQtyAsc'}" class="fa fa-long-arrow-up" ng-click="orderBybatchQtyAsc()"></i>
+						<i ng-class="{'active':sortingState.state == 'orderBybatchQtyDesc'}" class="fa fa-long-arrow-down" ng-click="orderBybatchQtyDesc()"></i>
+						<!--<em class="sx">
+							<div ng-class="{'active':sortingState.state == 'orderBybatchQtyAsc'}" class="up" ng-click="orderBybatchQtyAsc()"></div>
+							<div ng-class="{'active':sortingState.state == 'orderBybatchQtyDesc'}" class="desc" ng-click="orderBybatchQtyDesc()"></div>
+						</em>-->
+					</span>
+					<span class="wd03 text-left filter-i">实际支付
+						<i ng-class="{'active':sortingState.state == 'orderByensurePriceAsc'}" class="fa fa-long-arrow-up" ng-click="orderByensurePriceAsc()"></i>
+						<i ng-class="{'active':sortingState.state == 'orderByensurePriceDesc'}" class="fa fa-long-arrow-down" ng-click="orderByensurePriceDesc()"></i>
+						<!--<em class="sx">
+							<div ng-class="{'active':sortingState.state == 'orderByensurePriceAsc'}" class="up" ng-click="orderByensurePriceAsc()"></div>
+							<div ng-class="{'active':sortingState.state == 'orderByensurePriceDesc'}" class="desc" ng-click="orderByensurePriceDesc()"></div>
+						</em>-->
+					</span>
+					<span class="filter">
+						<a class="filter-a">{{childStatusName}}<i class="fa fa-angle-down fa-angle-up"></i></a>
+						<div class="hover-show">
+							<a ng-click="setChildStatus('','订单状态')">订单状态</a>
+							<a ng-if="status == 'tobepaid' || status == 'all'" ng-click="setChildStatus('503','待付款')" title="">待付款</a>
+							<a ng-if="status == 'tobepaid' || status == 'all'" ng-click="setChildStatus('504','付款确认中')" title="">付款确认中</a>
+							<a ng-if="status == 'all'" ng-click="setChildStatus('505-406-407-403-408','待卖家发货')" title="">待卖家发货</a>
+							<a ng-if="status == 'all' || status == 'tobecomment'" ng-click="setChildStatus('404','待收货')" title="">待收货</a>
+							<a ng-if="status == 'success' || status == 'all' || status == 'tobecomment'" ng-click="setChildStatus('520','交易完成')" title="">交易完成</a>
+							<a ng-if="status == 'success' || status == 'all'" ng-click="setChildStatus('405','交易关闭')" title="">交易关闭</a>
+							<a ng-if="status == 'all'" ng-click="setChildStatus('602-603-315-604-605-606','已取消')" title="">已取消</a>
+							<a ng-if="status == 'success' || status == 'all'" ng-click="toggleStatus('tobecomment')" title="">待评价</a>
+						</div>
+					</span>
+					<span>交易操作</span>
+				</dt>
+				<!--01-->
+				<p class="height16">&nbsp</p>
+				<div ng-repeat="order in currenctOrders" class="border-bt-16">
+					<dd class="line01">
+                        <span class="wd01">
+                                <!--<label for="{{order.id}}"><input type="checkbox" id="{{order.id}}" name="checkbox"/></label>-->
+                        </span>
+						<span style="text-align: left;">日期：<em ng-bind="::order.creattime | date: 'yyyy-MM-dd'"></em></span>
+						<span style="width: 25%; text-align: left;">订单号：<a class="action-link" ng-bind="::order.orderid" href="user#/order/detail/{{order.orderid | EncryptionFilter}}"></a></span>
+						<span style="width: 27%;">
+                            <a href="store/{{::order.storeid}}" target="_blank">
+                                <img src="static/img/user/images/shop_home.png"/>
+                                <em ng-bind="::order.sellername" title="{{::order.sellername}}"></em>
+                            </a>
+                        </span>
+						<span style="position: relative; width: 10%;">
+                            <img src="static/img/common/songguo.png"/>
+                            <a name="{{order.id}}" href="javascript:void(0)" class="contact_btn" ng-controller="ChatContactCtrl as chat" ng-click="chat.contactWithOther(order.sellPhone, order.sellerenuu, chat.UserType.STORE)">联系卖家</a>
+							<!--<a name="{{order.id}}" href="javascript:void(0)" class="contact_btn" ng-click="contactSeller(order)">联系卖家</a>-->
+                             <div name="{{order.id}}" class="seller-contact" ng-if="order.active" ng-class="{true : 'seller-contact-info', false : 'display-none'}[order.active]">
+                                 <div class="contact-title">
+                                     <a ng-click="order.active=false"><i class="fa fa-close fa-lg" aria-hidden="true"></i></a>
+                                 </div>
+                                 <div class="contact-seller-info">
+                                     <div class="company-name" ng-bind="::order.sellername"></div>
+                                     <div>
+                                         <em>手机：<em ng-bind="::order.sellPhone || '暂无联系电话'"></em></em>
+                                         <em style="margin-left: 60px;">邮箱：<em ng-bind="::order.sellEmail || '暂无电子邮箱'"></em></em>
+                                     </div>
+                                     <div>地址：<em ng-bind="order.sellCompanyAddress || order.sellCompanyArea || '暂无地址信息'"></em></div>
+                                 </div>
+                                 <div style="display: none;">
+                                     <textarea class="send-message" placeholder="给卖家发送站内消息"></textarea>
+                                 </div>
+                                 <div style="display: none;" class="send-button"><a class="send">发送</a></div>
+                            </div>
+                        </span>
+						<span class="trash" ng-if="cancelOrderArray[order.status]" ng-click="showDeleteOrder(order)"><i class="fa fa-trash"></i></span>
+						<div class="com-del-box" ng-if="order.showDelete">
+							<div class="title">
+								<a ng-click="order.showDelete=false"><i class="fa fa-close fa-lg"></i></a>
+							</div>
+							<div class="content">
+								<p><i class="fa fa-exclamation-circle"></i>是否删除此订单</p>
+								<div><a ng-click="order.showDelete=false">取消</a><a ng-click="deleteOrder(order)">确认</a></div>
+							</div>
+						</div>
+					</dd>
+					<dd class="line02" ng-repeat="detail in order.orderDetails" ng-if="$index < 3">
+						<span class="wd01" ng-class="{true : 'order-border-bottom-solid',false : 'order-border-bottom-dashed'}[$index == order.orderDetails.length - 1 || $index == 2]">
+							<!--<label for="{{detail.id}}"><input type="checkbox" id="{{detail.id}}" name="checkbox"/></label>-->
+						</span>
+						<span class="wd02" ng-class="{true : 'order-border-bottom-solid',false : 'order-border-bottom-dashed'}[$index == order.orderDetails.length - 1 || $index == 2]">
+							<div class="pro_xq">
+								<a href="store/productDetail/{{::detail.batchCode}}" target="_blank"><img ng-src="{{detail.img || 'static/img/store/common/default.png'}}" width="55" height="55"/></a>
+								<p>
+									类目：<a href="product/kind/{{::detail.kindUuid}}" target="_blank" ng-if="detail.uuid"><em ng-bind="::detail.kiName || '-'" title="{{::detail.kiName}}"></em></a><br ng-if="detail.uuid"/>
+									<a class="unstand" ng-if="!detail.uuid"><em ng-bind="detail.kiName || '-'" title="{{::detail.kiName}}"></em></a><br ng-if="!detail.uuid"/>
+									型号：<a href="store/productDetail/{{::detail.batchCode}}" target="_blank"><em ng-bind="::detail.cmpCode || '-'" title="{{::detail.cmpCode}}"></em></a><br/>
+									品牌：<a href="product/brand/{{::detail.branduuid}}/" target="_blank" ng-if="detail.uuid"><em ng-bind="::detail.brName || '-'" title="{{::detail.brName}}"></em></a>
+									<a  class="unstand" ng-if="!detail.uuid"><em ng-bind="detail.brName || '-'" title="{{::detail.brName}}"></em></a>
+								</p>
+							</div>
+						</span>
+						<span class="border-bottom-cfcfcf wd03 text-left" ng-class="{true : 'order-border-bottom-solid',false : 'order-border-bottom-dashed'}[$index == order.orderDetails.length - 1 || $index == 2]" ng-bind="::detail.taxUnitprice | formateNumber : 6 | currencySysmbol : detail.currencyName"></span>
+						<span class="border-bottom-cfcfcf wd03 text-left" ng-class="{true : 'order-border-bottom-solid',false : 'order-border-bottom-dashed'}[$index == order.orderDetails.length - 1 || $index == 2]" ng-bind="::detail.number | number" class="wd03 text-left"></span>
+						<span class="border-bottom-cfcfcf wd03 text-left" ng-class="{true : 'order-border-bottom-solid',false : 'order-border-bottom-dashed'}[$index == order.orderDetails.length - 1 || $index == 2]" ng-bind="::detail.ensurePrice | formateNumber : 6 | currencySysmbol : detail.currencyName"></span>
+						<span class="logistics_xq" ng-class="{'order-border-bottom-solid' : $index == order.orderDetails.length - 1 || $index==2}">
+							<div ng-if="$index == 0">
+								<div ng-bind="::order.status | statusFilter"></div>
+								<a href="user#/order/detail/{{order.orderid | EncryptionFilter}}" class="oder_d action-link" style="display: block;" target="_blank">订单详情</a>
+								<a class="action-link" href="user#/buyerQueryLogistics/{{order.orderid | EncryptionFilter}}" ng-if="order.status == 404 || order.status == 520 || order.status == 405 || order.status == 521" style="display: block;" target="_blank">查看物流</a>
+
+								<a ng-if="order.isEachRate && (order.rateStatus == 523 || order.rateStatus == 522)" class="oder_d action-link" target="_blank" href="user#/rate/showRate/{{order.orderid | EncryptionFilter}}" style="display: block;">
+                                  双方已评
+                              	</a>
+								<div ng-if="!order.isEachRate && (order.rateStatus == 523 || order.rateStatus == 522)">
+                                  我已评价
+                              	</div>
+								<div ng-if="order.isEachRate && !order.rateStatus">
+                                  对方已评
+                              	</div>
+							</div>
+						</span>
+						<span class="oder_deal" ng-class="{'order-border-bottom-solid' : $index == order.orderDetails.length -1 || $index==2}">
+                            <div ng-if="$index == 0">
+								<a class="operate-height" href="user#/order/pay/{{order.orderid | EncryptionFilter}}" ng-if="(order.status == 503 || order.status == 501) && order.auditPayFailReason == null && !order.installmentId" style="display: block;">
+                                <a ng-if="(order.status == 405 || order.status == 520) && !order.rateStatus" class="operate-height" target="_blank" href="user#/rate/firstRate/{{order.orderid | EncryptionFilter}}" style="display: block;">
+                                  <em class="order-operation">评价</em>
+                              	</a>
+								<a ng-if="order.rateStatus == 523" class="operate-height" target="_blank" href="user#/rate/addRate/{{order.orderid | EncryptionFilter}}" style="display: block;">
+                                  <em class="order-operation">追加评价</em>
+                              	</a>
+                              <a class="operate-height" href="user#/order/pay/{{order.orderid | EncryptionFilter}}" ng-if="!order.installmentId&&(order.status == 503 || order.status == 501) && order.auditPayFailReason == null" style="display: block;">
+                                  <em class="order-operation">立即付款</em>
+								</a>
+								<a ng-click="requestCancel(order, order.orderid)" ng-if="order.status == 525" class="operate-height">
+									<em class="order-operation">卖家请求取消</em>
+								</a>
+                              <a class="operate-height" href="user#/transfer/{{order.orderid | EncryptionFilter}}" ng-if="order.installmentId&&(order.status==503||order.status==504||order.status==524) && order.installment.status != 505 && !order.againUpload" style="display: block;">
+                                  <em class="order-operation">立即付款</em>
+								  <!--分期付款-->
+								  <div class="ship-btn seller-ship-tip" style="position: absolute;">
+                                     <img src="static/img/common/notice-tip.png"/>
+                                  </div>
+                                  <div class="pay ship-content ship-notify">
+                                      <div class="arrow" style="right: 27px;"></div>
+                                      <div class="content">
+										  <div class="title">货款共计
+											  <em ng-bind="order.installment.price | currencySysmbol : detail.currencyName">￥9000</em>
+											  &nbsp;&nbsp;&nbsp;&nbsp;分
+											  <em style="color: #5078cb;" ng-bind="order.installment.count">5</em> 期
+										  </div>
+										  <ul>
+											  <li ng-repeat="item in order.installment.installmentDetails">
+												  <em ng-bind="$index+1">1</em>
+												  <div class="price" ng-class="{'color333': item.status == 505}" ng-bind="item.price | currencySysmbol : detail.currencyName">￥13131</div>
+												  <div class="time" ng-class="{'color999': item.status == 505}">{{item.deadline | date : 'yyyy-MM-dd'}}前</div>
+												  <div class="color999 status" ng-if="item.status == 505">已付</div>
+												  <div class="status" ng-if="item.status != 505">待付</div>
+											  </li>
+									  </ul>
+										<div class="tip-01" ng-if="order.installment.status == 503"><em class="red">*</em>若第一期款项逾期未付，卖家有权利取消订单</div>
+									 </div>
+                                  </div>
+                              </a>
+                              <a class="operate-height" href="user#/transfer/{{order.orderid | EncryptionFilter}}" ng-if="order.installmentId&&(order.status==503||order.status==504||order.status==524) && order.installment.status != 505 && order.againUpload" style="display: block;">
+                                  <em class="order-operation">重新上传</em>
+								  <div class="ship-btn seller-ship-tip">
+                                     <img src="static/img/common/notice-tip.png"/>
+                                  </div>
+                                  <div class="ship-content ship-notify">
+                                      <div class="arrow"></div>
+                                      <div class="content">若单据上传有误或不清晰，等情况，可重新上传。</div>
+                                  </div>
+                              </a>
+                              <div ng-if="order.status == 503 && !order.installmentId" class="clock-mind">
+                                  <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; <em ng-bind="order.availabletime | restTime"></em>
+                              </div>
+								<!--<div ng-if="order.status == 520" class="clock-mind">
+                                  <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; <em ng-bind="order.reciptTime + 1728000000 | restTime"></em>&lt;!&ndash;暂时设定30天自动初评&ndash;&gt;
+                              </div>
+								<div ng-if="order.status == 523" class="clock-mind">
+                                  <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; <em ng-bind="order.reciptTime + 15552000000 | restTime"></em>&lt;!&ndash;暂时设定180天自动追评&ndash;&gt;
+                              </div>-->
+                              <a class="action-link operate-height" ng-if="order.status == 503 || order.status == 501 || order.status == 502" style="display: block;line-height: 20px; height: 20px;" ng-click="cancle(order.orderid)">
+                                  取消订单
+                              </a>
+                              <a class="operate-height" ng-if="order.paidTimeFromNow > notifySellerShip - 1" style="display: block;position: relative;">
+                                  <em class="order-operation" ng-click="remindShip(order)" ng-class="{true : 'order-operation',false : 'order-operation-disabled'}[order.lastNotiDelivery > notifySellerShip - 1 || !order.lastNotifyDeliveryTime]">提醒发货</em>
+                                  <div class="seller-ship-tip">
+                                     <img ng-if="order.lastNotiDelivery < notifySellerShip && order.lastNotifyDeliveryTime" src="static/img/common/notice-tip.png" ng-mouseover="order.noticeTip = true" ng-mouseleave="order.noticeTip = false"/>
+                                  </div>
+                                  <div class="ship-notify" ng-if="order.noticeTip">
+                                      <div class="arrow"></div>
+                                      <div class="content">距离上次提醒发货时间小于{{notifySellerShip}}小时</div>
+                                  </div>
+                                  <div ng-if="order.lastNotiDelivery < notifySellerShip && order.lastNotifyDeliveryTime" class="clock-mind">
+                                      <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;
+                                      <em ng-bind="order.lastNotiDelivery | hoursToDay : notifySellerShip"></em>
+                                  </div>
+                              </a>
+                                <div ng-if="order.status == 404">
+                                    <a href="javascript:void(0)" class="operate-height" ng-click="ensureAccept(order)" style="display: block;">
+                                        <em class="order-operation">确认收货</em>
+                                    </a>
+                                    <div class="clock-mind">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; <em ng-bind="order.shipOutTime | hoursToDay : 360"></em><!--15天之后自动收货，换算成小时 15*24=360-->
+                                    </div>
+                                </div>
+                               <!--<a href="javascript:void(0)" ng-if="order.status == 405">退货/退款/换货</a>-->
+								<!--<a href="javascript:void(0)">投诉卖家</a>-->
+                            </div>
+                        </span>
+					</dd>
+					<dd class="price">
+						<b class="freight">(含运费<em ng-bind="::order.fare || 0 | formateNumber : 2 | currencySysmbol : order.currency">￥ 0.00 </em>)</b>
+						<b class="total">总金额：<em ng-bind="::order.ensurePrice | formateNumber : 2 | currencySysmbol : order.currency"></em></b>
+						<b>总共<em ng-bind="::order.batchQty || 0"></em>件产品</b></dd>
+				</div>
+				<div ng-if="currenctOrders.length == 0" class="text-center">
+					<div class="col-xs-offset-3 col-xs-2" >
+						<img src="static/img/all/empty-cart.png">
+					</div>
+					<div class="col-xs-3">
+						<p class="grey f16" style="font-size: 14px;">暂无订单信息，快去下单吧 </p>
+						<a ng-click="reload()" style="font-size: 14px;">点击重新加载</a>&nbsp;<i class="fa fa-refresh"></i>
+					</div>
+				</div>
+				<!--<p class="height16" style="background: #f5f5f5;" ng-if="currenctOrders.length != 0">&nbsp</p>-->
+				<div class="ng-cloak ng-table-pager" ng-if="pages.length" style="float: right;margin-right: 60px;">
+					<ul class="pagination ng-table-pagination">
+						<li ng-class="{'disabled': !page.active && !page.current, 'active': page.current}" ng-repeat="page in pages" ng-switch="page.type">
+							<a ng-switch-when="prev" ng-click="setPage(page.type, -1)" href="">&laquo;</a>
+							<a ng-switch-when="first" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="page" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="more" ng-click="setPage(page.type, -1)" href="">&#8230;</a>
+							<a ng-switch-when="last" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="next" ng-click="setPage(page.type, -1)" href="">&raquo;</a>
+						</li>
+					</ul>
+					<div class="page-go-block">
+						<input class="page-number" type="number" ng-model="param.currentPage" ng-keydown="listenEnter()"/>
+						<a class="page-a" ng-click="setPage('page', param.currentPage)" href="">GO</a>
+					</div>
+				</div>
+			</dl>
+		</div>
+	</div>
+	<!--<div class="love_list">
+			<div class="rt_menu"><span><img src="static/img/user/images/love.png"/>猜您喜欢 </span></div>
+			<ul>
+					<li ng-repeat="recommendComp in recommendComps">
+							<a ng-href="product/component/{{recommendComp.uuid}}/"><img ng-src="{{recommendComp.img}}"/><p><em ng-cloak="">{{recommendComp.code}}</em></p></a>
+							<span><a href="javascript:void(0)" ng-controller="CollectCtrl" ng-click="collect(recommendComp.id)">加入收藏</a> </span>
+					</li>
+			</ul>
+	</div>-->
+	<div class="notice-ship-tip" ng-if="noticeSellerShipTip">
+		<div class="notice-head"></div>
+		<div class="notice-content">
+			<div class="title">
+				<img src="static/img/common/notice-ship-success.png" />&nbsp;提醒发送成功
+			</div>
+			<!--<div class="tip">当提醒48小时之后，卖家仍未发货，您将有权取消订单</div>-->
+		</div>
+		<div style="text-align: center;margin-top: 5px;">
+			<button class="confirm" ng-click="noticeShipConfirm()">确认</button>
+		</div>
+	</div>
+</div>
+<!--同意取消订单-->
+<div class="com-out-box" ng-if="requestCancelBox">
+	<div class="title">
+		<a ng-click="cancelRequestCancelBox()">&times;</a>
+	</div>
+	<div class="content">
+		<p><i class="fa fa-exclamation-circle"></i>卖家请求取消此订单<br/>
+			取消原因：{{cancleOrder.unavailableReason}}
+		</p>
+		<p>请先联系卖家处理售后事宜，否则<br/>请勿点击【同意取消】</p>
+		<div class="deal-btn">
+			<a ng-click="confirmRequest()">同意取消</a>
+			<a ng-click="cancelRequest()" style="background: #d0cfcf; color: #666">拒绝取消</a>
+		</div>
+	</div>
+</div>
+<style>
+	.com-out-box{
+		position: fixed;
+		z-index: 2;
+		height: 180px;
+		opacity: 1;
+		background-color: white;
+		width: 300px;
+		-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		margin: -150px 0 0 -90px;
+		top: 55%;
+		left: 50%;
+	}
+	.com-out-box .title{
+		height: 30px;
+		background-color: #5078cb;
+		text-align: right;
+		line-height: 30px;
+	}
+	.com-out-box .title a{
+		color: white;
+		font-size: 28px;
+		position: relative;
+		top: -2px;
+		right: 8px;
+	}
+	.com-out-box .content p{
+		font-size: 14px;
+		text-align: center;
+		line-height:20px;
+	}
+	.com-out-box .content p:first-child{
+		margin-top: 10px;
+		line-height: 24px;
+	}
+	.com-out-box .content p:nth-child(2){
+		font-size: 12px;
+		color: #f00;
+	}
+	.com-out-box .content p i{
+		color: #5078cb;
+		font-size: 18px;
+		margin-right: 8px;
+	}
+	.com-out-box .content div{
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 10px;
+	}
+	.com-out-box .content div a{
+		width: 78px;
+		display: inline-block;
+		height: 28px;
+		line-height: 28px;
+		text-align: center;
+		font-size: 14px;
+		color: #fff;
+		background: #5078cb;
+	}
+	.com-out-box .content div a:first-child{
+		margin-right: 10px;
+	}
+	.com-out-box .content div a:hover{
+		background: #337ab7;
+	}
+</style>
+<script>
+	$(function(){
+		//产品字数超过两行时改变样式
+		$(".love_list ul li em").each(function(){
+			var text=$(this).text().length;
+			if(text<40){
+				$(this).css("line-height","30px");
+			};
+		});
+	})
+</script>

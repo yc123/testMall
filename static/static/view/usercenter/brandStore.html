@@ -1,0 +1,96 @@
+<style>
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+td {
+	line-height: 1.1;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>买家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>我的收藏<i class="fa fa-angle-double-right"></i></li>
+		<li>品牌收藏</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-xs-6">
+		<h2>品牌收藏</h2>
+	</div>
+</div>
+<div>
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{storeTableParams.total()}}</span>条
+		</p>
+	</div>
+</div>
+</br>
+	<table ng-table="storeTableParams"
+		class="table table-bordered table-striped text-center">
+		<thead>
+			<tr class="text-center tr-default">
+				<th width="50" class="text-center">序号</th>
+				<th width="auto" class="text-center">品牌名称</th>
+				<th width="110" class="text-center">收藏时间</th>
+				<th width="90" class="text-center">操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="brand in $data">
+				<td>{{$index+1}}</td>
+				<td>
+					<a ng-href="product#/brand/{{brand.brandinfo.uuid}}/" ng-bind="brand.brandinfo.nameCn"></a>
+				</td>
+				<td ng-bind="brand.createtime | date : 'yyyy-MM-dd'"></td>
+				<td>
+					<button class="btn btn-primary btn-sm" ng-click="cancleStore(brand.id)">取消收藏</button>
+				</td>
+			</tr>
+			<tr ng-if="$data.length == 0">
+				<td colspan="10" class="text-center"
+					style="line-height: 40px; font-size: 20px;"><i
+					class="fa fa-smile-o fa-lg"></i> 您没有品牌收藏</td>
+			</tr>
+		</tbody>
+	</table>

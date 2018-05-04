@@ -1,0 +1,69 @@
+<style>
+.row {
+	margin-bottom: 10px;
+}
+</style>
+<div>
+	<div class="box-header well">
+		用户操作日志
+	</div>
+	<div  class="box-content">
+		<div class="row">
+			<div class="col-xs-1">
+				<p style="margin-top: 8px; font-weight: bold;">
+					共<span class="totalNum">{{paginationParams.total()}}</span>条
+				</p>
+			</div>
+			<div class="col-xs-offset-4 col-xs-7">
+				<div class="input-group">
+					<select ng-model="search" style="width:20%;" class="form-control">
+						<option value="">请选择查询条件</option>
+						<option value="1">UU号</option>
+						<option value="2">用户名</option>
+					</select>
+				<input type="search" style="width:80%;" class="form-control" ng-model="searchContent"
+					ng-search="onSearch()" placeholder="请输入搜索内容">
+				<span class="input-group-btn">
+					<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+				</span>
+			</div>
+			</div>
+		</div>
+	<!--
+		<div class="row">
+			<div class="col-xs-offset-9 col-xs-4">
+				<a class="btn btn-primary" ng-click="addKeyWord()"><i class="fa fa-plus"></i>添加关键词</a>
+				<a class="btn btn-primary" ng-click="addKeyWords()"><i class="fa fa-plus"></i>批量添加关键词</a>
+			</div>
+		</div>
+		-->
+		<p ng-model="test"></p>
+		<table ng-table="logUsageTableParams"
+			class="table table-bordered table-striped table-hover" style="word-break:break-all; word-wrap:break-all;">
+			<thead>
+				<tr class="tr-default">
+					<th width="10%;" class="text-center">用户UU号</th>
+					<th width="7%;" class="text-center">用户名</th>
+					<th width="10%" class="text-center">标题</th>
+					<th width="30%" class="text-center">具体操作信息</th>
+					<th width="8%%" class="text-center">时间</th>
+					<th width="10%" class="text-center">ip</th>
+					<th width="10%" class="text-center">手机号</th>
+					<th width="15%" class="text-center">邮箱</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="logUsage in $data">
+				<tr class="text-center">
+					<td><span ng-bind="logUsage.userUU"></span></td>
+					<td><span ng-bind="logUsage.userName"></span></td>
+					<td><span ng-bind="logUsage.title"></span></td>
+					<td><span ng-bind="logUsage.message+logUsage.detail"></span></td>
+					<td><span ng-bind="logUsage.time | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+					<td><span ng-bind="logUsage.ip"></span></td>
+					<td><span ng-bind="logUsage.userTel"></span></td>
+					<td><span ng-bind="logUsage.userEmail"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,96 @@
+<style>
+.margin-bottom-10 {
+	margin-bottom: 10px;
+}
+</style>
+<div class="span12-fluid sortable">		
+	<div class="box span12">
+		<div class="box-header well">
+			<h2><i class="icon-user"></i> 已下架的产品管理</h2>
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;overflow-y:auto;">
+				<div class="span12">
+					<div class="span6">
+						<p style="margin-top: 8px; font-weight: bold;">
+							共<span class="badge">{{downedGoodsTableParams.total()}}</span>条
+						</p>
+					</div>
+					<div class="span6">
+						<div class="input-group pull-right">
+							<input type="search" class="form-control" ng-model="keyword"
+								ng-search="onSearch()" placeholder="请输入批次号查询、原厂型号、品牌号、公司名称搜索"> 
+								<span class="input-group-btn">
+								<button ng-click="onSearch()" class="btn btn-primary margin-bottom-10" type="button">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="span11 text-info tips">
+						<p>
+							<i class="fa fa-info-circle"></i>
+							产品下架都是整批次下架，修改已上架产品库存实际上是把原有批次整批次下架，然后上架一个新库存数的批次。
+						</p>
+					</div>
+				</div>
+				</br>
+				
+				<table ng-table="downedGoodsTableParams" class="table table-bordered table-striped">
+					<thead>
+						<tr class="tr-default text-center">
+							<th width="50">序号</th>
+							<th width="180">批次</th>
+							<th width="auto">产品</th>
+							<th width="160">下架时间</th>
+							<th width="120">原库存数量</th>
+							<th width="200">企业名称</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="goods in $data">
+							<td>{{$index + 1}}</td>
+							<td>
+								<div>
+									<a ng-href="product/component/{{goods.uuid}}/">
+										<img width="160px" height="120px" alt="{{goods.code}}" ng-src="" lazy-load="{{goods.img}}">
+									</a>
+								</div>
+								<div>
+									<span ng-bind="goods.batchCode" class="text-num"></span>
+								</div>
+							</td>
+							<td>
+								<div>
+									<span class="text-num text-inverse f16" ng-bind="goods.code"></span>
+								</div>
+								<div>
+									<span class="text-muted" ng-bind="goods.kindNameCn"></span>
+								</div>
+								<div>
+									<span class="text-muted text-num" ng-bind="goods.brandNameCn"></span>
+								</div>
+							</td>
+							<td class="text-center">
+								<div>
+									<span class="text-num text-primary" ng-bind="goods.createdDate | date: 'yyyy-MM-dd HH:mm:ss'"></span>
+								</div>
+							</td>
+							<td class="text-center">
+								<div>
+									<span class="text-num text-inverse f16" ng-bind="goods.reserve | number"></span>
+								</div>
+							</td>
+							<td class="text-center">
+								<div>
+									<span class="f16" ng-bind="goods.enterpriseName"></span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

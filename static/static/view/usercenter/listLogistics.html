@@ -1,0 +1,43 @@
+<style>
+.head {
+	border: 1px solid #ddd;
+	margin-top: 10px;
+	padding-left: 15px;	
+	font-size:15px;	
+}
+
+.modal-body .row {
+	line-height: 30px; 
+}
+
+.title {
+	border: 1px solid #ddd;
+	margin: 5px 25px;
+	line-height: 25px;
+}
+
+.title .col-xs-4 {
+	border-right: 1px solid #ddd;
+}
+
+.row {
+	margin: 5px 25px;
+}
+</style>
+
+<div class="modal-header" style="background-color: #f2f2f2;">
+	<span class="pull-right" ng-click="cancel()"><i class="fa fa-close fa-lg"></i></span>
+	<h5>
+		物流进度跟踪
+	</h5>
+</div>
+<div class="modal-body">
+	<div class="row title text-center">
+		<div class="col-xs-4">处理时间</div>
+		<div class="col-xs-8">进度监控记录</div>
+	</div>
+	<div class="row" ng-model="Info" ng-repeat="details in Info.data | orderBy:'-time'">
+		<div class="col-xs-4"><span ng-bind="details.time"></span></div>
+		<div class="col-xs-8"><span ng-bind="details.context"></span></div>
+	</div>
+</div>

@@ -1,0 +1,767 @@
+<style>
+	.count .count01 {
+		display: block;
+	}
+	/*新增规则*/
+	.addRule-menu{
+		width: 100%;
+		height: 20px;
+		line-height: 20px;
+		position: absolute;
+		top: 40px;
+	}
+	.addRule-menu span{
+		display: inline-block;
+		text-align: center;
+		width: 112px;
+		height: 20px;
+		background: #eee;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		margin-left: 518px;
+		line-height: 19px;
+		position: relative;
+		bottom: 20px;
+	}
+	.addRule-menu span a{
+		font-size: 12px;
+		color: #999;
+		display: inline-block;
+		height: 20px;
+		width: 75px;
+	}
+	.addRule-menu span.active{
+		background: #fff;
+		border: #82d2fa 1px solid;
+		border-bottom: #fff 1px solid;
+	}
+	.addRule-menu span.active a{
+		color: #666;
+	}
+	.addRule-menu span i{
+		font-size: 14px;
+		color: #999;
+	}
+	.addRule-menu span i:hover,.addRule-menu span a:hover{
+		color: #5078cb;
+	}
+	.com_tab.rule-act ul {
+		border-bottom: #82d2fa 1px solid;
+	}
+	.com_tab.rule-act{
+		margin-bottom: 0;
+	}
+
+	/*内容开始*/
+	.rule-main{
+		width: 100%;
+		margin: 0 auto;
+		background: #fff;
+		padding-bottom: 20px;
+	}
+	.rule-main .rule-title{
+		width: 100%;
+		margin: 0 auto;
+		height: 40px;
+		line-height: 50px;
+		font-size: 14px;
+		color: #5078cb;
+		padding-left: 35px;
+		font-weight: bold;
+	}
+	.rule-main .rule-content{
+		width: 97%;
+		margin: 0 auto;
+		background: #f5f8fe;
+		padding: 10px 20px;
+	}
+	.rule-main .rule-content .row{
+		margin: 0;
+		font-size: 14px;
+		color: #666;
+		line-height: 26px;
+		margin-bottom: 10px;
+	}
+	.rule-main .rule-content .row span{
+		font-size: 14px;
+		line-height: 26px;
+		margin-right: 15px;
+		display: inline-block;
+		width: 63px;
+		text-align: right;
+	}
+	.rule-main .rule-content .row span,.rule-main .rule-content .row select,.rule-main .rule-content .row input,.rule-main .rule-content .row label{
+		float: left;
+	}
+	.rule-main .rule-content .row input{
+		text-align: center;
+	}
+	.rule-main .rule-content .row strong{
+		color: #f00;
+	}
+	.rule-main .rule-content .row .form-control{
+		border-radius: 0;
+		height: 26px;
+		padding: 0 10px;
+		line-height: 26px;
+		border: #d4d4d4 1px solid;
+		margin-right: 40px;
+		font-size: 12px;
+	}
+	.rule-main .rule-content .row label{
+		font-weight: inherit;
+		margin-right: 40px;
+	}
+	.rule-main .rule-content .row label input{
+		margin: 7px 8px 0;
+	}
+	.rule-main .rule-content .row select.delivery{
+		width: 130px;
+	}
+	.rule-main .rule-content .row input.sort{
+		width: 100px;
+	}
+	.rule-main .rule-content .row input.rule{
+		width: 350px;
+		margin-right: 0;
+	}
+	.rule-main .rule-content .row select.for-people{
+		width: 220px;
+	}
+	.rule-main .rule-content .row button{
+		width: 70px;
+		height: 22px;
+		line-height: 22px;
+		text-align: center;
+		color: #fff;
+		background: #ff8522;
+		border: none;
+	}
+	.rule-main .rule-content .row .check-act input{
+		display: none;
+	}
+	.rule-main .rule-content .check-act label{
+		width: 12px;
+		height: 12px;
+		margin-right: 5px;
+		display: inline-block;
+		background: url(static/img/icon/check-rule.png) no-repeat;
+		position: relative;
+		top: 7px;
+	}
+	.rule-main .rule-content .radio-1 .check-act label{
+		background-position: 0 0;
+	}
+	.rule-main .rule-content .check-1 .check-act label{
+		background-position: -48px 0;
+	}
+	.rule-main .rule-content .radio-1 input:checked + label{
+		background-position: -15px 0;
+	}
+	.rule-main .rule-content .check-1 input:checked + label{
+		background-position: -31px 0;
+	}
+	.rule-main .rule-content i.notes{
+		font-size: 12px;
+		color: #999;
+	}
+	.rule-main .rule-content .common-style{
+		width: 900px;
+		margin-right: 0 auto;
+	}
+	.rule-main .rule-content .common-style .row{
+		padding: 8px;
+		background: #e8e7e7;
+		min-height: 40px;
+		font-size: 12px;
+	}
+	.rule-main .rule-content .common-style .row span{
+		font-size: 12px;
+	}
+	.rule-main .rule-content .common-style .price-input{
+		min-width: 90px;
+		float: left;
+		position: relative;
+		z-index: 10;
+	}
+	.rule-main .rule-content .common-style .price-input em{
+		float: left;
+		margin: 0 5px;
+	}
+	.rule-main .rule-content .common-style .price-input em i{
+		margin-right: 20px;
+	}
+	.rule-main .rule-content .common-style .price-input i.currency{
+		width: 20px;
+		height: 26px;
+		text-align: center;
+		display: inline-block;
+		background: #b0b0b0;
+		color: #fff;
+		float: left;
+		border-bottom-left-radius: 3px;
+		border-top-left-radius: 3px;
+	}
+	.rule-main .rule-content .common-style .price-input input{
+		max-width: 80px;
+		padding: 0;
+		margin-right: 3px !important;
+		position: relative;
+		/*left: -1px;*/
+		font-size: 12px;
+	}
+	.rule-main .rule-content .common-style .row textarea{
+		width: 600px;
+		height: 84px;
+		font-size: 12px;
+		float: left;
+		margin-right: 0 !important;
+	}
+	.rule-main .rule-content .common-style .row .prompt{
+		float: left;
+		width: 110px;
+		margin-left: 30px;
+		line-height: 20px;
+		color: #999;
+	}
+	.rule-main .rule-content .common-style .row .no-edit{
+		width: 824px;
+		min-height: 40px;
+		background: #e8e7e7;
+		float: right;
+		margin-right: 0 !important;
+		padding-left: 10px;
+		line-height: 40px;
+	}
+	.rule-main .rule-content .common-style .row .edit{
+		width: 824px;
+		margin: 0 auto;
+		float: right;
+	}
+	/*操作取消保存*/
+	.deal-btn{
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 15px;
+	}
+	.deal-btn a{
+		width: 70px;
+		height: 30px;
+		display: inline-block;
+		text-align: center;
+		line-height: 30px;
+		font-size: 14px;
+	}
+	.deal-btn a.off{
+		background: #cdcccc;
+		color: #666;
+		margin-right: 8px;
+	}
+	.deal-btn a.save-other{
+		width: 100px;
+		background: #ff8522;
+		color: #fff;
+		margin-right: 8px;
+	}
+	.deal-btn a.ok{
+		background: #5078cb;
+		color: #fff;
+	}
+	.deal-btn a:hover{
+		background: #337ab7;
+		color: #fff;
+	}
+	/*适用地区*/
+	.rule-main .rule-content .area-content{
+		width: 715px;
+		min-height: 30px;
+		padding: 5px 5px 2px 5px;
+		background: #fff;
+		float: left;
+		margin-right: 30px;
+	}
+	.rule-main .rule-content .area-content span{
+		font-size: 12px;
+		color: #666;
+		display: inline-block;
+		padding: 0 3px;
+		border-radius: 2px;
+		float: left;
+		margin: 1px 1px 6px 1px;
+		margin-right: 3px;
+		height: 22px;
+		background: #e6eefe;
+		width: auto;
+	}
+	.rule-main .rule-content .area-content span em{
+		display: inline-block;
+		max-width: 150px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		line-height: 22px;
+		float: left;
+	}
+	.rule-main .rule-content .area-content span i{
+		color: #cddcfb;
+		margin-left: 3px;
+		font-size: 16px;
+		background: #fff;
+		height: 10px;
+		position: relative;
+		border-radius: 100%;
+	}
+	.rule-main .rule-content .area-content span i:before{
+		position: relative;
+		top: -1px;
+	}
+	.rule-main .rule-content .area-content span:hover{
+		background: #8eb0f5;
+		cursor: pointer;
+	}
+	.rule-main .rule-content .area-content span:hover em{
+		color: #fff;
+	}
+	.rule-main .rule-content .area-content span:hover i{
+		color: #ef4646;
+	}
+	.rule-main .rule-content .common-style.style-price .row{
+		margin-bottom: 0 !important;
+	}
+	.rule-main .rule-content .common-style.style-price .row .no-edit{
+		padding: 8px 10px;
+	}
+	.rule-main .rule-content .common-style.style-price .row .no-edit p{
+		line-height: 25px;
+	}
+	.rule-main .rule-content .common-style .row{
+		position: relative;
+	}
+	.rule-main .rule-content .common-style .row.dot:before{
+		content: "";
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		background: #e8e7e7;
+		transform: rotate(-45deg);
+		position: absolute;
+		top: -5px;
+		left: 129px;
+		z-index: 1;
+	}
+	.rule-main .rule-content .common-style.style-price .row.dot:before{
+		left: 260px;
+	}
+	.add-box span{
+		margin: 0 1px;
+		position: relative;
+		top: 1px;
+		border: none;
+	}
+	.add-box span i{
+		font-size: 16px;
+	}
+	.add-box .reduce{
+		color: #ff8522;
+	}
+	.add-box span:hover{
+		cursor: pointer;
+	}
+	.add-box .add{
+		color: #32b500;
+	}
+
+	/*选择地区*/
+	.choose-box{
+		width: 320px;
+		height: 438px;
+		box-shadow: 2px 5px 8px #dee0e2;
+		position: absolute;
+		top: 120%;
+		left: 487px;
+		background: #fff;
+		z-index: 10000;
+		border: #e6eefe 1px solid;
+		border-radius: 5px;
+	}
+	.choose-box:after{
+		content: "";
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		background: #fff;
+		transform: rotate(-45deg);
+		position: absolute;
+		top: -8px;
+		left: 142px;
+		z-index: 1;
+		border: #e6eefe 1px solid;
+		border-bottom: none;
+		border-left: none;
+	}
+	.choose-box .tree{
+		width: 290px;
+		max-height: 364px;
+		overflow-y: auto;
+		margin: 0 auto;
+		border: #e8e9ea 1px solid;
+		padding-top: 15px;
+		margin-top: 16px;
+	}
+	.choose-box .tree li {
+		cursor: pointer;
+		padding-left: 1.3em;
+		width: 100%;
+		float: left;
+	}
+
+	.choose-box .tree ul {
+		list-style: none;
+		padding-left: 0;
+	}
+
+	.choose-box .intermediate {
+		opacity: 0.3;
+	}
+	.choose-box .tree ul i{
+		float: left;
+		font-size: 18px;
+		position: relative;
+		top: 3px;
+		right: 0;
+		color: #ff8522;
+	}
+	.choose-box .tree ul i.fa-fw{
+		width: 1em;
+	}
+
+	.choose-box .tree ul div.check-1{
+		float: right;
+	}
+	.choose-box .tree ul li span{
+		color: #666;
+		line-height: 24px !important;
+		margin-right: 3px !important;
+	}
+	.choose-box .tree ul li em{
+		color: #999;
+		font-size: 12px;
+		position: relative;
+		top: -2px;
+		left: 2px;
+	}
+	.rule-main .rule-content .row .choose-box .tree ul li span{
+		width: auto;
+	}
+	.choose-box .hidden {
+		display: none;
+	}
+	.choose-box .check-1 input{
+		/*display: none;*/
+	}
+	.rule-main .rule-content .row .choose-box label{
+		margin-right: 12px;
+	}
+</style>
+<!--右侧主体部分-->
+<div class="count user_right fr">
+	<div class="count_center">
+		<div class="com_tab rule-act" style="position: relative">
+			<ul class="fl">
+				<li ng-class="{'active': tab=='deliverRule'}"><a ui-sref="vendor_deliveryRule">配送规则</a></li>
+				<li ng-class="{'active': tab=='distributor'}"><a ui-sref="vendor_distributor">配送商</a></li>
+				<li ng-class="{'active': tab=='takeSelf'}"><a ui-sref="vendor_takeSelf">自提点</a></li>
+				<li ng-class="{'active': tab=='logistic'}"><a ui-sref="vendor_logistics">发货地址</a></li>
+			</ul>
+			<!--匹配结果导航-->
+			<div class="addRule-menu">
+                <span class="active">
+                    <a ng-click="" ng-if="!isModify">新增配送规则</a>
+					<a ng-click="" ng-if="isModify">修改配送规则</a>
+                    <i class="fa fa-remove" ng-click="close()"></i>
+                </span>
+			</div>
+		</div>
+		<!--配送规则-->
+		<div class="rule-main">
+			<div class="rule-title">基本信息</div>
+			<div class="rule-content">
+				<div class="row">
+					<span><strong>*</strong>配送方式</span>
+					<select class="select-adder form-control delivery" ng-model="rule.shippingMethod">
+						<option value="">请选择配送方式</option>
+						<option value="1301">第三方配送</option>
+						<option value="1302">卖家配送</option>
+						<option value="1303">上门自提</option>
+					</select>
+					<span style="width: 70px;">优先级排序</span>
+					<input type="text" class="form-control sort" ng-model="rule.num">
+					<span><strong>*</strong>规则名称</span>
+					<input type="text" class="form-control rule" style="text-align: left;" ng-blur="checkRuleName()" ng-model="rule.ruleName">
+				</div>
+				<div class="row radio-1">
+					<span>是否生效</span>
+					<label class="check-act">
+						<input type="radio" id="effect" name="radio" value="true" ng-click="isActive=true" ng-checked="isActive">
+						<label for="effect"></label>
+						生效
+					</label>
+					<label class="check-act">
+						<input type="radio" id="no-effect" name="radio" value="false" ng-click="isActive=false" ng-checked="!isActive">
+						<label for="no-effect"></label>
+						暂不生效
+					</label>
+				</div>
+			</div>
+			<!--适用范围-->
+			<div class="rule-title">适用范围</div>
+			<div class="rule-content">
+				<div class="row check-1">
+					<span><strong>*</strong>适用类型</span>
+					<label class="check-act">
+						<input type="checkbox" id="1" ng-model="orderType.normal"/>
+						<label for="1"></label>
+						普通订单
+					</label>
+					<label class="check-act">
+						<input type="checkbox" id="2" ng-model="orderType.preSale"/>
+						<label for="2"></label>
+						预售订单
+					</label>
+					<label class="check-act">
+						<input type="checkbox" id="3" ng-modle="orderType.bill"/>
+						<label for="3"></label>
+						发票
+					</label>
+					<span>适用用户</span>
+					<select class="select-adder form-control for-people" ng-model="rule.userType">
+						<option value="1301">所有用户</option>
+						<!--<option value="2">所有用户</option>-->
+						<!--<option value="3">所有用户</option>-->
+					</select>
+				</div>
+				<div class="row" style="position: relative;">
+					<span>适用地区</span>
+					<div class="area-content">
+						<!--<span ng-repeat="data in tree.getChecked()">{{data.province}}{{data.city}}{{data.area}}</span>-->
+						<!--<span ng-repeat="data in tree.addressArray">{{data.province}}{{data.city}}{{data.area}}</span>-->
+						<span ng-repeat="data in mapArray" ng-click="deleteMapItem($index)">
+							<em ng-if="data.province">{{data.province}}</em>
+							<em ng-if="data.city">/{{data.city}}</em>
+							<em ng-if="data.area">/{{data.area}}</em>
+							<i class="fa fa-minus-circle"></i>
+						</span>
+					</div>
+					<button ng-click="chooseAddress()">选择地区</button>
+					<!--选择地区 begin-->
+					<div class="choose-box" ng-show="chooseBox">
+						<div>
+							<div class="tree">
+								<ul>
+									<li ng-repeat="address in tree.$data">
+										<div>
+											<i class="fa fa-fw" ng-class="address.folded?'fa-caret-right':'fa-caret-down'" ng-click="tree.toggleFold(address)"></i>
+											<span ng-bind="::address.label" ng-click="tree.toggleFold(address)"></span><em ng-if="address.selectedNum!=0 && address.selectedNum!=address.items.length">({{address.selectedNum}})</em>
+											<div class="check-1">
+												<label class="check-act" ng-class="{'intermediate': tree.isSemiChecked(address)}">
+													<input type="checkbox" ng-model="address.checked" ng-change="tree.check(address)"  id="{{address.label}}">
+													<label for="{{address.label}}"></label>
+												</label>
+											</div>
+										</div>
+										<ul ng-hide="address.folded">
+											<li ng-repeat="city in address.items">
+												<div>
+													<i ng-if="city.items" class="fa fa-fw" ng-class="city.folded?'fa-caret-right':'fa-caret-down'" ng-click="tree.toggleFold(city)"></i>
+													<span ng-bind="::city.label" ng-click="tree.toggleFold(city)"></span><em ng-if="city.selectedNum!=0 && city.selectedNum!=city.items.length">({{city.selectedNum}})</em>
+													<div class="check-1">
+														<label class="check-act" ng-class="{'intermediate': tree.isSemiChecked(city)}" >
+															<input type="checkbox" ng-model="city.checked" ng-change="tree.check(city)" id="{{city.label}}">
+															<label for="{{city.label}}"></label>
+														</label>
+													</div>
+												</div>
+												<ul ng-hide="city.folded">
+													<li ng-repeat="area in city.items">
+															<label style="width: 100%;">
+																<span ng-bind="::area.label"></span>
+																	<div class="check-1">
+																	<label class="check-act">
+																		<input type="checkbox" ng-model="area.checked" ng-change="tree.check(area)" id="{{area.label}}">
+																		<label for="{{area.label}}"></label>
+																	</label>
+																</div>
+															</label>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div class="deal-btn">
+								<a ng-click="cancel()" class="off">取消</a>
+								<a ng-click="showSelectedData()" class="ok">确认</a>
+							</div>
+						</div>
+					</div>
+					<!--<i class="notes">默认对全部地区生效</i>-->
+				</div>
+			</div>
+			<!--计费方式-->
+			<div class="rule-title">计费方式</div>
+			<div class="rule-content">
+				<div class="row radio-1">
+					<span>计费方式</span>
+					<label class="check-act" ng-click="checkTab(1)">
+						<input type="radio" id="style01" name="radio2" ng-checked="rule.fareType==1"/>
+						<label for="style01"></label>
+						统一规定运费
+					</label>
+					<label class="check-act" ng-click="checkTab(2)">
+						<input type="radio" id="style02" name="radio2" ng-checked="rule.fareType==2"/>
+						<label for="style02"></label>
+						按总金额计算
+					</label>
+				</div>
+				<!--统一规定运费-->
+				<div class="style-regulations common-style" ng-if="rule.fareType==1">
+					<div class="row dot">
+						<span>统一运费</span>
+						<div class="price-input">
+							<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+							<i class="currency" ng-if="rule.currencyName=='USD'">$</i>
+							<input type="text" class="form-control" placeholder="请输入金额" ng-blur="inputUniform()" ng-model="rule.uniformPrice" />
+						</div>
+					</div>
+					<div class="row" style="background: none; padding: 0;">
+						<span class="f14">计算说明</span>
+						<!--可编辑-->
+						<!--<div class="edit">-->
+						<!--<textarea class="form-control" placeholder="全国统一运费 $20"></textarea>-->
+						<!--<div class="prompt"><strong>*</strong>公式说明内容将会在购物车中显示，可自行修改</div>-->
+						<!--</div>-->
+						<!--不可以编辑的状态-->
+						<div class="no-edit">全国统一运费
+							<em ng-if="rule.currencyName=='RMB'">￥</em>
+							<em ng-if="rule.currencyName=='USD'">$</em>
+							{{rule.uniformPrice}}
+						</div>
+					</div>
+				</div>
+				<!--按总金额计算-->
+				<div class="style-price common-style" ng-if="rule.fareType==2">
+					<!--<div class="row dot">-->
+					<!--<span>总金额在</span>-->
+					<!--<div class="price-input">-->
+					<!--<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>-->
+					<!--<i class="currency" ng-if="rule.currencyName=='USD'">$</i>-->
+					<!--<input type="text" class="form-control" placeholder="0" />-->
+					<!--<em>以下，</em>-->
+					<!--</div>-->
+					<!--<div class="price-input">-->
+					<!--<em>运费为</em>-->
+					<!--<i class="currency">$</i>-->
+					<!--<input type="text" class="form-control" placeholder="0" />-->
+					<!--</div>-->
+					<!--</div>-->
+					<div class="row" ng-repeat="data in fareArray" ng-class="{'dot' : $index==0}">
+						<span>总金额在</span>
+						<div class="price-input" ng-if="$index == 0">
+							<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+							<i class="currency" ng-if="rule.currencyName=='USD'">$</i>
+							<input type="text" class="form-control" ng-blur="inputQtyFare(data, $index)" placeholder="0" ng-model="data.end" />
+							以下，
+						</div>
+						<div class="price-input" ng-if="$index != 0 && $index != fareArray.length - 1">
+							<em>
+								<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+								<i class="currency" ng-if="rule.currencyName=='USD'">$</i>
+								<i ng-bind="fareArray[$index-1].end"></i>以上，
+							</em>
+							<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+							<i class="currency" ng-if="rule.currencyName=='USD'">$</i>
+							<input type="text" class="form-control" ng-blur="inputQtyFare(data, $index)" ng-model="data.end" placeholder="100" />
+							<em>以下，</em>
+						</div>
+						<div class="price-input" ng-if="$index == fareArray.length - 1">
+							<em>
+								<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+								<i class="currency" ng-if="rule.currencyName=='USD'">$</i>
+								<i ng-bind="fareArray[$index-1].end"></i>以上，
+							</em>
+						</div>
+						<div class="price-input">
+							<em>运费为</em>
+							<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+							<i class="currency" ng-if="rule.currencyName=='USD'">$</i>
+							<input type="text" class="form-control" ng-blur="inputFare(data)" ng-model="data.fare" placeholder="0" />
+						</div>
+						<div class="add-box">
+							<span class="add" ng-if="$index == fareArray.length - 1 && fareArray.length < 5" ng-click="addQtyFare(data)"><i class="fa fa-plus-circle"></i></span>
+							<span class="reduce" ng-if="$index != 0 && $index != fareArray.length - 1" ng-click="deleteQtyFare($index)"><i class="fa fa-minus-circle"></i></span>
+						</div>
+					</div>
+					<!--<div class="row">-->
+					<!--<span>总金额在</span>-->
+					<!--<div class="price-input">-->
+					<!--<em><i>$1000</i>以上，</em>-->
+					<!--</div>-->
+					<!--<div class="price-input">-->
+					<!--<em>运费为</em>-->
+					<!--<i class="currency">$</i>-->
+					<!--<input type="text" class="form-control" placeholder="2000" />-->
+					<!--</div>-->
+					<!--<button style="margin-left: 20px;">增加范围</button>-->
+					<!--</div>-->
+					<!--计算说明-->
+					<div class="row" style="background: none; padding: 0; margin-top: 10px !important;">
+						<span class="f14">计算说明</span>
+						<div class="no-edit">
+							<div ng-repeat="data in fareArray">
+								<p ng-if="$index == 0">
+									总价在
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.end}}以下，
+									运费为
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.fare}}
+								</p>
+								<p ng-if="$index != 0 && $index != fareArray.length - 1">
+									总价在
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.start}}以上（含
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.start}}
+									），
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.end}}以下，
+									运费为
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.fare}}
+								</p>
+								<p ng-if="$index == fareArray.length-1">
+									总价在
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.start}}以上（含
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.start}}
+									），运费为
+									<i class="currency" ng-if="rule.currencyName=='RMB'">￥</i>
+									<i class="currency" ng-if="rule.currencyName=='USD'">$</i>{{data.fare}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--操作取消保存-->
+			<div class="deal-btn">
+				<a ng-click="saveDistributionRule(false)" ng-if="isModify" class="save-other">另存为新规则</a>
+				<a ng-click="" class="off">取消</a>
+				<a ng-click="saveDistributionRule(true)" class="ok">保存</a>
+			</div>
+		</div>
+	</div>
+</div>

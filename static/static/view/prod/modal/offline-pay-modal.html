@@ -1,0 +1,373 @@
+<style>
+    /* general
+    -------------------------------------*/
+    .offline-pay-modal {
+        font: normal 14px/1 "Microsoft Yahei", "微软雅黑";
+    }
+    .offline-pay-modal h1 {
+        background-color: #00a1dc;
+        text-align: center;
+        margin: 0;
+        padding: 0.8em;
+        font: normal 18px/1 "Microsoft Yahei", "微软雅黑";
+        /*padding: 0.4em;*/
+    }
+
+    /* pay-info
+    -------------------------------------*/
+    .offline-pay-modal form.offline-pay-info > div {
+        margin-bottom: 2em;
+    }
+
+    .offline-pay-info {
+        padding: 2em 1em;
+    }
+    /*每行的title*/
+    .offline-pay-modal form.offline-pay-info > div .title {
+        display: inline-block;
+        width: 17%;
+        vertical-align: top;
+    }
+
+    .offline-pay-info > div > div {
+        display: inline-block;
+        width: 80%;
+    }
+    .select-account-type {
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid #C1BABA;
+    }
+    .account-list ul li {
+        padding: 0.5em 0;
+    }
+    .account-list ul li:hover {
+        cursor: pointer;
+        background-color: hsl(0, 0%, 96%);
+    }
+    .account-list ul li > div {
+        display: inline-block;
+        padding-left: 1em;
+    }
+    .account-list ul li > div:nth-child(1) {
+        width: 32%;
+        margin-right: 4%;
+    }
+    .account-list ul li > div:nth-child(2) {
+        width: 8%;
+        margin-right: 4%;
+    }
+    .account-list ul li > div:nth-child(3) {
+        width: 25%;
+        margin-right: 3%;
+    }
+    .account-list ul li > div:nth-child(4) {
+        width: 20%;
+    }
+    .edit-account {
+        display: inline-block;
+        float: left;
+    }
+    .delete-account {
+        display: inline-block;
+        float: right;
+    }
+    .ul-when-dropdown {
+        display: inline-block;
+        width: 90%;
+    }
+    .dropdown-op > span {
+        margin-top: 0.5em;
+        display: inline-block
+    }
+
+    /*买家付款账户*/
+    .buyer-personal-account {
+        margin-right: 4em;
+    }
+
+    .expand-list, .collapse-list, .add-account, .edit-account, .delete-account {
+        color: red;
+    }
+
+    /*转账日期*/
+    .transfer-date-trigger {
+
+    }
+    .transfer-date-trigger > *, .transfer-date-trigger .title {
+        vertical-align: middle;
+    }
+
+    /*交易图片*/
+    .onUploadSuccess {
+
+    }
+    .pay-picture-upload, .pay-picture-preview, .pay-picture-hint {
+        display: inline-block;
+        vertical-align: bottom;
+    }
+    .pay-picture-title {
+        font-size: 14px;
+        margin-bottom: 0.7em;
+    }
+    .pay-picture-upload  {
+        margin-right: 2em;
+    }
+    .upload-pay-picture {
+        width: 86px;
+        height: 88px;
+        background-image: url(static/img/upload/upload.png);
+        position: relative;
+    }
+    /*上传按钮*/
+    .upload-pay-picture #uploadify object {
+        width: 86px !important;
+        height: 88px !important;
+    }
+    .upload-pay-picture #uploadify {
+        opacity: 0;
+        width: 86px !important;
+        height: 88px !important;
+    }
+    .upload-pay-picture #uploadify:hover {
+        cursor: pointer !important;
+    }
+    .upload-pay-picture #uploadify-queue {
+        position: absolute;
+        top: 88px;
+    }
+
+    .pay-picture-preview {
+        margin-right: 2em;
+    }
+    .pay-picture-preview img {
+        width: 65px;
+        height: 66px;
+    }
+    .pay-picture-hint {
+        width: 21em;
+    }
+
+    /* 操作
+    ------------------------------*/
+    .offline-pay-modal .op {
+        text-align: right;
+    }
+    .offline-pay-modal .op .total-amount {
+        font-size: 24px;
+        color: red;
+        display: inline-block;
+    }
+    .offline-pay-modal .op .op-item {
+        margin-right: 2em;
+        vertical-align: middle;
+    }
+    .warning {
+        height: 5em;
+        padding-top:0.8em;
+        position: relative;
+    }
+    .warning > div {
+        height: 1.3em;
+        position: absolute;
+        right: 0;
+    }
+    .warning .transfer-waring {
+        top: 1em;
+        color: red;
+    }
+    .warning .img-warning {
+        top: 3em;
+        color: red;
+    }
+    .warning .cancel-warning {
+        top: 1em;
+        color: lightskyblue;
+    }
+    .disbaled-button {
+        opacity: 0.65;
+    }
+    .disbaled-button:hover {
+        cursor: not-allowed;
+    }
+</style>
+<div class="offline-pay-modal">
+    <h1>付款信息</h1>
+    <form class="offline-pay-info">
+        <div class="order-num">
+            <span class="title">订单号：</span>
+            <div ng-bind="order.orderid"></div>
+        </div>
+
+        <div class="buyer-account">
+            <span class="title">买家付款账户：</span>
+            <div class="">
+                <section class="select-account-type">
+                    <lable class="radio-inline buyer-personal-account" ng-click="setAccountTypeForBuyer(true)">
+                        <input type="radio" name="" value="" ng-checked="isBuyerAccountPersonal">个人账户
+                    </lable>
+                    <label class="radio-inline" ng-click="setAccountTypeForBuyer(false)">
+                        <input type="radio" name="" value="" ng-checked="!isBuyerAccountPersonal">企业账户
+                    </label>
+                    <span role="button" class="pull-right action-tag add-account"
+                          ng-click="newAccount()" style="padding-top: 0px;"><i
+                            class="fa fa-plus-square"></i>&nbsp;新增账户</span>
+                </section>
+                <section class="account-list">
+                    <ul class="list-unstyled ng-class:{ 'ul-when-dropdown': buyAccountInfos.length>1 };">
+                        <span ng-show="isBuyerAccountDropDown">
+                            <li ng-click="selectBuyerAccount(accountInfo)" ng-repeat="accountInfo in buyAccountInfos">
+                            <div class="">
+                                <span ng-bind="accountInfo.accountname"></span>
+                            </div>
+                            <div class="">
+                                <span ng-bind="accountInfo.filterAccount"></span>
+                            </div>
+                            <div class="">
+                                <span ng-bind="accountInfo.bankname"></span>
+                            </div>
+                            <div class="account-list-op clearfix">
+                                <span role="button" class="edit-account"
+                                      ng-click="newAccount(accountInfo)"> <i
+                                        class="fa fa-edit"></i>编辑
+                                </span>
+                                <span role="button" class="delete-account" ng-click="deleteAccount(accountInfo)"> <i
+                                        class="fa fa-remove"></i>删除
+                                </span>
+                            </div>
+                        </li>
+                        </span>
+                        <span ng-show="!isBuyerAccountDropDown && buyAccount">
+                            <li>
+                                <div class="">
+                                <span ng-bind="buyAccount.accountname"></span>
+                            </div>
+                            <div class="">
+                                <span ng-bind="buyAccount.filterAccount"></span>
+                            </div>
+                            <div class="">
+                                <span ng-bind="buyAccount.bankname"></span>
+                            </div>
+                            <div class="account-list-op clearfix">
+                                <span role="button" class="edit-account"
+                                      ng-click="newAccount(buyAccount)"> <i
+                                        class="fa fa-edit"></i>编辑
+                                </span>
+                                <span role="button" class="delete-account" ng-click="deleteAccount(buyAccount)"> <i
+                                        class="fa fa-remove"></i>删除
+                                </span>
+                            </div>
+                            </li>
+                        </span>
+                        <span ng-if="!buyAccount" class=""><li style="text-align: center">空</li></span>
+                    </ul>
+                    <div ng-if="buyAccountInfos.length>1" class="pull-right dropdown-op">
+                        <span role="button" class="expand-list" ng-if="!isBuyerAccountDropDown"
+                              ng-click="dropDownBuyerAccount(true)">
+                            <i class="fa fa-angle-double-down"></i>&nbsp;展开列表
+                        </span>
+                        <span role="button" class="collapse-list" ng-if="isBuyerAccountDropDown" ng-click="dropDownBuyerAccount(false)">
+                            <i class="fa fa-angle-double-up"></i>&nbsp;收起列表
+                        </span>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="mall-account">
+            <span class="title">优软商城收款账户：</span>
+            <div class="mall-account-content">
+                <section class="select-account-type">
+                    <label class="radio-inline">
+                        <input type="radio" name="saleAccounts" ng-checked="!isMallAccountPersonal" ng-click="setAccountTypeForMall(false)"> 对公账户
+                    </label>
+                </section>
+                <section class="account-list">
+                    <ul class="list-unstyled ng-class:{ 'ul-when-dropdown': buyAccountInfos.length>1 };">
+                        <span ng-if="isMallAccountDropDown">
+                            <li ng-click="selectMallAccount(saleAccountInfo)" ng-repeat="saleAccountInfo in saleAccountInfos">
+                                <div>
+                                    <span ng-bind="saleAccountInfo.accountname"></span>
+                                </div>
+                                <div>
+                                    <span ng-bind="saleAccountInfo.filterAccount"></span>
+                                </div>
+                                <div>
+                                    <span ng-bind="saleAccountInfo.bankname"></span>
+                                </div>
+                            </li>
+                        </span>
+                        <span ng-if="!isMallAccountDropDown">
+                            <li>
+                                <div>
+                                   <span ng-bind="saleAccount.accountname"></span>
+                                </div>
+                                <div>
+                                    <span ng-bind="saleAccount.filterAccount"></span>
+                                </div>
+                                <div>
+                                    <span ng-bind="saleAccount.bankname"></span>
+                                </div>
+                            </li>
+                        </span>
+                    </ul>
+                    <div class="pull-right dropdown-op">
+                        <span role="button" class="expand-list" ng-if="!isMallAccountDropDown"
+                              ng-click="dropDownMallAccount(true)">
+                            <i class="fa fa-angle-double-down"> </i>&nbsp;展开列表
+                        </span>
+                        <span role="button" class="collapse-list" ng-if="isMallAccountDropDown"
+                              ng-click="dropDownMallAccount(false)">
+                            <i class="fa fa-angle-double-up"></i>&nbsp;收起列表
+                        </span>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="transfer-date">
+            <span class="title">转账日期：</span>
+            <div class="transfer-date-trigger">
+                <datetrigger name="transferTime" model="transferTime"
+                             format="yyyy年MM月dd日" class="col-md-5" max-date="maxDate"
+                             style="line-height: 28px; border-radius: 5px; width: 70%; font-size: 15px;">
+                </datetrigger>
+            </div>
+        </div>
+
+        <div class="trade-picture">
+            <span class="title">交易图片</span>
+            <div>
+                <span class="pay-picture-upload">
+                    <div class="pay-picture-title">付款截图：</div>
+                    <div class="upload-pay-picture" ng-disabled="getImages().length == images.length">
+						<div id="uploadify" on-success="onUploadSuccess($data)"
+                             uploadify="{type:'image'}"></div>
+					</div>
+                </span>
+                <span class="pay-picture-preview">
+                    <div class="pay-picture-title">预览</div>
+                    <img ng-if="!image.src" src="static/img/upload/img-preview.png">
+                    <img ng-if="image.src" ng-src="{{image.src}}">
+                </span>
+                <span class="pay-picture-hint">
+                    提示：选择的图片单张大小不超过3MB，支持JPG、JPEG、BMP、PNG
+                </span>
+            </div>
+            <span></span>
+        </div>
+
+        <div class="op">
+            <span class="total-amount op-item">
+                总价：<span ng-bind="totalAmount"></span> <span ng-bind="order.currency"></span>
+            </span>
+            <button class="btn btn-primary op-item" ng-class="{'disbaled-button': !transferTime || !image.src}" ng-click="confirm()" ng-mouseenter="ensureWarning(true)" ng-mouseleave="ensureWarning(false)">确认</button>
+            <button class="btn btn-warning op-item" ng-click="cancel()" ng-init="cancelWarning = false" ng-mouseover="cancelWarning = true" ng-mouseleave="cancelWarning = false">取消</button>
+
+            <div class="warning">
+                <div ng-show="transferWaring" class="transfer-waring">警告：您尚未选择转账日期，请选择转账日期</div>
+                <div ng-show="imgWarning" class="img-warning">警告：您尚未上传交易图片，请选择交易图片</div>
+                <div ng-show="cancelWarning" class="cancel-warning">提示：取消付款将跳转到 用户中心>订单跟踪>待付款页面</div>
+            </div>
+        </div>
+    </form>
+</div>

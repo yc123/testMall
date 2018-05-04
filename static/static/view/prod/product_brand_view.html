@@ -1,0 +1,64 @@
+<div class="main-content">
+	<div class="panel panel-default">
+		<div class="row">
+			<div class="col-xs-9">
+				<h1 ng-bind="brand.name"></h1>
+				<p ng-bind-html="brand.brief" class="text-box"></p>
+				<hr>
+				<div class="base-info">
+					<div class="row item">
+						<div class="col-xs-3">
+							<span class="title">品牌</span>
+							<div class="content" ng-bind="brand.name"></div>
+						</div>
+					</div>
+					<div class="row item">
+						<div class="col-xs-6">
+							<span class="title">厂商</span>
+							<div class="content" ng-bind="brand.vendor"></div>
+						</div>
+					</div>
+					<div class="row item">
+						<div class="col-xs-3">
+							<span class="title">地区</span>
+							<div class="content" ng-bind="brand.area"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<img class="img-thumbnail" ng-src="{{brand.logoUrl}}"
+					style="width: 230px; height: 138px;">
+				<div class="side-box">
+					<div class="title">版本信息</div>
+					<ul class="list-unstyled">
+						<li>创建者：<span ng-bind="brand.userDefine.userName"></span></li>
+						<li>最近更新：<span ng-bind="brand.userModify.userName"></span></li>
+						<li>更新时间：<span
+							ng-bind="brand.lastModifyDate | date: 'yyyy-MM-dd'"></span></li>
+						<li>当前版本：<span ng-bind="brand.version"></span>(总版本数: {{brand.versionCount}})&nbsp;&nbsp;</li>
+						<li><a ng-click="showVersionList()"><i class="fa" ng-class="{'fa-caret-right' : !isVersionListShow, 'fa-caret-down' : isVersionListShow}"></i> 查看历史版本</a></li>
+						<li ng-show="isVersionListShow" ng-repeat="num in arr" style="padding-left: 10px;"><a ng-href="product#brand/{{uuid}}/{{num}}"> 版本 {{num}}</a></li>
+						<li><a target="_blank" ng-href="product#/brandEdit/{{brand.uuid}}"><i class="fa fa-pencil-square-o"></i>维护品牌信息</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="headerline">
+				<span class="title">主要产品</span>
+			</div>
+			<p ng-bind="brand.series" class="text-box"></p>
+			<div class="headerline">
+				<span class="title">应用领域</span>
+			</div>
+			<ul class="list-unstyled list-inline text-box">
+				<li ng-repeat="app in applications"><span ng-bind="app"></span></li>
+			</ul>
+			<div class="headerline">
+				<span class="title">经营成果</span>
+			</div>
+			<p ng-bind-html="brand.achievement" class="text-box"></p>
+		</div>
+	</div>
+</div>

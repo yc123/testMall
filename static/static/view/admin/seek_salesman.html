@@ -1,0 +1,82 @@
+<style>
+.row {
+	margin-bottom: 10px;
+}
+</style>
+<div>
+	<div class="box-header well">
+		求购-业务员分配
+	</div>
+	<div  class="box-content">
+		<div class="row">
+			<div class="col-sm-1">
+
+			</div>
+			<div class="col-sm-7">
+
+			</div>
+			<div class="col-sm-4">
+				<div class="input-group">
+					<input placeholder="请输入品牌/型号" class="form-control ng-pristine ng-untouched ng-valid" ng-model="keyword" ng-search="onSearchKeyWord()"type="text">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="button" ng-click="onSearchKeyWord()">搜索</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<table ng-table="seekSalesmanTableParams"
+			class="table table-bordered table-striped table-hover" style="word-break:break-all; word-wrap:break-all;">
+			<thead>
+				<tr class="tr-default">
+					<th width="10%;" class="text-center">编号</th>
+					<th width="7%;" class="text-center">求购来源</th>
+					<th width="10%" class="text-center">询价单号</th>
+					<th width="10%" class="text-center">发布时间</th>
+					<th width="10%" class="text-center">买家</th>
+					<th width="10%" class="text-center">产品信息</th>
+					<th width="10%" class="text-center">截止日期</th>
+					<th width="10%" class="text-center">报价条数</th>
+					<th width="10%" class="text-center"><select ng-change="onSearchStatus(seek_status)" ng-model="seek_status">
+						<option value="0">求购状态</option>
+						<option value="2">已报价</option>
+						<option value="1">待报价</option>
+						<option value="3">已采纳</option>
+					</select></th>
+					<th width="10%" class="text-center">
+						<select ng-change="onSearchSalesman(seek_salesman)" ng-model="seek_salesman">
+							<option value="0">业务员</option>
+							<option ng-repeat="me in members" value="{{me.name}}">{{me.name}}</option>
+						</select>
+					</th>
+					<th width="10%" class="text-center">操作</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="seek in $data">
+				<tr class="text-center">
+					<td><span ng-bind="seek.id"></span></td>
+					<td><span ng-bind="seek.source"></span></td>
+					<td><span ng-bind="seek.code"></span></td>
+					<td><span ng-bind="seek.publicDate | date : 'yyyy-MM-dd HH:mm:ss'"></span></td>
+					<td><p ng-bind="seek.enterprise.enName"></p><p ng-bind="seek.user.userName"></p></td>
+					<td><p ng-bind="'型号:'+seek.cmpCode"></p>
+						<p ng-bind="'品牌:'+seek.brand"></p>
+						<p ng-bind="'规格:'+seek.spec"></p>
+					</td>
+					<td><span ng-bind="seek.endDate | date : 'yyyy-MM-dd HH:mm:ss'"></span></td>
+					<td><span ng-bind="seek.offerAmount"></span></td>
+					<td><span ng-if="seek.status && seek.status == 1 && seek.offerAmount > 0">已采纳</span>
+						<span ng-if="(!seek.status || seek.status == 0) && seek.offerAmount > 0">已报价</span>
+						<span ng-if="!seek.offerAmount || seek.offerAmount == 0">待报价</span>
+					</td>
+					<td><span ng-bind="seek.salesman"></span></td>
+					<td>
+						<button ng-if="!seek.salesman" class="btn btn-sm btn-warning" ng-click="orders(seek.id)">我来接单</button>
+						<a target="_blank" ng-href="#/seekSalesman/{{seek.id}}/{{seek.salesman}}">
+							查看详情
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

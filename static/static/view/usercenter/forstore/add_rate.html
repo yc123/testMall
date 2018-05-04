@@ -1,0 +1,425 @@
+<style>
+    .add-rate {
+        width: 1026px;
+        float: right;
+        background: #fff;
+    }
+    .add-rate .add-rate-head {
+        background: #89affa;
+        color: #fff;
+        padding: 0px 24px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .add-rate .add-rate-head  span a.add-rate-company {
+        font-size: 14px;
+    }
+    .add-rate .add-rate-head  span a em {
+        color: #fff;
+        font-size: 14px;
+    }
+    .add-rate table {
+        margin: 13px;
+    }
+    .add-rate table thead {
+        border-bottom: 1px solid rgb( 232, 235, 252 );
+        background: #fff;
+    }
+    .add-rate table thead tr td {
+        width: 1000px;
+        padding: 16px 11px;
+        font-size: 14px;
+        margin-left: 15px;
+    }
+    .add-rate table tbody tr {
+        border-bottom: 1px dashed rgb( 232, 235, 252 );
+    }
+    .add-rate table tbody tr td {
+        padding-bottom: 6px;
+    }
+    .add-rate table tbody tr td >a >img{
+        width: 73px;
+        height: 74px;
+        float: left;
+        margin-top: 16px;
+        margin-left: 23px;
+        border: 1px solid rgb( 231, 231, 231 );
+    }
+    .add-rate table tbody tr td .add-rate-item-info {
+        display: inline-block;
+        width: 178px;
+        float: left;
+        margin-top: 15px;
+    }
+    .add-rate table tbody tr td .add-rate-item-introduce {
+        display: block;
+        margin: 0px 10px;
+        font-size: 14px;
+    }
+    .add-rate table tbody tr td .add-rate-item-introduce span {
+        float: left;
+    }
+    .add-rate table tbody tr td .add-rate-item-introduce span.add-rate-item-link {
+        max-width: 178px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        white-space: nowrap;
+        height: 24px;
+        line-height: 24px;
+    }
+    .add-rate table tbody .record-num {
+        border: none;
+    }
+    .add-rate table tbody .record-num td .count-tip{
+        float: right;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+    .add-rate .submitBox {
+        text-align: center;
+        margin: 35px auto;
+    }
+    .add-rate .submitBox >span.submit-btn {
+        font-size: 14px;
+        padding: 4px 17px;
+        background: #5078cb;
+        color: #fff;
+        cursor: pointer;
+    }
+    .add-rate .submitBox .rate-status {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .add-rate .submitBox .rate-status i {
+        font-size: 14px;
+    }
+    .add-rate .submitBox .rate-status .no-rate {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        background: #ccc;
+        border: 1px solid;
+        border-radius: 2px;
+        position: relative;
+        top: 2px;
+    }
+    .add-rate .submitBox .rate-status span:last-child {
+        color: #999;
+        font-size: 14px;
+    }
+    .add-rate table thead tr.line02 {
+        background: #f5f8fe;
+    }
+    .add-rate table thead tr.line02 .describe-title {
+        color: #5078cb;
+        font-weight: bold;
+        margin-left: 12px!important;
+    }
+    .add-rate table thead tr.line02 .describe-option {
+        margin-right: 55px;
+        margin-left: 20px;
+    }
+    .add-rate table thead tr.line02 .describe-option img {
+        margin-left: -5px;
+        position: relative;
+        top: -3px;
+    }
+    .add-rate table thead tr.line01 td >span {
+        margin-left: 5px;
+        float: left;
+        margin-top: 5px;
+    }
+    .add-rate table thead tr td >div {
+        display: inline-block;
+        width: 43%;
+        background: #f9f9f9;
+        padding: 5px 10px;
+    }
+    .add-rate table thead tr td >div >span {
+        display: block;
+    }
+    .add-rate table thead tr td >div >span.add-rate-item01 span {
+        float: right;
+        display: block;
+        width: 329px;
+        height: 50px;
+        word-break: break-all;
+        overflow-y: scroll;
+    }
+    .add-rate table thead tr.line01 td >span >img {
+        margin-right: 5px;
+        margin-bottom: 3px;
+    }
+    .add-rate table thead tr td >div >span.add-rate-item02 {
+        margin-top: 18px;
+        color: #999;
+        font-size: 12px;
+    }
+    .add-rate table .buyer-first-rate {
+        width: 726px;
+        float: right;
+        margin-top: 12px;
+    }
+    .add-rate table .buyer-first-rate >div {
+        width: 311px;
+        display: inline-block;
+        background: #f9f9f9;
+        padding: 0 10px;
+        overflow: hidden;
+        height: 87px;
+        cursor: default;
+    }
+    .add-rate table .buyer-first-rate >div >div {
+    }
+    .add-rate table .buyer-first-rate >div .rate-date {
+        color: #a8a8a8;
+        margin-top: 10px;
+    }
+    .add-rate table .buyer-first-rate .buyer-first-rate02 >div {
+        display: inline-block;
+    }
+    .add-rate table .buyer-first-rate .buyer-first-rate02 >div >span {
+        display: block;
+        margin-top: 10px;
+    }
+    .add-rate table .buyer-first-rate .buyer-first-rate02 >div >span img {
+        margin-right: 5px;
+        position: relative;
+        top: -2px;
+    }
+    .add-rate table .buyer-first-rate .comment {
+        width: 215px;
+        float: right;
+        height: 67px;
+    }
+    .add-rate table .buyer-first-rate .comment span{
+        height: 60px;
+        width: 215px;
+        overflow-y: auto;
+        word-break: break-all;
+    }
+    .add-rate table tbody tr td .first-rate-item-textBox {
+        display: inline-block;
+        float: right;
+        background: #f5f8ff;
+        padding: 7px 12px;
+        position: relative;
+    }
+    .add-rate table tbody tr td .first-rate-item-textBox textarea {
+        width: 207px;
+        height: 75px;
+        overflow-y: scroll;
+        padding: 3px 8px 15px 8px;
+        border-color: rgb( 236, 242, 255 );
+        resize: none;
+    }
+    .add-rate table tbody tr td .first-rate-item-textBox .add-rate-remind {
+        color: #999;
+        position: absolute;
+        right: 29px;
+        bottom: 10px;
+    }
+    .add-rate table thead .temp-line td{
+        padding: 0;
+    }
+    .add-rate table thead .temp-line td div {
+        height: 0px;
+        background: #fff;
+        display: block;
+        width: 100%;
+        border-top: 1px solid #e6edff;
+    }
+    .seller-contact .contact-title {
+        height: 26px;
+        background-color: #5078cb;
+        text-align: right;
+        padding-right: 15px;
+        line-height: 26px;
+        color: white;
+    }
+
+    .seller-contact .contact-title a, .seller-contact .contact-title a:hover {
+        color: white;
+    }
+
+    .seller-contact .contact-seller-info {
+        margin-left: 24px;
+        margin-right: 24px;
+        background-color: #5078cb;
+        color: #ffffff;
+        margin-top: 15px;
+        margin-bottom: 12px;
+        border-radius: 4px;
+        font-family: "Microsoft Yahei", "微软雅黑";
+        height: 150px;
+    }
+
+    .seller-contact .contact-seller-info div {
+        text-align: left;
+        font-size: 14px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .seller-contact .contact-seller-info .company-name {
+        text-align: center;
+        font-size: 18px;
+        padding-top: 15px;
+    }
+
+    .seller-contact .send-message {
+        width: 553px;
+        height: 258px;
+        background-color: #F7F7F6;
+        padding-left: 13px;
+        padding-top: 15px;
+        border-radius: 4px;
+    }
+
+    .seller-contact-info {
+        position: absolute;
+        z-index: 2;
+        height: 210px;<!--506-->
+        border: 1px solid #E7E5E2;
+        opacity: 1;
+        background-color: white;
+        width: 600px;
+        top: 40px;
+        left: -130px;
+        border: 1px solid #E7E5E2;
+        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+
+</style>
+
+<div class="add-rate">
+    <div class="add-rate-head">
+        <span style="width: 27%;">
+            <a href="store/{{::order.storeid}}" target="_blank" class="add-rate-company">
+                <img src="static/img/user/images/shop_home.png"/>
+                <em>{{order.sellername}}</em>
+            </a>
+        </span>
+        <span style="position: relative; width: 10%; margin-left: 50px;">
+            <img src="static/img/common/songguo.png"/>
+            <a href="javascript:void(0)" class="contact_btn" ng-click="cont = !cont">联系卖家</a>
+            <div class="seller-contact" ng-if="cont" ng-class="{true : 'seller-contact-info', false : 'display-none'}[cont]">
+                                 <div class="contact-title">
+                                     <a ng-click="setContFalse()"><i class="fa fa-close fa-lg" aria-hidden="true"></i></a>
+                                 </div>
+                                 <div class="contact-seller-info">
+                                     <div class="company-name" ng-bind="::order.sellername"></div>
+                                     <div>
+                                         <em>手机：<em ng-bind="::order.sellPhone || '暂无联系电话'"></em></em>
+                                         <em style="margin-left: 60px;">邮箱：<em ng-bind="::order.sellEmail || '暂无电子邮箱'"></em></em>
+                                     </div>
+                                     <div>地址：<em ng-bind="order.sellCompanyAddress || order.sellCompanyArea || '暂无地址信息'"></em></div>
+                                 </div>
+                                 <div style="display: none;">
+                                     <textarea class="send-message" placeholder="给卖家发送站内消息"></textarea>
+                                 </div>
+                                 <div style="display: none;" class="send-button"><a class="send">发送</a></div>
+                            </div>
+        </span>
+        <span style="float: right;margin-right: 46px; font-size: 12px;">其他买家需要你的建议喔</span>
+    </div>
+    <table ng-table="showRateTableParams">
+        <thead>
+        <tr class="line01" ng-if="vendorRateBuyer.id">
+            <td>
+                <span><img src="static/img/user/images/{{vendorRateBuyer.level == 1?'rate1.png':vendorRateBuyer.level == 2?'rate2.png':'rate3.png'}}" alt=""><span ng-bind="vendorRateBuyer.level == 1?'好评':vendorRateBuyer.level == 2?'中评':'差评'"></span></span>
+                <div style="margin-left: 20px;float: left">
+                    <span class="add-rate-item01">卖家初评：<span ng-bind="vendorRateBuyer.vendorRate"></span></span>
+                    <span class="add-rate-item02" ng-bind="vendorRateBuyer.vendorRateTime | date:'yyyy-MM-dd'"></span>
+                </div>
+                <div style="margin-left: 40px;height: 46px;" ng-if="vendorRateBuyer.vendorAfterRate">
+                    <span class="add-rate-item01">卖家追评：<span ng-bind="vendorRateBuyer.vendorAfterRate"></span></span>
+                    <span class="add-rate-item02" ng-bind="vendorRateBuyer.vendorAfterRateTime | date:'yyyy-MM-dd'"></span>
+                </div>
+            </td>
+        </tr>
+        <tr class="temp-line">
+            <td>
+                <div></div>
+            </td>
+        </tr>
+        <tr class="line02">
+            <td>
+                <span class="describe-title describe-option">店铺评价：</span>
+                <span>描述相符</span>
+                <span class="rate-level describe-option">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.describeLevel - 0 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.describeLevel - 1 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.describeLevel - 2 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.describeLevel - 3 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.describeLevel - 4 > 0">
+                    </span>
+                <span>卖家服务</span>
+                <span class="rate-level describe-option">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.vendorLevel - 0 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.vendorLevel - 1 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.vendorLevel - 2 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.vendorLevel - 3 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.vendorLevel - 4 > 0">
+                    </span>
+                <span>物流服务</span>
+                <span class="rate-level describe-option">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.logisticsLevel - 0 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.logisticsLevel - 1 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.logisticsLevel - 2 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.logisticsLevel - 3 > 0">
+                    <img ng-src="static/img/user/images/rateGood.png" alt="" ng-show="vendorRate.logisticsLevel - 4 > 0">
+                    </span>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="detail in buyerRate track by $index">
+            <td>
+                <a href="store/{{::order.storeid}}#/batchInfo/{{::detail.goodsDetail.batchCode}}" target="_blank"><img ng-src="{{detail.goodsDetail.img || 'static/img/store/common/default.png'}}" width="55" height="55"/></a>
+                <div class="add-rate-item-info">
+                    <span class="add-rate-item-introduce"><span class="add-rate-item-link">类目：<a href="product#/kinds/{{::detail.goodsDetail.kindUuid}}" target="_blank"><em ng-bind="::detail.goodsDetail.kiName" title="{{::detail.goodsDetail.kiName}}"></em></a><br/></span></span>
+                    <span class="add-rate-item-introduce"><span class="add-rate-item-link">型号：<a href="store/{{::order.storeid}}#/batchInfo/{{::detail.goodsDetail.batchCode}}" target="_blank"><em ng-bind="::detail.goodsDetail.cmpCode" title="{{::detail.goodsDetail.cmpCode}}"></em></a><br/></span></span>
+                    <span class="add-rate-item-introduce"><span class="add-rate-item-link">品牌：<a href="product#/brand/{{::detail.goodsDetail.branduuid}}/" target="_blank"><em ng-bind="::detail.goodsDetail.brName" title="{{::detail.goodsDetail.brName}}"></em></a></span></span>
+                </div>
+                    <div class="buyer-first-rate">
+                        <div class="buyer-first-rate02" style="margin-left: 100px">
+                            <div>
+                                <span>买家初评：</span>
+                                <span><img src="static/img/user/images/{{detail.level == 1?'rate1.png':detail.level == 2?'rate2.png':'rate3.png'}}" alt=""><span ng-bind="detail.level == 1?'好评':detail.level == 2?'中评':'差评'"></span></span>
+                                <span class="rate-date" ng-bind="detail.buyerRateTime | date:'yyyy-MM-dd'"></span>
+                            </div>
+                            <div class="comment">
+                                <span ng-bind="detail.buyerRate"></span></div>
+                        </div>
+                        <div class="buyer-first-rate02" style="background: #fff">
+                            <div style="margin-top: 10px;">买家追评：</div>
+                            <div class="first-rate-item-textBox">
+                                <textarea id="rateContent" placeholder="快来分享您的使用感受吧！" rows="10" cols="20" ng-change="listenRateContent(detail)" ng-model="detail.buyerAfterRate"></textarea>
+                                <div class="add-rate-remind">
+                                    <span>{{detail.buyerAfterRate.length || 0}}</span>
+                                    <span>/200</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </td>
+        </tr>
+        <tr class="record-num">
+            <td colspan="6">
+                <span class="count-tip">显示<span ng-bind="$$kdnData.start"></span>-<span ng-bind="$$kdnData.end"></span>，共：<span ng-bind="$$kdnData.totalElements" style="color: #5078cb;"></span>个</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="submitBox">
+        <div class="rate-status">
+            <i class="fa fa-check-square" aria-hidden="true" ng-if="isAnony"></i>
+            <span class="no-rate" ng-if="!isAnony"></span>
+            <span>匿名评价</span>
+        </div>
+        <span class="submit-btn" ng-click="submit()">提交</span>
+    </div>
+</div>

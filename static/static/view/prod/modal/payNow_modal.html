@@ -1,0 +1,97 @@
+<style>
+	.modal-body label{
+		margin: 0 10px 0 20px;
+	}
+	h5{
+    	font-weight: 700;
+	}
+	.padding7{
+		padding-top: 7px;
+	}
+</style>
+<div class="modal-header" style="background-color: #f2f2f2;">
+	<span class="pull-right" ng-click="cancel()"><i class="fa fa-close fa-2x"></i></span>
+	<h5 class="modal-title">
+		购买产品
+	</h5>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12">
+			<form name="myForm" class="form-horizontal" role="form" ng-submit="save(proofing)">
+				<div class="form-group">
+					<label class="col-md-3 control-label">产品型号：</label>
+					<div class="col-md-2 col-sm-4 padding7">
+						<span ng-bind="goods.code"></span>
+					</div>
+					<label class="col-md-2 control-label">名称：</label>
+					<div class="col-md-3 col-sm-4 padding7">
+						<span ng-bind="goods.kindNameCn"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">交货周期：</label>
+					<div class="col-md-2 padding7">
+						<span ng-bind="goods.deliveryTime"></span>天&nbsp;&nbsp;
+						<img ng-if="goods.returnInWeek" src="static/img/product/seven-day-back.jpg" title="支持7天无理由退货">
+					</div>
+					<label class="col-md-2 control-label">库存：</label>
+					<div class="col-md-3 padding7">
+						<span ng-bind="goods.reserve" class="text-inverse"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label">最小包装量：</label>
+					<div class="col-md-2 col-sm-4 padding7">
+						<span ng-bind="goods.minPackQty" class="text-inverse"></span>
+					</div>
+					<label class="col-md-2 control-label">最小起订：</label>
+					<div class="col-md-3 col-sm-4 padding7">
+						<span ng-bind="goods.minBuyQty" class="text-inverse"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 control-label" >含税价格：</label>
+					<div class="col-md-5 padding7">
+						<ul class="list-unstyled">
+							<li ng-repeat="p in goods.prices" class="row"
+								ng-class="{'active': goods.qty && p.$checked}">
+								<div>
+									<div class="col-xs-8 text-right price-qty">
+										<span ng-bind="p.start"></span> - <span ng-bind="p.end"></span>
+										个:
+									</div>
+									<div class="col-xs-4 text-inverse text-left">
+										<span ng-bind="goods.currencyName"></span>&nbsp;&nbsp;<span ng-bind="p.taxPrice | number:6" class="f14"></span>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div ng-if="goods.tax" class="text-right padding7 row">
+							<p>含税<span class="text-inverse" ng-bind="goods.tax"></span>%</p>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label  class="col-md-3 control-label"><strong class="text-inverse">* </strong>购买数量：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input required ng-model="goods.qty" type="number" class="form-control" 
+	 			      	placeholder="最小包装量的整数倍" min="{{goods.minBuyQty}}" max="{{goods.reserve}}" 
+	 			      	ng-class="{'ng-invalid': qtyInvalid(goods)}" ng-change="checkprice(goods)" autofocus="autofocus">
+				    </div>
+				    <div ng-if="qtyInvalid(goods)" class="text-inverse padding7">购买数量必须为最小包装量的整数倍</div>
+				</div>
+				<div class="form-group">
+					<label  class="col-md-3 control-label"><strong class="text-inverse">* </strong>合计：</label>
+					<div class="col-md-6 col-sm-6 padding7">
+	 			      	<span ng-bind="goods.currencyName"></span>&nbsp;&nbsp;<span class="text-inverse" ng-bind="chooseprice | number:6"></span>
+				    </div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()"  ng-disabled="myForm.$invalid" type="button">确认购买</button>
+	<button class="btn btn-warning" ng-click="cancel()" type="button">取消购买</button>
+</div>

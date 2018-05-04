@@ -1,0 +1,18 @@
+<div class="row-fluid sortable">
+    <div class="box span12">
+<!--        <div class="box-header well" data-original-title>
+            <h2><i class="icon-user"></i>买家提醒发货时间(小时)</h2>
+        </div>-->
+        <div class="box-header well">
+            <div class="row margin-left-right-zero" style="margin-left: 10px;">
+                <i class="icon-user"></i> 买家提醒发货时间(小时)
+            </div>
+        </div>
+        <div class="box-content">
+            <input id="valueText" disabled="true" ng-model="notifySellerShipTime" class="form-control" style="width:100px;display: inline-block">
+            <button ng-if="!isChange" class="btn btm-sm btm-primary" ng-click="modify()">修改</button>
+            <button ng-if="isChange" class="btn btm-sm btm-primary" ng-click="save()">保存</button>
+            <button ng-if="isChange" class="btn btm-sm btm-primary" ng-click="cancle()">取消</button>
+        </div>
+    </div>
+</div>

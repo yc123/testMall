@@ -1,0 +1,619 @@
+<!--右侧主体部分-->
+<style>
+	.logistics_list_xq dl dd:last-child em{
+		background: #5078cb;
+	}
+	#oder-detail .oder_xq_list dl .oder_l p{
+		font-size: 14px;
+		text-align: left;
+		width: 100%;
+		position: relative;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		word-break: normal;
+		overflow: hidden;
+	}
+	#oder-detail .oder_xq_list dl span{
+		width: 14%;
+	}
+	#oder-detail .oder_xq_list dl span.wd01{
+		width: 13%;
+	}
+	#oder-detail .oder_xq_list dl span.wd02{
+		width: 25%;
+	}
+	#oder-detail .oder_xq_list dl .oder_l p.style01{
+		width: 160px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		word-break: normal;
+		overflow: hidden;
+	}
+	#oder-detail .oder_xq_list dl .oder_l img{
+		margin-left: 20px;
+	}
+	.com_log_list ul li {
+		width: 282px;
+		height: 152px;
+		background: url(static/img/user/images/adress_bg.jpg) no-repeat;
+		position: relative;
+		float: left;
+		margin: 0 70px 20px 10px;
+	}
+	.logistics_list01 .oder_xq p b{
+		color: #959595;
+	}
+	.logistics_list01 .oder_xq p{
+		line-height: 40px;
+		width: 96%;
+	}
+
+	#oder-detail .oder_xq_list dl dd.line60 span{
+		width: 20%;
+	}
+	#oder-detail .oder_xq_list dl dd.line60 span.wd001{
+		width: 35%;
+		margin-left: 25px;
+	}
+
+	/*订单详情修改*/
+	.logistics_list01{
+		background: #fff;
+	}
+	.oder_xq_list dl dt{
+		border: #f1f6ff 1px solid;
+		height: 40px;
+		border-bottom: #769be9 2px solid;
+		background: #f6f9ff;
+		margin-top: 10px;
+	}
+	.oder_xq_list dl .oder_l {
+		background: #f6f9ff;
+		border-bottom: #fff 1px solid;
+	}
+	.oder_xq_list dl dd{
+		border-bottom: none;
+	}
+	.oder_xq_list dl dd.order-company{
+		height: 50px;
+		line-height: 50px;
+		border-bottom: #f1f6ff 1px solid;
+	}
+	.oder_xq_list dl .oder_l span.wd02{
+		margin-top: 0;
+	}
+	.oder_xq_list dl .oder_l span.wd02 a img{
+		margin-top: 15px;
+	}
+	.oder_xq_list dl .oder_l span textarea {
+		padding: 5px;
+		width: 120px;
+		height: 60px;
+		border: #fff 1px solid;
+		margin-top: 10px;
+	}
+	.oder_xq_list dl span a{
+		color: #333;
+	}
+	.oder_xq_list dl span a.unstand{
+		cursor: default ;
+	}
+	.oder .oder_list dl dd.line01 a.unstand:hover, .shopCar .oder_list dl .deal_btn a.unstand:hover, #buyer_cart .shopCar .oder_list dl .line02 .car_pro_xq a.unstand:hover em, .oder_list dl .pro_xq a.unstand:hover, #oder-detail .oder_xq_list dl .oder_l p.style01 a.unstand:hover{
+		color: #333 !important ;
+	}
+	.oder-remark,.oder_xq_list dl .line60{
+		background: #f1f6ff;
+	}
+	.oder_xq_list dl .line60{
+		border-bottom: #5078cb 1px solid;
+	}
+	.oder-remark .form-control {
+		width: 546px;
+		height: 30px;
+		border-radius: 2px;
+		float: left;
+		margin-top: 5px;
+		margin-left: 4px;
+	}
+	.oder-remark span em {
+		float: left;
+		color: #333 !important;
+		margin-left: 40px;
+	}
+	.oder_xq_list dl span.total-price{
+		float: right;
+		width: auto !important;
+		position: relative;
+		bottom: 10px;
+		margin-right: 20px;
+	}
+	.oder_xq_list dl span.total-price p{
+		line-height: 25px;
+		font-size: 14px;
+		text-align: right;
+		font-weight: bold;
+		display: flex;
+	}
+	.oder_xq_list dl span.total-price p:first-child em{
+		color: #333;
+	}
+	.oder_xq_list dl span.total-price p:last-child{
+		color: #e64040;
+	}
+	.oder_xq_list dl span.total-price p em{
+		color: #e64040;
+	}
+	.oder_xq_list dl span.total-price strong {
+		width: 70px;
+		display: inline-block;
+		float: left;
+	}
+	.open-more{
+		text-align: center;
+		background: #f6f9ff;
+		height: 2px;
+	}
+	.oder-remark.length3{
+		border-top: #a5d6f7 1px dashed
+	}
+	.open-more a{
+		font-size: 12px;
+		width: 200px;
+		height: 15px;
+		display: inline-block;
+		border: #5e9fcb 1px dashed;
+		border-top: 0;
+		font-weight: inherit;
+		background: #f6f9ff;
+		border-bottom-left-radius: 50px;
+		border-bottom-right-radius: 50px;
+		line-height: 15px;
+		text-decoration: none;
+		position: relative;
+		top: 0;
+		z-index: 200;
+	}
+	.open-more a i{
+		margin-right: 5px;
+		font-size: 20px;
+		vertical-align: middle;
+		position: relative;
+		top: -5px;
+		color: #ff8423;
+	}
+	.open-more a.active{
+		border-top-left-radius: 50px;
+		border-top-right-radius: 50px;
+		position: relative;
+		top: -12px;
+		border-bottom: none;
+		border-top: #5e9fcb 1px dashed;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		background: #f1f6ff;
+	}
+	.open-more a.active em{
+		top: 3px;
+	}
+	.open-more a.active i{
+		top: 0;
+	}
+	.open-more a em{
+		position: relative;
+		top: -4px;
+		color: #ff8423;
+	}
+	.open-more a:hover em,.open-more a:hover i{
+		color: #5078cb;
+		text-decoration: none;
+	}
+	.limit-3{
+		width: 100%;
+		margin: 0 auto;
+		max-height: 270px;
+		overflow: hidden;
+	}
+	.open-more.none{
+		display: none;
+	}
+	.logistics_list01 .oder_xq{
+		width: 98%;
+		padding: 10px 0;
+	}
+	.logistics ul li p:last-child{
+		font-size: 12px;
+	}
+	.oder_xq_list dl .oder_l img{
+		width: 60px;
+		height: 60px;
+	}
+	.logistics_list01.status{
+		margin-top: 0;
+	}
+	.color999{
+		color: #999 !important;
+	}
+	.log_menu span{
+		padding-left: 15px;
+		margin-left: 10px;
+	}
+	.text-area{
+		width: 120px;
+		height: 60px;
+		background: #fff;
+		margin-top: 15px;
+		overflow-y: auto;
+		text-align: left;
+		padding: 0 3px;
+		margin-left: 5px;
+	}
+	.text-area i{
+		text-align: left;
+		position: relative;
+		top: 4px;
+		font-size: 12px;
+		color: #666;
+		word-break: break-all;
+	}
+	.oder_xq_list dl span.user-address{
+		width: 100% !important;
+		line-height: 30px;
+		position: relative;
+		top: -23px;
+		background: #f1f6ff;
+	}
+	/*联系买家*/
+	.contact-box{
+		position: absolute;
+		z-index: 2;
+		height: 210px;
+		opacity: 1;
+		background-color: white;
+		width: 600px;
+		top: 40px;
+		left: 200px;
+		border: 1px solid #E7E5E2;
+		-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		box-shadow: 0 5px 15px rgba(0,0,0,.5);
+	}
+	.contact-box .title{
+		height: 26px;
+		background-color: #5078cb;
+		text-align: right;
+		/*padding-right: 15px;*/
+		line-height: 26px;
+		color: #fff;
+	}
+	.contact-box .title i{
+		float: right;
+		margin: 7px 10px 0 0;
+	}
+	.contact-box .content{
+		width: 550px;
+		margin: 0 auto;
+		background-color: #5078cb;
+		color: #fff;
+		margin-top: 15px;
+		margin-bottom: 12px;
+		border-radius: 4px;
+		height: 150px;
+	}
+	.contact-box .content div{
+		padding: 0 15px;
+		line-height: 40px;
+	}
+	.contact-box .content .company-title{
+		text-align: center;
+		font-size: 18px;
+		padding-top: 15px;
+	}
+	.contact-box div.list{
+		text-align: left;
+		font-size: 14px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.contact-box div.list em{
+		font-size: 14px;
+		color: #fff;
+	}
+</style>
+<div class="user_right fr">
+	<!--叮当详情-->
+	<div class="oder_detail" id="oder-detail">
+		<div class="logistics" ng-if="order.status != 602 && order.status != 603 && order.status != 604 && order.status != 605 && order.status != 606 && order.status != 315" ng-cloak>
+			<ul>
+				<li ng-class="{ 'active' : (steps.step2 || steps.step3 || steps.step4 || steps.step5) }">
+					<p>拍下产品</p>
+					<em class="have"><i ng-class="{ 'active' : steps.step1 }"><b>1</b></i></em>
+					<p ng-bind="steps.time1 | date : 'yyyy-MM-dd HH:mm:ss'">2017-03-12 15:12:30</p>
+				</li>
+				<li ng-class="{ 'active' : (steps.step3 || steps.step4 || steps.step5) }">
+					<p>付款</p>
+					<em class="have"><i ng-class="{ 'active' : steps.step2 }"><b>2</b></i></em>
+					<p ng-bind="steps.time2 | date : 'yyyy-MM-dd HH:mm:ss'">2017-03-12 15:12:30</p>
+				</li>
+				<li ng-class="{ 'active' : (steps.step4 || steps.step5) }">
+					<p>卖家发货</p>
+					<em class="have"><i ng-class="{ 'active' : steps.step3 }"><b>3</b></i></em>
+					<p ng-bind="steps.time3 | date : 'yyyy-MM-dd HH:mm:ss'">2017-03-12 15:12:30</p>
+				</li>
+				<li ng-class="{ 'active' : steps.step5 }">
+					<p>确认收货</p>
+					<em class="have"><i ng-class="{ 'active' : steps.step4 }"><b>4</b></i></em>
+					<p ng-bind="steps.time4 | date : 'yyyy-MM-dd HH:mm:ss'">2017-03-12 15:12:30</p>
+				</li>
+				<li>
+					<p>评价</p>
+					<em><i ng-class="{ 'active' : steps.step5 }"><b>5</b></i></em>
+					<p ng-bind="steps.time5 | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+				</li>
+			</ul>
+		</div>
+		<!--<div class="logistics_list01">-->
+		<!--<div class="log_menu">-->
+		<!--<span>收发货地址</span>-->
+		<!--</div>-->
+		<!--&lt;!&ndash;订单物流信息&ndash;&gt;-->
+		<!--<div class="com_log_list">-->
+		<!--<ul>-->
+		<!--<li class="log_line">收货人信息：</li>-->
+		<!--<li>-->
+		<!--<h4 ng-bind="::order.deliveryAddress.company">华商龙商务科技有限公司</h4>-->
+		<!--<p ng-if="order.deliveryAddress.area" ng-bind="::order.deliveryAddress.area + '，' + order.deliveryAddress.detailAddress" title="{{::order.deliveryAddress.area + '，' + order.deliveryAddress.detailAddress}}" class="text-more"></p>-->
+		<!--<p ng-if="!order.deliveryAddress.area">空</p>-->
+		<!--<span>{{order.deliveryAddress.tel || '空'}}&nbsp;&nbsp;{{order.deliveryAddress.name || '空'}}</span>-->
+		<!--</li>-->
+		<!--<li class="log_line" ng-if="order.sendAddress">发货人信息：</li>-->
+		<!--<li ng-if="order.sendAddress">-->
+		<!--<h4 ng-bind="order.sendAddress.company">华商龙商务科技有限公司</h4>-->
+		<!--<p ng-if="order.sendAddress.area" ng-bind="::order.sendAddress.area + '，' + order.sendAddress.detailAddress" title="{{::order.sendAddress.area + '，' + order.sendAddress.detailAddress}}" class="text-more"></p>-->
+		<!--<p ng-if="!order.sendAddress.area">空</p>-->
+		<!--<span>{{order.sendAddress.tel || '空'}}&nbsp;&nbsp;{{order.sendAddress.name || '空'}}</span>-->
+		<!--</li>-->
+		<!--</ul>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--订单信息-->
+		<div class="logistics_list01" ng-class="{'status': order.status == 602 || order.status == 603 || order.status == 604 || order.status == 605 || order.status == 606 || order.status == 315}">
+			<div class="log_menu">
+				<span ng-if="order.status != 602 && order.status != 603 && order.status != 604 && order.status != 605 && order.status != 606 && order.status != 315">订单信息<b>订单号：{{order.orderid}}<em><font style="color: #333;">订单状态：</font>{{order.status | orderStatus}}</em></b></span>
+				<span ng-if="order.status == 602 || order.status == 603 || order.status == 604 || order.status == 605 || order.status == 606 || order.status == 315">
+					<i class="f14">订单号：{{order.orderid}}</i>
+					<b>
+						<em style="margin-right: 0;" ng-if="order.status != 603"><font class="color999">取消原因：</font>{{order.unavailableReason.reason}}</em>
+						<em style="margin-right: 0;" ng-if="order.status == 603"><font class="color999">取消原因：</font>超时未付款自动取消</em>
+						<em><font class="color999">订单状态：</font>{{order.status | orderStatus}}</em>
+					</b>
+				</span>
+			</div>
+			<div class="oder_xq clearfix" ng-if="address" style="background: #f8f8f8">
+				<p>
+					<b>收货人：</b>
+					<span ng-bind="address.name">王子鑫</span>
+				</p>
+				<p>
+					<b>收货地址：</b>
+					<span>{{address.area}}&nbsp;{{address.detailAddress}}</span>
+				</p>
+				<p>
+					<b>联系电话：</b>
+					<span ng-bind="address.tel">13526395698</span>
+				</p>
+			</div>
+			<div class="oder_xq_list" style="padding-top: 0;">
+				<dl class="clearfix">
+					<dt>
+						<span class="wd02">产品信息</span>
+						<span class="wd01">交期(天)</span>
+						<span class="wd01">单价</span>
+						<span style="width: 10%;">数量</span>
+						<span class="wd01">小计</span>
+						<span class="wd01">物料编码</span>
+						<span class="wd01">备注</span>
+					</dt>
+					<dd class="order-company">
+						<span style="white-space: nowrap; width: 100%; text-align: left; line-height: 50px; position: relative;">
+                            <i style="min-width: 300px; display: inline-block">
+								&nbsp;&nbsp;<img src="static/img/user/images/shop_home.png"/>
+								<a ng-href="store/{{order.orderDetails[0].storeid}}" ng-bind="order.storeName" class="hover-color" target="_blank"></a>
+							</i>
+							<img src="static/img/common/songguo.png" style="margin-right:0; ">
+							<a href="javascript:void(0)" class="contact_btn" title="联系卖家" ng-controller="ChatContactCtrl as chat" ng-click="chat.contactWithOther(order.buyerTel, order.buyerenuu, chat.UserType.STORE)">联系卖家</a>
+							<!--<a href="javascript:void(0)" class="contact_btn" title="联系卖家" ng-click="contactSeller()">联系卖家</a>-->
+							<div class="contact-box" ng-if="contactBNox">
+								<div class="title"><i class="fa fa-close fa-lg" ng-click="closeBox()"></i></div>
+								<div class="content">
+									<div class="company-title" ng-bind="::order.sellername">深圳市优软科技</div>
+									<div class="list">
+										<em>手机：<em ng-bind="::order.sellPhone || '暂无联系电话'">45413413131313</em></em>
+										<em style="margin-left: 60px;">邮箱：<em ng-bind="::order.sellEmail || '暂无电子邮箱'">45413413131313</em></em>
+									</div>
+									<div class="list">地址：
+										<em ng-bind="order.sellCompanyAddress || order.sellCompanyArea || '暂无地址信息'">1212314531455</em>
+									</div>
+								</div>
+							</div>
+						</span>
+					</dd>
+					<div ng-class="{'limit-3': !open}" style="width: 100%; margin: 0 auto; overflow: hidden;">
+						<dd class="oder_l" ng-repeat="detail in order.orderDetails">
+                        <span class="wd02">
+                            <a href="store/productDetail/{{::detail.batchCode}}" target="_blank">
+								<img ng-src="{{detail.img ? detail.img : 'static/img/store/common/default.png'}}"/>
+							</a>
+                            <p class="style01" style="margin-top: 10px;" ng-if="detail.uuid">类目：
+								<a ng-bind="detail.kiName || '-'" href="product/kind/{{::detail.kindUuid}}" title="{{detail.kiName}}" target="_blank"></a>
+							</p>
+							 <p class="style01" style="margin-top: 10px;" ng-if="!detail.uuid">类目：
+								<a ng-bind="detail.kiName || '-'"  title="{{detail.kiName}}" class="unstand"></a>
+							</p>
+							<p class="style01">型号：
+								<a ng-bind="detail.cmpCode || '-'" href="store/productDetail/{{::detail.batchCode}}" title="{{detail.cmpCode}}" target="_blank"></a>
+							</p>
+							<p class="style01" ng-if="detail.uuid">品牌：
+								<a ng-bind="detail.brName" href="product/brand/{{::detail.branduuid}}/" title="{{detail.brName}}" target="_blank"></a>
+							</p>
+							<p class="style01" ng-if="!detail.uuid">品牌：
+								<a ng-bind="detail.brName || '-'" title="{{detail.brName}}" class="unstand"></a>
+							</p>
+                        </span>
+							<span class="wd01">交期：
+							<i ng-if="detail.b2cMinDelivery != detail.b2cMaxDelivery" ng-bind="detail.b2cMinDelivery + '-' + detail.b2cMaxDelivery"></i>
+							<i ng-if="detail.b2cMinDelivery == detail.b2cMaxDelivery" ng-bind="detail.b2cMinDelivery"></i>
+						</span>
+							<span class="wd01" ng-bind="detail.taxUnitprice | formateNumber : 6 | currencySysmbol : detail.currencyName">$1.23</span>
+							<span style="width: 10%;" ng-bind="detail.number">100</span>
+							<span class="wd01 red" ng-bind="detail.ensurePrice | formateNumber : 6 | currencySysmbol : detail.currencyName"></span>
+							<!--物料编码-->
+							<span class="wd01" style="line-height: 18px;">
+								<em ng-if="!detail.goodsnumber">&nbsp;</em>
+								<div class="text-area" ng-if="detail.goodsnumber">
+									<i ng-bind="detail.goodsnumber">金石为开取数据五块钱叫稍微亲上加亲</i>
+								</div>
+							</span>
+							<span class="wd01" style="line-height: 18px;">
+								<em ng-if="!detail.remark">&nbsp;</em>
+								<div class="text-area" ng-if="detail.remark">
+									<i ng-bind="detail.remark">金石为开取数据五块钱叫稍微亲上加亲</i>
+								</div>
+							</span>
+						</dd>
+					</div>
+					<div class="open-more row" ng-class="{'none': order.orderDetails.length <= 3}">
+						<a href="javascript:void(0)" ng-click="open=!open" ng-class="{'active': open}">
+							<em ng-bind="open ? '收起' : '查看所有产品'"></em>
+							<i class="fa fa-angle-up" ng-if="open"></i>
+							<i class="fa fa-angle-down" ng-if="!open"></i>
+						</a>
+					</div>
+					<dd class="oder-remark" ng-class="{'length3': order.orderDetails.length > 3}">
+						<span style="width: 100%;">
+							<em>订单备注：</em>
+							<i class="fl" ng-bind="remarkList[order.storeid] || '无'">用便宜的物流最好！</i>
+							<!--<input type="text"  class="form-control" placeholder="请填写订单备注" ng-model="order.orderRemark"/>-->
+						</span>
+					</dd>
+					<dd class="line60">
+						<span class="wd02" style="width: 60%; text-align: left; margin-left: 40px; line-height: 30px;">配送方式：<i ng-bind="deliveryMethod[order.deliverytype]"></i>
+							<i style="color: #999;" ng-if="rule" ng-bind="'(' + rule.ruleName + ')'">（满1000元包邮，未满足的订单收取运费20元）</i>
+						</span>
+						<span class="total-price">
+								<p><strong>运费：</strong>
+									<em ng-if="rule && rule.fareType != 3" ng-bind="order.fare | formateNumber : 2 | currencySysmbol : order.currency.substring(0,3)" style="font-weight: bold"></em>
+									<em ng-if="rule && rule.fareType == 3"  style="font-weight: bold;color:#e64040">到付</em>
+								</p>
+								<p><strong>店铺合计：</strong>
+									<em ng-bind="order.ensurePrice | formateNumber : 2 | currencySysmbol : order.currency" style="font-weight: bold"></em>
+								</p>
+						</span>
+						<!--<span ng-if="!noLogisticInfoArray[order.status]" class="wd02">物流：{{logistics.companyName.companyName || logistics.companyName || '空'}}</span>-->
+						<!--<span ng-if="!noLogisticInfoArray[order.status]" class="wd01">物流单号：{{logistics.number || '空'}}</span>-->
+						<!--<span ng-show="!canShowInfo && !noLogisticInfoArray[order.status]" class="wd01 wd001"><em style="color: #b0b0b0; font-size: 12px;"><i class="fa fa-info-circle"></i>系统无法提供此物流信息，请根据物流单号到相应的官网查询。</em></span>-->
+						<!--<span><em ng-bind="freight | number : 2 | currencySysmbol : purchase.currency">￥20.00</em></span>-->
+						<!--物流的价格先隐藏-->
+					</dd>
+					<dd class="line60" ng-if="order.deliverytype == 1303 && takeSelf">
+						<span class="user-address" style="padding-left: 40px;">
+							<i class="fl"><strong style="font-weight: inherit; margin-right: 30px;" ng-bind="takeSelf.takename">自提点A</strong>营业时间：<i ng-bind="takeSelf.businesstime">周一至周五 8:30-18:00</i></i><br/>
+							<i class="fl">地址：<i ng-bind="takeSelf.area"></i>  <i ng-bind="takeSelf.detailAddress">科技园英唐大厦6楼 优软商城科技园英唐大厦6楼 优软商城</i></i>
+						</span>
+					</dd>
+					<!--<dd class="price">-->
+					<!--<span style="width: 100%;">总计：<i  ng-bind="order.price | formateNumber : 2 | currencySysmbol : order.currency">￥820.00</i></span>-->
+					<!--</dd>-->
+				</dl>
+			</div>
+		</div>
+		<!--物流信息-->
+		<div class="logistics_list01" ng-if="order.status != 602 && order.status != 603 && order.status != 604 && order.status != 605 && order.status != 606 && order.status != 315">
+			<div class="log_menu">
+				<span>物流信息<em style="color: #666;" ng-if="!logistics.companyName&& noLogisticInfoArray[order.status]">（暂无物流信息）</em>
+					<b ng-if="logistics.companyName">物流公司：{{logistics.companyName.companyName || logistics.companyName || '空'}}&nbsp;&nbsp;&nbsp;物流单号：{{logistics.number || '空'}}</b>
+				</span>
+			</div>
+			<div class="logistics_list_xq" ng-if="hasInfo">
+				<dl>
+					<dd ng-repeat="info in logisticsInfo"><em></em><span ng-bind="info.AcceptTime"></span><span ng-bind="info.AcceptStation"></span></dd>
+				</dl>
+			</div>
+			<div class="logistics_list_xq" ng-if="!hasInfo&&!noLogisticInfoArray[order.status]">
+				<div ng-if="canShowInfo" style="text-align:center;padding-top:20px;font-size: 14px;">{{order.status | noLogisticFilter}}</div>
+				<div ng-if="!canShowInfo" style="text-align:center;padding-top:20px;font-size: 14px; color: #b0b0b0;">系统无法提供此物流信息，请根据物流单号到相应的官网查询。</div>
+				<!--<div ng-if="canShowInfo" style="text-align:center;padding-top:20px;font-size: 14px;">{{order.status | noLogisticFilter}}</div>-->
+				<!--<div ng-if="!canShowInfo" style="text-align:center;padding-top:20px;font-size: 14px;">系统无法提供此物流信息</div>-->
+			</div>
+		</div>
+		<!--<div class="logistics_list01">-->
+		<!--<div class="log_menu">-->
+		<!--<span>收发货地址</span>-->
+		<!--</div>-->
+		<!--&lt;!&ndash;订单物流信息&ndash;&gt;-->
+		<!--<div class="com_log_list">-->
+		<!--<ul>-->
+		<!--<li class="log_line">收货人信息：</li>-->
+		<!--<li>-->
+		<!--<h4 ng-bind="::order.deliveryAddress.company">华商龙商务科技有限公司</h4>-->
+		<!--<p ng-if="order.deliveryAddress.area" ng-bind="::order.deliveryAddress.area + '，' + order.deliveryAddress.detailAddress"></p>-->
+		<!--<p ng-if="!order.deliveryAddress.area">空</p>-->
+		<!--<span>{{order.deliveryAddress.tel || '空'}}&nbsp;&nbsp;{{order.deliveryAddress.name || '空'}}</span>-->
+		<!--</li>-->
+		<!--<li class="log_line" ng-if="order.sendAddress">发货人信息：</li>-->
+		<!--<li ng-if="order.sendAddress">-->
+		<!--<h4 ng-bind="order.sendAddress.company">华商龙商务科技有限公司</h4>-->
+		<!--<p ng-if="order.sendAddress.area" ng-bind="::order.sendAddress.area + '，' + order.sendAddress.detailAddress"></p>-->
+		<!--<p ng-if="!order.sendAddress.area">空</p>-->
+		<!--<span>{{order.sendAddress.tel || '空'}}&nbsp;&nbsp;{{order.sendAddress.name || '空'}}</span>-->
+		<!--</li>-->
+		<!--</ul>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--发票信息-->
+		<div class="logistics_list01">
+			<div class="log_menu"><span>发票信息<em style="color: #666;" ng-if="order.invoicetype == 1207">（暂不开票）</em></span></div>
+			<div class="oder_xq clearfix" style="padding-bottom: 20px;" ng-if="order.invoicetype == 1206 || order.invoicetype == 1205">
+				<p>
+					<b>发票类型：</b>
+					<span ng-if="order.invoicetype == 1205">增值税(专用)发票</span>
+					<span ng-if="order.invoicetype == 1206">增值税普通发票</span>
+				</p>
+				<p>
+					<b>发票抬头：</b>
+					<span ng-bind="order.invoiceInfo.head || '空'"></span>
+				</p>
+				<p ng-if="order.invoicetype == 1205">
+					<b>单位地址：</b>
+					<span ng-bind="order.invoiceInfo.companyAddress || '空'"></span>
+				</p>
+				<p ng-if="order.invoicetype == 1205">
+					<b>单位电话：</b>
+					<span ng-bind="order.invoiceInfo.companyPhone || '空'">0755-58956655</span>
+				</p>
+				<p ng-if="order.invoicetype == 1205">
+					<b>税务登记号：</b>
+					<span ng-bind="::order.invoiceInfo.companyTaxNumber || '空'">4536553333245556668</span>
+				</p>
+				<p ng-if="order.invoicetype == 1205">
+					<b>开户银行：</b>
+					<span ng-bind="::order.invoiceInfo.bankName || '空'">招商银行深圳分行科技园支行</span>
+				</p>
+				<p ng-if="order.invoicetype == 1205">
+					<b>开户银行账户：</b>
+					<span ng-bind="::order.invoiceInfo.bankAccount || '空'">131362655641531321321321</span>
+				</p>
+				<p>
+					<b>收票人：</b>
+					<span ng-bind="order.invoiceInfo.name || '空'"></span>
+				</p>
+				<p>
+					<b>联系电话：</b>
+					<span ng-bind="order.invoiceInfo.telephone || '空'">13526395698</span>
+				</p>
+				<p>
+					<b>详细地址：</b>
+					<span ng-bind="order.invoiceInfo.area + '，'+ order.invoiceInfo.detailAddress">广东省深圳市南山区高新南四道科苑南路英唐大厦6楼</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

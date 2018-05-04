@@ -1,0 +1,151 @@
+<style>
+	#shipping-address {
+		width: 1026px;
+		min-height: 499px;
+		float: right;
+	}
+
+	#shipping-address .fl {
+		float: left;
+	}
+
+	#shipping-address .fr{
+		width: 89%;
+		color: #666;
+	}
+
+	#shipping-address input {
+		font-size: 14px;
+		color: #666;
+		vertical-align: middle;
+	}
+
+	#shipping-address .input02 {
+		width: 100%;
+		float: left;
+		height: 34px;
+		padding-left: 10px;
+		border: #ccc 1px solid;
+		box-sizing: border-box;
+	}
+
+	#shipping-address .count_basic {
+		min-height: 499px;
+	}
+
+	#shipping-address .basic_title {
+		width: 100%;
+		margin: 0 auto;
+		height: 40px;
+		line-height: 40px;
+		border-bottom: #e8e8e8 1px solid;
+	}
+
+	#shipping-address .basic_title span {
+		font-size: 14px;
+		margin-left: 20px;
+		font-weight: 700;
+	}
+
+	#shipping-address .count_basic>ul {
+		width: 92%;
+		margin: 0 auto;
+	}
+
+	#shipping-address ul li {
+		width: 100%;
+		line-height: 40px;
+		font-size: 14px;
+		float: left;
+		height: auto;
+		border: none;
+		margin-top: 16px;
+	}
+
+	#shipping-address ul li .select-area {
+		width: 33.33333333%;
+		height: 40px;
+
+	}
+
+	#shipping-address ul li .select-area .choose-area {
+		width: 100%;
+		height: 40px;
+		padding-left: 10px;
+		border: #ccc 1px solid;
+		box-sizing: border-box;
+		font-size: 14px;
+		color: #666;
+		vertical-align: middle;
+		opacity: 1;
+	}
+
+</style>
+<div id="shipping-address">
+	<div class="count_center">
+		<div class="count_list">
+			<!-- 基本信息-->
+			<div class="count01" style="display: inline-block">
+				<div class="count_basic">
+					<p class="basic_title">
+						<span>收货地址编辑</span>
+					</p>
+					<ul>
+						<li>
+							<div class="fl">*收货人</div>
+							<div class="fr">
+								<input type="text" class="input02" placeholder="请输入收货人姓名">
+							</div>
+						</li>
+						<li>
+							<div class="fl">*所在地区</div>
+							<div class="fr">
+								<div class="fl select-area">
+									<select required="" class="form-control choose-area" ng-model="address.province" ng-options="key as key for (key,value) in division" ng-change="address.city='';address.district='';">
+										<option value="">省级行政区</option>
+									</select>
+								</div>
+								<div class="fr select-area" >
+									<select required="" class="form-control choose-area" ng-model="address.province" ng-options="key as key for (key,value) in division" ng-change="address.city='';address.district='';">
+										<option value="">省级行政区</option>
+									</select>
+								</div>
+								<div class="fr select-area">
+									<select required="" class="form-control choose-area" ng-model="address.province" ng-options="key as key for (key,value) in division" ng-change="address.city='';address.district='';">
+										<option value="">省级行政区</option>
+									</select>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+						<li>
+							<div class="fl">*详细地址</div>
+							<div class="fr">
+								<input type="text" class="input02" placeholder="请输入您的详细地址">
+							</div>
+						</li>
+						<li>
+							<div class="fl">*手机号码</div>
+							<div class="fr">
+								<input type="text" class="input02" placeholder="8位以上手机号码">
+							</div>
+						</li>
+						<li>
+							<div class="fl">邮箱</div>
+							<div class="fr">
+								<input type="text" class="input02" placeholder="请输入您的邮箱">
+							</div>
+						</li>
+						<li>
+							<!--<div class="fl">手机验证码</div>
+							<div class="fr">
+								<input type="text" class="yzm01" placeholder="输入验证码">
+								<a href="###" class="getyzm01">获取验证码<span></span></a>
+							</div>-->
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

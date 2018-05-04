@@ -1,0 +1,265 @@
+<style>
+	em{
+		font-family: "Microsoft Yahei", "微软雅黑";
+		color: #229ee6;
+		font-style: inherit;
+		font-weight: inherit;
+		background: none;
+	}
+	.violation-handler{
+		width: 100%;
+		margin: 0 auto;
+		background: #f4f9fc;
+		padding: 10px 15px 30px 15px;
+		margin-top: 20px;
+	}
+	.violation-content{
+		width: 100%;
+		margin: 0 auto;
+	}
+	.violation-content .violation-text{
+		width: 100%;
+		margin: 0 auto;
+		display: inline-block;
+		margin-top: 10px;
+	}
+	.violation-content span.title{
+		float: left;
+		width: 74px;
+		font-size: 12px;
+	}
+	.violation-content span.title em{
+		color: #f00;
+		margin-right: 5px;
+	}
+	.violation-content .violation-text .text-input{
+		width: 766px;
+		height: 103px;
+		position: relative;
+		float: left;
+	}
+	.violation-content .violation-text .text-input textarea{
+		width: 100%;
+		height: 100%;
+		background: #fff;
+		padding: 10px;
+		border-radius: 0;
+	}
+	.violation-content .violation-text .count_tip{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		margin: 0 auto;
+		height: 30px;
+		line-height: 30px;
+		display: inline-block;
+	}
+	.violation-content .violation-text .count_tip em{
+		color: #999;
+	}
+	.violation-content .violation-text .count_tip span{
+		float: right;
+		margin-right: 25px;
+		font-size: 12px;
+		color: #999;
+	}
+	.violation-content .violation-photo{
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 10px;
+		display: inline-block;
+	}
+	.violation-content .violation-photo-5{
+		width: 766px;
+		position: relative;
+		float: left;
+	}
+	.violation-content .violation-photo-5 ul{
+		width: 100%;
+		margin: 0 auto;
+	}
+	.violation-content .violation-photo-5 li{
+		width: 110px;
+		height: 120px;
+		float: left;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+		margin-right: 54px;
+		background: #fff;
+	}
+	.violation-content .violation-photo-5 li:last-child{
+		margin-right: 0;
+	}
+	.violation-content .violation-photo-5 li .img{
+		line-height: 120px;
+		width: 110px;
+		height: 120px;
+		position: relative;
+		top: -12px;
+	}
+	.violation-content .violation-photo-5 li .img img{
+		max-width: 110px;
+		max-height: 120px;
+	}
+	.violation-content .violation-photo-5 li:hover .hover-show{
+		top: 0;
+	}
+	.violation-content .prompt{
+		line-height: 30px;
+		font-size: 12px;
+		color: #999;
+		float: left;
+		padding-left: 75px;
+		width: 100%;
+	}
+	.violation-content .violation-deal{
+		width: 100%;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 15px;
+	}
+	.violation-content .violation-deal a{
+		width: 70px;
+		height: 30px;
+		display: inline-block;
+		text-align: center;
+		line-height: 30px;
+		font-size: 14px;
+	}
+	.violation-content .violation-deal a.off{
+		background: #cdcccc;
+		color: #666;
+		margin-right: 8px;
+	}
+	.violation-content .violation-deal a.ok{
+		background: #3ba9e9;
+		color: #fff;
+	}
+	.violation-content .violation-deal a:hover{
+		background: #337ab7;
+		color: #fff;
+	}
+	.violation-content h3{
+		font-weight: bold;
+		color: #25a0e6;
+		font-size: 16px;
+		margin: 0;
+	}
+	.violation-text .content{
+		width: 400px;
+		float: left;
+	}
+	.violation-text .content .form-control{
+		border-radius: 0;
+		background: #fff;
+		height: 30px;
+		padding: 0;
+		padding-left: 10px;
+		border: none;
+	}
+	.violation-text .content .form-control:focus,.violation-content .violation-text .text-input textarea:focus{
+		border: #66afe9 1px solid;
+	}
+	.violation-content .violation-text .text-input textarea{
+		border: none;
+	}
+	.violation-text .content select.form-control option:first-child{
+		color: #999;
+	}
+	.violation-content .violation-text span.title{
+		line-height: 30px;
+	}
+	/*查看大图*/
+	.hover-show{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 100%;
+		background: rgba(0,0,0,.5);
+	}
+	.hover-show a{
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+		font-size: 14px;
+		color: #fff;
+		text-align: center;
+		line-height: 120px;
+	}
+	.hover-show a i{
+		margin-right: 5px;
+	}
+	.hover-show span.delete{
+		position: absolute;
+		z-index: 100;
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		right: 0;
+		top: 0;
+		color: #fff;
+		font-size: 14px;
+		line-height: 30px;
+	}
+</style>
+<div class="violation-handler" ng-controller="ViolationsHandlerCtrl">
+	<div class="violation-content">
+		<h3>违规处理</h3>
+		<div class="violation-text">
+			<span class="title"><em>*</em>违规类型：</span>
+			<div class="content">
+				<select class="form-control" ng-model="violations.type">
+					<option value="" selected>请选择违规类型</option>
+					<option value="FICTITIOUS_TRADE">虚假交易</option>
+					<option value="FICTITIOUS_ADVERTISE">虚假宣传</option>
+					<option value="FICTITIOUS_DELIVERY">虚假发货</option>
+					<option value="BAD_CONTENT">传播不健康内容</option>
+				</select>
+			</div>
+		</div>
+		<div class="violation-text">
+			<span class="title"><em>*</em>处置方式：</span>
+			<div class="content">
+				<select class="form-control" ng-model="violations.disposition">
+					<option value="" selected>请选择处置方式</option>
+					<option value="CLOSE_10">暂停营业10天</option>
+					<option value="CLOSE_30">暂停营业30天</option>
+					<option value="CLOSE_90">暂停营业90天</option>
+					<option value="CLOSE_PERMANENT">永久关闭店铺</option>
+				</select>
+			</div>
+		</div>
+		<div class="violation-text">
+			<span class="title"><em>*</em>处置原因：</span>
+			<div class="text-input">
+				<textarea placeholder="请填写违规处置的原因" maxlength="200" ng-model="violations.reason" class="form-control"></textarea>
+				<p class="count_tip"><span><em ng-bind="(violations.reason || '').length">0</em>/200</span></p>
+			</div>
+		</div>
+		<div class="violation-photo">
+			<span class="title">上传凭证：</span>
+			<div class="violation-photo-5">
+				<ul>
+					<li ng-repeat="proof in disposeProof">
+						<div image-upload class="img" ng-if="!proof.url || proof.url === ''" data-src="static/img/example/upload-apply.png" on-success="onUploadDisposeInfo($data, $index)" non-preview="true"></div>
+						<div class="img" ng-if="proof.url && proof.url !== ''">
+							<a><img ng-src="{{proof.url}}" /></a>
+						</div>
+						<div class="hover-show" ng-if="proof.url && proof.url !== ''">
+							<span class="delete" title="删除" ng-click="deleteDisposeInfo($index)"><i class="fa fa-trash"></i></span>
+							<!-- 图片预览 -->
+							<a ng-click="showImg(proof.url)"><i class="fa fa-search"></i>查看</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="prompt">仅支持JPG、PNG、GIF格式，每张大小不超过3M，最多可上传五张图片</div>
+		</div>
+		<div class="violation-deal">
+			<a ng-click="cancelHandler()" class="off">取消</a>
+			<a ng-click="submitDisposeInfo()" class="ok">确认</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,249 @@
+<!-- container start -->
+<div class="choose-result">
+	<ol class="breadcrumb">
+		<span class="text-muted">您选择的类目：</span>
+		<li ng-repeat="a in productKinds">{{a.name}}</li>
+	</ol>
+	<div class="pull-right">
+		<a class="btn btn-shadow btn-sm" href="#category?kindIds={{kindIds}}">返回重新选择
+		</a>
+	</div>
+</div>
+<div class="main-content">
+	<div class="panel panel-default" id="product_info_1">
+		<div class="panel-title">
+			<h4>
+				<span class="glyphicon glyphicon-star"></span><span>产品基本信息</span>
+				<button ng-click="readOnly()" class="btn btn-info">readOnly</button>
+				<button ng-click="console()" class="btn btn-info">console</button>
+			</h4>
+			<h5 class="pull-right">
+				<a href="#">查看优质范例</a>
+			</h5>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" name="myform" novalidate>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>标准器件名称：</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control input-sm" name="title"
+							ng-model="component.title" placeholder="建议在标题中包含产品名和产品特性关键词"
+							required>
+					</div>
+					<div class="col-sm-1 control-subinfo">
+						<strong>{{product.title.length+1-1}}/30</strong>
+					</div>
+					<div class="col-sm-3 control-subinfo">
+						<div class="text-danger">
+							<i class="fa fa-info-circle fa-fw"></i> <span>请填写 信息标题</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span class="text-required">*</span>品牌：</label>
+					<div class="col-sm-2">
+						<input ng-disabled="true" type="text" class="form-control input-sm" name="brandName" ng-model="brand.name" required>
+					</div>
+					<div class="col-sm-2">
+						<buttom ng-click="open('lg')" class="btn btn-primary">选择品牌</buttom>
+					</div>
+				</div>
+				<!-- 品牌选择modal Start -->
+				<script type="text/ng-template" id="offer/brand/insert.html">
+					<div class="modal-header">
+						<h3 class="modal-title">选择所属品牌</h3>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-xs-offset-2 col-xs-8">
+								 <input type="text" ng-model="brand_filter" class="form-control" placeholder="请输入品牌名">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-offset-2 col-xs-8">
+								<table ng-table="brandsTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+									<thead>
+										<tr>
+											<th width="30px"></th>
+											<th width="150px">品牌名</th>
+											<th width="200px">厂商</th>
+											<th width="140px">操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="brand in $data | filter:brand_filter">
+											<td class="text-center">{{($index + 1)}}</td>
+											<td>{{brand.name}}</td>
+											<td>{{brand.vendor}}</td>
+											<td>
+												<a target="_blank" ng-click="select(brand)">
+													<button type="button" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> 选择</button>
+												</a>
+											</td>
+										</tr>
+										<tr ng-if="$data.length == 0">
+											<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的企业资料</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-warning" ng-click="cancel()">取消</button>
+					</div>
+					</script>
+				<!-- 品牌选择modal End -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>原厂型号：</label>
+					<div class="col-sm-4">
+						<input type="text" name="spec" ng-model="component.code"
+							class="form-control input-sm" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">产品属性：</label>
+					<div class="col-sm-10">
+						<div class="well well-sm">
+							<div ng-repeat="prop in properties" class="form-group">
+								<label class="col-sm-3 control-label"><span
+									class="text-required" ng-show="prop.required">*</span>{{prop.label}}：</label>
+								<div dynamic-input="prop"></div>
+							</div>
+							<div class="row">
+								<div class="col-sm-offset-3 col-sm-8 text-muted">
+									{{dirtest}}如果您觉得此标准类目属性有待改善，您可以<a href="">&nbsp;<i class="fa fa-pencil-square-o"></i> 维护此类目属性</a>
+								</div>
+							</div>
+							<hr>
+							<div class="form-group" ng-repeat="e in extras">
+								<div class="col-sm-1"></div>
+								<div class="col-sm-2">
+									<input type="text" class="form-control input-sm"
+										placeholder="属性名" ng-model="e.label" />
+								</div>
+								<div class="col-sm-4">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm"
+											placeholder="属性值" ng-model="e.value"> <span
+											class="input-group-btn">
+											<button class="btn btn-default btn-sm" type="button"
+												ng-click="removeExtra($index)">删除</button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-sm-offset-3 col-sm-8 text-muted">
+									如果你还需要展示其他属性信息，您可以<a ng-click="addExtra()">&nbsp;<i class="fa fa-plus"></i> 添加额外属性</a>
+								</div>
+								<!-- <div class="col-sm-3">
+									如果你还需要展示其他属性信息<a ng-click="addExtra()" class="pull-right"><span class="fa fa-plus-square fa-fw"></span>&nbsp;添加额外属性</a>
+								</div> -->
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-default" id="product_info_2">
+		<div class="panel-title">
+			<h4>
+				<span class="glyphicon glyphicon-star"></span> <span>图片和详细说明</span>
+			</h4>
+			<h5 class="pull-right">
+				<a href="#">查看优质范例</a>
+			</h5>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">器件图片：</label>
+					<div class="col-sm-10">
+						<img class="img-thumbnail" ng-src="{{imageUrl}}" style="width: 100px; height: 100px;" ng-click="showImageDialog()">
+						<span class="help-block">建议图片尺寸在750*750像素以上，图片请避免全文字</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span
+						class="text-required">*</span>详细描述：</label>
+					<div class="col-sm-10">
+						<summernote ng-model="component.description" height="400" lang="zh-CN" show-image-dialog="showImageDialog()"></summernote>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 产品图片插入modal Start -->
+	<script type="text/ng-template" id="offer/image/insert.html">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="close()">×</button>
+			<h4 class="modal-title">插入图片</h4>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-xs-7" style="padding: 20px;">
+					<p class="help-block">提示：选择的图片单张大小不超过3MB，支持jpg,jpeg,gif,bmp,png</p>
+					<div class="upload-container" ng-disabled="getImages().length == images.length">
+						<div id="uploadify" on-success="onUploadSuccess($data)" uploadify="{buttonText:'选择图片'}"></div>
+					</div>
+				</div>
+				<div class="col-xs-5">
+					<h3>预览</h3>
+					<div class="image-content">
+						<img ng-src="{{image.src}}" class="img-thumbnail" style="width: 100px; height: 100px;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div class="pull-right"><a ng-click="confirm()" class="btn btn-primary" ng-disabled="!image.src">确定</a></div>
+		</div>
+		</script>
+	<!-- 产品图片插入modal End -->
+	<button ng-click="con()" class="btn btn-info">点我</button>
+	<button ng-click="clean()" class="btn btn-info">清除</button>
+	<div class="text-center">
+		<p>
+			<small>点此阅读<a href="#">UU平台内容维护规则</a></small>
+		</p>
+		<p>
+			<button ng-click="submitComponent()" type="button" class="btn btn-warning">
+				<strong>同意协议条款，我要提交</strong>
+			</button>
+			<button type="button" class="btn btn-default">预览</button>
+			<button type="button" class="btn btn-default">保存到草稿</button>
+		</p>
+	</div>
+</div>
+<!-- container end -->
+
+<!-- helper start -->
+<div class="fixed-right helper" ng-controller="HelperCtrl">
+	<accordion close-others="true"> <accordion-group
+		heading="页面导航">
+	<ul class="list-group">
+		<li class="list-group-item"><a ng-click="scrollTo(1)">产品属性</a></li>
+		<li class="list-group-item"><a ng-click="scrollTo(2)">图片说明</a></li>
+	</ul>
+	</accordion-group> <accordion-group is-open="isLastOpen" heading="常见问题">
+	<ul class="list-group">
+		<li class="list-group-item"><span
+			class="glyphicon glyphicon-hand-right"></span><a
+			href="" target="_blank">对产品属性有疑问</a></li>
+		<li class="list-group-item"><span
+			class="glyphicon glyphicon-hand-right"></span><a href="#">如何设置运费模板</a></li>
+		<li class="list-group-item"><span
+			class="glyphicon glyphicon-hand-right"></span><a href="#">我在属性里没有找到我的品牌？</a></li>
+		<li class="list-group-item"><span
+			class="glyphicon glyphicon-hand-right"></span><a href="#">产品属性、品牌、数量设置方法</a></li>
+		<li class="list-group-item"><a href="#" class="text-warning">更多问题&gt;&gt;</a></li>
+	</ul>
+	</accordion-group> </accordion>
+</div>
+<!-- helper end -->

@@ -1,0 +1,58 @@
+<style>
+#main {
+	background-color: #ffffff;
+	border: 0px;
+}
+</style>
+
+<!-- 当前类目路径(如果有的话) Start -->
+<!-- @TODO 是否需要修改样式 -->
+<div class="kind_path">
+	<ol class="breadcrumb">
+		<li ng-repeat="kind in productKinds">{{kind.name}}</li>
+	</ol>
+</div>
+<!-- 当前类目路径(如果有的话) End -->
+
+<!-- 品牌信息展示（如果有的话） Start -->
+<div id="brand_in_list" class="clearfix">
+	<h4><strong>品牌</strong></h4>
+	<div class="logo"><img src="http://218.17.158.219:8020/images/652f1d706d2445f9b27ee1b0b7740f87_!!1000001202.png"></div>
+	<div class="name">YAGEO</div>
+	<div class="vendor">国巨股份有限公司</div>
+	<div class="brief">國巨公司成立於1977年，為全球領先的被動元件服務供應商，其生產及銷售據點涵蓋亞洲、歐洲及美洲。國巨公司為提供客戶「一次購足服務」，供應完整的電阻、電容及無線元件等被動元件，以滿足客戶各種不同領域應用的需求，國巨公司於1993年10月在台灣證券交易所上市，並於1994年9月在盧森堡證券交易所發行全球存託憑證 (GDR)。</div>
+</div>
+<!-- 品牌信息展示（如果有的话） End -->
+
+<!-- 筛选列表 Start -->
+<div id="pickers">
+	<!-- 筛选条件Start -->
+	<div ng-show="choices.length" class="wrap" style="overflow: hidden;">
+		<div class="name"><span><strong>筛选条件</strong></span></div>
+		<div class="options" style="padding-top: 15px;padding-left: 10px;">
+			<span ng-repeat="choice in choices"><button ng-click="deleteChoice($index)" class="btn btn-sm btn-primary">{{choice.name}} : {{choice.option}}<i class="fa fa-times"></i></button></span>
+		</div>
+	</div>
+	<!-- 筛选条件End -->
+	<div ng-repeat="row in pickers" class="wrap">
+		<div class="name"><span><strong>{{row.title}}</strong></span></div>
+		<div class="options">
+			<ul class="fixed">
+				<li ng-repeat="option in row.options" style="display: list-item;"><a ng-class="{ 'addBorder': option.isSelected}" ng-click="addChoice(option)">{{option.name}}</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- 筛选条件End -->
+
+<!-- 筛选结果列表 Start -->
+<div id="products">
+	<table ng-table="testTableParams" class="table table-condensed table-bordered table-striped">
+        <tr ng-repeat="testModel in $data">
+	        <td data-title="'ONE'" filter="{one: 'text'}">{{testModel.one}}</td>
+	        <td data-title="'TWO'" filter="{two: 'text'}">{{testModel.two}}</td>
+	        <td data-title="'THREE'" filter="{three: 'text'}">{{testModel.three}}</td>
+        </tr>
+	</table>
+</div>
+<!-- 筛选结果列表 End -->

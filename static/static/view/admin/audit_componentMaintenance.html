@@ -1,0 +1,159 @@
+<style type="text/css">
+#select_kind{
+	font-size:14px;
+	font-weight:bold;
+	margin-top:20px;
+	margin-bottom:30px;
+	width:60%;
+}
+#ul_li{
+	float:left;
+	font-size: 18px;
+}
+#ul_text{
+	margin-top:20px;
+}
+#search {
+	position: relative;
+	margin-top: 30px;
+	height: 34px;
+	font-size: 16px;
+}
+
+#search .input-group {
+	z-index: 21;
+}
+
+#search_input {
+	height: 25px;
+	font-size: 16px;
+	font-family: '微软雅黑';
+	border: 2px solid #5078cb;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+#search_input:focus {
+	border-color: #5078cb;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#search_btn {
+	height: 34px;
+	line-height: 34px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-size: 14px;
+	background: #5078cb;
+	color: #fff;
+	border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.suggestion {
+	position: absolute;
+	margin-top: -1px;
+	width: 220px;
+	background-color: #fff;
+	border: 1px solid #bbb;
+	border-top: none;
+	z-index: 20;
+}
+
+.suggestion ul {
+	margin-bottom: 0;
+}
+
+.suggestion ul li {
+	list-style-type:none;
+	line-height: 20px;
+	font-size: 16px;
+	padding: 0px ;
+	color: #0080c0;
+	cursor: pointer;
+}
+
+.suggestion ul li:hover,.suggestion ul li.active {
+	background: #eee;
+}
+</style>
+
+<div class="row-fluid sortable">		
+	<div class="box span12">
+		<div class="box-header well" data-original-title>
+			<h2><i class="icon-user"></i> 标准器件维护</h2>
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;overflow-y:auto;">
+				<div  class="container">
+					<div class="col-xs-5 col-xs-offset-3 text-right" style="float:right">
+						<div id="search">
+							<div class="input-group" >
+							<input type="text" class="form-control"  id="search_input" ng-model="keyword" placeholder="按器件型号搜索" ng-search="search()" ng-focus="onFocus()"
+								ng-blur="onBlur()" ng-keyup="onKeyup()" ng-change="onChange(keyword.component)" ng-keydown="onKeyDown()" autocomplete="off"/>
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-sm"  id="search_btn" ng-click="search()">&nbsp;搜&nbsp;&nbsp;&nbsp;索&nbsp;</button>
+							</span>
+							</div>
+							<div class="suggestion" ng-show="associate || associateEnter" 
+								ng-mouseenter="onAssociateEnter()" 
+								ng-mouseleave="onAssociateLeave()">
+								<ul class="list-unstyled">
+									<li class="text-left" ng-repeat="component in associates" ng-class="{'active': selectIndex == $index}"
+									ng-click="onAssociateClick(component.code)" >
+										<span ng-bind="component.code"></span>
+									</li>
+								</ul>
+							</div>
+						</div>	
+					</div>
+					<div class="span2" id="select_kind" >
+						<h3>按种类选择 </h3>					
+						<button ng-click="chooseKind()" class="btn btn-primary btn-sm" >
+							<i class="fa fa-search"></i> 选择类目
+						</button> 	
+						<div ng-if="actives" style="margin-top:30px;">
+						<h4>您选择的类目是：</h4>
+						<ul class="list-unstyled list-inline text-default text-bold" id="ul_text">
+							<li ng-repeat="a in actives" id="ul_li">
+								{{a.nameCn}}&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-angle-double-right" ng-if="! $last"></i>
+							</li>
+						</ul>
+						<a target="_self" href="product#/kinds/{{active.id}}/maintenance" class="btn btn-success btn-xs"> 选择产品进行维护 <i class="fa fa-hand-pointer-o"></i></a>
+						</div>
+					</div>
+					<table  ng-table="componentTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+						<thead ng-if="showHeader">
+							<tr>
+								<th width="30">序号</th>
+								<th width="150">原厂型号</th>
+								<th width="150">所属品牌</th>
+								<th width="150">所属类目</th>							
+								<th width="140">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="component in $data">
+								<td class="text-center">{{($index + 1)}}</td>
+								<td>{{component.code}}</td>
+								<td>{{component.brand.nameCn}}</td>
+								<td>{{component.kind.nameCn}}</td>
+								<td>
+									<a ng-href="product#/componentEdit/detail/create/{{component.uuid}}">
+										<button type="button" class="btn btn-default btn-sm">器件维护</button>
+									</a>
+								</td>
+							</tr>
+							<tr ng-if="$data.length == 0">
+								<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的标准器件资料</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>

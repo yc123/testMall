@@ -1,0 +1,159 @@
+<style type="text/css">
+.head {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.default-account {
+	background-color: #EAE6E6;
+	padding: 3px 6px;
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+.default-account:HOVER {
+	cursor: text;
+	text-decoration: none;
+}
+
+.to-default {
+	color: white;
+	border: 1px solid white;
+	padding: 3px 6px;
+	border-radius: 4px;	
+	margin-left: 20px;
+	font-size: 14px;
+}
+
+.to-default:HOVER {
+	border-radius: 4px;
+	color: white;
+	border: 1px solid white;
+	padding: 3px 6px;
+	background-color: rgb(255, 115, 0);
+	text-decoration: none;
+}
+
+.a-link-com {
+	color: blue;
+	font-size: 14px;
+}
+
+.a-link-com:HOVER {
+	text-decoration: none;
+}
+
+li.title, li.content {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+li.title>div, li.content>div {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.credit-card-content {
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+
+.credit-card-body .title {
+	color: #fff;
+	background-color: #7bb4e1;
+	line-height:26px;
+}
+
+.credit-card-body .content {
+	border-bottom: 1px dashed #A29D9D;
+	line-height: 35px;
+}
+
+.credit-card-body {
+	text-align: center;
+}
+
+.credit-card-content {
+	font-size: 14px;
+}
+
+ul, ol {
+	list-style: none;
+	margin-bottom: 10px;
+}
+
+.credit-card-head {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.new-account {
+	line-height: 26px;
+	padding-top: 10px;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>我的设置 <i class="fa fa-angle-double-right"></i></li>
+		<li>银行账户信息管理</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-xs-6">
+		<h2>银行账户信息管理</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{accounts.length}}</span>条
+		</p>
+	</div>
+	<div class="col-xs-5 text-right">
+		<a ng-click="editAccount()"
+			class="f14 btn btn-success"><i
+			class="fa fa-plus-square"></i>&nbsp;新建银行账户信息</a>
+	</div>
+</div>
+</br>
+	<div class="credit-card-body">
+		<ul>
+			<li class="row title font-weight-600 font-size-12">
+				<div class="col-md-2">开户人姓名</div>
+				<div class="col-md-3">开户银行</div>
+				<div class="col-md-4">银行账号</div>
+				<div class="col-md-3">操作</div>
+			</li>
+		</ul>
+		<ol>
+			<li ng-repeat="account in accounts" class="row content font-size-12">
+				<div class="col-md-2" ng-bind="account.accountname"></div>
+				<div class="col-md-3" ng-bind="account.bankname"></div>
+				<div class="col-md-4" ng-bind="account.filterAccount">银行账号</div>
+				<div class="col-md-3 text-left">
+					<a class="a-link-com font-size-12" ng-click="editAccount(account)" style="letter-spacing: 2px;">修改</a>|<a class="a-link-com" ng-click="deleteAccount(account)" style="letter-spacing: 2px;">删除</a>
+					<a class="default-account font-size-12" ng-show="account.num==1">默认账户</a>
+					<a class="to-default font-size-12" ng-show="account.num!=1" ng-click="setDefaultAccount(account.id)">设为默认账户</a>
+				</div>				
+			</li>
+		</ol>
+	</div>
+</div>

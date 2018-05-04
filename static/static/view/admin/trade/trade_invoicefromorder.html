@@ -1,0 +1,438 @@
+<style>
+.marginleftline {
+	margin-left: 0px;
+	line-height: 25px;
+}
+
+.divTitle {
+	margin-left: 0px;
+	border: 1px solid #ccd3e4;
+	font-size: 13px;
+	line-height: 30px;
+	font-weight: 600;
+    background-color: #fafbfc;
+}
+
+.divTitle:HOVER {
+	cursor: pointer;
+}
+
+.divTitle:FOCUS {
+	cursor: pointer;
+}
+
+.repeatBorder {
+	margin-bottom: 15px;
+	border: solid 1px #ccd3e4;
+}
+
+.marginRight72 {
+	margin-right: 72px;
+}
+
+.marginRight90 {
+	margin-right: 90px;
+}
+
+.marginRight36 {
+	margin-right: 36px;
+}
+
+.marginRight98 {
+	margin-right: 98px;
+}
+
+.marginRight38 {
+	margin-right: 38px;
+}
+
+.marginRight100 {
+	margin-right: 100px;
+}
+
+.content-body {
+	margin-left: 32px;
+	font-size: 12px;
+}
+
+.margin-left-10 {
+	margin-left: 10px;
+}
+
+.invoice-title {
+	font-size: 15px;
+	color: black;
+	display: inline-block;
+}
+
+.margin-left-zero {
+	margin-left: 0px !important;
+}
+
+.turn-invoice-body {
+	margin-left: 50px;
+	font-size: 13px;
+	line-height: 30px;
+}
+
+.logistic-company {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.border-dash {
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+.span12 input[class*="display-inline"] {
+	display: inline;
+}
+
+.order-start>label {
+	display: inline;
+	margin-bottom: 0px;
+	/* font-weight: normal; */
+}
+
+.order-start {
+	padding-left: 30px !important;
+}
+
+.order-start input[type="checkbox"] {
+	display: inline;
+}
+
+.order-start input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"]+label, input[type="checkbox"]+label {
+	background-color: #FFF;
+	border: 1px solid #C1CACA;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
+		rgba(0, 0, 0, 0.05);
+	padding: 6px;
+	display: inline-block;
+	position: relative;
+	vertical-align: text-bottom;
+}
+
+input[type="radio"]:checked+label:after, input[type="checkbox"]:checked+label:after
+	{
+	content: '\2714';
+	clear: both;
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color: #FFF;
+	background-color: #7bb4dc;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 14px;
+	vertical-align: text-top;
+	line-height: 16px;
+}
+
+.omit {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.omit label {
+	margin-bottom: 0px;
+}
+
+.pointer:HOVER {
+	cursor: pointer;
+}
+
+.line-height-30 {
+	line-height: 30px;
+}
+
+.padding-bottom-10 {
+	padding-bottom: 10px;
+}
+
+.padding-left-15 {
+	padding-left: 15px !important;
+}
+</style>
+<div class="row-fluid sortable">
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 平台出货单
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;">
+				<div class="row">
+					<div class="col-sm-1">
+						共<span class="badge">{{invoiceForOrTableParams.total()}} </span>条
+					</div>
+					<div class="col-sm-7">
+						<div class="btn-group" role="group" aria-label="...">
+							<button type="button" class="btn btn-default"
+								ng-class="{'btn-primary':active=='tobeshipped'}"
+								ng-click="setActive('tobeshipped')">待出货</button>
+							<button type="button" class="btn btn-default"
+								ng-class="{'btn-primary':active=='inbound'}"
+								ng-click="setActive('inbound')">待收货</button>
+							<button type="button" class="btn btn-default"
+								ng-class="{'btn-primary':active=='received'}"
+								ng-click="setActive('received')">已收货</button>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input placeholder="请输入订单号查询" class="form-control"
+								ng-model="keyword" ng-search="onSearch()" size="16" type="text">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="button"
+									ng-click="onSearch()">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<table ng-table="invoiceForOrTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+					<thead>
+						<tr>
+							<th class="text-center" width="40" ng-show="active=='tobeshipped'"><input type="checkBox" ng-model="checks.checked" ng-click="checkAll()"></th>
+							<th class="text-center" width="50">序号</th>
+							<th class="text-center" width="150">出货单号</th>
+							<th class="text-center" width="75">买方姓名</th>
+							<th class="text-center" width="150">金额</th>
+							<th class="text-center" width="70">数量</th>
+							<th class="text-center" width="150">创建时间</th>
+							<th class="text-center" width="100">状态</th>
+							<th class="text-center" width="150">来源订单号</th>
+							<th class="text-center" width="140" ng-show="active=='tobeshipped'|| active=='inbound'">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="invoice in $data">
+							<td class="text-center" ng-show="active=='tobeshipped'"><input
+								type="checkBox" ng-model="checkCodes[$index]"
+								ng-click="checkOne($index)" /></td>
+							<td class="text-center">{{($index + 1)}}</td>
+							<td class="text-center"><a target="_blank"
+								ng-href="admin#/trade/invoicefromorder/{{invoice.invoiceid | EncryptionFilter}}">{{invoice.invoiceid}}</a></td>
+							<td class="text-center">{{invoice.buyername}}</td>
+							<td class="text-center text-num">{{invoice.currency}}
+								{{invoice.price}}</td>
+							<td class="text-center">{{invoice.number}}</td>
+							<td class="text-center">{{invoice.creattime | date:"yyyy-MM-dd HH:mm"}}</td>
+							<td class="text-center">{{invoice.status |statusAndTypeFilter}}</td>
+							<td class="text-center">{{invoice.sourceid}}</td>
+							<td class="text-center" ng-show="active=='tobeshipped'">
+								<a ng-show="active=='tobeshipped'" ng-click="batchToBeShip(invoice)">
+									<button type="button" class="btn btn-default btn-sm">确认出货</button>
+								</a>
+							</td>
+							<td class="text-center" ng-show="active=='inbound'">
+								<!--<a ng-show="active=='inbound'" ng-click="queryLogistics(invoice)">-->
+									<!--<div class="btn-group">-->
+										<!--<button type="button" class="btn btn-default btn-sm  dropdown-toggle" data-toggle="dropdown">查看物流</button>-->
+										<!--<div class="dropdown-menu" role="menu">-->
+											<!--<p style="text-align: center">物流信息</p>-->
+											<!--<table class="table table-bordered">-->
+												<!--<tr>-->
+													<!--<th>订单号</th>-->
+													<!--<th ng-bind="logisticsInfo.ddhm"></th>-->
+												<!--</tr>-->
+												<!--<tr>-->
+													<!--<th>邮件号</th>-->
+													<!--<th ng-bind="logisticsInfo.yjhm"></th>-->
+												<!--</tr>-->
+												<!--<tr>-->
+													<!--<th>处理时间</th>-->
+													<!--<th ng-bind="logisticsInfo.clsj"></th>-->
+												<!--</tr>-->
+												<!--<tr>-->
+													<!--<th>物流信息</th>-->
+													<!--<th ng-bind="logisticsInfo.wlxx"></th>-->
+												<!--</tr>-->
+											<!--</table>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</a>-->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div ng-if="active=='tobeshipped'">
+					<button class="btn btn-primary" role="button"
+						ng-disabled="count==0" ng-click="batchToBeShip()">批量确认出货</button>
+				</div>
+			</div>
+			<!-- ng-tableEnd -->
+		</div>
+	</div>
+	<!--/span-->
+	<a id="batchToBeShip"></a>
+
+	<!-- 批量  确认出货界面 开始代码  -->
+	<div class="box"
+		ng-if="deliveryStatusEntryCheck&&active=='tobeshipped'">
+		<div class="box-header well">
+			<i class="icon-user"></i> 转出货单
+		</div>
+		<div class="box-content" style="font-size: 17px;">
+			<div ng-repeat="order in batchOrder" class="repeatBorder">
+				<div class="divTitle" ng-click="deliveryExpose(order)" role="button">
+					<span role="button" ng-if="order.expose" class="margin-left-10"><i
+						class="fa fa-angle-down"></i>&nbsp;</span> <span role="button"
+						ng-if="!order.expose" class="margin-left-10"><i
+						class="fa fa-angle-up"></i>&nbsp;</span> <span>订单号:</span> <span
+						ng-bind="::order.invoiceid"></span>
+				</div>
+				<div ng-if="order.expose" class="content-body">
+					<div class="marginleftline row">
+						<span class="col-xs-1">总金额</span>
+						<span class="col-xs-2">{{order.currency}}&nbsp;{{order.showPrice | number:2}}</span>
+						<span class="span1">创建时间</span>
+						<span class="col-xs-2" ng-bind="order.creattime | date: 'yyyy-MM-dd HH:mm'"></span>
+					</div>
+					<div class="marginleftline row">
+						<span class="col-xs-1">收货人</span> 
+						<span class="col-xs-2" ng-bind="order.jsonSpAddress.name"></span> 
+						<span class="col-xs-1">联系方式</span>
+						<span class="col-xs-2" ng-bind="order.jsonSpAddress.tel"></span>
+					</div>
+					<div class="marginleftline row">
+						<span class="col-xs-1">收货地址</span>
+						<div class="col-xs-5">
+							<span ng-bind="order.jsonSpAddress.area"></span> <span
+								ng-bind="order.jsonSpAddress.detailAddress"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-left: 0px;">
+				<h4 class="invoice-title"><strong>发货信息</strong></h4>
+			</div>
+			<hr class="border-dash">
+			<form name="myForm" novalidate>
+				<div class="content-body">
+					<div class="row line-height-30">
+						<div class="col-xs-12 padding-bottom-10">
+							<div class="col-xs-1">物流公司</div>
+							<div class="col-xs-5">
+								<input required type="text" class="form-control" ng-model="logistics.companyName" placeholder="请输入物流公司名称" autocomplete="off" typeahead="exp.companyName for exp in express | filter:$viewValue | limitTo : 10" typeahead-on-select="onAssociateKindClick($item)" />
+							</div>
+						</div>
+						<div class="col-xs-12 padding-bottom-10">
+							<div class="col-xs-1">快递单号</div>
+							<div class="col-xs-5">
+								<input type="text" ng-model="logistics.number" class="input col-xs-12 display-inline form-control"
+									   ng-pattern="^\+?[0-9][0-9]*$" placeholder="快递单号(数字型)"
+									   name="logistic_num" ng-required="true" />
+								<div ng-if="!logistics.number"
+								ng-show="(myForm.logistic_num.$dirty||myForm.logistic_num.$touched)&&(myForm.logistic_num.$error.pattern||myForm.logistic_num.$error.required)"
+								class="text-warning">请填写正确的快递号</div>
+							</div>
+						</div>
+						<div class="col-xs-12 padding-bottom-10">
+							<div class="col-xs-1">重量</div>
+							<div class="input-group col-xs-5 padding-left-15">
+								<input type="number" class="form-control" name="weight" ng-model="logistics.weight" required ng-min="10">
+								<div class="input-group-addon">g</div>
+							</div>
+							<div class="col-xs-3 col-xs-offset-2" style="color:red" >*必填，且必须大于10</div>
+						</div>
+					</div>
+					<div class="col-xs-12 line-height-30">选择发货地址信息</div>
+					<div ng-repeat="addr in sendAddr" class="col-xs-12 line-height-30">
+						<div class="col-xs-12 pointer" ng-click="select(addr)">
+							<div class="col-xs-3 omit text-left order-start">
+								<div class="col-xs-2">
+									<input type="radio" ng-checked="addr.id == selectSendAddr.id"
+										id="{{addr.id}}"><label for="{{addr.id}}"></label>
+								</div>
+								<span class="col-xs-10 margin-left-zero" title="姓名"
+									ng-bind="::addr.name ? addr.name : '空'"></span>
+							</div>
+							<span class="col-xs-2 margin-left-zero" title="联系电话"
+								ng-bind="::addr.tel"></span>
+							<div class="col-xs-5" title="发货地址">
+								<span ng-bind="::addr.area"></span> <span
+									ng-bind="::addr.detailAddress"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="text-align: center;">
+					<button class="btn btn-primary" type="button"
+						ng-click="entryCheck(sendAddr)" ng-disabled="!myForm.$valid">录入并核对信息</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="box"
+		ng-if="deliveryStatusSaveDelivery && active=='tobeshipped'">
+		<div class="box-header well">
+			<i class="icon-user"></i> 转出货单
+		</div>
+		<div class="box-content">
+			<div ng-repeat="order in batchOrder" class="repeatBorder"
+				style="margin-bottom: 30px;">
+				<div class="divTitle" ng-click="deliveryExpose(order)">
+					<span role="button" ng-if="order.expose" class="margin-left-10"><i
+						class="fa fa-angle-down"></i>&nbsp;</span> <span role="button"
+						ng-if="!order.expose" class="margin-left-10"><i
+						class="fa fa-angle-up"></i>&nbsp;</span> <span
+						ng-bind="::order.invoiceid"></span> <span
+						ng-bind="::order.logistics.companyName" class="logistic-company"></span>
+					<span ng-bind="::order.logistics.number"></span>
+					<span>{{order.logistics.weight}}g</span>
+				</div>
+				<div ng-if="order.expose" class="turn-invoice-body">
+					<div class="row">
+						<span class="col-xs-1">总金额</span>
+						<span class="col-xs-2">{{order.currency}}&nbsp;{{order.price | formateNumber:2}}</span>
+						<span class="col-xs-2">创建时间</span>
+						<span ng-bind="order.creattime | date: 'yyyy-MM-dd HH:mm'" class="col-xs-2"></span>
+					</div>
+					<div class="row">
+						<span class="col-xs-2">收货人姓名</span> 
+						<span class="col-xs-2" ng-bind="::order.jsonSpAddress.name"></span> 
+						<span class="col-xs-2">收货人电话</span>
+						<span ng-bind="::order.jsonSpAddress.tel" class="col-xs-2"></span>
+					</div>
+					<div class="row">
+						<span class="col-xs-2">发货人姓名</span> 
+						<span class="col-xs-2" ng-bind="::selectSendAddr.name"></span> 
+						<span class="col-xs-2">发货人电话</span>
+						<span ng-bind="::selectSendAddr.tel" class="col-xs-2"></span>
+					</div>
+					<div class="row">
+						<span class="col-xs-2">收货人地址</span>
+						<div class="col-xs-5">
+							<span ng-bind="order.jsonSpAddress.area"></span> 
+							<span ng-bind="order.jsonSpAddress.detailAddress"></span>
+						</div>
+					</div>
+					<div class="row">
+						<span class="col-xs-2">发货人地址</span>
+						<div class="col-xs-5">
+							<span ng-bind="::selectSendAddr.area"></span> <span
+								ng-bind="::selectSendAddr.detailAddress"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="text-align: center; margin-bottom: 15px;">
+			<a class="btn btn-primary" ng-click="back()">返回上一步</a> <a
+				class="btn btn-primary" ng-click="confirmAndDelivery()">确认并出货</a>
+		</div>
+	</div>
+	<!-- 批量确认出货界面 截至代码 -->
+
+</div>
+<!--/row-->

@@ -1,0 +1,118 @@
+<style>
+	#vendor_left_bar.user_left a {
+		font-size: 1.1em;
+	}
+	#vendor_left_bar.user_left p {
+		text-align: center;
+		cursor: pointer;
+	}
+	#vendor_left_bar.user_left p span {
+		margin-left: 0;
+	}
+	#vendor_left_bar.user_left p:hover {
+		background: #67afe4;
+	}
+	#vendor_left_bar.user_left ul li {
+		text-align: center;
+	}
+	#vendor_left_bar.user_left ul li a {
+		padding-left: 0;
+	}
+	.disabled {
+		cursor: not-allowed;
+	}
+	/*#toast-container {
+		top: 36px;
+	}*/
+	/*#toast-container > .toast-info {
+		background-color: #d88f2c;
+		font-size: 14px;
+		font-weight: normal;
+		width: auto;
+	}*/
+	.user_content .user_left ul li span {
+		width: 100%;
+		display: inline-block;
+		height: 50px;
+		cursor: pointer;
+	}
+	.user_content .user_left ul li.active span, .user_content .user_left ul li:hover span {
+		color: #fff;
+	}
+</style>
+<div id="vendor_left_bar" class="user_left fl" ng-controller="leftNavCtrl">
+	<span  ui-sref="vendor_index"><p ng-class="{'active' : active == 'index'}"><span>卖家中心</span></p></span>
+	<ul>
+		<div ng-hide="!(userInfo.pwdEnable && userInfo.haveUserQuestion && userInfo.userEmail)">
+		<li ng-class="{'active' : active == 'vendor_order'}"><span  ui-sref="vendor_order">订单中心</span></li>
+			<!--	<li ng-class="{'active' : active == 'vendor_productOn'}"><span  ui-sref="vendor_productOn">产品导入</span></li>-->
+			<li ng-class="{'active' : active == 'vendor_productOn'}"><span  ui-sref="vendor_upload">产品导入</span></li>
+			<li ng-class="{'active' : active == 'vendor_material'}"><span  ui-sref="vendor_material">产品管理</span></li>
+			<li ng-class="{'active' : active == 'vendor_store'}">
+				<!-- 我要开店 !store && applyStatus == 'NONE' -->
+				<span  ui-sref="vendor_store_apply" ng-if="!store && applyStatus == 'NONE'">开店申请</span>
+				<!-- 店铺申请中 !store && applyStatus == 'PREPARE' -->
+				<span  ui-sref="vendor_store_wait" ng-if="!store && applyStatus == 'PREPARE'">开店申请</span>
+				<!-- 我的店铺 !store && applyStatus == 'PASS' -->
+				<span  ui-sref="vendor_store_info" ng-if="!store && applyStatus == 'PASS'">店铺管理</span>
+				<!-- 我的店铺 store -->
+				<span  ui-sref="vendor_store_maintain" ng-if="store && (!store.status || store.status === 'OPENED')">店铺管理</span>
+				<!-- 我的店铺申述 store -->
+				<span  ui-sref="vendor_store_maintain" ng-if="store && store.status && store.status !== 'OPENED'">我的店铺</span>
+			</li>
+			<li ng-class="{'active' : active == 'vendor_seek_purchase'}"><a  ui-sref="vendorSeekPurchase">求购询价</a></li>
+		<li ng-class="{'active' : active == 'vendor_logistics'}">
+			<span  ui-sref="vendor_logistics" ng-hide="store && (!store.status || store.status === 'OPENED')">物流管理</span>
+			<span  ui-sref="vendor_deliveryRule" ng-if="store && (!store.status || store.status === 'OPENED')">物流管理</span>
+		</li>
+
+		<li ng-class="{'active' : active == 'vendor_invoice'}"><span  ui-sref="vendorInvoice">发票管理</span></li>
+	<!--	<li ng-class="{'active' : active == 'vendor_logistics'}"><span  ui-sref="vendor_logistics">物流管理</span></li>-->
+		<li ng-class="{'active' : active == 'pay_center'}"><span  ui-sref="pay_center">结算中心</span></li>
+		<li ng-class="{'active' : active == 'vendor_brand_apply'}"><span  ui-sref="vendor_brand_apply">品牌申请</span></li>
+		<li ng-class="{'active' : active == 'vendor_component_apply'}"><span  ui-sref="vendor_component_apply">器件申请</span></li>
+
+		<!--<li ng-class="{'active' : active == 'vendor_repository'}"><span  ui-sref="vendor_repository">仓库管理</span></li>-->
+		<!--<li ng-class="{'active' : active == 'vendor_after_sale'}" class="undo">-->
+		<!--&lt;!&ndash;<span  ui-sref="vendor_after_sale">售后处理</span>&ndash;&gt;-->
+		<!--售后处理-->
+		<!--</li>-->
+		<!--<li ng-class="{'active' : active == 'vendor_manufacture'}"><span  ui-sref="vendor_manufacture">原厂认证</span></li>-->
+		</div>
+		<div ng-hide="userInfo.pwdEnable && userInfo.haveUserQuestion && userInfo.userEmail">
+			<li ng-class="{'active' : active == 'vendor_order'}"><span ng-click="promptUpdate()" class="disabled">订单中心</span></li>
+			<!--	<li ng-class="{'active' : active == 'vendor_productOn'}"><span  ui-sref="vendor_productOn">产品导入</span></li>-->
+			<li ng-class="{'active' : active == 'vendor_productOn'}"><span ng-click="promptUpdate()" class="disabled" >产品导入</span></li>
+			<li ng-class="{'active' : active == 'vendor_material'}"><span ng-click="promptUpdate()" class="disabled" >产品管理</span></li>
+			<li ng-class="{'active' : active == 'vendor_store'}">
+				<!-- 我要开店 !store && applyStatus == 'NONE' -->
+				<span ng-click="promptUpdate()" class="disabled"  ng-if="!store && applyStatus == 'NONE'">开店申请</span>
+				<!-- 店铺申请中 !store && applyStatus == 'PREPARE' -->
+				<span ng-click="promptUpdate()" class="disabled"  ng-if="!store && applyStatus == 'PREPARE'">开店申请</span>
+				<!-- 我的店铺 !store && applyStatus == 'PASS' -->
+				<span ng-click="promptUpdate()" class="disabled"  ng-if="!store && applyStatus == 'PASS'">店铺管理</span>
+				<!-- 我的店铺 store -->
+				<span ng-click="promptUpdate()" class="disabled"  ng-if="store && (!store.status || store.status === 'OPENED')">店铺管理</span>
+				<!-- 我的店铺申述 store -->
+				<span ng-click="promptUpdate()" class="disabled"  ng-if="store && store.status && store.status !== 'OPENED'">店铺管理</span>
+			</li>
+			<li ng-class="{'active' : active == 'vendor_seek_purchase'}"><a ng-click="promptUpdate()" class="disabled">求购询价</a></li>
+			<li ng-class="{'active' : active == 'vendor_logistics'}"><span ng-click="promptUpdate()" class="disabled">物流管理</span></li>
+			<li ng-class="{'active' : active == 'vendor_invoice'}"><span ng-click="promptUpdate()" class="disabled" >发票管理</span></li>
+			<!--	<li ng-class="{'active' : active == 'vendor_logistics'}"><span  ui-sref="vendor_logistics">物流管理</span></li>-->
+			<li ng-class="{'active' : active == 'pay_center'}"><span ng-click="promptUpdate()" class="disabled" >结算中心</span></li>
+			<li ng-class="{'active' : active == 'vendor_brand_apply'}"><span ng-click="promptUpdate()" class="disabled" >品牌申请</span></li>
+			<li ng-class="{'active' : active == 'vendor_component_apply'}"><span ng-click="promptUpdate()" class="disabled" >器件申请</span></li>
+			<!--<li ng-class="{'active' : active == 'vendor_repository'}"><span  ui-sref="vendor_repository">仓库管理</span></li>-->
+
+			<!--<li ng-class="{'active' : active == 'vendor_after_sale'}" class="undo">-->
+			<!--&lt;!&ndash;<span  ui-sref="vendor_after_sale">售后处理</span>&ndash;&gt;-->
+			<!--售后处理-->
+			<!--</li>-->
+			<!--<li ng-class="{'active' : active == 'vendor_manufacture'}"><span  ui-sref="vendor_manufacture">原厂认证</span></li>-->
+
+
+		</div>
+		<li ng-class="{'active' : active == 'vendor_account_management'}"><span  ui-sref="vendor_account_management">账户管理</span></li>
+	</ul>
+</div>

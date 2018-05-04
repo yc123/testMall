@@ -1,0 +1,367 @@
+<style>
+.checkout-steps {
+	background-color: #fff;
+	padding: 0 15px;
+	border: 1px solid #f0f0f0;
+	width: 990px;
+    margin: 10px auto;
+}
+
+.checkout-steps .basetop {
+	margin-bottom: 20px;
+}
+
+.checkout-steps .titletip {
+	height: 35px;
+	line-height: 35px;
+}
+
+.checkout-steps .smalltitle {
+	font-size: 14px;
+	font-weight: bold;
+	float: left;
+}
+
+.checkout-steps .in-right {
+	color: #005ea7;
+	float: right;
+}
+
+.checkout-steps .item-select {
+	margin-left: 20px;
+	border: 2px solid #e4393c;
+	cursor: pointer;
+	padding: 6px 15px;
+}
+
+.checkout-steps .item-noselect {
+	margin-left: 20px;
+	border: 2px solid #ddd;;
+	cursor: pointer;
+	padding: 6px 15px;
+}
+
+.checkout-steps .item-noselect:hover {
+	border: 2px solid #e4393c;
+	cursor: pointer;
+	padding: 6px 15px;
+}
+
+.checkout-steps .hr {
+	border-bottom: 1px solid #e6e6e6;
+	height: 0;
+}
+
+.addr-detail {
+	float: left;
+	line-height: 24px;
+}
+
+.addr-detail span {
+	margin-left: 10px
+}
+
+.address_more {
+	position: relative;
+    line-height: 30px;
+    text-align: center;
+    border-top: 1px solid #DDD;
+}
+
+.address_more a {
+	position: relative;
+    display: inline-block;
+    margin-top: -1px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px 0 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #FFF #DDD #DDD;
+    background: #fff;
+    cursor: pointer;
+    -webkit-transition: border-color .15s ease-in-out;
+    -moz-transition: border-color .15s ease-in-out;
+    transition: border-color .15s ease-in-out;
+}
+
+.audit-failure-modal {
+	display: block !important;
+	position: fixed;
+	background-color: white;
+	opacity: 1;
+	width: 300px;
+	height: 140px;
+	top: 250px;
+	left: 554px;
+	font-family: "microsoft yahei";
+	border: 1px solid #d9d5ce;
+	z-index: 10;
+}
+
+.audit-failure-modal .title {
+	line-height: 31px;
+	height: 31px;
+	font-size: 14px;
+	background-color: #3a76e4;
+	color: white;
+	text-align: left;
+	font-family: microsoft yahei;
+	padding-left: 15px;
+}
+
+.audit-failure-modal .content input {
+	width: 80%;
+	height: 31px;
+	line-height: 31px;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-left: 28px;
+	margin-bottom: 15px;
+}
+
+.audit-failure-modal  .footer .confirm {
+	width: 90px;
+	padding: 5px 10px;
+	background-color: #3A76E4;
+	border: none;
+	color: white;
+	font-size: 14px;
+}
+
+.audit-failure-modal .footer .cancle-button {
+	width: 90px;
+	padding: 5px 10px;
+	background-color: #D9D5CE;
+	border: none;
+	color: #333333;
+	font-size: 14px;
+}
+</style>
+<div class="row-fluid sortable">		
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 买家订单
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;">
+				<div class="row">
+					<div class="col-sm-1">
+						共<span class="badge">{{orderTableParams.total()}} </span>条
+					</div>
+					<div class="col-sm-8">
+						<div class="btn-group" role="group" aria-label="...">
+							<!-- <button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='all'}" ng-click="setActive('all')">全部</button> -->
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='tobereceived'}" ng-click="setActive('tobereceived')">待收款</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='moneyreceived'}" ng-click="setActive('moneyreceived')">已收款</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='tobeshipped'}" ng-click="setActive('tobeshipped')">待出货</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='shippingin'}" ng-click="setActive('shippingin')">出货中</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='shipped'}" ng-click="setActive('shipped')">已出货</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='inbound'}" ng-click="setActive('inbound')">待收货</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='received'}" ng-click="setActive('received')">已收货</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='completed'}" ng-click="setActive('completed')">已完成</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='unavailable'}" ng-click="setActive('unavailable')">已失效</button>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="input-group">
+							<input placeholder="请输入订单号查询" class="form-control"
+								ng-model="keyword"  ng-search="onSearch()" size="16" type="text">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" type="button" ng-click="onSearch()">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<table ng-table="orderTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+					<thead>
+						<tr>
+							<th class="text-center" width="40" ng-show="active=='paid' || active=='tobeshipped' || active=='shipped'">
+								<input type="checkBox" ng-model="checks.checked" ng-click="checkAll()">
+							</th>
+							<th class="text-center" width="50">序号</th>
+							<th class="text-center" width="auto">订单号</th>
+							<th class="text-center" width="75">自营/代售</th>
+							<th class="text-center" width="75">买家姓名</th>
+							<th class="text-center" width="120">供应商企业名称</th>
+							<th class="text-center" width="100">金额</th>
+							<th class="text-center" width="70">数量</th>
+							<th class="text-center" width="100">创建时间</th>
+							<th class="text-center" width="75">订单状态</th>
+							<th class="text-center">操作</th>
+						</tr>
+					</thead>
+					<tbody class="text-center">
+						<tr class="text-center" ng-repeat="order in $data">
+							<td class="text-center" ng-show="active=='paid' || active=='tobeshipped' || active=='shipped'">
+								<input type="checkBox" ng-model="checkCodes[$index]" ng-click="checkOne($index)"/></td>
+							<td class="text-center">{{$index+1}}</td>
+							<td class="text-center">
+								<a target="_blank" ng-href="#/trade/order/{{order.orderid | EncryptionFilter}}">{{order.orderid}}</a>
+							</td>
+							<td class="text-center"><span ng-bind="order.selfSell ? '自营' : '代售'"></span></td>
+							<td class="text-center">{{order.buyername}}</td>
+							<td class="text-center">{{order.sellername}}</td>
+							<td class="text-center text-inverse">{{order.currency}} &nbsp;{{order.price | number : 3}}</td>
+							<td class="text-center">{{order.qty}}</td>
+							<td class="text-center">{{order.creattime | date: "yyyy-MM-dd HH:mm"}}</td>
+							<td class="text-center">{{order.status | statusAndTypeFilter}}</td>
+							<td class="text-center">
+								<a ng-if="order.status==504 || order.status==503" ng-show="active=='tobereceived'" style="position: relative;">
+									<button type="button" ng-if="order.status==504 && !order.installmentId" class="btn btn-default btn-sm" ng-click="ensurePay(order)">确认收款</button>
+									<button ng-if="order.status==504" type="button" class="btn btn-default btn-sm" ng-click="showAuditFailureModal(order)">审核不通过</button>
+									<div class="audit-failure-modal" ng-if="order.dislayModal">
+										<div class="title">审核不通过的原因</div>
+										<div class="content">
+											<input class="form-control" ng-model="order.auditFailureReason" placeholder="请输入审核不通过的原因"/>
+										</div>
+										<div class="footer">
+											<button class="confirm" ng-click="auditFailure(order)">确认</button>
+											<button class="cancle-button" ng-click="order.dislayModal = false">取消</button>
+										</div>
+									</div>
+								</a>
+<!-- 								<a ng-show="active=='tobeshipped'" ng-click="createPurchase(order)">
+									<button type="button" class="btn btn-default btn-sm"
+									>转采购单</button>
+								</a> -->
+								<a ng-show="active=='shipped'" ng-click="batchCreateinFor(order)">
+									<button type="button" class="btn btn-default btn-sm"
+									>转出货单</button>
+								</a>
+								<a ng-show="active=='received'" ng-click="customerService(order)">
+									<button type="button" class="btn btn-default btn-sm"
+									>查看售后服务</button>
+								</a>
+								<a ng-show="order.status == '520'">
+									<button type="button" class="btn btn-default btn-sm" ng-disabled="order.drawBillTime" ng-click="openBill(order.orderid)">开发票</button>
+								</a>
+							</td>
+						</tr>
+						<tr ng-if="$data.length == 0">
+							<td colspan="13" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息</td>
+						</tr>
+						<tr ng-if="$data.length != 0 && active=='tobeshipped'">
+							<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i>
+							<!-- <button type="button" class="btn btn-primary" ng-click="battchCreatePurc(checkCodes, $data)">批量转采购</button> <span>你可勾选左侧多选框，进行批量操作</span> --></td>
+						</tr>
+					</tbody>
+				</table>
+ 				<div ng-if="active=='shipped'">
+					<button class="btn btn-primary" ng-click="batchCreateinFor()" ng-disabled="count==0" role="button">批量转出货单</button>
+				</div>
+	 			<div ng-if="active=='paid'">
+					<button class="btn btn-primary" ng-click="batchPaid()" ng-disabled="count==0" role="button">批量收款</button>
+				</div>
+			</div>
+			<a id="bottom"></a>
+			<!-- ng-tableEnd -->
+		</div>
+		<!-- 转采购详情页面 显示 start-->
+		<div class="changePurc" ng-show="$data.length != 0 && active=='tobeshipped' && createPurc">
+			<div class="row-fluid sortable">
+				<div class="box">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> 请您查看并确认转采购操作</h2>
+					</div>
+					<div class="checkout-steps">
+						<div class="titletip">
+							<span class="smalltitle">订单转采购信息</span>
+						</div>
+						<div class="box-content orderForPurc" ng-if="checkorders.length == 1"> 
+						   	<div class="row-fluid">
+		                        <div class="span12"><span>订单单号：</span><span style="font-weight:bold;font-size:15px;margin-left:5px;color:#fc5e17;" ng-bind="checkorders[0].orderid"></span></div>
+		                   		<div class="span12"><span class="spanwaring">本次转采购单，将由订单号<strong>{{checkorders[0].orderid}}&nbsp;</strong>生成一张采购单，请您确认以下信息！</span></div>
+		                   		<div class="marginleft10">
+		                   			<div class="row-fluid">
+			                   			<div class="span2"><strong >订单号 :</strong></div>
+			                   			<div class="span3">{{checkorders[0].orderid}}</div>
+			                   			<div class="span2"><strong >金额 :</strong></div>
+			                   			<div class="span5">{{checkorders[0].price}}</div>
+		                   			</div>
+		                            <div class="row-fluid">
+			                   			<div class="span2"><strong >订单状态:</strong></div>
+			                   			<div class="span3">{{checkorders[0].status | statusAndTypeFilter}}</div>
+			                   			<div class="span2"><strong >过期时间  :</strong></div>
+			                   			<div class="span5">{{checkorders[0].availabletime | date: "yyyy-MM-dd HH:mm"}}</div>
+		                   			</div>
+		                   		</div>
+		                    </div>
+						</div>
+						<div class="box-content orderForPurc" ng-repeat="neworders in checkorderinfos">
+		                    <div class="row-fluid" >
+		                        <div class="span12"><span>订单单号：</span><span ng-repeat="neworder in neworders" style="font-weight:bold;font-size:15px;margin-left:5px;color:#fc5e17;">{{neworder.orderid}}&nbsp;</span></div>
+		                   		<div class="span12" ng-show="neworders.length > 1"><span class="spanwaring">本次转采购单，将由订单号<strong ng-repeat="neworder in neworders">{{neworder.orderid}}&nbsp;</strong>合并生成一张采购单，请您确认以下信息！</span></div>
+		                   		<div class="span12" ng-show="neworders.length == 1"><span class="spanwaring">本次转采购单，将由订单号<strong ng-repeat="neworder in neworders">{{neworder.orderid}}&nbsp;</strong>生成一张采购单，请您确认以下信息！</span></div>
+		                   		<div class="marginleft10" ng-repeat="neworder in neworders">
+		                   			<div class="row-fluid">
+			                   			<div class="span2"><strong >订单号 :</strong></div>
+			                   			<div class="span3">{{neworder.orderid}}</div>
+			                   			<div class="span2"><strong >金额 :</strong></div>
+			                   			<div class="span5">{{neworder.price}}</div>
+		                   			</div>
+		                            <div class="row-fluid">
+			                   			<div class="span2"><strong >订单状态:</strong></div>
+			                   			<div class="span3">{{neworder.status | statusAndTypeFilter}}</div>
+			                   			<div class="span2"><strong >过期时间  :</strong></div>
+			                   			<div class="span5">{{neworder.availabletime | date: "yyyy-MM-dd HH:mm"}}</div>
+		                   			</div>
+		                   			<div style="margin-top:10px" ng-if="neworders.length > 1 && $index != neworders.length-1"></div>
+		                   		</div>
+		                    </div>
+	                 	 </div>
+                  	 </div>
+                  </div>
+			</div><!--/span-->
+			<!-- 收货地址strat -->
+			<div class="checkout-steps">
+				<div class="basetop">
+					<div class="titletip">
+						<span class="smalltitle" >收货地址信息</span> <a  ng-if="addrs.length != 0" ng-click="editAddr(false)" class="in-right">新增收货地址</a>
+					</div>
+					<div class="row-fluid" ng-if="addrs.length == 0">
+						<div class="span12">
+						 	<span>您还未填写收货地址，请立即<a ng-click="editAddr(true)" class="color_orange">添加收货信息</a></span>
+						</div>
+					</div>
+					<div style="margin:10px 0" ng-repeat="addr in addrs"  ng-show="$index<1 || moreOption" class="row-fluid">
+						<div ng-click="selectAddr(addr, addrs)" class="span3 text-center" ng-class="{'item-noselect': !addr.isSelect , 'item-select': addr.isSelect }">
+							<span>{{addr.receivingName}}&nbsp;&nbsp;{{addr.tel}}</span>
+						</div>
+						<div class="span1"></div>
+						<div class="span6 addr-detail">
+							<span class="addr-area">{{addr.area}}</span>
+							<span class="addr-detailAddress">{{addr.detailAddress}}</span>
+						</div>
+						<div class="span2 addr-detail">
+							<span class="pull-right" ng-click="deleteAddr(addr)"><a class="color_orange"><i class="fa fa-times"></i>删除</a></span>
+							<span class="pull-right" ng-click="editAddr(false, addr)"><a class="color_orange"><i class="fa fa-pencil-square-o"></i>编辑</a></span>
+						</div>
+					</div>
+					<div class="address_more" ng-if="addrs.length > 1">
+						<a  ng-click="moreOptionTrigger()">
+							<span ng-hide="moreOption">更多地址选项
+								<i class="fa fa-angle-down"></i>
+							</span>
+							<span ng-show="moreOption">收起  <i class="fa fa-angle-up"></i></span>
+						</a>
+					</div>
+				</div>
+			<!-- 收货地址end -->
+<!-- 			<div class="ensure">
+				<div class="row-fluid">
+					<div class="span12">
+ 						<div style="text-align:center" ng-if="battchpurc">
+							<a class="btn btn-success btnensure" ng-click="ensureCreatePurc(checkorderinfos,true,addrs)"><i class="icon-check icon-white"></i>确认转采购单</a>
+						</div>
+						<div style="text-align:center" ng-if="!battchpurc">
+							<a class="btn btn-success btnensure" ng-click="ensureCreatePurc(checkorders[0],false,addrs)"><i class="icon-check icon-white"></i>确认转采购单</a>
+						</div> 
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+	</div><!--/span-->
+</div><!--/row-->

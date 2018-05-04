@@ -1,0 +1,87 @@
+<style>
+table tr th, table tr td {
+	text-align:  center;
+}
+
+.margin-bottom-10 {
+	margin-bottom: 10px !important;
+}
+
+.info-center {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+</style>
+<div class="row-fluid sortable">
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 退款单
+		</div>
+		<div class="box-content">
+			<div class="fullscreen" style="padding: 10px;">
+				<div class="row margin-bottom-10">
+					<div class="col-sm-1 info-center">
+						共<span class="badge">{{refundTable.total() || 0}}</span> 条
+					</div>
+					<div class="col-sm-7">
+						<div class="btn-group" role="group" aria-label="...">
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary' : active=='toberefund'}" ng-click="setActive('toberefund')">待退款</button>
+							<button type="button" class="btn btn-default" ng-class="{'btn-primary' : active=='refunded'}" ng-click="setActive('refunded')">已退款</button>
+						</div>
+					</div>
+				</div>
+				<table ng-table="refundTable" class="table table-bordered">
+					<thead>
+						<tr>
+							<th>退款单号</th>
+							<th>订单单号</th>
+							<th>来源单据</th>
+							<th>来源单据号</th>
+							<th>退款金额</th>
+							<th>收款人</th>
+							<th>退款原因</th>
+							<th>税金</th>
+							<th>支付类型</th>
+							<th ng-if="active == 'toberefund'">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="refund in $data">
+							<td ng-bind="refund.reid"></td>
+							<td>
+								<a target="_blank" ng-href="admin#/trade/order/{{refund.orderid | EncryptionFilter}}">{{refund.orderid}}</a>
+							</td>
+							<td>
+								<span ng-if="refund.origin == 'ORDER'">订单</span>
+								<span ng-if="refund.origin == 'PURCHASE'">采购单</span>
+								<span ng-if="refund.origin == 'RETURN'">退货单</span>
+							</td>
+							<td>
+								<a target="_blank" ng-if="refund.origin == 'ORDER'" ng-href="admin#/trade/order/{{refund.inId | EncryptionFilter}}">{{refund.inId}}</a>
+								<a target="_blank" ng-if="refund.origin == 'PURCHASE'" ng-href="admin#/trade/purchase/{{refund.inId | EncryptionFilter}}">{{refund.inId}}</a>
+								<a target="_blank" ng-if="refund.origin == 'RETURN'" ng-href="admin#/trade/returnfromcust/{{refund.inId | EncryptionFilter}}">{{refund.inId}}</a>
+							</td>
+							<td>{{refund.currency}}&nbsp;{{refund.reMoney | number:2}}</td>
+							<td ng-bind="refund.reUserName"></td>
+							<td>
+								<span ng-if="refund.origin == 'ORDER'">用户取消</span>
+								<span ng-if="refund.origin == 'PURCHASE'">供应商缺货</span>
+								<span ng-if="refund.origin == 'RETURN'">退货退款</span>
+							</td>
+							<td>{{refund.currency}}&nbsp;{{refund.taxes | number:2}}</td>
+							<td>
+								<span ng-if="refund.payType == 1102">线上支付</span>
+								<span ng-if="refund.payType == 1103">线下支付</span>
+							</td>
+							<td ng-if="active == 'toberefund'">
+								<div ng-if="active == 'toberefund'">
+									<button ng-click="ensureRefund(refund)" class="btn btn-default">确认退款</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

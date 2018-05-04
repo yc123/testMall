@@ -1,0 +1,290 @@
+<style>
+.purchase table {
+	width: 100%;
+	font-size: 14px;
+}
+.purchase table thead tr {
+	height: 57px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    background-image: url(static/img/product/title-higher-bg.png);
+    padding: 0;
+    vertical-align: middle !important;
+    text-align: center;
+    font-weight: normal;
+}
+.statistics {
+	font-size: 14px;
+}
+
+.statistics > div > div, .detail-statistic > div {
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.purchase textarea.discription {
+	width: 35em;
+	height: 13em;
+}
+
+.apply-operation{
+    background: #eee;
+    padding: 2em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    text-align: center;
+    color: white;
+}
+
+.apply-operation button {
+    padding: 0.3em 0.7em;
+    font-size: 2em;
+    line-height: normal;
+    border: none;
+    width: 18%;
+    border-radius: 3px;
+}
+.ensure-apply {
+    margin: 0 2em 0 0;
+    background: linear-gradient(hsla(4, 85%, 54%, 0.7), hsla(4, 85%, 54%, 1));
+}
+
+text-area.add-discriptoin {
+	width: 15em;
+	height: 5em;
+}
+
+ /* 取消 */
+.cancel > button {
+     background: linear-gradient(hsla(45, 3%, 47%, 0.7), hsla(45, 3%, 47%, 1));
+     color: white;
+}
+
+.apply-operation {
+    background: #eee;
+    padding: 2em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    text-align: center;
+    color: white;
+}
+
+.apply-operation button {
+    padding: 0.3em 0.7em;
+    font-size: 2em;
+    line-height: normal; /* 清除common.css设置的默认行高 */
+    border: none;
+    width: 18%;
+    border-radius: 3px;
+}
+
+.apply-operation button:hover {
+    box-shadow: 0 0 0 2px hsl(11, 97%, 51%);
+}
+
+.cancel-apply, .agree-handling {
+    margin: 0 2em 0 0;
+    background: linear-gradient(hsla(4, 85%, 54%, 0.7), hsla(4, 85%, 54%, 1));
+}
+
+/* 取消 */
+.cancel > button {
+    background: linear-gradient(hsla(45, 3%, 47%, 0.7), hsla(45, 3%, 47%, 1));
+    color: white;
+}
+
+table th, table td {
+	text-align: center;
+}
+</style>
+<div class="row-fluid">
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 平台异常申请
+		</div>
+	</div>
+	<div class="box-content">
+		<div class="fullscreen purchase">
+			<h4>采购单信息</h4>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>下单时间</th>
+						<th>订单号</th>
+						<th>货源批次数</th>
+						<th>型号数量</th>
+						<th>总数量</th>
+						<th>支付总金额</th>
+						<th>币种</th>
+						<th>税率</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="center col-md-1" ng-bind="purchase.createtime | date: 'yyyy-mm-dd'"></td>
+						<td class="center col-md-2" ng-bind="purchase.purchaseid"></td>
+						<td class="center col-md-2" ng-bind="purchase.batchQty"></td>
+						<td class="center col-md-1" ng-bind="purchase.cmpQty"></td>
+						<td class="center col-md-2" ng-bind="purchase.qty"></td>
+						<td class="center col-md-2" ng-bind="purchase.ensurePrice"></td>
+						<td class="center col-md-1" ng-bind="purchase.currency"></td>
+						<td class="center col-md-1">
+							<span ng-bind="purchase.purchaseDetails[0].tax"></span>%
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>异常申请信息</h4>
+			<div class="row statistics">
+				<div class="col-md-8">
+					<div class="col-md-12">
+						<div class="col-md-2">申请状态：</div>
+						<div ng-switch on="purchase.exApplyStatusFromMall">
+							<span ng-switch-when="MALL_TO_SUP">异常申请处理中</span>
+							<span ng-switch-when="SUP_TO_MALL">申请反馈</span>
+							<span ng-switch-when="CANCELED">已取消申请</span>
+							<span ng-switch-when="FINISHED">已完成</span>
+							<span ng-switch-default>异常申请中</span>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-2">问题类型：</div>
+						<select ng-disabled="true" ng-model="applyInfo.applyReasonType">
+                                <option value="EXCHANGE">换货</option>
+						</select>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-2">问题描述：</div>
+						<div ng-switch on="purchase.exApplyStatusFromMall">
+							<div ng-switch-when="SUP_TO_MALL">
+								<span ng-bind="apply.applyReason"></span>
+							</div>
+							<div ng-switch-when="MALL_TO_SUP">
+								<span ng-bind="apply.applyReason"></span>
+							</div>
+							<div ng-switch-when="CANCELED">
+								<span ng-bind="apply.applyReason"></span>
+							</div>
+							<div ng-switch-default>
+								<textarea class="discription" ng-model="applyInfo.applyReason"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="text-left col-md-12">待处理批次汇总:</div>
+					<div class="text-center col-md-12 detail-statistic">
+						<div>
+							<span>货源批次数:</span>&nbsp;<span ng-bind="applyInfo.batchQty"></span>
+						</div>
+						<div>
+							<span>型号数量:</span>&nbsp;<span ng-bind="applyInfo.cmpQty"></span>
+						</div>
+						<div>
+							<span>产品总数量:</span>&nbsp;<span ng-bind="applyInfo.prodQty"></span>
+						</div>
+						<div>
+							<span>产品总金额:</span>&nbsp;<span ng-bind="applyInfo.totalAmount"></dispanv>
+						</div>
+						<div>
+							<span>运费合计:</span>&nbsp;<span ng-bind="applyInfo.freight"></span>
+						</div>
+						<div>
+							<span>税率:</span>&nbsp;<span ng-bind="applyInfo.taxRate"></span>
+						</div>
+						<div>
+							<span>涉及总金额:</span>&nbsp;
+							<span ng-bind="applyInfo.totalAmount"></span>&nbsp;
+							<span ng-bind="purchase.currency"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>产品型号</th>
+						<th>品牌</th>
+						<th>类目</th>
+						<th>采购<br/>数量</th>
+						<th>采购<br/>金额</th>
+						<th>商城<br/>要求</th>
+						<th class="text-center">补充<br/>说明</th>
+						<th ng-if="purchase.exApplyStatusFromMall == 'SUP_TO_MALL'">供应商<br/>意&nbsp;&nbsp;见</th>
+						<th ng-if="purchase.exApplyStatusFromMall == 'SUP_TO_MALL'">供应商<br/>说&nbsp;&nbsp;明</th>
+						<th ng-if="purchase.exApplyStatusFromMall == 'SUP_TO_MALL'">仲裁<br/>意见</th>
+						<th ng-if="purchase.exApplyStatusFromMall == 'SUP_TO_MALL'">仲裁<br/>说明</th>
+						<th class="text-center">产品批次号</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="detail in purchase.purchaseDetails">
+						<td>
+							<span ng-bind="detail.detno"></span>
+							<input type="checkbox" ng-model="detail.checked" ng-disabled="purchase.exApplyStatusFromMall" ng-click="updateDetailSummary(detail)">
+						</td>
+						<td ng-bind="detail.cmpCode"></td>
+						<td ng-bind="detail.brName"></td>
+						<td ng-bind="detail.kiName"></td>
+						<td ng-bind="detail.number"></td>
+						<td ng-bind="detail.ensurePrice"></td>
+						<td>
+							<select ng-disabled="true" ng-model="detail.applyType">
+								<option value="EXCHANGE">换货</option>
+							</select>
+						</td>
+						<td class="text-center">
+							<div ng-if="purchase.exApplyStatusFromMall" ng-bind="detail.applyReason"></div>
+							<textarea class="add-discriptoin" ng-if="!purchase.exApplyStatusFromMall" ng-model="detail.applyReason"></textarea>
+						</td>
+						<td ng-if="detail.supToMallApplyType">
+							<div ng-switch="detail.supToMallApplyType">
+								<span ng-switch-when="EXCHANGE">换货</span>
+								<span ng-switch-when="RETURN">退货</span>
+								<span ng-switch-when="REFUSE">拒绝</span>
+							</div>
+						</td>
+						<td ng-if="detail.supToMallApplyReason" ng-bind="detail.supToMallApplyReason"></td>
+						<td ng-if="purchase.exApplyStatusFromMall == 'SUP_TO_MALL' || purchase.exApplyStatusFromMall == 'FINISHED'">
+							<select ng-model="detail.finalApplyType" ng-disabled="purchase.exApplyStatusFromMall == 'FINISHED'">
+								<option value="">请选择类型</option>
+								<option value="EXCHANGE">换货</option>
+								<option value="CANCLE">取消申请</option>
+							</select>
+						</td>
+						<td ng-if="purchase.exApplyStatusFromMall == 'SUP_TO_MALL' || purchase.exApplyStatusFromMall == 'FINISHED'">
+							<textarea ng-if="purchase.exApplyStatusFromMall == 'SUP_TO_MALL'" ng-model="detail.finalApplyReason"></textarea>
+							<span ng-if="purchase.exApplyStatusFromMall == 'FINISHED'" ng-bind="detail.finalApplyReason"></span>
+						</td>
+						<td ng-bind="detail.batchCode"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="apply-operation">
+				<div ng-switch="purchase.exApplyStatusFromMall">
+					<div ng-switch-when="SUP_TO_MALL">
+						<button class="agree-handling" ng-click="agreeHandle()">同意处理</button>
+						<button class="cancel-apply" ng-click="cancleApply()">取消申请</button>
+						<a ng-href="admin_n#/trade/purchase" class="cancle"><button>返回</button></a>
+					</div>
+					<div ng-switch-when="MALL_TO_SUP">
+						<button class="cancel-apply" ng-click="cancleApply()">取消申请</button>
+						<a ng-href="admin_n#/trade/purchase" class="cancle"><button>返回</button></a>
+					</div>
+					<div ng-switch-when="CANCELED">
+						<a ng-href="admin_n#/trade/purchase" class="cancle"><button>返回</button></a>
+					</div>
+					<div ng-switch-when="FINISHED">
+						<a ng-href="admin_n#/trade/purchase" class="cancle"><button>返回</button></a>
+					</div>
+					<div ng-switch-default>
+						 <button class="ensure-apply" ng-click="ensureApply()" ng-disabled="!(applyInfo.applyReasonType && detailsOK)">确认申请</button>
+						 <a ng-href="admin_n#/trade/purchase" class="cancle"><button>返回</button></a>
+					</div>
+				</div>
+				
+            </div>
+		</div>
+	</div>
+</div>

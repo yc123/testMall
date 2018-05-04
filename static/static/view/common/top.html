@@ -1,0 +1,224 @@
+<style>
+/* 通用模块页面的样式 */
+/* top */
+#top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	border-bottom: 1px solid #efefef;
+	background-color: #f8f8f8;
+	z-index: 100;
+	font: 12px tahoma, arial, \5b8b\4f53;
+}
+
+#top .navbar-nav>li>a, #top .navbar-nav>li.brand {
+	padding-top: 0;
+	padding-bottom: 0;
+	line-height: 35px;
+}
+
+#top ul.navbar-nav>li>a:hover,
+#top ul.navbar-nav>li>a:focus,
+#top ul.navbar-nav>li>a:hover *,
+#top ul.navbar-nav>li>a:focus * {
+	color: #f40;
+}
+
+#top .dropdown .fa-angle-down {
+	transition: transform .2s ease-in 0s;
+	-webkit-transition: -webkit-transform .2s ease-in 0s;
+}
+
+#top .dropdown:hover .fa-angle-down {
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+#top .dropdown:hover>.dropdown-menu {
+	margin-top: -1px;
+	min-width: 100%;
+	font-size: 12px;
+}
+
+#top .dropdown-menu ul>li>h4 {
+	font-size: 100%;
+	font-weight: 700;
+	color: #404040;
+}
+
+/* pills 网址导航样式 */
+#top .dropdown-menu .nav-pills>li+li {
+	margin-left: 0;
+}
+
+#top .dropdown-menu .nav-pills>li>a {
+	padding: 5px 10px;
+}
+
+#top .dropdown-menu .pills>div {
+	border-right: 1px solid #eee;
+	padding: 5px 15px;
+}
+
+#top .dropdown-menu .pills>div:last-child {
+	border-right: none;
+}
+
+#top .dropdown-menu .pills ul>li {
+	padding: 2px;
+}
+
+#top .dropdown-menu .pills ul>li>a {
+	color: #3c3c3c;
+}
+
+#top .dropdown-menu .pills ul>li:hover a {
+	color: white;
+	text-decoration: none;
+}
+
+#top .dropdown-menu .pills>div>h4 {
+	font-family: "Microsoft YaHei", "Hiragino Sans GB";
+	font-weight: 700;
+	font-size: 17px;
+}
+
+#top .dropdown-menu .pills>div:nth-child(1) h4 {
+	color: #f50;
+}
+
+#top .dropdown-menu .pills>div:nth-child(2) h4 {
+	color: #a0b959;
+}
+
+#top .dropdown-menu .pills>div:nth-child(3) h4 {
+	color: #df61ab;
+}
+
+#top .dropdown-menu .pills>div:nth-child(4) h4 {
+	color: #52a0e5;
+}
+
+#top .dropdown-menu .pills>div:nth-child(5) h4 {
+	color: #52a015;
+}
+
+#top .dropdown-menu .pills>div:nth-child(6) h4 {
+	color: #b68571;
+}
+
+#top .dropdown-menu .pills ul>li>a:hover {
+	color: #fff;
+}
+
+#top .dropdown-menu .pills>div:nth-child(1) ul>li>a:hover {
+	background-color: #f50
+}
+
+#top .dropdown-menu .pills>div:nth-child(2) ul>li>a:hover {
+	background-color: #a0b959
+}
+
+#top .dropdown-menu .pills>div:nth-child(3) ul>li>a:hover {
+	background-color: #df61ab
+}
+
+#top .dropdown-menu .pills>div:nth-child(4) ul>li>a:hover {
+	background-color: #52a0e5
+}
+
+#top .dropdown-menu .pills>div:nth-child(5) ul>li>a:hover {
+	background-color: #52a015
+}
+
+#top .dropdown-menu .pills>div:nth-child(6) ul>li>a:hover {
+	background-color: #b68571
+}
+</style>
+<div id="top" ng-controller="AuthenticationCtrl">
+	<div class="container">
+		<!-- 居左 start -->
+		<ul class="nav navbar-nav">
+			<li><a href="http://www.ubtob.com"><i class="fa fa-star-o"></i> 优软云首页</a></li>
+			<!-- <li>
+				<div class="text-theme" style="line-height: 35px;">
+					<i class="fa fa-star-o"></i> 收藏夹：
+					<a ng-href="user#/home/brancol">品牌(<span ng-bind="brandCount||'0'"></span>)</a>
+					<a ng-href="user#/home/componentcol">器件(<span ng-bind="componentCount||'0'"></span>)</a>
+				</div>
+			</li> -->
+		</ul>
+		<!-- 居左 end -->
+		<!-- 居右 start -->
+		<ul class="nav navbar-nav navbar-right">
+			<li ng-show="!isAuthed">
+				<a ng-click="signinModal()" class="text-inverse">您好， 请登录 </a>
+			</li>
+			<li><a class="text-theme" href="https://account.ubtob.com/sso/register" ng-show="!isAuthed">立即注册</a></li>
+			<li class="dropdown" ng-show="isAuthed">
+				<a href="#" role="button" class="dropdown-toggle">
+					<i class="fa fa-user"></i> 您好，<span ng-bind="userInfo.userName"></span> 
+					<strong class="text-info" ng-bind="userInfo.enterprise.enName"></strong>
+					<i class="fa fa-angle-down"></i>
+				</a>
+				<div class="dropdown-menu" style="padding: 15px; width: 180px;">
+					<ul class="list-unstyled">
+						<li class="dropdown-submenu">
+							<a href="vendor" class="dropdown-toggle none">登录企业： 
+								<strong ng-bind="userInfo.enterprise.enName"></strong>
+							</a>
+							<ul class="dropdown-menu" ng-if="userInfo.enSelect" style="top: -16px; width: 232px;">
+								<li class="text-muted text-bold" style="padding: 5px 15px;">
+									<i class="fa fa-cog fa-fw"></i>切换企业到：
+								</li>
+								<li class="divider"></li>
+								<li ng-repeat="e in userInfo.enSelect" class="item-link">
+									<a ng-click="switchto(e.uu)">{{e.enName}}</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider" ng-show="userInfo.enterprise"></li>
+						<li>
+							<a href="user">
+								<i class="fa fa-user fa-fw"></i> {{userInfo.userName}}(<span ng-bind="userInfo.userUU"></span>) 
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<!-- <a href="#/account/user">
+								<i class="fa fa-gear fa-fw"></i> 账号管理
+							</a> -->
+							<a class="text-muted pull-right" ng-click="logout()">退出</a>
+						</li>
+					</ul>
+				</div></li>
+			<!-- @TODO:消息count还未展示 -->
+			<!-- <li class="dropdown" ng-show="isAuthed">
+				<a href="#" role="button" class="dropdown-toggle">
+					<i class="fa fa-volume-up"></i> 消息(0) <i class="fa fa-angle-down"></i>
+				</a>
+			</li> -->
+			<li>
+				<a href="product#/cart" role="button">
+					<i class="fa fa-shopping-cart"></i> 我的购物车
+				</a>
+			</li>
+			<li>
+				<a href="user#/home/myOrder_todo" role="button">
+					<i class="fa fa-file-text-o"></i> 我的订单
+				</a>
+			</li>
+			<li tooltip-placement="bottom" tooltip="客服电话" class="text-num">
+				<a href=""><i class="fa fa-phone fa-lg"></i> 0755-86564892 </a>
+			</li>
+			<li tooltip-placement="bottom" tooltip="客服邮箱" class="text-num">
+				<a href=""><i class="fa fa-envelope-o fa-lg"></i> yrsc@usoftchina.com</a>
+			</li>
+		</ul>
+		<!-- 居右 end -->
+	</div>
+</div>

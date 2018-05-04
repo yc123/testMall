@@ -1,0 +1,235 @@
+<!--<style>
+    .ghost-center {
+        position: relative;
+    }
+    .ghost-center::before {
+        content: " ";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    .ghost-center > * {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    #user_center_header {
+        background: #5078cb;
+        color: white;
+        font-size: 14px;
+    }
+    #user_center_header a {
+        text-decoration: none;
+    }
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    #fff;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    #fff;
+        opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color:    #fff;
+        opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color:    #fff;
+    }
+
+    #user_center_header .u_s_h_wrapper {
+        width: 1190px;
+        height: 80px;
+        margin: auto;
+        text-align: justify;
+        overflow: hidden;
+    }
+    #user_center_header .u_s_h_wrapper > * {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
+    #user_center_header .u_s_h_wrapper a {
+        color: #fff;
+        font-size: 14px;
+    }
+    #user_center_header .u_s_h_wrapper ul li a {
+        position: relative;
+        text-align: center;
+    }
+    #user_center_header .u_s_h_wrapper ul li:hover a:before,
+    #user_center_header .u_s_h_wrapper ul .active a:before{
+        content: "";
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        background: #fff;
+        position: absolute;
+        top: 210%;
+        left: 50%;
+        transform: rotate(-45deg) translateX(-50%);
+    }
+
+    #user_center_header .u_s_h_wrapper .my-mall {
+        width: 230px;
+        /*margin-left: -140px;*/
+    }
+    #user_center_header .u_s_h_wrapper .my-mall > * {
+        display: inline-block;
+    }
+    #user_center_header .u_s_h_wrapper .my-mall .mall-logo {
+        margin-right: 0.3em;
+    }
+    #user_center_header .u_s_h_wrapper .my-mall .my-mall-text {
+        font-size: 18px;
+        margin-bottom: 0.2em;
+    }
+    #user_center_header .u_s_h_wrapper .my-mall .back-to-mall-home {
+        font-size: 11px;
+        border: #fff 1px solid;
+        border-radius: 10px;
+        line-height: 20px;
+        color: #fff;
+        padding: 0.23em 0.4em;
+    }
+    #user_center_header .u_s_h_wrapper .my-mall .back-to-mall-home:hover {
+        background: #d2272d;
+        color: #fff;
+    }
+
+    #user_center_header .u_s_h_wrapper .menu {
+        width: 450px;
+    }
+    #user_center_header .u_s_h_wrapper ul.menu li {
+        display: inline-flex;
+        width: 30%;
+    }
+    #user_center_header .u_s_h_wrapper ul.menu li a {
+        margin: auto;
+    }
+
+    #user_center_header .u_s_h_wrapper .search {
+        float: right;
+        margin-top: 22px;
+    }
+    #user_center_header .u_s_h_wrapper .search input {
+        width: 380px;
+        height: 37px;
+        border: 1px solid #fff;
+        background: none;
+        color: #fff;
+        padding-left: 10px;
+    }
+    #user_center_header .u_s_h_wrapper .search a {
+        display: inline-block;
+        height: 37px;
+        width: 72px;
+        line-height: 37px;
+        border: 1px solid #fff;
+        border-left: 0;
+        background: #d3e1fc;
+        color: #5078cb;
+        text-align: center;
+        font-size: 14px;
+        vertical-align: middle;
+        margin-left: -6px;
+    }
+    #user_center_header .u_s_h_wrapper .search a:hover {
+        background: #d2272d;
+        color: #fff;
+    }
+</style>
+&lt;!&ndash;menu开始&ndash;&gt;
+<div id="user_center_header" ng-controller="UserCenterHeaderCtrl">
+    <div class="u_s_h_wrapper ghost-center">
+        <div class="my-mall ghost-center">
+            <a class="mall-logo" ng-href="{{homeUrl}}"><img src="static/img/vendor/images/logo.png"/> </a>
+            <span>
+                <div class="my-mall-text">我的商城</div>
+                <a class="back-to-mall-home" ng-href="{{homeUrl}}">返回商城首页</a>
+            </span>
+        </div>
+
+        <ul class="menu list-unstyled">
+            <li ng-class="{'active' : active == 'index'}"><a href="#index" class="active">首页</a></li>
+            <li ng-class="{'active' : active == 'message'}"><a href="#message">消息（0）</a></li>
+            <li ng-class="{'active' : active == 'browsing-history'}"><a href="#browsing-history">浏览历史</a></li>
+        </ul>
+
+        <div class="search">
+            <input type="text" placeholder="型号/类别/品牌">
+            <a class="seek" href="#">搜索</a>
+        </div>
+    </div>
+</div>-->
+<style>
+    #mall-search input:focus {
+        border: 1px solid #fff !important;
+    }
+
+    #mall-search .association {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        right: 72px;
+        list-style: none;
+        -webkit-padding-start: 0;
+        background: #ffffff;
+        border: 1px solid #dddddd;
+        z-index: 21;
+    }
+
+    #mall-search .association li {
+        padding: 0 15px;
+        line-height: 30px;
+        text-align: left;
+    }
+    #mall-search .association li.active, #mall-search .association li.active:hover {
+        background: #dddddd;
+    }
+    #mall-search .association li:hover {
+        background: #EEEEEE;
+        cursor: pointer;
+    }
+    #mall-search .association li.similar-title {
+        font-size: 16px;
+        font-weight: bold;
+        cursor: default;
+        border-top: 1px solid #ccc;
+    }
+    #mall-search .association li.similar-title:first-child {
+        border-top: none;
+    }
+    .association.none{
+        border: none !important;
+    }
+</style>
+<div class="user_center" ng-controller="VendorCenterHeaderCtrl">
+    <div class="wrap">
+        <div class="fl">
+            <a ng-href="{{homeUrl}}"><img src="static/img/vendor/images/logo.png"/> </a>
+            <!--<span>我的商城<a ng-href="{{homeUrl}}">返回商城首页</a> </span>-->
+        </div>
+        <!--<div class="nav">
+            <ul>
+                &lt;!&ndash;<li ng-class="{'active' : active == 'index'}"><a href="#index" class="active">首页</a></li>&ndash;&gt;
+                <li ng-class="{'active' : active == 'message'}" ><a ui-sref="messagePersonal">消息（<span ng-bind="unReadMessage"></span>）</a></li>
+                &lt;!&ndash;<li ng-class="{'active' : active == 'browsing-history'}"><a href="#browsing-history">浏览历史</a></li>&ndash;&gt;
+            </ul>
+        </div>-->
+        <div id="mall-search" class="search-right fr" ng-controller="SearchCtrl">
+            <input type="text" ng-model="keyword" ng-change="onChange()" ng-search="search()" ng-focus="onFocus()" ng-blur="onBlur()" ng-keyup="onKeyup()"placeholder="型号/类目/品牌" />
+            <a class="seek" ng-click="search()">搜索</a>
+            <ul class="association" ng-show="associate || associateEnter" ng-mouseenter="onAssociateEnter()" ng-mouseleave="onAssociateLeave()" ng-class="{'none': !associate || !associateEnter}">
+                <li class="similar-title" ng-if="associates.component && associates.component.length > 0">型号：</li>
+                <li ng-repeat="as in associates.component" ng-bind="as.code" ng-class="{'active': $index==selectIndex}"
+                    ng-click="onAssociateClick(as.code)"></li>
+                <li class="similar-title" ng-if="associates.component && associates.brand.length > 0">品牌：</li>
+                <li ng-repeat="as in associates.brand" ng-bind="as.nameCn" ng-class="{'active': $index==selectIndex}"
+                    ng-click="onAssociateClick(as.nameCn)"></li>
+                <li class="similar-title" ng-if="associates.component && associates.kind.length > 0">类目：</li>
+                <li ng-repeat="as in associates.kind" ng-bind="as.nameCn" ng-class="{'active': $index==selectIndex}"
+                    ng-click="onAssociateClick(as.nameCn)"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--menu结束-->

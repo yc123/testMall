@@ -1,0 +1,173 @@
+<style>
+	.count .count01 {
+		display: block;
+	}
+	.logistic-content .menu-title{
+		font-size: 14px;
+	}
+	.logistic-content .add-log button i{
+		margin: 0;
+		font-size: 16px;
+		position: relative;
+		top: 1px;
+	}
+	/**/
+	.logistic-content .empty{
+		overflow: hidden;
+		margin: 0!important;
+		width:100%;
+		display:inline-flex;
+		justify-content:center;
+		align-items: center;
+		height:340px;
+	}
+	.logistic-content .empty-info{
+		line-height: 28px;
+		padding-top:10px;
+		margin-left:10px;
+		text-align:left;
+	}
+	.logistic-content .empty-info .grey{
+		color: #999;
+		font-size: 14px;
+	}
+	.logistic-content .empty .empty-info>a{
+		font-size: 14px;
+		color: #5078cb;
+	}
+	.logistic-content .empty .empty-info i{
+		margin-right:5px;
+	}
+</style>
+<!--右侧主体部分-->
+<div class="count user_right fr">
+	<div class="count_center">
+		<div class="com_tab">
+			<ul class="fl">
+				<li ng-class="{'active': tab=='deliverRule'}" ng-if="!isCONSIGNMENT"><a ui-sref="vendor_deliveryRule">配送规则</a></li>
+				<li ng-class="{'active': tab=='distributor'}" ng-if="!isCONSIGNMENT"><a ui-sref="vendor_distributor">配送商</a></li>
+				<li ng-class="{'active': tab=='takeSelf'}" ng-if="!isCONSIGNMENT"><a ui-sref="vendor_takeSelf">自提点</a></li>
+				<li ng-class="{'active': tab=='logistic'}"><a ui-sref="vendor_logistics">发货地址</a></li>
+			</ul>
+		</div>
+		<!--收货地址-->
+		<div class="logistic-content" ng-if="tab=='logistic'">
+			<div class="menu-title row">现有发货地址<span>&nbsp;已保存<em>{{total}}</em>条，还能新增<em>{{canAddTotal-total}}</em>条地址</span></div>
+			<div class="add-log row" ng-if="total < canAddTotal"><button ng-click="editShippingAddress()"><i class="fa fa-plus-circle"></i>&nbsp;新增发货地址</button></div>
+			<div class="log-tab">
+				<table class="table">
+					<thead>
+					<tr>
+						<th class="text-left" width="200">联系人</th>
+						<th class="text-left" width="400">地址</th>
+						<th width="110" class="text-left" >联系电话</th>
+						<th width="80">操作</th>
+						<th width="100"></th>
+					</tr>
+					</thead>
+					<tbody ng-if="addressList">
+					<tr ng-repeat="address in addressList">
+						<td class="text-left" title="{{address.name}}">{{address.name}}</td>
+						<td class="text-left">
+							<div>{{address.province}}&nbsp;{{address.city}}&nbsp;{{address.district}}</div>
+							<div>{{address.detailAddress}}</div>
+						</td>
+						<td class="text-left">{{address.tel}}</td>
+						<td><a ng-click="editShippingAddress(address)">修改</a>|<a ng-click="deleteAddress(address)">删除</a></td>
+						<td>
+							<button ng-if="address.num == 1">默认地址</button>
+							<button class="default" ng-if="address.num != 1" ng-click="setDefaultShippingAddress(address.id)">设为默认</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<div class="empty" ng-if="addressList.length == 0">
+					<p class="empty-img">
+						<img src="static/img/all/empty-cart.png">
+					</p>
+					<div class="empty-info">
+						<p class="grey"> 暂无发货地址,赶快去新增吧 </p>
+						<!--<a href="vendor#/index"><i class="fa fa-mail-reply fa-xs"></i>返回上一页</a>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.com-del-box{
+		position: fixed;
+		z-index: 2;
+		height: 152px;
+		opacity: 1;
+		background-color: white;
+		width: 310px;
+		-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		margin: -155px 0 0 -75px;
+		top: 55%;
+		left: 50%;
+	}
+	.com-del-box .title{
+		height: 30px;
+		background-color: #5078cb;
+		text-align: right;
+		padding-right: 15px;
+		line-height: 30px;
+	}
+	.com-del-box .title a{
+		color: white;
+		font-size: 16px;
+	}
+	.com-del-box .content{
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.com-del-box .content p{
+		line-height: 50px;
+		font-size: 14px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.com-del-box .content p i{
+		color: #5078cb;
+		font-size: 16px;
+		margin-right: 10px;
+	}
+	.com-del-box .content div{
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.com-del-box .content div a{
+		width: 55px;
+		height: 26px;
+		line-height: 26px;
+		display: inline-block;
+		text-align: center;
+		font-size: 14px;
+	}
+	.com-del-box .content div a:first-child{
+		background: #b4b5b9;
+		color: #333;
+		margin-right: 10px;
+	}
+	.com-del-box .content div a:last-child{
+		background: #5078cb;
+		color: #fff;
+	}
+	.com-del-box .content div a:hover{
+		background: #3f7ae3;
+		color: #fff;
+	}
+</style>
+<div class="com-del-box" ng-if="showDeleteFrame">
+	<div class="title">
+		<a ng-click="cancelDelete()"><i class="fa fa-close fa-lg"></i></a>
+	</div>
+	<div class="content">
+		<p><i class="fa fa-exclamation-circle"></i>是否删除此地址</p>
+		<div><a ng-click="cancelDelete()">取消</a><a ng-click="ensureDelete(deleteObject.id)">确认</a></div>
+	</div>
+</div>

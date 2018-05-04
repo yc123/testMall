@@ -1,0 +1,93 @@
+<div class="box f14">
+	<div class="box-header well" data-original-title>
+		<i class="icon-user"></i> 任务详情页
+	</div>
+	<div class="box-content">
+		<div class="fullscreen" style="padding: 10px;">
+			<div class="row">
+				<div class="row">
+					<div class="col-sm-6">
+						<h4><span>任务单号：</span><span ng-bind="taskId"></span></h4>
+					</div>
+				</div>
+				<div class="row">
+				<div class="col-sm-1">
+					共<span class="badge">{{crawlComponentTableParams.total()}} </span>条
+				</div>
+				<div class="col-sm-offset-5 col-sm-6">
+					<div class="input-group" style="float: right">
+						<input type="search" class="form-control ng-pristine ng-valid ng-touched" ng-model="keyword" 
+							ng-search="onSearch()" placeholder="按原厂型号搜索">
+						<div class="input-group-btn">
+							<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table ng-table="crawlComponentTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+				<thead>
+					<tr>
+						<th width="30">序号</th>
+						<th width="100">原厂型号</th>
+						<th width="100">品牌</th>
+						<th width="100">类目</th>
+						<th width="100" ng-bind="properties[0].labelCn"></th>
+						<th width="100" ng-bind="properties[1].labelCn"></th>
+						<th width="100" ng-bind="properties[2].labelCn"></th>
+						<th width="100" ng-bind="properties[3].labelCn"></th>
+						<th width="100" ng-bind="properties[4].labelCn"></th>
+						<th width="80">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="component in $data">
+						<td class="text-center">{{($index + 1)}}</td>
+						<td>{{component.code}}
+							<span class="label label-success f12" ng-if="brand.isUpdate == 0">新增</span>
+							<span class="label label-warning f12" ng-if="brand.isUpdate == 1">更新</span>
+						</td>
+						<td ng-bind="component.brand.nameCn"></td>
+						<td ng-bind="component.kind.nameCn"></td>
+						<td>
+							<div ng-repeat="pro in component.properties">
+								<span ng-bind="pro.value" ng-if="pro.propertyid == properties[0].id"></span>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="pro in component.properties">
+								<span ng-bind="pro.value" ng-if="pro.propertyid == properties[1].id"></span>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="pro in component.properties">
+								<span ng-bind="pro.value" ng-if="pro.propertyid == properties[2].id"></span>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="pro in component.properties">
+								<span ng-bind="pro.value" ng-if="pro.propertyid == properties[3].id"></span>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="pro in component.properties">
+								<span ng-bind="pro.value" ng-if="pro.propertyid == properties[4].id"></span>
+							</div>
+						</td>
+						<td>
+							<a ng-href="#/audit/crawlTask/{{taskId}}/component/{{component.uuid}}" target="blank">
+								<button type="button" class="btn btn-default btn-sm">查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看</button>
+							</a>
+							<a href="product#/componentEdit/detail/create/{{component.uuid}}" target="blank">
+								<button type="button" class="btn btn-default btn-sm">编辑器件</button>
+							</a>
+						</td>
+					</tr>
+					<tr ng-if="$data.length == 0">
+						<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的属性对照资料</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>

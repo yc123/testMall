@@ -1,0 +1,297 @@
+<style>
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.row .searchInputGroup {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+}
+
+button[type=button].btn-primary-choosed {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.btn-default-inline {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-default-inline:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+.price {
+	color: #009B44;
+}
+
+td {
+	line-height: 1.1;
+}
+
+.total {
+	background-color: #7bb4e1;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 30px;
+}
+
+.total ul>li {
+	float: left;
+	margin-left: -2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-left: 2px #fff solid;
+    border-right: 2px #fff solid;
+}
+
+.total ul>li:hover {
+	background-color: #337ab7;
+}
+
+.total ul>li>a {
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btnactive {
+	background-color: #f39800;
+}
+
+div.row.total button:HOVER {
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.total button {
+	height: 30px;
+}
+
+.datediv {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.dateinput {
+	height: 30px;
+}
+
+.moreSearch {
+	line-height: 26px;
+	margin-top: 23px;
+}
+
+.form-group .input-group {
+	margin-top: 10px;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>交易管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>交易记录</li>
+	</ul>
+</div>
+<div class="row">
+	<div class="col-xs-4">
+		<h2>交易记录</h2>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group searchInputGroup">
+			<input type="search" ng-model="keyword" class="form-control"
+				ng-change="upper()" ng-model="keyword" ng-search="onSearch()"
+				placeholder="请输入出入库单号查询">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-primary" ng-click="onSearch()">搜索</button>
+			</span>
+		</div>
+	</div>
+	<div class="col-xs-2 moreSearch">
+		<a ng-click="condition.$open=!condition.$open" class="text-simple">
+			<span ng-bind="condition.$open ? '简化筛选条件' : '更多筛选条件'"></span> <i
+			class="fa fa-fw"
+			ng-class="{'fa-angle-up': condition.$open, 'fa-angle-down': !condition.$open}"></i>
+		</a>
+	</div>
+</div>
+	<div class="row datediv" ng-show="condition.$open">
+		<div class="col-xs-12">
+			<div class="more">
+				<form class="form-inline">
+					<div class="form-group ">
+						<label>单据日期：</label>
+						<div class="btn-group btn-menu" dropdown
+							is-open="condition.$dateZoneOpen">
+							<button type="button" dropdown-toggle style="width: 85px;"
+								class="btn btn-default btn-xs dropdown-toggle">
+								{{dateZoneText}}<i class="fa fa-fw fa-angle-down icon-right"></i></span>
+							</button>
+							<ul class="dropdown-menu dateinput" style="height: inherit">
+								<li><a ng-click="changeDateZone(-1)">不限</a></li>
+								<li><a ng-click="changeDateZone(1)">一个月内</a></li>
+								<li><a ng-click="changeDateZone(6)">半年内</a></li>
+								<li><a ng-click="changeDateZone()">半年前</a></li>
+							</ul>
+						</div>
+						<div class="form-group input-group input-group-xs input-trigger">
+							<input type="text" ng-model="condition.dateFrom"
+								class="form-control dateinput" placeholder="点击选择起始日期"
+								readonly="readonly" datepicker-popup="yyyy-MM-dd"
+								is-open="condition.$fromOpened" ng-required="true"
+								max-date="sysdate" current-text="今天" clear-text="清除"
+								close-text="关闭"
+								datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+								ng-click="openDatePicker($event, condition, '$fromOpened')"
+								ng-change="onDateCondition()"> <span
+								class="input-group-btn dateinput">
+								<button type="button" class="btn btn-default dateinput"
+									ng-click="openDatePicker($event, condition, '$fromOpened')">
+									<i class="fa fa-calendar"></i>
+								</button>
+							</span>
+						</div>
+						<div class="form-group input-group input-group-xs input-trigger">
+							<input type="text" ng-model="condition.dateTo"
+								class="form-control dateinput" placeholder="点击选择截止日期"
+								readonly="readonly" datepicker-popup="yyyy-MM-dd"
+								is-open="condition.$toOpened" ng-required="true"
+								min-date="condition.dateFrom" current-text="今天" clear-text="清除"
+								close-text="关闭"
+								datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+								ng-focus="openDatePicker($event, condition, '$toOpened')"
+								ng-change="onDateCondition()"> <span
+								class="input-group-btn">
+								<button type="button" class="btn btn-default dateinput"
+									ng-click="openDatePicker($event, condition, '$toOpened')">
+									<i class="fa fa-calendar"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="row total">
+		<div class="col-xs-6">
+			<div class="btn-group" role="group"
+				style="display: block; margin-left: -16px;">
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='settled'}"
+					ng-click="setActive('settled')">已结算</button>
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='notsettled'}"
+					ng-click="setActive('notsettled')">待结算</button>
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='unavailable'}"
+					ng-click="setActive('unavailable')">无效</button>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div ng-table-pagination="paginationParams"
+				template-url="templates.pagination" style="margin-right: -15px">
+				<div class="ng-table-pager" ng-if="paginationParams.data.length">
+					<div ng-if="paginationParams.settings().counts.length"
+						class="pull-right">
+						<ul class="list-unstyled list-inline">
+							<li ng-repeat="count in paginationParams.settings().counts"
+								ng-class="{'btnactive':paginationParams.count()==count}"><a
+								ng-click="paginationParams.count(count)" ng-bind="count"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{tradeRecordTableParams.total()}}</span>条
+		</p>
+	</div>
+</div>
+</br>
+<table ng-table="tradeRecordTableParams"
+	class="table table-bordered table-striped" style="margin-top: 10px;">
+	<thead>
+		<tr class="tr-default text-center">
+			<th width="50">序号</th>
+			<th width="150">出入库单号</th>
+			<th width="150">金额</th>
+			<th width="150">创建时间</th>
+			<th width="150">来源单类型</th>
+			<th width="140">来源单号</th>
+			<th>订单类型</th>
+		</tr>
+	</thead>
+	<tbody class="text-center">
+		<tr ng-repeat="receipt in $data">
+			<td class="text-center" ng-bind="$index+1"></td>
+			<td><a target="_blank"
+				ng-href="vendor#/tradeRecord/{{receipt.receiptid | EncryptionFilter}}">{{receipt.receiptid}}</a></td>			<td class="price text-num"><span ng-bind="receipt.currency"></span>&nbsp;&nbsp;{{receipt.price | number}}</td>
+			<td ng-bind="receipt.createtime | date: 'yyyy-MM-dd HH:mm'"></td>
+			<td ng-bind="receipt.sourceType"></td>
+			<td><a ng-click="toDetail(receipt)">{{receipt.sourceid}}</a></td>
+			<td ng-bind="receipt.type | statusAndTypeFilter"></td>
+		</tr>
+		<tr ng-if="$data.length == 0">
+			<td colspan="10" class="text-center"
+				style="line-height: 40px; font-size: 20px;"><i
+				class="fa fa-smile-o fa-lg"></i> 当前没有对应的出入库单</td>
+		</tr>
+	</tbody>
+</table>

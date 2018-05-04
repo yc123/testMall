@@ -1,0 +1,646 @@
+<style type="text/css">
+    /* general
+    -------------------------------*/
+    .order-detail .table-bordered>thead>tr>td, .order-detail .table-bordered>thead>tr>th {
+        border-bottom-width: 0;
+    }
+    .logistics-details .table td, .pay-details .table td {
+        padding: 1em 0.6em;
+    }
+
+    .order-detail table .before-blank {
+        position: relative;
+        border-right: 13px solid white;
+    }
+    .order-detail table .before-blank:before {
+        position: absolute;
+        top: 0;
+        right: -0.5px;
+        content: " ";
+        height: 100%;
+        width: 1px;
+        background: #eee;
+        /*border: 1px solid #eee;*/
+    }
+    .order-detail table .before-blank:after {
+        position: absolute;
+        top: 0;
+        right: -13.5px;
+        content: " ";
+        height: 100%;
+        width: 1px;
+        background: #eee;
+    }
+    .order-detail table th.before-blank:before, .order-detail table th.before-blank:after {
+        background: #317eac;
+    }
+
+    h4 {
+        color: #317eac;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .flow div {
+        padding-top: 5px;
+        height: 25px;
+        margin-right: 2px;
+    }
+
+    .order-detail .list-inline {
+        padding-left: 0;
+        margin-left: -5px;
+        list-style: none;
+        font: 16px/43px 'Microsoft Yahei';
+        display: inline;
+    }
+
+    li.status .angle {
+        border-top: 1px solid #60C6E7;
+        border-right: 1px solid #60C6E7;
+        padding: 5px;
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        left: 77px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        background: #E3EDF4;
+        z-index: 13;
+    }
+
+    li.status.past.last .angle {
+        border-top: 1px solid #60C6E7;
+        border-right: 1px solid #60C6E7;
+    }
+
+    .order-detail ul li:FIRST-CHILD {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .order-detail ul li:last-child {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+
+    /* ::: 标题 ::: */
+    .order-detail .title {
+        position: relative;
+        background-image: url("static/img/product/title-bg.png");
+        width: 124px;
+        height: 36px;
+        font-size: 18px;
+        color: rgb(255, 255, 255);
+    }
+    .order-detail .title > div {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-left: 8px;
+    }
+    .order-detail .title > div img {
+        margin-right: 5px;
+        vertical-align: center;
+    }
+
+    .order-detail > h1 {
+        position: absolute;
+        display: inline-block;
+        padding: 0.3em 0.7em;
+        border-radius: 3px;
+        background-color: orange;
+        font-size: 22px;
+        font-weight: 600;
+        color: white;
+    }
+    /* 主要订单信息
+    ------------------------------------ */
+    .main-order-info {
+        text-align: center;
+    }
+    .main-order-info ul {
+        display: inline-block;
+        background-color: hsl(161, 53%, 72%);
+        padding: 0.2em 0.4em;
+        margin-top: 2em;
+        font-size: 1.3em;
+        line-height: 1.3;
+        text-align: left;
+    }
+
+    /* 物流确认
+    ------------------------------------ */
+    .express .u-panel-body > div {
+        width: 100%;
+    }
+
+    /* ::: 地址信息 ::: */
+    .receiving-info .u-panel-body > div {
+        width: 100%;
+        height: 100%;
+    }
+    .receiving-info > .u-panel > .u-panel-heading > div {
+        border: none;
+        border-right: 1px solid #dddddd;
+    }
+    .receiving-info > .u-panel > .u-panel-heading > div:last-child {
+        border: none;
+    }
+    .receiving-info > .u-panel > .u-panel-body > div > div {
+        border: none;
+        border-right: 1px solid #dddddd;
+    }
+    .receiving-info > .u-panel > .u-panel-body > div > div:last-child {
+        border: none;
+    }
+    /* ::: 收货单位、收货地址、收货人 ::: */
+    .receiving-info .u-panel-body > div > div {
+        position: relative;
+        height: 100%;
+    }
+    .receiving-info .u-panel-body > div > div > div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+        width: 90%;
+        line-height: 20px;
+    }
+    .receiving-info .u-panel-body .receiving-company > div {
+        text-align: center;
+    }
+
+    /* 支付详情
+    ------------------------------------ */
+
+    .pay-invoice-info .u-panel-body > div {
+        width: 80%;
+        text-align: left;
+        padding-left: 1em;
+    }
+    .pay-account-information .u-panel-body > div {
+        width: 95%;
+        text-align: left;
+    }
+
+    /* 产品详情
+    ------------------------------------ */
+    .product-details > div:last-child > div {
+        max-height: 20em;
+        overflow: auto;
+    }
+    .table {
+        margin-bottom: 0px;
+        background-color: #fff;
+    }
+    table > thead > tr > th {
+        height: 57px;
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+        background-image: url("static/img/product/title-higher-bg.png");
+        padding: 0px;
+        vertical-align: middle !important;
+        text-align: center;
+        font-weight: normal; /* 400 */
+    }
+    .table > tbody > tr > td {
+        height: 57px;
+        padding: 0px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    /* 订单信息汇总
+    ------------------------------------ */
+    .order-info {
+        margin-top: 50px;
+    }
+    .order-info > div {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    /* 订单信息 */
+    .order-info-items {
+        width: 30%;
+    }
+    .order-info-item div {
+        display: inline-block;
+        padding: 6px 0px;;
+    }
+    /* 订单信息项title */
+    .order-info-item div:first-child {
+        font-size: 16px;
+        color: rgb(28, 28, 28);
+        width: 150px;
+    }
+    /* 订单信息项内容 */
+    .order-info-item div:last-child {
+        font-size: 16px;
+        color: rgb(243, 10, 38);
+    }
+
+    .order-info-item:nth-child(3n+0) {
+        margin-bottom: 1em;
+    }
+
+
+    /* 交易备注 */
+    .order-info-trade-remark {
+        padding: 6px 0px;
+    }
+    .order-info-trade-remark div {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .order-info-trade-remark div:first-child {
+        font-size: 16px;
+        color: rgb(28, 28, 28);
+    }
+    .order-info-trade-remark div:last-child {
+        width: 370px;
+        height: 100px;
+        border: 1px solid #ccc;
+        overflow: auto;
+        line-height: 18px;
+        text-indent: 4px;
+    }
+
+    /* 操作
+    ------------------------------------ */
+    .operation {
+        background: #eee;
+        padding: 2em;
+        margin-bottom: 2em;
+    }
+    .operation > div {
+        width:25%;
+        display: inline-block;
+    }
+    .operation > div img:hover {
+        box-shadow: 0 0 0 1px black;
+        border-radius: 6px; /* 图片有圆角，为了不留下空隙，边框也设置圆角 */
+    }
+</style>
+
+<div class="order-detail">
+	<h1>订单详情页</h1>
+	<div class="main-order-info">
+		<ul class="list-unstyled">
+            <li>
+                <span>订单号：</span>
+                <span ng-cloak>{{orderDetailInfo.orderid}}</span>
+            </li>
+            <li>
+                <span>下单时间：</span>
+                <span ng-cloak>{{orderDetailInfo.creattime | date:'yyyy-MM-dd HH:mm'}}</span>
+            </li>
+            <li ng-show="orderDetailInfo.status!=503&&orderDetailInfo.status!=501">
+                <span>付款时间：</span>
+                <span ng-bind="orderDetailInfo.paytime | date:'yyyy-MM-dd HH:mm'"></span>
+            </li>
+            <li>
+                <span>下单公司：</span>
+                <span ng-cloak>{{orderDetailInfo.buyer}}</span>
+            </li>
+            <li>
+                <span>下单人：</span>
+                <span ng-cloak>{{orderDetailInfo.buyername}}</span>
+            </li>
+            <li>
+                <span>联系电话：</span>
+                <span ng-cloak>{{orderDetailInfo.buyerTel}}</span>
+            </li>
+        </ul>
+	</div>
+
+	<!-- ==== 产品详情 start ==== -->
+	<div class="product-details">
+		<div class="title">
+			<div>
+				<img src="static/img/order/product-details.png">
+				产品详情
+			</div>
+		</div>
+		<div>
+			<div>
+				<table fixed-thead class="table table-bordered table-striped">
+					<thead>
+					<tr>
+						<th>批次序号</th>
+						<th>图片</th>
+						<th>产品型号</th>
+						<th>品牌</th>
+						<th>单价</th>
+						<th class="before-blank">税率</th>
+						<th>生产日期</th>
+						<th>包装</th>
+						<th>最小包装数</th>
+						<th class="before-blank">最小采购量</th>
+						<th>采购数量</th>
+						<th>产品金额</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="detail in orderDetailInfo.orderDetails">
+						<td><span ng-bind="$index + 1"></span></td>
+						<td>
+							<a ng-href="product#/component/{{detail.uuid}}/"><img alt="" ng-src="{{detail.img}}" height="100px;"></a>
+						</td>
+						<td>
+							<a ng-href="product#/component/{{detail.uuid}}/"><span ng-bind="detail.cmpCode"></span></a>
+						</td>
+						<td><span ng-bind="detail.brName"></span></td>
+						<td>
+							<span ng-bind="orderDetailInfo.currency"></span>
+							<span ng-bind="detail.taxUnitprice | number : 6"></span>
+						</td>
+						<td class="before-blank">
+							<span ng-switch="orderDetailInfo.currency">
+								<span ng-switch-when="RMB">17%</span>
+								<span ng-switch-when="USD">0%</span>
+							</span>
+						</td>
+						<td><span ng-bind="detail.produceDate"></span></td>
+						<td><span ng-bind="detail.packaging || '托盘'"></span></td>
+						<td><span ng-bind="detail.minPackQty"></span></td>
+						<td class="before-blank"><span ng-bind="detail.minBuyQty"></span></td>
+						<td><span ng-bind="detail.number | number : 2"></span></td>
+						<td>
+							<span ng-bind="orderDetailInfo.currency"></span>
+							<span ng-bind="detail.price | number : 2"></span>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- 产品详情end -->
+
+	<!-- ==== 主要信息 start ==== -->
+	<!--<div class="main-info">
+		<div class="title">
+			<div>
+				 &nbsp;<i class="fa fa-file-text-o"></i>&nbsp;&nbsp;订单信息
+			</div>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>买方名称</th>
+						<th>订单生成时间</th>
+						<th ng-hide="orderDetailInfo.availabletime == null">付款有效时间</th>
+						<th ng-show="orderDetailInfo.status!=503&&orderDetailInfo.status!=501">付款时间</th>
+						<th>订单状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><span ng-bind="orderDetailInfo.buyername"></span></td>
+						<td><span ng-bind="orderDetailInfo.creattime| date:'yyyy-MM-dd HH:mm'"></span></td>
+						<td ng-hide="orderDetailInfo.availabletime == null">
+							<span ng-bind="orderDetailInfo.availabletime | date:'yyyy-MM-dd HH:mm'"></span>
+						</td>
+						<td ng-show="orderDetailInfo.status!=503&&orderDetailInfo.status!=501">
+							<span ng-bind="orderDetailInfo.paytime | date:'yyyy-MM-dd'"></span>
+						</td>
+						<td>
+							<span ng-switch="orderDetailInfo.status">
+								<span ng-switch-default>
+									<span ng-if="orderDetailInfo.status === '501' || orderDetailInfo.status === '503'">待付款</span>
+									<span ng-if="orderDetailInfo.status !== '501' && orderDetailInfo.status !== '503'">已付款</span>
+								</span>
+								<span ng-switch-when="315">买家已取消</span>
+								<span ng-switch-when="412">等待卖家同意</span>
+								<span ng-switch-when="413">买家接单</span>
+								<span ng-switch-when="504">已付款</span>
+								<span ng-switch-when="507">待退款</span>
+								<span ng-switch-when="603">付款超时取消</span>
+								<span ng-switch-when="604">缺货取消</span>
+								<span ng-switch-when="610">确定状态取消</span>
+								<span ng-switch-when="611">已付款状态取消</span>
+								<span ng-switch-when="403">出货中</span>
+								<span ng-switch-when="404">待收货</span>
+								<span ng-switch-when="406">待出货</span>
+								<span ng-switch-when="408">发货中</span>
+								<span ng-switch-when="413">卖家接单</span>
+								<span ng-switch-when="501">待确认</span>
+								<span ng-switch-when="503">待付款</span>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>-->
+	<!-- 主要信息end -->
+	
+	<!-- ==== 物流详情 start ==== -->
+	<div>
+		<div class="title">
+			<div>
+				<img src="static/img/order/logistics-details.png">
+				物流详情
+			</div>
+		</div>
+		
+		<div class="logistics-details">
+			<!-- 收货信息 start -->
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th width="10%">收货单位</th>
+					<th width="20%">收货地址</th>
+					<th width="20%" class="before-blank">收货人</th>
+
+					<th width="10%">购买方</th>
+					<th width="10%">配送方式</th>
+					<th width="8%">运费</th>
+					<th width="18%">快递信息</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><div ng-cloak>{{address.company || '/'}}</div></td>
+					<td>
+                        <div ng-cloak>
+                            {{address.area}}<br>
+                            {{address.detailAddress}}
+                        </div>
+                    </td>
+					<td class="before-blank">
+                        <div ng-cloak>
+                            姓名：{{address.name}}<br>
+                            电话：{{address.tel}}<br>
+                            邮箱：{{address.email}}
+                        </div>
+                    </td>
+
+					<td><span ng-bind="orderDetailInfo.buyer"></span></td>
+					<td>
+                        <div ng-switch="orderDetailInfo.deliverytype">
+                            <div ng-switch-when="1301">UU配送</div>
+                            <div ng-switch-when="1302">上门自提</div>
+                        </div>
+                    </td>
+					<td>/</td>
+					<td>
+                        <div ng-if="logistics.companyName">
+                            <span>快递公司：</span> <span ng-bind="logistics.companyName"></span><br>
+                            <span>快递单号：</span> <span ng-bind="logistics.number"></span><br>
+                            <a  ng-click="listLogistics(logistics)" style="text-decoration : none ">点击查看物流详情</a>
+                        </div>
+                        <div ng-if="!logistics.companyName">/</div>
+                    </td>
+				</tr>
+				</tbody>
+			</table>
+			<!-- 收货信息 end -->
+		</div>
+	</div>
+	<!-- 物流详情 end -->
+	
+	<!-- ==== 支付详情 start ==== -->
+	<div class="pay-details">
+		<div class="title">
+			<div>
+				<img src="static/img/order/pay-details.png">
+				支付详情
+			</div>
+		</div>
+		<div class="pay-confirm">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>货款</th>
+                    <th>运费</th>
+                    <th>支付总金额</th>
+                    <th width="20" class="before-blank">税率</th>
+
+                    <th>发票类型</th>
+                    <th class="before-blank">发票信息</th>
+
+                    <th>付款方式</th>
+                    <th>付款账户信息</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <span ng-switch="orderDetailInfo.currency">
+									<span ng-switch-when="RMB">￥</span>
+									<span ng-switch-when="USD">$</span>
+								</span>
+                        <span ng-bind="orderDetailInfo.price | number:2"></span>
+                    </td>
+                    <td>/</td>
+                    <td>
+                        <span ng-switch="orderDetailInfo.currency">
+									<span ng-switch-when="RMB">￥</span>
+									<span ng-switch-when="USD">$</span>
+								</span>
+                        <span ng-bind="orderDetailInfo.price | number:2"></span>
+                    </td>
+                    <td class="before-blank">
+                        <div ng-if="orderDetailInfo.currency === 'RMB'">17%</div>
+                        <div ng-if="orderDetailInfo.currency !== 'RMB'">0%</div>
+                    </td>
+
+                    <td>
+                        <div ng-switch="orderDetailInfo.invoicetype">
+                            <div ng-switch-when="1207">不开发票</div>
+                            <div ng-switch-when="1206">增值税普通发票</div>
+                            <div ng-switch-when="1205">增值税专用发票</div>
+                        </div>
+                    </td>
+                    <td class="before-blank">
+                        <div ng-if="orderDetailInfo.invoicetype !== 1207">
+                            <span ng-bind="orderDetailInfo.invoiceAddress.name"></span>
+                            <span ng-bind="orderDetailInfo.invoiceAddress.telephone"></span>
+                            <span ng-bind="orderDetailInfo.invoiceAddress.head"></span><br>
+                            <span ng-bind="orderDetailInfo.invoiceAddress.area"></span><br>
+                            <span ng-bind="orderDetailInfo.invoiceAddress.detailAddress"></span>
+                        </div>
+                        <div ng-if="orderDetailInfo.invoicetype === 1207" style="text-align: center">/</div>
+                    </td>
+
+                    <td>
+                        <div ng-switch="orderDetailInfo.paytype">
+                            <div ng-switch-default>/</div>
+                            <div ng-switch-when="1102">在线支付</div>
+                            <div ng-switch-when="1103">线下付款</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="sellerAccount.number && orderDetailInfo.paytype==1103">
+                            <span ng-cloak>银行：{{sellerAccount.bankname}}</span><br>
+                            <span ng-cloak>账户名称：{{sellerAccount.accountname}}</span><br>
+                            <span ng-cloak>账号：{{sellerAccount.number}}</span>
+                        </div>
+                        <div ng-if="!sellerAccount.number && orderDetailInfo.paytype != 1102" style="text-align: center;">/</div>
+                        <div ng-if="orderDetailInfo.paytype == 1102" style="text-align: center;">微信/支付宝/网银</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+	</div>
+	<!-- 支付详情 end -->
+	
+	<!-- ==== 订单信息 start ==== -->
+	<div>
+		<div class="order-info">
+			<div class="order-info-items">
+				<div class="order-info-item">
+					<div>货源批次数：</div><div ng-cloak>{{ orderDetailInfo.orderDetails.length }}</div>
+				</div>
+				<div class="order-info-item">
+					<div>产品型号数：</div><div><span ng-bind="orderDetailInfo.cmpQty"></span></div>
+				</div>
+				<div class="order-info-item">
+					<div>产品总数量：</div><div ng-bind="orderDetailInfo.qty | number"></div>
+				</div>
+				<div class="order-info-item">
+					<div>产品总金额：</div>
+					<div><span ng-bind="orderDetailInfo.price | number: 2"></span> <span ng-bind="orderDetailInfo.currency"></span></div>
+				</div>
+				<div class="order-info-item">
+					<div>运费合计：</div>
+					<div>/</div>
+				</div>
+				<div class="order-info-item">
+					<div>支付总金额：</div> 
+					<div><span ng-bind="orderDetailInfo.price | number : 3"></span> <span ng-bind="orderDetailInfo.currency"></span></div>
+				</div>
+				<div class="order-info-item">
+					<div>币种：</div> 
+					<div><span ng-bind="orderDetailInfo.currency"></span></div>
+				</div>
+				<div class="order-info-item">
+					<div>税率：</div>
+					<div>
+						<span ng-if="orderDetailInfo.currency === 'RMB'">17%</span>
+					   	<span ng-if="orderDetailInfo.currency === 'USD'">0%</span>
+					</div>
+				</div>
+			</div>
+			<div class="order-info-trade-remark">
+				<div>交易备注：</div>
+				<div><span ng-bind="orderDetailInfo.orderRemark"></span><span ng-if="!orderDetailInfo.orderRemark">无</span></div>
+			</div>
+		</div>
+	</div>
+	<!-- 订单信息 end -->
+	
+	<!-- ==== 操作：返回/打印 start ==== -->
+	<div class="operation clearfix">
+		<div><a href="#/home/myOrder_todo"><img src="static/img/order/return.png"></a></div>
+		<div><a><img src="static/img/order/print.png" ng-click="printOrder(orderDetailInfo)"></a></div>
+	</div>
+	<!--  操作 end -->
+</div>

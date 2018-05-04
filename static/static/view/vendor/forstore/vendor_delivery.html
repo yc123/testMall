@@ -1,0 +1,795 @@
+<!--右侧主体部分-->
+<style type="text/css">
+    em.title {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .edit-address {
+        margin-left: 8px;
+    }
+
+    .taggle-address {
+        vertical-align: baseline;
+        margin-left: 0;
+        color: #5078cb;
+        font-size: 12px;
+    }
+    a.taggle-address:last-child{
+        color: #666;
+        margin-right: 10px;
+    }
+    .sell_oder .sure_oder .oder_xq_list dl span.wid01 p{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: normal;
+        overflow: hidden;
+        padding-top: 10px;
+    }
+    .sell_oder .sure_oder .oder_xq_list dl span.wid01{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: normal;
+        overflow: hidden;
+    }
+    .pay_price div{
+        border: none;
+        margin-top: -20px;
+        height: 60px;
+        width: auto;
+        padding: 0;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+    .pay_price a{
+        width: 70px;
+        height: 28px;
+        font-size: 14px;
+        line-height: 28px;
+        margin-right: 10px;
+    }
+    .pay_price a:first-child{
+        margin-right: 0;
+    }
+    .pay_price a.add{
+        width: 90px;
+        background: #fc5902;
+    }
+    .pay_price a.cancel{
+        background: #b4b5b9;
+        color: #333;
+    }
+    .pay_price div a:hover{
+        background: #3f7ae3;
+        color: #fff;
+    }
+    .pay_price a.confirm{
+        background: #5078cb;
+        color: #fff;
+    }
+    .pay_price div a:hover, .pay_price div a:active{
+        color: #fff;
+        text-decoration: none;
+    }
+    .form-control{
+        border-radius: 3px;
+    }
+    .sell_oder .sure_oder .oder_xq_list dl span .dropdown-menu{
+        position: unset;
+        float: none;
+        /*top: 95%;*/
+        line-height: 23px;
+        max-height: 120px;
+        overflow-y: auto;
+        width: 170px;
+        display: block;
+        overflow-x: hidden;
+        border-radius: 0;
+        box-shadow: none;
+        margin-top: 1px;
+        border: none;
+    }
+    .sell_oder .sure_oder .oder_xq_list dl span .dropdown-menu li{
+        font-size: 14px;
+        cursor: pointer;
+        padding-left:13px;
+    }
+    .sell_oder .sure_oder .oder_xq_list dl span .dropdown-menu li:hover, .sell_oder .sure_oder .oder_xq_list dl span .dropdown-menu li.active{
+        color: #fff;
+        background: #5078cb;
+    }
+    .line60 span>input{
+        position: relative;
+    }
+    .line60 span .btn-position{
+        position: absolute;
+        top: -1px;
+        right: -19px;
+        height: 32px;
+        width: 20px;
+        display: inline-block;
+        font-size: 24px;
+        color: #fff;
+        background: #5078cb;
+        cursor: pointer;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+    .line60 span .btn-position i{
+        position: absolute;
+        left: 3px;
+        top: 5px;
+    }
+    .input-ul ::-webkit-scrollbar-track-piece {
+        background: #d4d4d4;
+    }
+    .input-ul ::-webkit-scrollbar {
+        width: 20px;
+        height: 5px;
+    }
+    .input-ul ::-webkit-scrollbar-thumb {
+        background: #b1abab;
+        padding-left: 0;!important;
+        -webkit-border-radius: 0;
+    }
+    .input-ul ::-webkit-scrollbar-thumb:hover{
+        background: #9b9b9b;
+        cursor: pointer;
+    }
+    /*修改部分*/
+    .logistics_list_xq dl dd:last-child em{
+        background: #5078cb;
+    }
+    #oder-detail .oder_xq_list dl .oder_l p{
+        font-size: 14px;
+        text-align: left;
+        width: 100%;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: normal;
+        overflow: hidden;
+    }
+    #oder-detail .oder_xq_list dl span{
+        width: 14%;
+    }
+    #oder-detail .oder_xq_list dl span.wd01{
+        width: 13%;
+    }
+    #oder-detail .oder_xq_list dl span.wd02{
+        width: 25%;
+    }
+    #oder-detail .oder_xq_list dl .oder_l p.style01{
+        width: 160px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: normal;
+        overflow: hidden;
+    }
+    #oder-detail .oder_xq_list dl .oder_l img{
+        margin-left: 20px;
+    }
+    #oder-detail .oder_xq_list dl .change-price span{
+        width: 74px;
+        height: 30px;
+        display: inline-block;
+        text-align: center;
+        background: #5078cb;
+        line-height: 30px;
+        color: #fff;
+        font-size: 14px;
+        margin-right: 5px;
+        float: right;
+    }
+    #oder-detail .oder_xq_list dl .change-price span:hover{
+        cursor: pointer;
+    }
+    .oder_xq_list dl .change{
+        height: 70px;
+    }
+    .oder_xq_list dl .change span{
+        height: 40px;
+        line-height: 40px;
+        margin-top: 10px;
+    }
+    .oder_xq_list dl .change .change-price{
+        width: 100% !important;
+        margin-top: 0;
+        padding-right: 30px;
+    }
+    #oder-detail .oder_xq_list dl .change-price span:hover{
+        background: #3f7ae3;
+        color: #fff !important;
+    }
+    #oder-detail .oder_xq_list dl .change-price span.off{
+        background: #fa5a02;
+    }
+    .oder_xq_list dl .price span i {
+        margin-right: 35px;
+        font-weight: bold;
+    }
+    .no-record{
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        background: #fff;
+        font-size: 14px;
+    }
+    .logistics_list01 .oder_xq p{
+        display: inline-block;
+        margin-left: 10px;
+    }
+    .red{
+        color: #f00;
+    }
+    #oder-detail .oder_xq_list dl dd.line60 span{
+        width: 20%;
+    }
+    #oder-detail .oder_xq_list dl dd.line60 span.wd001{
+        width: 35%;
+        margin-left: 25px;
+    }
+    /*订单详情修改*/
+    .logistics_list01{
+        background: #fff;
+    }
+    .oder_xq_list dl dt{
+        border: #f1f6ff 1px solid;
+        height: 40px;
+        border-bottom: #769be9 2px solid !important;
+        background: #f6f9ff;
+        margin-top: 10px;
+    }
+    .oder_xq_list dl .oder_l {
+        background: #f6f9ff;
+        border-bottom: #fff 1px solid;
+    }
+    .oder_xq_list dl dd{
+        border-bottom: none;
+    }
+    .oder_xq_list dl dd.order-company{
+        height: 50px;
+        line-height: 50px;
+        border-bottom: #f1f6ff 1px solid;
+    }
+    .oder_xq_list dl .oder_l span.wd02{
+        margin-top: 0;
+    }
+    .oder_xq_list dl .oder_l span.wd02 a img{
+        margin-top: 15px;
+    }
+    .oder_xq_list dl .oder_l span textarea {
+        padding: 5px;
+        width: 120px;
+        height: 60px;
+        border: #ccc 1px solid;
+        margin-top: 10px;
+    }
+    .oder_xq_list dl span a{
+        color: #333;
+    }
+    .oder-remark,.oder_xq_list dl .line60{
+        background: #f1f6ff;
+    }
+    .oder_xq_list dl .line60{
+        /*height: 50px;*/
+        border-bottom: #5078cb 1px solid;
+    }
+    .oder-remark .form-control {
+        width: 546px;
+        height: 30px;
+        border-radius: 2px;
+        float: left;
+        margin-top: 5px;
+        margin-left: 4px;
+    }
+    .oder-remark span em {
+        float: left;
+        color: #333 !important;
+        margin-left: 20px;
+    }
+    .oder_xq_list dl span.total-price{
+        float: right;
+        width: auto !important;
+        position: relative;
+        bottom: 10px;
+        margin-right: 20px;
+    }
+    .oder_xq_list dl span.total-price p{
+        line-height: 25px;
+        font-size: 14px;
+        text-align: right;
+        font-weight: bold;
+        display: flex;
+    }
+    .oder_xq_list dl span.total-price p:first-child em{
+        color: #333;
+    }
+    .oder_xq_list dl span.total-price p:last-child{
+        color: #e64040;
+    }
+    .oder_xq_list dl span.total-price p em{
+        color: #e64040;
+    }
+    .oder_xq_list dl span.total-price strong {
+        width: 70px;
+        display: inline-block;
+        float: left;
+    }
+    .oder_xq_list dl span.user-address{
+        width: 100% !important;
+        line-height: 30px;
+        position: relative;
+        top: -23px;
+        background: #f1f6ff;
+    }
+    .oder_xq_list dl span.user-address i:nth-of-type(1){
+        margin-left: 20px;
+    }
+    .oder_xq_list dl span.user-address i:nth-of-type(2){
+        margin-left: 70px;
+    }
+    .open-more{
+        text-align: center;
+        background: #f6f9ff;
+        height: 2px;
+    }
+    .oder-remark.length3{
+        border-top: #a5d6f7 1px dashed
+    }
+    .open-more a{
+        font-size: 12px;
+        width: 200px;
+        height: 15px;
+        display: inline-block;
+        border: #5e9fcb 1px dashed;
+        border-top: 0;
+        font-weight: inherit;
+        background: #f6f9ff;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        line-height: 15px;
+        text-decoration: none;
+        position: relative;
+        top: 0;
+        z-index: 200;
+    }
+    .open-more a i{
+        margin-right: 5px;
+        font-size: 20px;
+        vertical-align: middle;
+        position: relative;
+        top: -5px;
+        color: #ff8423;
+    }
+    .open-more a.active{
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        position: relative;
+        top: -12px;
+        border-bottom: none;
+        border-top: #5e9fcb 1px dashed;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        background: #f1f6ff;
+    }
+    .open-more a.active em{
+        top: 3px;
+    }
+    .open-more a.active i{
+        top: 0;
+    }
+    .open-more a em{
+        position: relative;
+        top: -4px;
+        color: #ff8423;
+    }
+    .open-more a:hover em,.open-more a:hover i{
+        color: #5078cb;
+        text-decoration: none;
+    }
+    .limit-3{
+        width: 100%;
+        margin: 0 auto;
+        max-height: 270px;
+        overflow: hidden;
+    }
+    .open-more.none{
+        display: none;
+    }
+    .logistics_list01 .oder_xq p b{
+        color: #959595;
+    }
+    .logistics_list01 .oder_xq{
+        width: 97%;
+    }
+    .oder_xq_list dl .price-style em{
+        width: 18px;
+        height: 28px;
+        background: #5078cb;
+        text-align: center;
+        line-height: 28px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+        color: #fff;
+        display: inline-block;
+    }
+    .oder_xq_list dl .price-style input{
+        width: 100px;
+        border: #5078cb 1px solid;
+        font-size: 14px;
+        position: relative;
+        height: 28px;
+        left: -6px;
+        top: -1px;
+        text-align: center;
+    }
+    .oder_xq_list dl .oder_l img{
+        width: 60px;
+        height: 60px;
+    }
+    .color999{
+        color: #999 !important;
+    }
+    .log_menu span{
+        margin-left: 11px;
+    }
+    .text-area{
+        width: 120px;
+        height: 60px;
+        background: #fff;
+        margin-top: 15px;
+        overflow-y: auto;
+        text-align: left;
+        padding: 0 3px;
+        margin-left: 5px;
+    }
+    .text-area i{
+        text-align: left;
+        position: relative;
+        top: 4px;
+        font-size: 12px;
+        color: #666;
+        word-break: break-all;
+    }
+
+    #oder-detail .line60.logistic-input{
+        position: relative;
+        top: -15px;
+        height: 80px;
+        margin-top: -10px;
+    }
+    #oder-detail .line60.logistic-input.h125{
+        height: 125px;
+    }
+    #oder-detail .line60.logistic-input span{
+        height: 30px;
+        line-height: 30px;
+        float: left;
+        margin-top: 5px;
+    }
+    #oder-detail .line60.logistic-input span .form-control{
+        border-radius: 2px;
+        border: #ccc 1px solid;
+    }
+    #oder-detail .line60.logistic-input span.input-ul{
+        width: 170px;
+        margin-right: 55px;
+        float: left
+    }
+    #oder-detail .line60.logistic-input span.input-ul input{
+        vertical-align: middle;
+        width:170px;
+        margin-top: -1px;
+        height: 32px;
+    }
+    #oder-detail .line60.logistic-input span.input-ul >div {
+        position: relative;
+        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    }
+    #oder-detail .line60.logistic-input span.input-ul >div >a {
+        width: 170px;
+        background: #e8e8e8;
+        color: #666!important;
+        display: block;
+    }
+    #oder-detail .line60.logistic-input span.input-ul em{
+    }
+    #oder-detail .line60.logistic-input .logistic-input-01{
+        font-size: 14px;
+        margin-left: 40px;
+        line-height: 30px;
+    }
+    .com_log_list ul li p{
+        max-height: 40px;
+        overflow: hidden;
+        margin-bottom: 10px;
+        margin-top: 25px;
+        line-height: 20px;
+    }
+    .com_log_list{
+        height: 160px;
+    }
+    .com_log_list ul li span.adderss-name{
+        max-height: 40px;
+        overflow: hidden;
+    }
+    .com_log_list ul li{
+        width: 282px;
+        height: 124px;
+        background: url("static/img/user/images/adress_bg02.jpg") no-repeat;
+    }
+    .com_log_list ul li.active{
+        background-position: -283px 0;
+    }
+    .form-control[readonly]{
+        background-color: #ffffff;
+    }
+    .input-ul ::-webkit-scrollbar {
+        padding-left: 0 !important;
+        background-color: #c1c1c1;
+        width: 8px;
+    }
+    .input-ul ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 5px !important;
+        border-radius: 5px !important;
+    }
+</style>
+<div class="user_right fr">
+    <!--订单发货-->
+    <div class="sell_oder payment" id="oder-detail">
+        <!--确认订单信息-->
+        <div class="sure_oder">
+            <div class="log_menu">
+                <span><em class="title">订单信息</em>
+                    <b>订单号：<em ng-bind="::checkinvoice.orid" style="padding-right: 15px;" class="color333"></em>
+                        <em><font style="color: #333;">订单状态：</font>
+                            <em ng-bind="checkinvoice.status | statusAndTypeFilter"></em>
+                        </em>
+                    </b>
+                </span>
+            </div>
+            <div class="com_log_list">
+                <ul>
+                    <li class="log_line">收货人信息：</li>
+                    <li>
+                        <!--<h4 ng-bind="checkinvoice.jsonSpAddress.company || '空'"></h4>-->
+                        <p class="" title=""><em ng-bind="::checkinvoice.jsonSpAddress.area"></em> <em ng-bind="::checkinvoice.jsonSpAddress.detailAddress"></em></p>
+                        <span class="adderss-name"><em ng-bind="checkinvoice.jsonSpAddress.tel"></em>&nbsp;&nbsp;<em ng-bind="checkinvoice.jsonSpAddress.name"></em></span>
+                    </li>
+                    <li class="log_line">发货人信息：</li>
+                    <li ng-if="jsonSdAddress.area">
+                        <!--<h4 ng-bind="jsonSdAddress.company"></h4>-->
+                        <p class="">{{jsonSdAddress.area}} {{jsonSdAddress.detailAddress}}</p>
+                        <span class="adderss-name"><em ng-bind="jsonSdAddress.tel"></em>&nbsp;&nbsp;<em ng-bind="jsonSdAddress.name"></em>
+                            <div style="float: right; color: #ccc;">
+                                <a ng-if="checkinvoice.status!=404" class="taggle-address edit-address" ng-click="editAddr(jsonSdAddress)" style="color: #5078cb;">编辑</a>
+                                <!--<a ng-if="checkinvoice.status!=404" class="taggle-address" ng-click="taggleAddress(jsonSdAddress)"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;切换</a>-->
+                                <a ng-if="checkinvoice.status!=404 && total<20" class="taggle-address" ng-click="editAddr()" style="color: #5078cb;"> | 新增</a>
+                            </div>
+                        </span>
+                    </li>
+                    <li ng-if="!jsonSdAddress.area">
+                        <h4><a ng-click="editAddr()" style="color: #5078cb;"><i class="fa fa-plus-square" aria-hidden="true"></i>新建</a></h4>
+                    </li>
+                </ul>
+            </div>
+            <!--订单列表-->
+            <div class="oder_xq_list">
+                <dl class="clearfix">
+                    <dt>
+                        <span class="wd02">产品信息</span>
+                        <span class="wd01">交期(天)</span>
+                        <span class="wd01">单价</span>
+                        <span style="width: 10%;">数量</span>
+                        <span class="wd01">小计</span>
+                        <span class="wd01">物料编码</span>
+                        <span class="wd01">备注</span>
+                    </dt>
+                    <!--<dd>-->
+                    <!--<span style="width: 100%; text-align: left; padding-left: 20px;" class="ng-binding"><img src="static/img/user/images/shop_home01.png">{{purchase.buyentername}}</span>-->
+                    <!--</dd>-->
+                    <dd class="order-company">
+						<span style="white-space: nowrap; width: 100%; text-align: left;">
+							<i style="min-width: 315px; display: inline-block">
+                                <i ng-bind="checkinvoice.buyername" style="color: #333; margin-left: 20px;"></i>
+                                <i style="color: #999; margin: 0 5px;" ng-if="checkinvoice.buyerentername">|</i>
+                                <i href="store/{{checkinvoice.storeid}}#/home" ng-bind="checkinvoice.buyerentername"></i>
+								<!--<a ng-if="purchase.pu_buyentername" name="{{purchase.id}}" ng-controller="ChatContactCtrl as chat" ng-click="chat.contactWithOther(purchase.buyPhone, purchase.buyerenuu, chat.UserType.ENTERPRISE)">|{{purchase.pu_buyentername}}</a>-->
+							</i>
+							<img src="static/img/common/songguo.png" style="margin-right:0; ">
+                            <a name="{{purchase.id}}" href="javascript:void(0)" class="contact_btn" ng-controller="ChatContactCtrl as chat" ng-click="chat.contactWithOther(purchase.buyPhone, purchase.buyerenuu, chat.UserType.ENTERPRISE)">联系买家</a>
+							<!--<a name="{{purchase.id}}" href="javascript:void(0)" class="contact_btn" >联系买家</a>-->
+						</span>
+                    </dd>
+                    <div ng-class="{'limit-3': !open}" style="width: 100%; margin: 0 auto; overflow: hidden;">
+                        <dd class="oder_l" ng-repeat="detail in checkinvoice.invoiceFPurchaseDetails">
+						<span class="wd02">
+							<a href="store/{{detail.storeid}}/{{::detail.batchCode}}" target="_blank"><img ng-src="{{detail.img ? detail.img : 'static/img/store/common/default.png'}}"/></a>
+							<p class="style01" style="margin-top: 10px;">类目：
+								<a ng-bind="detail.kiName" href="product/kind/{{::detail.kindUuid}}" title="{{detail.kiName}}" target="_blank"></a>
+							</p>
+							<p class="style01">型号：
+								<a ng-bind="detail.cmpCode" href="store/{{detail.storeid}}/{{::detail.batchCode}}" title="{{detail.cmpCode}}" target="_blank"></a>
+							</p>
+							<p class="style01">品牌：
+								<a ng-bind="detail.brName" href="product/brand/{{::detail.branduuid}}" title="{{detail.brName}}" target="_blank"></a>
+							</p>
+						</span>
+                            <span class="wd01">交期：
+							<i ng-if="detail.b2cMinDelivery != detail.b2cMaxDelivery" ng-bind="detail.b2cMinDelivery + '-' + detail.b2cMaxDelivery"></i>
+							<i ng-if="detail.b2cMinDelivery == detail.b2cMaxDelivery" ng-bind="detail.b2cMinDelivery"></i>
+						</span>
+                            <span class="wd01">
+							<em  ng-show="!isChange" ng-bind="detail.taxUnitPrice | formateNumber : 6 | currencySysmbol : detail.currencyName" style="color: #333;"></em>
+							<em ng-show="isChange" class="price-style">
+								<em  ng-bind="'' | currencySysmbol : detail.currencyName"></em>
+								<input ng-model="detail.currentTaxUnitPrice" type="number" ng-change="updateTotal()"/>
+							</em>
+						</span>
+                            <span style="width: 10%;" ng-bind="detail.number">100</span>
+                            <span ng-show="!isChange" class="wd01 red" ng-bind="detail.taxUnitPrice * detail.number | formateNumber : 6 | currencySysmbol : detail.currencyName"></span>
+                            <span ng-show="isChange" class="wd01 red" ng-bind="detail.currentTaxUnitPrice * detail.number | formateNumber : 6 | currencySysmbol : detail.currencyName"></span>
+                            <!--物料编码-->
+                            <span class="wd01" style="line-height: 18px;">
+						<!--<textarea placeholder="可填写产品备注！例如物料编号"></textarea>-->
+                                <em ng-if="!detail.goodsnumber">&nbsp;</em>
+                                <div class="text-area" ng-if="detail.goodsnumber">
+                                    <i ng-bind="detail.goodsnumber">金石为开取数据五块钱叫稍微亲上加亲</i>
+                                </div>
+						    </span>
+                            <span class="wd01" style="line-height: 18px;">
+							<!--<textarea placeholder="可填写产品备注！例如物料编号"></textarea>-->
+                                <em ng-if="!detail.remark">&nbsp;</em>
+                                <div class="text-area" ng-if="detail.remark">
+                                    <i ng-bind="detail.remark">金石为开取数据五块钱叫稍微亲上加亲</i>
+                                </div>
+						</span>
+                        </dd>
+                    </div>
+                    <div class="open-more row" ng-class="{'none': checkinvoice.invoiceFPurchaseDetails.length <= 3}">
+                        <a href="javascript:void(0)" ng-click="open=!open" ng-class="{'active': open}">
+                            <em ng-bind="open ? '收起' : '查看所有产品'"></em>
+                            <i class="fa fa-angle-up" ng-if="open"></i>
+                            <i class="fa fa-angle-down" ng-if="!open"></i>
+                        </a>
+                    </div>
+                    <dd class="oder-remark" ng-class="{'length3': checkinvoice.invoiceFPurchaseDetails.length > 3}">
+						<span style="width: 100%; padding-left: 20px;">
+							<em>订单备注：</em>
+							<i class="fl" ng-bind="checkinvoice.infpuRemark || '无'">用便宜的物流最好！</i>
+                            <!--<input type="text"  class="form-control" placeholder="请填写订单备注" ng-model="order.orderRemark"/>-->
+						</span>
+                    </dd>
+                    <dd class="line60" style="border-bottom: none;">
+						<span class="wd02" style="width: 60%;text-align: left; margin-left: 40px;line-height: 30px; max-height: min-content;">
+                            配送方式：<em class="color333">{{deliveryMethod[checkinvoice.sendType]}}</em>
+                            <!--<em class="color333">上门自提</em>-->
+                            <i style="color: #666;" ng-if="rule" ng-bind="'(' + rule.ruleName + ')'">（满1000元包邮，未满足的订单收取运费20元）</i>
+						</span>
+                        <span class="total-price">
+								<p><strong>运费：</strong><em ng-bind="checkinvoice.fare | formateNumber : 2 | currencySysmbol : checkinvoice.currencyName.substring(0,3)" style="font-weight: bold"></em></p>
+								<p><strong>店铺合计：</strong>
+									<!--<em ng-if="!isChange" ng-bind="purchase.price | formateNumber : 2 | currencySysmbol : purchase.currency" style="font-weight: bold"></em>-->
+									<!--<em ng-if="isChange" ng-bind="purchase.currentTotal | formateNumber : 2 | currencySysmbol : purchase.currency" style="font-weight: bold"></em>-->
+                                    <em ng-bind="checkinvoice.ensurePrice  | formateNumber : 2 | currencySysmbol : checkinvoice.currencyName" style="font-weight: bold"></em>
+								</p>
+						</span>
+                        <!--<span class="user-address">-->
+                        <!--<i class="fl"><strong style="font-weight: inherit">自提点：</strong>营业时间：周一至周五 8:30-18:00</i><br/>-->
+                        <!--<i class="fl">地址：广东省  深圳市  南山区  科技园英唐大厦6楼 优软商城科技园英唐大厦6楼 优软商城</i>-->
+                        <!--&lt;!&ndash;<input type="text"  class="form-control" placeholder="请填写订单备注" ng-model="order.orderRemark"/>&ndash;&gt;-->
+                        <!--</span>-->
+                        <!--<span ng-if="!noLogisticInfoArray[purchase.status]" class="wd02">物流：{{logistics.companyName || '空'}}</span>-->
+                        <!--<span ng-if="!noLogisticInfoArray[purchase.status]" class="wd01">物流单号：{{logistics.number || '空'}}</span>-->
+                        <!--<span ng-show="!canShowInfo && !noLogisticInfoArray[purchase.status]" class="wd01 wd001"><em style="color: #b0b0b0; font-size: 12px;"><i class="fa fa-info-circle"></i>系统无法提供此物流信息，请根据物流单号到相应的官网查询。</em></span>-->
+                        <!--<span ng-show="!canShowInfo" class="wd01">系统无法提供</span>-->
+                        <!--<span><em ng-bind="freight | number : 2 | currencySysmbol : purchase.currency">￥20.00</em></span>-->
+                    </dd>
+                    <dd class="line60 logistic-input" ng-class="{'h125': checkinvoice.sendType==1303}">
+                        <div  class="logistic-input-01" ng-if="checkinvoice.sendType==1303">
+                            <i ng-bind="takeSelf.takename"></i> &nbsp;&nbsp;营业时间：<em ng-bind="takeSelf.businesstime">周一至周五 8:30-18:00</em><br/>
+                            地址：<em ng-bind="takeSelf.area">广东省  深圳市  南山区</em>&nbsp;&nbsp;<em ng-bind="takeSelf.detailAddress">科技园英唐大厦6楼 优软商城科技园英唐大厦6楼 优软商城</em>
+                        </div>
+                        <div style="width: 100%;margin: 0 auto;height: 45px;">
+                            <span style="width: 10%; margin-left: 22px;">物流公司 :&nbsp;</span>
+                            <span class="input-ul">
+                                <input id="addr" style="border: #5078cb 1px solid;" type="text" class="form-control select-adder" ng-focus="getItemFocus()" ng-blur="onItemBlur()" ng-keydown="onKeyup()" ng-model="logistics.companyName" placeholder="请选择物流公司" autocomplete="off" maxlength="15" readonly="readonly" >
+                                <!--<em name="companyName" ng-click="changeShowLogistics()" class="btn-position"><i class="fa fa-caret-down" aria-hidden="true"></i></em>-->
+                                <div ng-if="showCompanyName">
+                                    <ul id="ulContent" class="dropdown-menu">
+                                        <li ng-click="showDefaultText()">请选择物流公司</li>
+                                        <li ng-click="showText(data)" ng-repeat="data in data_list" ng-class="{'active': $index==selectIndex}" ng-bind="data.companyName"></li>
+                                    </ul>
+                                    <a ng-click="addDistributor()">+&nbsp;新增配送商</a>
+                                </div>
+                            </span>
+                            <span  style="width: 10%;"> 物流单号 :&nbsp;</span>
+                            <span style="margin-right: 20px; width: 160px; float: left;">
+                            <form name="myForm">
+                                <!--ng-pattern="/^[A-Za-z0-9]+$/"-->
+                            <input name="number" type="text" class="form-control" style="height: 32px" ng-model="logistics.number" placeholder="请输入物流单号" maxlength="20" autocomplete="off"/>
+                            </form>
+                        </span>
+                            <em ng-if="companyObject && companyObject.isKdn==0" style="color: #b0b0b0;
+                            font-size: 12px;
+                            float: left;
+                            line-height: 33px;"><i class="fa fa-info-circle"></i>系统无法提供此物流信息，请根据物流单号到相应的官网查询。</em>
+                        </div>
+                    </dd>
+                    <dd class="pay_price">
+                        <div ng-if="checkinvoice.status==406">
+                            <a href="javascript:void(0)" ng-click="saveCheck()" class="confirm">确认发货</a>
+                            <a ng-click="backToDelivery()" class="cancel">取消</a>
+                            <!--<a ng-click="addDistributor()" class="add">新增配送商</a>-->
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <!--<div class="oder_xq_list">-->
+                <!--<dl class="clearfix">-->
+                    <!--<dt>-->
+                        <!--<span class="wid01">产品型号</span>-->
+                        <!--<span class="wid01">属性</span>-->
+                        <!--<span>数量</span>-->
+                        <!--<span>单价/币种</span>-->
+                        <!--<span>小计</span>-->
+                        <!--<span>备注</span>-->
+                    <!--</dt>-->
+                    <!--<dd>-->
+                        <!--<span style="width: 100%; text-align: left;">买家：<em class="de_color" ng-bind="checkinvoice.buyerentername">HKJKLJKL</em></span>-->
+                    <!--</dd>-->
+                    <!--<dd class="oder_l" ng-repeat="detail in checkinvoice.invoiceFPurchaseDetails">-->
+                            <!--<span class="wid01">-->
+                                <!--<a href="store/{{::detail.storeid}}/{{::detail.batchCode}}"><img ng-src="{{detail.img || 'static/img/store/common/default.png'}}" width="42" height="42"/></a>-->
+                                <!--<p><a href="store/{{detail.storeid}}/{{::detail.batchCode}}" ng-bind="detail.cmpCode" title="{{detail.cmpCode}}" class="text-more" style="width: 160px;margin-top: 3px;"></a></p>-->
+                            <!--</span>-->
+                        <!--<span  class="wid01" ng-bind="detail.kiName"></span>-->
+                        <!--<span ng-bind="detail.number | number"></span>-->
+                        <!--<span ng-bind="detail.taxUnitPrice | formateNumber : 6 | currencySysmbol : detail.currencyName"></span>-->
+                        <!--<span><em ng-bind="detail.ensurePrice | formateNumber : 6 | currencySysmbol : detail.currencyName"></em></span>-->
+                        <!--&lt;!&ndash;<span><font class="gray">无</font></span>&ndash;&gt;-->
+                    <!--</dd>-->
+                    <!--<dd class="line60">-->
+                        <!--<span style="width: 165px; text-align: left;padding-left: 10px;">配送方式：<b>物流配送</b></span>-->
+                        <!--<span style="width: 5%;"> 物流 :&nbsp;</span>-->
+                        <!--<span style="width: 170px;top: 50%;margin-top: -15px; margin-right: 55px;">-->
+                             <!--&lt;!&ndash;<input type="text" style="vertical-align: middle;width:170px; margin-top: -2px;" class="form-control" ng-model="logistics.companyName" placeholder="请输入物流公司" autocomplete="off" typeahead="log.companyName as log.companyName for log in logisticsInfo | filter:$viewValue | limitTo : 10" typeahead-on-select="onAssociateKindClick($item)" typeahead-min-length="0" />&ndash;&gt;-->
+                            <!--<input id="addr" type="text" class="form-control" ng-change="textChange()" ng-blur="onBlur()" ng-focus="getFocus()" ng-keydown="onKeyup()" ng-model="logistics.companyName"  placeholder="请输入物流公司" autocomplete="off" style="vertical-align: middle;width:170px; margin-top: -2px;" maxlength="15">-->
+                            <!--<em name="companyName" ng-click="changeShowLogistics()" class="btn-position"><i class="fa fa-caret-down" aria-hidden="true"></i></em>-->
+                            <!--<ul id="ulContent" ng-if="showCompanyName && matchData" class="dropdown-menu">-->
+                                <!--<li ng-click="showText(companyName)" ng-repeat="companyName in resultList" ng-class="{'active': $index==selectIndex}" ng-bind="companyName"></li>-->
+                            <!--</ul>-->
+                        <!--</span>-->
+
+                        <!--<span style="margin-right: 20px; width: 160px;">-->
+                            <!--<form name="myForm">-->
+                                <!--<input name="number" type="text" class="form-control" ng-model="logistics.number" placeholder="请输入物流单号" style="margin-top: 13px;" ng-pattern="/^[A-Za-z0-9]+$/" maxlength="20"/>-->
+                                <!--&lt;!&ndash;<span ng-show="myForm.number.$invalid && myForm.number.$dirty">请输入正确的</span>&ndash;&gt;-->
+                            <!--</form>-->
+                            <!--&lt;!&ndash;<input type="text" class="form-control" ng-model="logistics.number" placeholder="请输入物流单号" style="margin-top: 13px;" ng-pattern="/^[A-Za-z0-9]+$/"/>&ndash;&gt;-->
+                        <!--</span>-->
+                        <!--<em ng-if="showTip" style="color: #b0b0b0; font-size: 12px;"><i class="fa fa-info-circle"></i>系统无法提供此物流信息，请根据物流单号到相应的官网查询。</em>-->
+                        <!--&lt;!&ndash;<span style="width: 22%"><em>￥20.00</em></span>&ndash;&gt;-->
+                    <!--</dd>-->
+                    <!--<dd class="price">-->
+                        <!--<span style="width: 90%;">总计：<i ng-bind="checkinvoice.ensurePrice  | formateNumber : 2 | currencySysmbol : checkinvoice.currencyName"></i></span>-->
+                    <!--</dd>-->
+                    <!--<dd class="pay_price">-->
+                        <!--<p>-->
+                            <!--<div ng-if="checkinvoice.status==406">-->
+                                <!--<a href="javascript:void(0)" ng-click="saveCheck()" class="confirm">确认</a>-->
+                                <!--<a href="vendor#/order/center" class="cancel">取消</a>-->
+                            <!--</div>-->
+                            <!--<div ng-if="checkinvoice.status==404">-->
+                                <!--<a href="javascript:void(0)" ng-click="upateLogistic(checkinvoice)" class="confirm">确认</a>-->
+                                <!--<a href="vendor#/order/center" class="cancel">取消</a>-->
+                            <!--</div>-->
+                        <!--</p>-->
+                    <!--</dd>-->
+                <!--</dl>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>

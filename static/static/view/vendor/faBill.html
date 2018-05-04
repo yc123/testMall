@@ -1,0 +1,187 @@
+<style>
+h4 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.row.searchInputGroup {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+}
+
+button[type=button].btn-primary-choosed {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.btn-default-inline {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-default-inline:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+.price {
+	color: #009B44;
+}
+
+td {
+	line-height: 1.1;
+}
+
+.total {
+	background-color: #7bb4e1;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 30px;
+}
+
+.total ul>li {
+	float: left;
+	margin-left: -2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-left: 2px #fff solid;
+    border-right: 2px #fff solid;
+}
+
+.total ul>li:hover {
+	background-color: #337ab7;
+}
+
+.total ul>li>a {
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btnactive {
+	background-color: #f39800;
+}
+
+div.row.total button:HOVER {
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.total button {
+	height: 30px;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>财务管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>发票管理</li>
+	</ul>
+</div>
+<div class="row searchInputGroup">
+	<div class="col-xs-3">
+		<h4>发票管理</h4>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group">
+			<input type="search" class="form-control" ng-model="keyword"
+				ng-search="onSearch()" placeholder="请输入发票单号查询"> <span
+				class="input-group-btn">
+				<button type="submit" class="btn btn-primary" type="button">搜索</button>
+			</span>
+		</div>
+	</div>
+</div>
+<div class="row total">
+	<div class="col-xs-6 pull-right">
+		<div ng-table-pagination="paginationParams"
+			template-url="templates.pagination" style="margin-right: -15px">
+			<div class="ng-table-pager" ng-if="paginationParams.data.length">
+				<div ng-if="paginationParams.settings().counts.length"
+					class="pull-right">
+					<ul class="list-unstyled list-inline">
+						<li ng-repeat="count in paginationParams.settings().counts"
+							ng-class="{'btnactive':paginationParams.count()==count}"><a
+							ng-click="paginationParams.count(count)" ng-bind="count"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{faBillTableParams.total()}}</span>条
+		</p>
+	</div>
+</div>
+</br>
+
+<table ng-table="faBillTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+	<thead>
+		<tr class="tr-default text-center">
+			<th>序号</th>
+			<th width="150">发票单号</th>
+			<th width="150">创建时间</th>
+			<th width="150">订单号</th>
+			<th>发票类型</th>
+		</tr>
+	</thead>
+	<tbody class="text-center">
+		<tr ng-repeat="bill in $data">
+			<td class="text-center">{{($index + 1)}}</td>
+			<td><span ng-bind="bill.billNo"></span></td>
+			<td><span ng-bind="bill.createTime"></span></td>
+			<td><span ng-bind="bill.orderId"></span></td>
+			<td><span ng-bind="bill.type | statusAndTypeFilter"></span></td>
+		</tr>
+	</tbody>
+</table>

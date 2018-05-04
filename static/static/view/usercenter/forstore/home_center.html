@@ -1,0 +1,157 @@
+<style>
+    /*.user_home .right_l .user_r_02 ul li.line02 p span {*/
+        /*font-weight: normal;*/
+        /*margin-right: 1.3em;*/
+    /*}*/
+    /**{-webkit-box-sizing:inherit;  -moz-box-sizing: inherit; box-sizing: inherit;}*/
+
+
+    p.address span {
+        font-weight: 500!important;
+    }
+    /*公司名称和用户名称做超出隐藏*/
+    .user_r_01 dl dd span{
+        display: inline-block;
+        margin-top: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .user_r_01 dl dd span.user{
+        max-width: 150px;
+    }
+    .user_r_01 dl dd span.enName{
+        max-width: 305px;
+    }
+    .user_r_02 .line02 p {
+        margin: 0 !important;
+        padding-left: 22px;
+        word-break: break-all;
+    }
+</style>
+<!--右侧主体部分-->
+<div class="user_home">
+    <div class="user_right fr">
+        <div class="right_l">
+            <div class="user_r_01">
+                <dl>
+                    <dt><img src="static/img/user/images/user_photo.png" /></dt>
+                    <dd>
+                        <span ng-cloak ng-bind="userInfo.userName" class="user" title="{{userInfo.userName}}"><br/> <!--<em>账户余额：￥68899.99</em>--></span>
+                        <span ng-cloak ng-bind="'|&nbsp;' + (userInfo.enterprise.enName || '个人账户')" class="enName" title="{{userInfo.enterprise.enName}}"><br/> <!--<em>账户余额：￥68899.99</em>--></span>
+                        <a ui-sref="account_manager" href="#/accountManager/">账户设置&nbsp;》</a>
+                    </dd>
+                </dl>
+            </div>
+
+            <!--买家账户信息-->
+            <div class="user_r_02">
+                <ul>
+                    <li class="line01">
+                        <p><span>收货信息</span><a href="javascript:void(0)" ng-click="editAddr(false, selectAddress)"><img src="static/img/user/images/edit.png"/></a></p>
+                    </li>
+                    <li class="line02" ng-if="addrs.length != 0">
+                        <p ng-cloak class="address" style="width: 96%">
+                            <span class="fl text-more" style="max-width: 490px;">{{selectAddress.area}}{{selectAddress.detailAddress}}</span>
+                            <span>&nbsp;&nbsp;{{selectAddress.name}}</span>
+                            <span>{{selectAddress.tel}}</span>
+                        </p>
+                    </li>
+                    <li class="line02" ng-if="addrs.length == 0">
+                        <p ng-cloak class="address">目前暂无地址信息</p>
+                    </li>
+
+                    <!--<li class="line01">-->
+                        <!--<p><span>支付信息</span><a href="#"><img src="static/img/user/images/edit.png"/></a></p>-->
+                    <!--</li>-->
+                    <!--<li class="line02">-->
+                        <!--<p>中国工商银行深圳分行<em></em>陈玲<em></em>6244 4556 4666 2584 6985</p>-->
+                    <!--</li>-->
+                    <li class="line01">
+                        <p><span>开票信息</span><a href="javascript:void(0)" ng-click="modifyInvoice(selecInvoice)"><img src="static/img/user/images/edit.png"/></a></p>
+                    </li>
+                    <li class="line01">
+                        <p ng-cloak ng-if="selecInvoice.head">{{selecInvoice.head}}</p>
+                        <p ng-cloak ng-if="!selecInvoice.head">目前暂无发票信息</p>
+                    </li>
+                    <li class="line02 p_line40" ng-if="selecInvoice.area">
+                        <p ng-cloak><span class="color01">公司地址：</span>{{selecInvoice.area}} {{selecInvoice.detailAddress}}</p>
+                        <p ng-cloak><span class="color01">税务登记号：</span>{{selecInvoice.companyTaxNumber}}</p>
+                        <p ng-cloak><span class="color01">公司电话：</span>{{selecInvoice.telephone}}</p>
+                        <p ng-cloak><span class="color01">开户银行：</span>{{selecInvoice.bankName}}</p>
+                        <p ng-cloak><span class="color01">开户银行账户：</span>{{selecInvoice.bankAccount}}</p>
+                    </li>
+                    <!--<li class="line01">-->
+                        <!--<p><span>收票信息</span><a href="#"><img src="static/img/user/images/edit.png"/></a></p>-->
+                    <!--</li>-->
+                    <!--<li class="line01">-->
+                        <!--<p>{{selecInvoice.area}} {{selecInvoice.detailAddress}}<em></em>{{selecInvoice.name}}<em></em>{{selecInvoice.telephone}}</p>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <!--快速导航-->
+            <div class="user_r_03">
+                <ul>
+                    <li><a ui-sref="componentCol"><img src="static/img/user/images/menu01.png"/><p>产品收藏</p></a></li>
+                    <li><a ui-sref="store_focus"><img src="static/img/user/images/menu02.png"/><p>店铺关注</p></a></li>
+                    <li><a href="news" target="_blank"><img src="static/img/user/images/menu05.png"/><p>优软快讯</p></a></li>
+                    <li><a ui-sref="browsing_history"><img src="static/img/user/images/menu04.png"/><p>浏览历史</p></a></li>
+                </ul>
+            </div>
+            <!--产品列表-->
+            <div class="user_r_04">
+                <ul>
+                    <li ng-repeat="recommendComp in recommendComps | limitTo:3">
+                        <a ng-href="product/component/{{recommendComp.uuid}}/"><img ng-src="{{recommendComp.img}}"/><p><em ng-cloak="">{{recommendComp.code}}</em></p></a>
+                        <span><a href="" ng-controller="CollectCtrl" ng-click="collect(recommendComp.id)">加入收藏</a> </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right_r">
+            <div id="calender" class="right_r_01" style="margin-top:0px">
+    			<div id="date"></div>
+			</div>
+            <div class="right_r_01" ng-if="store">
+                <div class="rt_menu"><span>今日新店</span></div>
+                <dl>
+                    <dt class="border">
+                        <img style="max-height: 100%;max-width: 100%;" ng-src="{{store.logoUrl}}"/>
+                    </dt>
+                    <dd>
+                        <p title="{{store.storeName}}">店铺名称：{{store.storeName}} </p>
+                        <p>产品数量：{{store.commodityCount}}</p>
+                        <p>品牌数量：{{store.kindCount}}</p>
+                        <a ng-href="{{'store/' + store.uuid}}" class="click_bt01" target="_blank">点击进入</a>
+                    </dd>
+                </dl>
+            </div>
+            <div class="right_r_01" ng-if="recommendGoods && recommendGoods.length > 0">
+                <div class="rt_menu"><span>热卖推荐</span></div>
+                <!--样品申请 （因一期无样品）暂时转为 热卖推荐-->
+                <dl class="pro_list" ng-repeat="commodity in recommendGoods | limitTo:1">
+                    <dt>
+                        <span><img src="static/img/store/common/default.png"/></span>
+                    </dt>
+                    <dd>
+                        <p title="{{commodity.code}}">{{commodity.code}}</p>
+                        <p>产品数量：{{commodity.reserve}}</p>
+                        <p title="{{commodity.kindNameCn}}">品牌名称：{{commodity.kindNameCn}}</p>
+                        <a ng-href="{{'store/productDetail/' + commodity.batchCode}}" class="click_bt01 bg_red" target="_blank">点击进入</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        //产品字数超过两行时改变样式
+        $(".user_r_04 ul li em").each(function(){
+            var text=$(this).text().length;
+            if(text<40){
+                $(this).css("line-height","30px");
+            };
+        });
+    })
+</script>

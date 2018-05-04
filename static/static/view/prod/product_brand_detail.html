@@ -1,0 +1,727 @@
+<!--
+<style>
+.brand-box {
+	position: relative;
+	margin: 10px 0 35px 0;
+}
+
+.brand-box .brand-logo {
+	float: left;
+    width: 200px;
+    height: 220px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.brand-box .brand-logo img{
+	max-height: 180px;
+}
+
+.brand-box .brand-logo p {
+	display: table-cell;
+	vertical-align: middle;
+	width: 190px;
+	height: 180px;
+}
+
+.brand-box .brand-body {
+	float: right;
+	font-size: 14px;
+	width: 900px;
+}
+
+.brand-box .brand-body .point {
+	margin-left: 12px;
+    margin-right: 12px;
+    font-size: 15px;
+}
+
+.line {
+	line-height: 30px;
+	padding: 5px;
+	border-bottom: solid 1px #ddd;
+}
+
+.line .title {
+	float: left;
+	width: 100px;
+	color: #666;
+	font-family: 'microsoft yahei';
+	font-weight: 600;
+}
+
+.line .content {
+	float: left;
+}
+
+.prod-box .kind-sl{
+	margin-top: 15px;
+}
+
+.prod-box .kind-sl .sl-title {
+	line-height: 30px;
+}
+
+.prod-box .kind-sl .sl-noshow{
+	display: none;
+}
+
+.prod-box .kind-sl .sl-show{
+	display: block;
+}
+
+.prod-box .kind-sl .sl-smtitle{
+	border: 1px solid #f39800;
+	padding: 10px;
+}
+
+.prod-box .kind-sl .sl-smtitle2{
+    padding: 10px 12px 10px 12px;
+    border-top: 1px solid #f39800;
+    border-bottom: 1px solid #f39800;
+    border-right: 1px solid #f39800;
+    position: relative;
+}
+
+.sl-smtitle2 .angle {
+	position: absolute;
+    left: -6px;
+    top: 12px;
+	height: 11px;
+	width: 11px;
+	border-bottom: 1px solid #f39800;
+	border-left: 1px solid #f39800;
+	background: white;
+	transform: rotate(45deg);
+	-ms-transform: rotate(45deg); 	/* IE 9 */
+	-moz-transform: rotate(45deg); 	/* Firefox */
+	-webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+	-o-transform: rotate(45deg); 	/* Opera */
+	z-index: 21;
+}
+
+.prod-box .kind-sl .kind-wrap {
+	height: 30px;
+	margin: 8px 0 20px 0;
+}
+
+.prod-box .kind-sl .kind-nowrap{
+	height: 30px;
+	margin: 0px;
+}
+
+.prod-box .kind-sl .kind-wrap .line {
+	line-height: 20px;
+	border-bottom: none;
+}
+
+.prod-box .kind-sl .kind-wrap .line ul {
+	margin-bottom: 0px;
+}
+
+.prod-box .kind-sl .kind-wrap .line ul>li a{
+	text-decoration:underline;
+}
+
+.prod-box .kind-sl .kind-wrap .line ul>li span {
+	margin-left: 9px;
+}
+
+.prod-box .kind-sl .kind-wrap .line ul .active {
+	
+}
+.prod-box .kind-sl .kind-wrap .br-r{
+    border-left: 1px solid #337AB7;
+    height: 12px;
+    line-height: 12px;
+}
+
+.prod-box .total {
+	position: relative;
+    margin-bottom: 10px;
+    line-height: 30px;
+    background: #7bb4e1;
+    border: solid 1px #cccccc;
+    color: white;
+    font-weight: 700;
+}
+.prod-box .total ul>li{
+	float: left;
+    list-style: none;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: -2px;
+    border-left: 2px #fff solid;
+    border-right: 2px #fff solid;
+}
+
+.prod-box .total ul>li:hover {
+ 	background-color: rgba(10, 37, 86, 0.52);
+}
+
+.prod-box .total ul>li>a{
+  	color: #fff;
+}
+
+.prod-box .total ul>li>a:hover {
+ 	color: #fff;
+ 	text-decoration: none;
+}
+
+.prod-box .total .btnactive {
+	background-color: #f39800;
+}
+
+.prod-box .total .btn-default{
+	color: white;
+    background-color: #7bb4dc;
+}
+
+.prod-box .total .total-content{
+	background-color: #f39800;
+}
+
+.prod-box .prod-list .info {
+	line-height: 24px;
+}
+
+.prod-box .prod-list .info .title {
+	display: inline-block;
+	width: 100px;
+	font-family: 'microsoft yahei';
+	font-weight: 600;
+}
+
+.prod-box .prod-list .info .content {
+	font-size: 14px;
+}
+
+.prod-box .prod-list .operate {
+	margin-bottom: 5px;
+}
+
+.prod-box .prod-list .operate .btn {
+	width: 100px;
+	text-align: left;
+}
+</style>
+<div class="box-title">
+	<div class="box-smtitle">
+		<h2>品牌介绍</h2>
+	</div>
+</div>
+<div class="brand-box clearfix">
+	<div class="brand-logo">
+		<p >
+			<img width="180px" alt="{{brand.nameCn}}"
+				ng-src="{{brand.logoUrl}}">
+		</p>
+			<button class="btn btn-default"
+				style="padding: 6px 6px; line-height: 1; float: right;"
+				ng-click="store(brand.id)">收藏</button>
+	</div>
+	<div class="brand-body clearfix">
+		 <div class="line">
+			<div class="row">
+				<div class="col-xs-12">
+					<span class="title">品牌名称：</span>
+					<div class="content" ng-bind="brand.nameEn" ng-if="brand.nameEn != brand.nameCn"></div>
+					<div class="content point" ng-if="brand.nameCn && brand.nameEn && brand.nameEn != brand.nameCn"><b>·</b></div>
+					<div class="content" ng-bind="brand.nameCn"></div>
+				</div>
+				<div class="col-xs-12">
+					<span class="title">销售区域：</span>
+					<div class="content" ng-bind="brand.area"></div>
+				</div>
+			</div> 
+		</div>
+		<div class="line">
+			<div class="row">
+				<div class="col-xs-12">
+					<span class="title">主要领域：</span>
+					<div class="content" ng-bind="brand.application || '(无)'"></div>
+				</div>
+			</div> 
+		</div>
+		<div class="line">
+				<div class="row">
+				<div class="col-xs-12">
+					<span class="title">产品系列：</span>
+					<div class="content" ng-bind="brand.series || '(无)'"></div>
+				</div>
+			</div> 
+		</div>
+		<div class="line">
+				<div class="row">
+				<div class="col-xs-12">
+					<span class="title">品牌简介：</span>
+					<div class="content" ng-bind-html="brand.brief || '(无)' | trusthtml"></div>
+				</div>
+			</div> 
+		</div>
+		<div class="line">
+			<div class="row">
+				<div class="col-xs-12">
+					<span class="title">官网地址：</span>
+						<a href="{{brand.url}}"><span ng-bind="brand.url"></span></a>
+				</div>
+			</div> 
+		</div>
+			
+	</div>
+</div>
+<div class="box-title">
+	<div class="box-smtitle">
+		<h2>产品列表</h2>
+	</div>
+</div>
+<div class="prod-box">
+	<div class="kind-sl">
+		<div class="sl-title">
+			<span class="sl-smtitle">请按类目进行筛选：</span><span
+				ng-repeat="ak in activeKinds" class="sl-smtitle2">
+					<span class="angle"></span>
+				<a ng-click="selectKind(activeKinds[$index-1], $index-1)">{{ak.nameCn}}&nbsp;<i class="fa fa-close"></i></a>
+			</span><span class="text-inverse" ng-class="myshow.showif">&nbsp;&nbsp;抱歉！本品牌无类目可搜索！</span>
+		</div>
+		<div ng-class="myshow.hasstep">
+			<div class="line" ng-if="step == 0 && kinds">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="title">
+							&lt;!&ndash; 第一级类目 &ndash;&gt;
+						</div>
+						<div class="content">
+							<ul class="list-unstyled list-inline">
+								<li ng-repeat="k in kinds"><a ng-click="selectKind(k, 0)">{{k.nameCn}}</a><span class="br-r" ng-hide="$last"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="line" ng-if="step == 1 && kinds">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="title">
+							&lt;!&ndash; 第二级类目 &ndash;&gt;
+						</div>
+						<div class="content">
+							<ul class="list-unstyled list-inline">
+								<li ng-repeat="k in kinds"><a ng-click="selectKind(k, 1)">{{k.nameCn}}</a><span class="br-r" ng-hide="$last"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="line" ng-if="step == 2 && kinds">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="title">
+							&lt;!&ndash; 第三级类目 &ndash;&gt;
+						</div>
+						<div class="content">
+							<ul class="list-unstyled list-inline">
+								<li ng-repeat="k in kinds"><a ng-click="selectKind(k, 2)">{{k.nameCn}}</a><span class="br-r" ng-hide="$last"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="line" ng-if="step == 3 && kinds">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="title">
+							&lt;!&ndash; 第四级类目 &ndash;&gt;
+						</div>
+						<div class="content">
+							<ul class="list-unstyled list-inline">
+								<li ng-repeat="k in kinds"><a ng-click="selectKind(k, 3)">{{k.nameCn}}</a><span class="br-r" ng-hide="$last"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="padding: 0 12px 0 15px;">	
+		<div class="total row clearfix" >
+			<div class="col-xs-2 total-content text-center">共{{componentTableParams.total()}}个产品型号</div>
+			<div class="col-xs-offset-5 col-xs-2 text-right">
+				<label class="reserve" ng-click="filterNoReserveZero()" style="display: inline;">
+					<input type="checkbox" style="vertical-align: text-bottom;"
+					ng-model="noReserveZero">&nbsp; 只看有库存
+				</label>
+			</div>
+			<div class="col-xs-3">
+				<div ng-table-pagination="paginationParams" template-url="templates.pagination">
+					<div class="ng-table-pager" ng-if="paginationParams.data.length">
+						<div ng-if="paginationParams.settings().counts.length" class="pull-right">
+							<ul>
+								<li ng-repeat="count in paginationParams.settings().counts" ng-class="{'btnactive':paginationParams.count()==count}"><a ng-click="paginationParams.count(count)" ng-bind="count"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="prod-list">
+		<div ng-include src="'static/view/common/componentDiv.html'"></div>
+	</div>
+</div>-->
+<style>
+	#brandDetail {
+		margin-bottom: 60px;
+	}
+
+	#brandDetail .container {
+		width: 1190px;
+		padding: 0px;
+	}
+
+	#brandDetail .brand-logo{
+		float: left;
+		width: 200px;
+		height: 108px;
+		text-align: center;
+		line-height: 100px;
+		border: 1px solid #ccc;
+		background-color: #c1c1c1;
+	}
+
+	#brandDetail .brand-logo img {
+		max-width: 198px;
+		max-height: 106px;
+	}
+
+	#brandDetail .brand-message {
+		float: left;
+		margin-left: 20px;
+		margin-bottom: 60px;
+		width: 970px;
+	}
+
+	#brandDetail .brand-message .brand-name {
+		font-size: 18px;
+		font-weight: 700;
+		font-family: "Microsoft Yahei", "微软雅黑";
+		margin-bottom: 14px;
+	}
+
+	#brandDetail .brand-message .brand-description {
+		font-size: 14px;
+		font-family: "Microsoft Yahei", "微软雅黑";
+		line-height: 20px;
+	}
+
+	#brandDetail .categories-list {
+		clear: both;
+		float: left;
+		width: 200px;
+		border: 1px solid #e8e8e8;
+	}
+
+	#brandDetail .categories-list ul>li {
+		list-style: none;
+		padding: 10px 0;
+	}
+	#brandDetail .categories-list ul>li>a {
+		cursor: pointer;
+		color: #323232;
+	}
+
+	#brandDetail .categories-list .categories-list-header {
+		height: 34px;
+		text-align: center;
+		color: #fff;
+		background-color: #5078cb;
+		font-size: 14px;
+		padding: 7px;
+	}
+
+	#brandDetail .categories-list .categories-list-body ul>li .kind-active {
+		color: #5078CB;
+		font-size: 14px;
+		/*font-weight: 700;*/
+	}
+
+	#brandDetail  .categories-list .categories-list-body>ul {
+		padding: 0px;
+		font-size: 14px;
+	}
+
+	#brandDetail  .categories-list .categories-list-body>ul>li {
+		list-style: none;
+		padding: 10px;
+	}
+
+	#brandDetail .component-list {
+		float: left;
+		margin-left: 20px;
+		width: 970px;
+	}
+
+	#brandDetail .component-list table {
+		width: 970px;
+		border: 1px solid #e8e8e8;
+	}
+
+	#brandDetail .component-list table>thead {
+		height: 40px;
+	}
+
+	#brandDetail .component-list table>thead>th {
+		text-align: center;
+	}
+
+	#brandDetail .component-list .btn-default {
+		color: #214797;
+		font-size: 12px;
+		line-height: 12px;
+		font-family: "Microsoft Yahei", "微软雅黑";
+		height: 30px;
+	}
+
+	#brandDetail .component-list .disabledbtn {
+		color: #A0A0A0;
+	}
+	/*空状态*/
+	#brandDetail .component-list td.text-center{
+		padding: 30px 0;
+		font-size: 20px;
+		line-height: 40px;
+	}
+	.component-list .empty{
+		overflow: hidden;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.component-list .empty-img{
+		float: left;
+		margin-left: 335px;
+	}
+	.component-list .empty-info{
+		float: left;
+		line-height: 10px;
+		width: 143px;
+		margin-top: 30px;
+	}
+	.component-list .empty-info div{
+		margin-top: 5px;
+	}
+	.component-list .empty-info .grey{
+		color: #999;
+		font-size: 12px;
+	}
+	.component-list .empty-info a{
+		font-size: 12px;
+		color: #5078cb;
+	}
+	.component-list .empty-info i{
+		font-size: 12px;
+		color: #5078cb;
+		margin-right: 0;
+	}
+	.categories-list-body i{
+		font-size: 18px;
+	}
+	#brandDetail .type-list{
+		height: 34px;
+		width: 150px;
+		border: 1px solid #5078cb;
+		background-color: #5078CB;
+		float: left;
+		color: #fff;
+		line-height: 34px;
+		text-align: center;
+		font-size: 14px;
+	}
+	#brand{
+		display: inline-block;
+		font-size: 14px;
+	}
+	.comm-list{
+		width: 1190px;
+		margin: 0 auto;
+		display: inline-block;
+	}
+	#brandDetail .component-list .sreach{
+		background: #5078cb;
+		color: #fff;
+		height: 34px;
+	}
+	.input-sm{
+		height: 34px;
+	}
+	.bgf7{
+		height: 40px;
+	}
+	.bgf7 th{
+		background: #f7f7f7;
+		border-bottom: none !important;
+		font-size: 14px;
+	}
+	#brandDetail .table>tbody>tr>td{
+		vertical-align: middle;
+		border-top: #e8e8e8 1px solid;
+	}
+	.f14{
+		font-size: 14px;
+	}
+	.no-record{
+		font-size: 14px;
+		color: #999;
+		text-align: center;
+		line-height: 172px;
+	}
+	.grey{
+		color: #999;
+	}
+	/*面包屑导航*/
+	.menu-com{
+		margin: 0;
+	}
+	.menu-title{
+		line-height: 40px;
+		font-size: 14px;
+	}
+	.menu-title a{
+		color: #5078cb;
+		font-size: 14px;
+	}
+	i{
+		margin-right: 5px;
+	}
+	.menu-title{
+		padding-left: 0;
+	}
+
+
+	.brand-main{
+		font-size: 14px;
+		color: #5078cb;
+		line-height: 20px;
+	}
+	.apply-area{
+		font-size: 14px;
+		color: #5078cb;
+		margin-top: 8px;
+	}
+	.apply-area span{
+		margin-right: 5px;
+	}
+	.office-address{
+		margin-top: 10px;
+	}
+	.office-address{
+		color: #666;
+	}
+	.office-address:hover{
+		color: #5078cb;
+		cursor: pointer;
+	}
+	.brand-description{
+		margin-top: 6px;
+		font-size: 14px;
+		color: #666;
+	}
+	.brand-description .txt-description{
+		font-size: 14px;
+		color: #666;
+	}
+</style>
+<div id="brandDetail">
+	<div class="container">
+		<div class="menu-com row">
+			<div class="menu-title col-md-12">
+				<a ng-href="product#/brandList">品牌中心</a> > <span ng-bind="brand.nameEn"></span></div>
+		</div>
+		<div id="brand">
+			<div class="brand-logo">
+				<img src="{{brand.logoUrl || 'static/img/all/default.png'}}" alt="{{brand.nameEn}}" />
+			</div>
+			<div class="brand-message">
+				<div class="brand-name"><span ng-bind="brand.nameEn"></span><span ng-show="brand.nameCn && brand.nameEn!=brand.nameCn">(<span ng-bind="brand.nameCn"></span>)</span></div>
+				<div class="brand-main" ng-show="brand.series">主营产品：<span ng-bind="brand.series"></span></div>
+				<div class="apply-area" ng-show="brand.applications.length>0">
+					应用领域：<span ng-repeat="application in brand.applications"><span ng-bind="application"></span><span ng-show="$index+1<brand.applications.length">|</span></span>
+				</div>
+				<div ng-show="brand.brief" class="brand-description">品牌介绍：<div ng-bind="brand.brief" class="txt-description"></div></div>
+				<div style="margin-top: 5px;color:#666;" ng-show="brand.url">官网地址：<a  class="office-address" ng-bind="brand.url" ng-href="{{brand.url}}"></a></div>
+			</div>
+		</div>
+		<div class="comm-list">
+			<div id="categoriesList"  class="categories-list">
+				<div class="categories-list-header">产品分类</div>
+				<div class="categories-list-body" id="kinds">
+					<ul class="list-unstyled">
+						<li ng-repeat="kind in kinds">
+							<i class="fa fa-angle-right" aria-hidden="true" ng-show="!kind.isOpen && kind.isLeaf == 0"></i>
+							<i class="fa fa-angle-down" aria-hidden="true" ng-show="kind.isOpen && kind.isLeaf == 0"></i>
+							<a ng-bind="kind.nameCn" ng-click="showKindList(kind)" ng-class="{'kind-active' : kind.id == isSelected}"></a>
+							<ul class="list-unstyled" style="margin-left: 10px;">
+								<li ng-repeat="child in kind.child">
+									<i class="fa fa-angle-right" aria-hidden="true" ng-show="!child.isOpen && child.isLeaf == 0"></i>
+									<i class="fa fa-angle-down" aria-hidden="true" ng-show="child.isOpen && child.isLeaf == 0"></i>
+									<a ng-bind="child.nameCn" ng-click="showKindList(child)" ng-class="{'kind-active' : child.id == isSelected}"></a>
+									<ul class="list-unstyled" style="margin-left: 15px;">
+										<li ng-repeat="grandChild in child.child">
+											<i class="fa fa-angle-right" aria-hidden="true" ng-show="!grandChild.isOpen && grandChild.isLeaf == 0"></i>
+											<i class="fa fa-angle-down" aria-hidden="true" ng-show="grandChild.isOpen && grandChild.isLeaf == 0"></i>
+											<a ng-bind="grandChild.nameCn" ng-click="showKindList(grandChild)" ng-class="{'kind-active' : grandChild.id == isSelected}"></a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<div ng-if="!kinds" class="no-record">
+						暂无类目信息
+					</div>
+				</div>
+			</div>
+			<div class="component-list">
+				<div class="type-list">型号列表</div>
+				<div style="width: 300px;float: right;" class="input-group">
+					<input  type="text" class="input-sm form-control" placeholder="请输入型号" ng-model="keyword" ng-search="onSearch()"/>
+					<span class="input-group-btn">
+					<button class="sreach btn btn-default" type="button" ng-click="onSearch()">搜索器件</button>
+				</span>
+				</div>
+				<table ng-table="componentTableParams" class="table" style="margin-top: 10px;">
+					<thead>
+						<tr class="bgf7">
+							<th width="500">型号</th>
+							<th width="300">数据手册</th>
+							<th width="200">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="component in $data" class="text-center">
+							<td><a ng-href="product#/component/{{component.uuid}}/"><span ng-bind="component.code"></span></a></td>
+							<td><a ng-href="{{component.attach}}"><button class="btn btn-default" ng-disabled="!component.attach" ng-class="{'disabledbtn':!component.attach}">Datasheet手册</button></a></td>
+							<td>
+								<!--<button class="btn btn-default">报价</button>-->
+								<button class="btn btn-default disabledbtn" ng-disabled="true">申请样片</button>
+							</td>
+						</tr>
+						<tr ng-if="$data.length == 0">
+							<td colspan="10" class="text-center">
+								<div class="empty">
+									<div class="empty-img">
+										<img src="static/img/all/empty-cart.png">
+									</div>
+									<div class="empty-info">
+										<p class="grey f16"> 暂无器件信息 </p>
+										<div><i class="fa fa-mail-reply fa-xs"></i>&nbsp;<a href="javascript:history.go(-1)">返回上一页</a></div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

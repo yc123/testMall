@@ -1,0 +1,279 @@
+<style>
+h4 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.new-address {
+	float: right;
+	padding-top: 10px;
+}
+
+.row.searchInputGroup {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+	margin-bottom: 10px;
+    width: 82px;
+}
+
+button[type=button].btn-primary-choosed {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.btn-default-inline {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-default-inline:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+.price {
+	color: #009B44;
+}
+
+td {
+	line-height: 1.1;
+}
+
+.badge-text {
+	color: white;
+}
+
+.text-normal {
+	color: blue;
+}
+
+.total {
+	background-color: #7bb4e1;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 30px;
+}
+
+.total ul>li {
+	float: left;
+	margin-left: -2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-left: 2px #fff solid;
+    border-right: 2px #fff solid;
+}
+
+.total ul>li:hover {
+	background-color: #337ab7;
+}
+
+.total ul>li>a {
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btnactive {
+	background-color: #f39800;
+}
+
+div.row.total button:HOVER {
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.total button {
+	height: 30px;
+}
+
+.modal-normal {
+	margin: 250px auto;
+}
+
+.padding-top-10 {
+	padding-top: 10px;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>产品管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>价格库</li>
+	</ul>
+</div>
+<div class="row searchInputGroup">
+	<div class="col-xs-3">
+		<h4>产品价格信息</h4>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group">
+			<input type="search" class="form-control" ng-model="keyword"
+				ng-search="onSearch()" ng-change="upper()"
+				placeholder="根据品牌、类型、型号、币别查询" ng-search="onSearch()"> <span
+				class="input-group-btn">
+				<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+			</span>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="row total">
+		<div class="col-xs-6">
+			<div class="btn-group" role="group"
+				style="display: block; margin-left: -16px;">
+				<!-- <button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active==''}"
+					ng-click="setActive('')">全部</button> -->
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='available'}"
+					ng-click="setActive('available')">有效</button>
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='unavailable'}"
+					ng-click="setActive('unavailable')">失效</button>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div ng-table-pagination="paginationParams"
+				template-url="templates.pagination" style="margin-right: -15px">
+				<div class="ng-table-pager" ng-if="paginationParams.data.length">
+					<div ng-if="paginationParams.settings().counts.length"
+						class="pull-right">
+						<ul class="list-unstyled list-inline">
+							<li ng-repeat="count in paginationParams.settings().counts"
+								ng-class="{'btnactive':paginationParams.count()==count}"><a
+								ng-click="paginationParams.count(count)" ng-bind="count"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row padding-top-10">
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{priceTableParams.total()}}</span>条
+		</p>
+	</div>
+	<div class="col-xs-5 text-right" ng-if="active=='available'">
+		<a  ng-click="batchUpdate()" class="text-right f14 btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;批量修改</a>
+	</div>
+</div>
+</br>
+
+<table ng-table="priceTableParams"
+	class="table table-bordered">
+	<thead>
+		<tr class="tr-default text-center">
+			<th width="50" ng-if="active=='available'"><input type="checkbox" ng-checked="selectedAll" ng-click="selecteAll()"/></th>
+			<th width="50">序号</th>
+			<th width="150">型号</th>
+			<th width="auto">上架产品</th>
+			<th width="120">价格</th>
+			<th width="70" ng-if="active=='available'">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="priceInfo in $data">
+			<td class="text-center" ng-if="active=='available'"><input type="checkbox" ng-checked="selectedAll" ng-click="changeIds(priceInfo.id)"/></td>
+			<td class="text-center">{{$index + 1}}</td>
+			<td class="text-center">
+				<div>
+					<a ng-href="product#/component/{{priceInfo.uuid}}/">
+						<img width="160px" height="120px" alt="{{priceInfo.uuid}}" ng-src="" lazy-load="{{priceInfo.img}}">
+					</a>
+				</div>
+				<div>
+					<a ng-href="product#/component/{{priceInfo.uuid}}/">
+						<span ng-bind="priceInfo.uuid" class="text-num"></span>
+					</a>
+				</div>
+			</td>
+			<td>
+				<div>
+					<span>
+						<a href="product#/component/{{priceInfo.uuid}}/"><span class="text-num text-inverse f16" ng-bind="priceInfo.code"></span></a>
+						<span class="text-normal text-num f16" ng-if="priceInfo.original == 1311">现货</span>
+						<span class="text-normal text-num f16" ng-if="priceInfo.original == 1312">呆滞库存</span>
+						<!-- <span class="text-normal text-num f16" ng-if="priceInfo.original == 1313">废料</span> -->
+					</span>
+				</div>
+				<div>
+					<span class="text-muted text-num" ng-bind="priceInfo.kindNameCn"></span>
+				</div>
+				<div>
+					<span class="text-muted text-num" ng-bind="priceInfo.brandNameCn"></span>
+				</div>
+				<div>
+					<span class="text-muted text-num" ng-bind="priceInfo.currencyName"></span>
+					<span class="text-muted text-num" ng-if="priceInfo.currencyName == 'RMB' && priceInfo.tax > 0">
+					 含税<span class="text-num badge badge-text"><span ng-bind="priceInfo.tax"></span>%</span>
+					</span>
+				</div>
+				<div>
+					
+				</div>
+			</td>
+			<td class="text-center">
+				<div>
+					<span class="text-num f16" ng-bind="priceInfo.price| number"></span>
+				</div>
+			</td>
+			<td class="text-center" ng-if="active=='available'">
+				<span><button type="button" class="btn btn-primary btn-sm" ng-click="maintain(priceInfo, $index)">修改</button></span>
+			</td>
+		</tr>
+		<tr ng-if="$data.length==0">
+			<td colspan="10" class="text-center"
+				style="line-height: 40px; font-size: 20px;"><i
+				class="fa fa-smile-o fa-lg"></i> 当前没有对应的产品信息</td>
+		</tr>
+	</tbody>
+</table>

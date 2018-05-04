@@ -1,0 +1,378 @@
+<!-- 类目详情展示页面 -->
+<style>
+.clear, .clr {
+	clear: both;
+}
+
+/* breadcrumbs */
+.breadcrumbs {
+	margin: 10px 0;
+}
+
+.breadcrumbs ul.list-unstyled.list-inline {
+	margin-left: 0px;
+}
+
+.breadcrumbs ul.list-inline.list-unstyled li.crumb-item {
+	position: relative;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 1px;
+	height: 32px;
+	line-height: 30px;
+	background: #fff;
+	border: solid 1px #f39800;
+}
+
+.breadcrumbs ul li.crumb-item-angle {
+	margin-left: -5px;
+}
+
+.breadcrumbs ul li.crumb-item>a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.breadcrumbs ul li.crumb-item .angle {
+	position: absolute;
+    left: -6px;
+    top: 50%;
+    margin-top: -5px;
+	height: 10px;
+	width: 10px;
+	border-bottom: 1px solid #f39800;
+	border-left: 1px solid #f39800;
+	background: white;
+	transform: rotate(45deg);
+	-ms-transform: rotate(45deg); 	/* IE 9 */
+	-moz-transform: rotate(45deg); 	/* Firefox */
+	-webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+	-o-transform: rotate(45deg); 	/* Opera */
+	z-index: 14;
+}
+
+.breadcrumbs ul li.crumb-item .crumb-drop {
+	position: absolute;
+	display: none;
+	left: -1px;
+	top: 30px;
+	border: solid 1px #f39800;
+	background: #fff;
+	z-index: 100;
+	width: 200px;
+}
+
+.breadcrumbs ul li.crumb-item .crumb-drop li {
+	line-height: 20px;
+}
+
+.breadcrumbs ul li.crumb-item:hover .crumb-drop {
+	display: block;
+}
+
+.breadcrumbs ul li.crumb-item:hover>a {
+	border-color: #f50;
+	background: #ffffff;
+	z-index: 101;
+}
+
+.kind-count-line {
+	line-height: 25px;
+	height: 25px;
+	color: #fff;
+	font-weight: 600;
+	background: #7bb4e1;
+}
+
+.kind-count-line .kind-count {
+	display: inline-block;
+	padding: 0 15px;
+	background-color: #f39800;
+}
+
+/* sl_warp */
+.main-content .selector {
+	color: #666;
+	border: 2px solid #ddd;
+	border-top: none;
+	margin-bottom: 30px;
+}
+
+.main-content .sl-wrap {
+	position: relative;
+	line-height: 22px;
+	border-bottom: 1px solid #DDD;
+	padding: 5px 0;
+}
+
+.main-content .sl-wrap .sl-key {
+	float: left;
+	width: 100px;
+	padding: 0 8px;
+}
+
+.main-content .sl-wrap .sl-key>span {
+	color: #5078cb;
+}
+
+.main-content .sl-wrap .sl-value {
+	margin-left: 110px;
+	margin-right: 90px;
+	overflow-y: auto;
+}
+
+.main-content .sl-wrap .sl-value .sl-selected {
+	display: inline-block;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 30px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.main-content .sl-wrap .sl-value .sl-selected a {
+	color: #666;
+	text-decoration: none;
+}
+
+.main-content .sl-wrap .sl-value .sl-selected:HOVER {
+	border: 1px solid #f50;
+}
+
+.main-content .sl-wrap .sl-value .sl-selected:HOVER a {
+	color: #f50;
+}
+
+.main-content .sl-wrap .sl-value .sl-selected span {
+	display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    width: 20px;
+    text-align: center;
+    background: #ccc;
+    color: #fff;
+}
+
+.main-content .sl-wrap .sl-value .sl-selected:HOVER span {
+	background: #f50;
+}
+
+.main-content .sl-wrap .sl-value ul {
+	margin-bottom: 0;
+}
+
+.main-content .sl-wrap .sl-value ul.list-inline li {
+	width: 150px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.main-content .sl-wrap .sl-value ul, .main-content .sl-set .sl-value ul{
+	min-height: 25px;
+}
+
+.main-content .sl-wrap .sl-ext {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 80px;
+}
+
+.main-content .sl-more {
+	position: relative;
+	top: -1px;
+	line-height: 30px;
+	text-align: center;
+	border-top: 1px solid #DDD;
+}
+
+.main-content .sl-more a {
+	position: relative;
+	display: inline-block;
+	margin-top: -1px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px 0 10px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #FFF #DDD #DDD;
+	background: #fff;
+	cursor: pointer;
+	-webkit-transition: border-color .15s ease-in-out;
+	-moz-transition: border-color .15s ease-in-out;
+	transition: border-color .15s ease-in-out;
+}
+
+.main-content .sl-more:hover {
+	border-top-color: #f39800;
+}
+
+.main-content .sl-more:hover a {
+	color: #f39800;
+	border-color: #FFF #f39800 #f39800;
+	text-decoration: none;
+}
+
+.main-content .sl-more a:focus {
+	text-decoration: none;
+	color: #f39800;
+}
+
+.main-content .sl-set {
+	position: relative;
+	line-height: 30px;
+	font-size: 14px;
+}
+
+.main-content .sl-set .sl-key {
+	float: left;
+	width: 100px;
+}
+
+.main-content .sl-set .sl-value {
+	margin-left: 110px;
+}
+
+.main-content .content {
+	position: relative;
+}
+
+.main-content .content .total {
+	position: relative;
+    margin-bottom: 10px;
+    line-height: 30px;
+    height: 30px;
+    background: #7bb4e1;
+    color: white;
+    font-weight: 700;
+}
+
+.main-content .info {
+	line-height: 24px;
+}
+
+.main-content .info .title {
+	display: inline-block;
+	width: 100px;
+	font-family: 'microsoft yahei';
+	font-weight: 600;
+}
+
+.main-content .info .content {
+	font-size: 14px;
+}
+
+.main-content .operate {
+	margin-bottom: 5px;
+}
+
+.main-content .operate .btn {
+	width: 100px;
+	text-align: left;
+}
+
+.main-content .content .view_all:hover {
+	text-decoration: none;
+	color: #f50;
+	background: #f5f5f5
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th,
+	.table>thead>tr>td, .table>thead>tr>th {
+	padding: 10px 5px;
+}
+
+.total-content {
+	background-color: #f39800;
+	padding-left: 10px;
+}
+
+.btnactive {
+	background-color: #f39800;
+}
+
+.reserve {
+	color: white;
+	font-weight: 500;
+}
+
+.pagging .pagging-count {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.pagging .pagging-count:HOVER {
+	background: #4D7BA5;
+	cursor: pointer;
+}
+
+.pagging .pagging-count a {
+	color: white !important;
+	text-decoration: none !important;
+}
+</style>
+
+<div>
+	<div class="breadcrumbs">
+		<ul class="list-unstyled list-inline">
+			<li class="crumb-item"><a href="product#/home">电子元器件</a></li>
+			<li class="crumb-item crumb-item-angle" ng-repeat="k in actives">
+				<i class="angle"></i>
+				<a href="#/kinds/{{k.id}}">
+					<span ng-bind="k.nameCn"></span> <i class="fa fa-angle-down"></i>
+				</a>
+				<div class="crumb-drop" ng-if="k.bothers">
+					<ul class="list-unstyled list-inline" role="menu">
+						<li ng-repeat="b in k.bothers"><a href="#/kinds/{{b.id}}">{{b.nameCn}}</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="main-content">
+		
+	
+		<div class="content">
+			<div class="total" >
+				<div class="row">
+					<div class="col-xs-2">
+						<div class="total-content">
+							共<span ng-bind="componentTableParams.total()"></span>个产品型号
+						</div>
+					</div>
+					<div class="col-xs-offset-5  col-xs-2 text-right">
+					    <!-- <label class="reserve" ng-click="filterNoReserveZero()">
+					      <input type="checkbox" style="vertical-align: text-bottom;" ng-model="noReserveZero">&nbsp; 库存量不为零
+					    </label> -->
+					</div>
+					<div class="col-xs-3">
+						<div ng-table-pagination="paginationParams" template-url="templates.pagination">
+							<div class="ng-table-pager" ng-if="paginationParams.data.length">
+								<div ng-if="paginationParams.settings().counts.length" class="pagging pull-right">
+									<ul class="list-unstyled list-inline">
+										<li ng-repeat="count in paginationParams.settings().counts" 
+											ng-class="{'btnactive':paginationParams.count()==count}"
+											class="pagging-count" ng-click="paginationParams.count(count)">
+											<span ng-bind="count"></span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="component-table">
+			<div ng-include src="'static/view/common/componentDiv.html'"></div>
+		</div>
+	</div>
+</div>

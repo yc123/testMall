@@ -1,0 +1,251 @@
+/* main */
+body{
+    background: #f5f5f5;
+}
+#main>.container>.left {
+    width: 200px;
+    float: left;
+    background-color: #fff;
+    margin-top: 16px;
+}
+
+#main>.container>.right {
+	width: 975px;
+    float: right;
+    font-size: 12px;
+    margin-top: 16px;
+    background: #fff;
+    border: #e8e8e8 1px solid;
+    margin-bottom: 20px;
+}
+.help-list{
+    width: 200px;
+    background: #fff;
+    border: #e8e8e8 1px solid;
+}
+.help-list h2{
+    background: #5078cb;
+    line-height: 34px;
+    height: 34px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+}
+.help-list ul{
+    width: 200px;
+    display: inline-block;
+}
+.help-list li {
+    line-height: 33px;
+    font-size: 14px;
+    color: #333;
+    float: left;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.help-list li a {
+    display: block;
+    padding-left: 15px;
+    text-decoration: none;
+    color: #333;
+    background:url("../img/store/default/openblackR.png") no-repeat left;
+}
+
+.help-list li a:hover{
+    color: #5078cb;
+    cursor: pointer;
+}
+.help-list ul.list-body {
+    /*display: none;*/
+    color: #666;
+}
+
+.help-list ul.list-body.active {
+    display: block;
+}
+.help-list ul.list-body li {
+    float: none;
+    background-image: none;
+    min-height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+}
+
+.help-list ul.list-body li a {
+    padding-left: 15px;
+    display: block;
+    color: rgb(50,50,50);
+    background: none;
+}
+
+.help-list ul.list-body li a:hover {
+    color: #5078cb;
+    cursor: pointer;
+}
+.help-list ul.list-body li a.cur,.help-list ul li a.cur{
+    text-decoration: none;
+    font-size: 14px;
+    background:url("../img/store/default/openblack.png") no-repeat left;
+}
+
+/*
+帮助中心中心内容*/
+.help-center{
+    width: 100%;
+    padding-bottom: 20px;
+}
+.help-center .help-head{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: #dcdcdc 1px dotted;
+}
+.help-center .help-head img{
+    margin-left: 30px;
+}
+.help-center-title{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+.help-center-title a{
+    font-size: 16px;
+    color: #646464;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+.help-center-title a.box{
+    color: #646464;
+    border: #ccc 1px solid;
+    padding: 1px 10px;
+    margin-right: 8px;
+    line-height: 23px;
+}
+.help-center-title a:hover{
+    color: #5078cb;
+}
+.help-center-title a.box:hover{
+    border: #5078cb 1px solid;
+}
+.help-center-title a.box i{
+    font-size: 8px;
+    font-weight: inherit;
+}
+.help-center-title a i{
+    margin-left: 10px;
+}
+.help-center-home{
+    width: 910px;
+    margin: 0 auto;
+    border: #e8e8e8 1px solid;
+    padding: 0 15px 15px 15px;
+    padding-top: 10px;
+}
+.help-center-home h4{
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    padding-left: 20px;
+    margin: 0;
+    font-weight: bold;
+}
+.help-center-home .row{
+    line-height: 30px;
+    max-width: 400px;
+    margin-left: 18px;
+    margin-bottom: 30px;
+}
+.help-center-home .row em{
+    margin-right: 6px;
+    width: 3px;
+    height: 3px;
+    display: inline-block;
+    background: #323232;
+    border-radius: 100%;
+    float: left;
+    position: relative;
+    top: 12px;
+}
+.help-center-home .row div{
+    width: 33.3333%;
+    float: left;
+}
+.help-center-home .row div:hover a{
+    color: #5078cb;
+    text-decoration: underline;
+}
+.help-center-home .row div:hover em{
+    background: #5078cb;
+}
+.help-center-home .row a{
+    font-size: 12px;
+    color: #323232;
+}
+
+.help-center-list,.help-center-details{
+    width: 910px;
+    margin: 0 auto;
+    border: #e8e8e8 1px solid;
+    padding: 0 15px 15px 15px;
+    padding-top: 10px;
+}
+.help-center-list h4{
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    padding-left: 20px;
+    margin: 0;
+}
+.help-center-list ul{
+    width: 100%;
+    margin-left: 20px;
+}
+.help-center-list ul li{
+    display: block;
+    line-height: 25px;
+}
+.help-center-list ul li a{
+    color: #323232;
+    font-size: 14px;
+}
+.help-center-list ul li em{
+    margin-right: 6px;
+    width: 3px;
+    height: 3px;
+    display: inline-block;
+    background: #323232;
+    border-radius: 100%;
+    float: left;
+    position: relative;
+    top: 12px;
+}
+.help-center-list ul li:hover a{
+    color: #5078cb;
+    text-decoration: underline;
+}
+.help-center-list ul li:hover em{
+    background: #5078cb;
+}
+.help-center-details{
+    padding: 15px 20px 20px 20px;
+}
+.help-center-details .title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.dot{
+    font-size: 16px;
+    margin-right: 6px;
+    position: relative;
+    top: 2px;
+    margin-left: 2px;
+}
+.help-center-title a.box i{
+    position: relative;
+    top: -2px;
+}

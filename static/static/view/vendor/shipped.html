@@ -1,0 +1,299 @@
+<style type="text/css">
+.line {
+	font-size: 12px;
+	font-family: '宋体'; 
+	line-height: 13px;
+	margin-bottom: 10px;
+}
+.input {
+	width: 250px; 
+	height: 28px; 
+	border-radius: 5px;
+}
+
+.fontSet {
+	padding-right: 0px; 
+	font-weight: 500px;
+	line-height: 32px;
+}
+
+.hr {
+	 margin-top: 0px; 
+	 margin-bottom: 15px;
+	 border-top: 1px dashed rgb(129,184,233)
+}
+
+.address {
+	line-height: 20px;; 
+	font-weight: 500; 
+	font-size: 12px; 
+	font-family: '宋体';
+}
+
+.marginZero {
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+.invoiceClass  {
+	padding-left: 15px; 
+	margin-bottom: 15px;
+}
+
+.divsection {
+	font-size: 12px; 
+	line-height: 26px; 
+	font-family: '宋体'; 
+	background-color: rgb(123, 181, 221); 
+	margin-right: 0px;
+	border-radius: 3px;
+	color: white;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+div.input-horizontal .form-control {
+	display: inline;
+}
+
+.line-height {
+	line-height: 32px;
+}
+
+.font-weight-500 {
+	font-weight: 500;
+}
+
+.margin-left-45 {
+	margin-left: -45px;
+}
+
+.omit {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.title {
+	background-color: rgb(123,181,221);
+	line-height: 26px;
+	border-radius: 3px;
+}
+
+.padding-5 {
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.color-white {
+	color: white;
+}
+
+.address:HOVER {
+	background-color: #E6E5E5;
+	cursor: pointer;
+}
+
+.margin-top-25 {
+	margin-top: 25px;
+}
+
+.font-size-14 {
+	font-size: 14px;
+}
+
+.modify-account {
+	color: rgb(243, 154, 2);
+}
+
+.modify-account:HOVER {
+	text-decoration: none;
+	color: #202123;
+}
+
+.order-start > label {
+    display: inline;
+    margin-bottom: 0px;
+    /* font-weight: normal; */
+}
+
+.order-start {
+	padding-left: 30px !important;
+}
+
+.order-start input[type="checkbox"] {
+    display: inline;
+}
+
+.order-start input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label , input[type="checkbox"] + label {
+    background-color: #FFF;
+    border: 1px solid #C1CACA;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 6px;
+    display: inline-block;
+    position: relative;
+    vertical-align: text-bottom;
+}
+
+input[type="radio"]:checked + label:after ,input[type="checkbox"]:checked + label:after{
+    content: '\2714';
+   	clear: both;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #FFF;
+    background-color: #7bb4dc;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: text-top;
+    line-height: 16px;
+}
+
+.input-suggestion {
+	position: absolute;
+    margin-top: 23px;
+    width: 250px;
+    margin-left: 152px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    z-index: 20;
+}
+
+.input-suggestion ul {
+	margin-bottom: 0;
+}
+
+.input-suggestion ul li {
+	line-height: 20px;
+	font-size: 16px;
+	padding: 5px 12px;
+	color: #0080c0;
+	cursor: pointer;
+}
+
+.input-suggestion ul li:hover, #search .suggestion ul li.active, ul li.active {
+	background: #eee;
+}
+
+.logistics-company-input {
+	z-index: 30;
+}
+</style>
+<div style="margin-left: 15px;">
+	<!-- 出货单信息模块 -->
+	<div id="O">
+		<h2 class="row marginZero text-num">出货单信息</h2>
+		<div class="hr row marginZero"></div>
+		<div ng-repeat="invoice in checkinvoice" class="invoiceClass">
+				<div class="row divsection" role="button" ng-click="setHide(invoice);">
+					<div class="col-md-12" style="padding-right: 0px;">
+						<i class="fa fa-angle-down" ng-if="invoice.hide"></i>
+						<i class="fa fa-angle-up" ng-if="!invoice.hide"></i>
+						&nbsp;出货单号:&nbsp;<span ng-bind="::invoice.invoiceid"></span>
+					</div>
+				</div>
+				<div ng-hide="invoice.hide" style="margin-top: 10px;">
+					<div class="row line">
+						<div class="col-md-4">金额：
+							<span class="text-num" ng-bind="::invoice.price | number"></span>
+						</div>
+						<div class="col-md-4">单据时间：
+							<span class="text-num" ng-bind="::invoice.creattime | date: 'yyyy-MM-dd HH:mm'"></span>
+						</div>
+						<div class="col-md-4">收货人：
+							<span ng-bind="::invoice.jsonSpAddress.name"></span>
+						</div>
+					</div>
+					<div class="row line">
+						<div class="col-md-8">收货地址：
+							<span ng-bind="::invoice.jsonSpAddress.area"></span>&nbsp;
+							<span ng-bind="::invoice.jsonSpAddress.detailAddress"></span>
+						</div>
+						<div class="col-md-4">联系电话：
+							<span class="text-num" ng-bind="::invoice.jsonSpAddress.tel"></span>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<!-- 发货信息的填写 -->
+	<div>
+		<div class="row">
+			<h2 class="col-md-9">填写发货信息</h2>
+			<div class="col-md-3  text-right margin-top-25 font-size-14 modify-account" ng-click="newAddress()" role="button">
+				<i class="fa fa-plus-square-o"></i>&nbsp;新建发货地址
+			</div>
+		</div>
+		<div class="hr row marginZero"></div>
+		<div class="row line input-horizontal marginZero">
+			<div class="form-group">
+				<div>
+					<div>
+						<label
+							class="control-label col-sm-2 line-height font-weight-500 text-right">物流公司</label>
+						<input type="text" ng-model="logistics.companyName"
+							class="input form-control col-sm-3 logistics-company-input"
+							placeholder="物流公司" ng-keydown="onKeyDown()" ng-focus="onFocus()"
+							ng-change="inputCompany()" />
+					</div>
+					<div class="input-suggestion" ng-show="isCompany"
+						ng-mouseenter="onAssociateEnter()"
+						ng-mouseleave="clearSuggestion()">
+						<ul class="list-unstyled">
+							<li class="text-left" ng-repeat="company in filterCom"
+								ng-class="{'active': selectIndex == $index}"><span
+								style="display: block;" ng-bind="company"
+								ng-click="chooseCompany(company)"></span></li>
+						</ul>
+					</div>
+				</div>
+				<div>
+					<label
+						class="control-label col-sm-2 line-height font-weight-500 text-right">快递单号</label>
+					<input type="text" ng-model="logistics.number"
+						class="input form-control col-sm-3"
+						ng-pattern="/^\+?[1-9][0-9]*$/" placeholder="快递单号(数字型)" />
+				</div>
+			</div>
+		</div>
+		<div class="text-center">
+				<div class="row title marginZero color-white">
+					<div class="col-md-2 text-left">发货人</div>
+					<div class="col-md-6">发货地址</div>
+					<div class="col-md-2">联系电话</div>
+					<div class="col-md-2">操作</div>
+				</div>
+				<div ng-repeat="add in addresss" class="row address marginZero padding-5" ng-click="select(add)">
+					<div class="col-md-2 omit text-left order-start" title="{{add.name}}">
+						<input type="radio" ng-checked="add.id == jsonSdAddress.id" id="{{add.id}}"><label for="{{add.id}}"></label>
+						<span ng-bind="::add.name ? add.name: '空'"></span>
+					</div>
+					<span class="col-md-6 omit" title="{{add.area}} {{add.detailAddress}}">
+						<span ng-bind="::add.area ? add.area : '空' "></span>
+						<span ng-bind="::add.detailAddress ? add.detailAddress : '空'"></span>
+					</span>
+					<span class="col-md-2 text-num" ng-bind="::add.tel?add.tel:'空'"></span>
+					<span class="col-md-2 text-right">
+						<a role="button" class="modify-account" ng-click="newAddress(add)"><i class="fa fa-edit"></i> 编辑 &nbsp</a>
+						<a role="button" class="modify-account" ng-click="deleteAddr(add)"><i class="fa fa-remove"></i> 删除</a>
+					</span>
+				</div>
+				<div ng-if="addresss.length==0" class="row address marginZero padding-5 text-center">
+					您的发货地址为空，请先<a class="modify-account" ng-click="newAddress()" role="button">增加发货地址信息</a>
+				</div>
+			</div>
+			<div class="row text-right" style="margin-top: 10px; margin-right: 0px;">
+				<button role="button" ng-click="entryCheck()" class="btn btn-primary">录入并核对信息</button>
+			</div>
+	</div>
+</div>

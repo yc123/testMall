@@ -1,0 +1,354 @@
+<style>
+    .first-rate {
+        width: 1026px;
+        float: right;
+        background: #fff;
+    }
+    .first-rate .first-rate-head {
+        background: #89affa;
+        color: #fff;
+        padding: 0px 24px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .first-rate .first-rate-head  span a.first-rate-company {
+        font-size: 14px;
+    }
+    .first-rate .first-rate-head  span a em {
+        color: #fff;
+        font-size: 14px;
+    }
+    .first-rate table {
+        margin: 13px;
+    }
+    .first-rate table thead {
+        background: #f5f8fe;
+    }
+    .first-rate table thead tr td {
+        width: 1000px;
+        padding: 16px 11px;
+        font-size: 14px;
+        margin-left: 15px;
+    }
+    .first-rate table thead tr td .describe-title {
+        color: #5078cb;
+        font-weight: bold;
+        margin-left: 0!important;
+    }
+    .first-rate table thead tr td .describe-option {
+        margin-right: 55px;
+        margin-left: 20px;
+    }
+    .first-rate table thead tr td .describe-option img {
+        cursor: pointer;
+        margin-left: -5px;
+        position: relative;
+        top: -2px;
+    }
+    .first-rate table tbody tr {
+        border-bottom: 1px dashed rgb( 232, 235, 252 );
+    }
+    .first-rate table tbody tr td >a >img{
+        width: 73px;
+        height: 74px;
+        float: left;
+        margin-top: 20px;
+        border: 1px solid rgb( 231, 231, 231 );
+        margin-left: 23px;
+    }
+    .first-rate table tbody tr td .first-rate-item-info {
+        display: inline-block;
+        width: 200px;
+        float: left;
+        margin-top: 15px;
+    }
+    .first-rate table tbody tr td .first-rate-item-introduce {
+        display: block;
+        margin: 0px 10px;
+        font-size: 14px;
+    }
+    .first-rate table tbody tr td .first-rate-item-introduce span {
+        float: left;
+    }
+    .first-rate table tbody tr td .first-rate-item-introduce span.first-rate-item-link {
+        max-width: 190px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        white-space: nowrap;
+        height: 27px;
+        line-height: 27px;
+    }
+    .first-rate table tbody tr td .first-rate-item-rate {
+        display: inline-block;
+        float: right;
+        margin-right: 39px;
+    }
+    .first-rate table tbody tr td .first-rate-item-rate .rate-item {
+        display: inline-block;
+        margin-right: 5px;
+        margin-top: 12px;
+        font-size: 14px;
+    }
+    .first-rate table tbody tr td .first-rate-item-rate .rate-item .check-act img {
+        position: relative;
+        top: -2px;
+    }
+    .first-rate table tbody tr td .first-rate-item-rate .rate-item >label {
+        display: block;
+        font-weight: normal;
+        margin-top: 10px;
+    }
+    .first-rate table tbody tr td .first-rate-item-textBox {
+        display: inline-block;
+        float: right;
+        background: #f5f8ff;
+        padding: 7px 15px;
+        margin: 5px 0;
+        position: relative;
+    }
+    .first-rate table tbody tr td .first-rate-item-textBox .add-rate-remind {
+        color: #999;
+        position: absolute;
+        right: 33px;
+        bottom: 13px;
+    }
+    .first-rate table tbody tr td .first-rate-item-textBox textarea {
+        width: 484px;
+        height: 87px;
+        overflow-y: scroll;
+        padding: 5px 10px;
+        border-color: rgb( 236, 242, 255 );
+        resize: none;
+        padding-bottom: 15px;
+    }
+    .first-rate table tbody .record-num {
+        border: none;
+    }
+    .first-rate table tbody .record-num td .count-tip{
+        float: right;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+    .first-rate .submitBox {
+        text-align: center;
+        margin: 35px auto;
+    }
+    .first-rate .submitBox label {
+        font-size: 14px;
+        font-weight: normal;
+        margin-right: 22px;
+    }
+    .first-rate .submitBox >span.submit-btn {
+        font-size: 14px;
+        padding: 4px 17px;
+        background: #5078cb;
+        color: #fff;
+        cursor: pointer;
+    }
+    .first-rate .rate-item .check-act input {
+        margin: 0;
+        margin-left: 4px;
+        display: none;
+    }
+    .first-rate .rate-item .check-act .rate-radio-label {
+        background: url(static/img/icon/check-rule.png) no-repeat;
+        width: 15px;
+        height: 15px;
+        background-position: 3px 3px;
+        margin: 0;
+    }
+    .first-rate .rate-item .check-act .rate-radio-label.active {
+        background-position: -12px 3px;
+    }
+    .seller-contact .contact-title {
+        height: 26px;
+        background-color: #5078cb;
+        text-align: right;
+        padding-right: 15px;
+        line-height: 26px;
+        color: white;
+    }
+
+    .seller-contact .contact-title a, .seller-contact .contact-title a:hover {
+        color: white;
+    }
+
+    .seller-contact .contact-seller-info {
+        margin-left: 24px;
+        margin-right: 24px;
+        background-color: #5078cb;
+        color: #ffffff;
+        margin-top: 15px;
+        margin-bottom: 12px;
+        border-radius: 4px;
+        font-family: "Microsoft Yahei", "微软雅黑";
+        height: 150px;
+    }
+
+    .seller-contact .contact-seller-info div {
+        text-align: left;
+        font-size: 14px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .seller-contact .contact-seller-info .company-name {
+        text-align: center;
+        font-size: 18px;
+        padding-top: 15px;
+    }
+
+    .seller-contact .send-message {
+        width: 553px;
+        height: 258px;
+        background-color: #F7F7F6;
+        padding-left: 13px;
+        padding-top: 15px;
+        border-radius: 4px;
+    }
+
+    .seller-contact-info {
+        position: absolute;
+        z-index: 2;
+        height: 210px;
+    <!-- 506 --> border: 1px solid #E7E5E2;
+        opacity: 1;
+        background-color: white;
+        width: 600px;
+        top: 40px;
+        left: -130px;
+        border: 1px solid #E7E5E2;
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    }
+
+</style>
+
+<div class="first-rate">
+    <div class="first-rate-head">
+        <span style="width: 27%;">
+            <a href="store/{{::order.storeid}}" target="_blank" class="first-rate-company">
+                <img src="static/img/user/images/shop_home.png"/>
+                <em>{{order.sellername}}</em>
+            </a>
+        </span>
+        <span style="position: relative; width: 10%; margin-left: 50px;">
+            <img src="static/img/common/songguo.png"/>
+            <a href="javascript:void(0)" class="contact_btn" ng-click="cont = !cont">联系卖家</a>
+            <div class="seller-contact" ng-if="cont" ng-class="{true : 'seller-contact-info', false : 'display-none'}[cont]">
+                                 <div class="contact-title">
+                                     <a ng-click="setContFalse()"><i class="fa fa-close fa-lg" aria-hidden="true"></i></a>
+                                 </div>
+                                 <div class="contact-seller-info">
+                                     <div class="company-name" ng-bind="::order.sellername"></div>
+                                     <div>
+                                         <em>手机：<em ng-bind="::order.sellPhone || '暂无联系电话'"></em></em>
+                                         <em style="margin-left: 60px;">邮箱：<em ng-bind="::order.sellEmail || '暂无电子邮箱'"></em></em>
+                                     </div>
+                                     <div>地址：<em ng-bind="order.sellCompanyAddress || order.sellCompanyArea || '暂无地址信息'"></em></div>
+                                 </div>
+                                 <div style="display: none;">
+                                     <textarea class="send-message" placeholder="给卖家发送站内消息"></textarea>
+                                 </div>
+                                 <div style="display: none;" class="send-button"><a class="send">发送</a></div>
+                            </div>
+        </span>
+        <span style="float: right;margin-right: 46px; font-size: 12px;">其他买家需要你的建议喔</span>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    <span class="describe-title describe-option">店铺评价：</span>
+                    <span>描述相符</span>
+                    <span class="rate-level describe-option">
+                        <img ng-src="static/img/user/images/{{descObj.a - 0 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('a',1)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.a - 1 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('a',2)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.a - 2 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('a',3)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.a - 3 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('a',4)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.a - 4 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('a',5)" alt="">
+                    </span>
+                    <span>卖家服务</span>
+                    <span class="rate-level describe-option">
+                        <img ng-src="static/img/user/images/{{descObj.b - 0 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('b',1)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.b - 1 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('b',2)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.b - 2 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('b',3)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.b - 3 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('b',4)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.b - 4 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('b',5)" alt="">
+                    </span>
+                    <span>物流服务</span>
+                    <span class="rate-level describe-option">
+                        <img ng-src="static/img/user/images/{{descObj.c - 0 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('c',1)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.c - 1 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('c',2)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.c - 2 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('c',3)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.c - 3 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('c',4)" alt="">
+                        <img ng-src="static/img/user/images/{{descObj.c - 4 > 0? 'rateGood':'rateBad'}}.png" ng-click="setLevel('c',5)" alt="">
+                    </span>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="detail in order.orderDetails track by $index">
+                <td>
+                    <a href="store/{{::order.storeid}}#/batchInfo/{{::detail.batchCode}}" target="_blank"><img ng-src="{{detail.img || 'static/img/store/common/default.png'}}" width="55" height="55"/></a>
+
+                    <div class="first-rate-item-info">
+                        <span class="first-rate-item-introduce"><span class="first-rate-item-link">类目：<a href="product#/kinds/{{::detail.kindUuid}}" target="_blank"><em ng-bind="::detail.kiName" title="{{::detail.kiName}}"></em></a><br/></span></span>
+                        <span class="first-rate-item-introduce"><span class="first-rate-item-link">型号：<a href="store/{{::order.storeid}}#/batchInfo/{{::detail.batchCode}}" target="_blank"><em ng-bind="::detail.cmpCode" title="{{::detail.cmpCode}}"></em></a><br/></span></span>
+                        <span class="first-rate-item-introduce"><span class="first-rate-item-link">品牌：<a href="product#/brand/{{::detail.branduuid}}/" target="_blank"><em ng-bind="::detail.brName" title="{{::detail.brName}}"></em></a></span></span>
+                    </div>
+                    <div class="first-rate-item-rate">
+                        <div class="rate-item">
+                           <!-- <label class="check-act">
+                                <img src="static/img/user/images/rate1.png" alt="">
+                                <span>好评</span>
+                                <input type="radio" id="{{1*($index)+1}}" name="radio{{$index}}" value="1" ng-model="goodsRate[$index].level" />
+                                <label for="{{1*($index)+1}}"></label>
+                            </label>-->
+                            <label class="check-act">
+                                <img src="static/img/user/images/rate1.png" alt="">
+                                <span>好评</span>
+                                <input type="radio" value="1" id="{{($index+1)*($index+1)+1}}" name="radio{{$index}}"  ng-model="goodsRate[$index].level">
+                                <label for="{{($index+1)*($index+1)+1}}" class="rate-radio-label" ng-class="{'active':goodsRate[$index].level==1}"></label>
+                            </label>
+                            <label class="check-act">
+                                <img src="static/img/user/images/rate2.png" alt="">
+                                <span>中评</span>
+                                <input type="radio" id="{{($index+1)*($index+1)+2}}" name="radio{{$index}}" value="2" ng-model="goodsRate[$index].level" />
+                                <label for="{{($index+1)*($index+1)+2}}" class="rate-radio-label" ng-class="{'active':goodsRate[$index].level==2}"></label>
+                            </label>
+                            <label class="check-act">
+                                <img src="static/img/user/images/rate3.png" alt="">
+                                <span>差评</span>
+                                <input type="radio" id="{{($index+1)*($index+1)+3}}" name="radio{{$index}}" value="3" ng-model="goodsRate[$index].level" />
+                                <label for="{{($index+1)*($index+1)+3}}" class="rate-radio-label" ng-class="{'active':goodsRate[$index].level==3}"></label>
+                            </label>
+                        </div>
+                        <div class="first-rate-item-textBox">
+                            <textarea id="rateContent" placeholder="请输入您对产品的评价" ng-change="listenRateContent($index)" ng-model="goodsRate[$index].buyerRate"></textarea>
+                            <div class="add-rate-remind">
+                                <span>{{goodsRate[$index].buyerRate.length || 0}}</span>
+                                <span>/200</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="record-num">
+                <td colspan="6">
+                    <span class="count-tip">显示<span ng-bind="$$kdnData.start">23</span>-<span ng-bind="$$kdnData.end">10</span>，共：<span ng-bind="$$kdnData.totalElements" style="color: #5078cb;">23</span>个</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="submitBox">
+        <label class="check-active">
+            <input ng-model="isSetTop" type="checkbox" id="check-act" class="ng-pristine ng-untouched ng-valid" ng-checked="isAnony" ng-click="isAnony = 1-isAnony">
+            <label for="check-act"></label>
+            <span style="font-size: 14px; color: black">匿名评价</span>
+        </label>
+        <span class="submit-btn" ng-click="submit()">提交</span>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+input[type="search"] {
+	border: 1px solid rgba(128, 128, 128, 0.36);
+	height: 32px;
+	padding: 2px 7px;
+	border-radius: 5px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.codewidth {
+	width: 180px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.brandwidth {
+	width: 200px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.img-font {
+	word-break: break-all;
+}
+
+.font-size-14 {
+	font-size: 14px;
+}
+
+.text-info {
+	font-size: 14px;
+	color: #337ab7;
+	float: left;
+}
+
+.component-code {
+	font-size: 16px;
+	color: #f39801;
+	font-weight: 600;
+}
+
+.component-content {
+	color: black;
+	padding-left: 10px;
+}
+
+.component-price {
+	color: #CE1D34;
+	font-size: 16px;
+}
+
+.component-minBuy {
+	color: black;
+	font-size: 16px;
+}
+
+.component-reserve {
+	color: #22B1DE;
+	font-size: 16px;
+}
+
+.float-left {
+	float: left;
+}
+
+.text-num {
+	font-style: normal;
+	font-family: verdana;
+}
+
+.font-size-13 {
+	font-size: 13px;
+}
+
+.font-weight-600 {
+	font-weight: 600;
+}
+
+li.item:ACTIVE {
+	background-color: #e6e2e2;
+}

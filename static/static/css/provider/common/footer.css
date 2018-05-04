@@ -1,0 +1,38 @@
+#footer {
+	background-color: #f7f7f7;
+}
+
+#footer .footer-main, #footer .footer-bottom {
+	font-size: 12px;
+	color: rgb(50, 50 ,50);
+	width: 1190px;
+	margin: auto;
+	text-align: center;
+}
+
+#footer .footer-main > li {
+	display: inline-block;
+	width: 16.4%;
+	text-align: center;
+	vertical-align: top;
+}
+
+#footer .footer-main > li > h3 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#footer .footer-main > li > ul > li {
+	padding: 0.4em;
+}
+
+#footer .footer-bottom {
+	padding-top: 2em;
+	padding-bottom: 1em;
+}
+
+#footer .footer-bottom > li {
+	text-align: center;
+	display: inline-block;
+	padding: 0 2em 0 2em;
+}

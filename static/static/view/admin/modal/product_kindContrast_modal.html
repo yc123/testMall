@@ -1,0 +1,71 @@
+<style>
+#kindContrast .url {
+	word-wrap:break-word; 
+	word-break:break-all; 
+	overflow: hidden;
+}
+</style>
+
+<div class="modal-header">
+	<h3 class="modal-title">请选择参数对应关系</h3>
+</div>
+<div class="modal-body f14 row">
+	<div class="box" id="kindContrast">
+		<!-- ng-tableStart -->
+		<div class="fullscreen" style="padding: 10px;">
+			<div class="row">
+				<div class="col-sm-2">
+					共<span class="badge">{{kindContrastTableParams.total()}} </span>条
+				</div>
+				<div class="col-sm-offset-4 col-sm-6">
+					<div class="input-group" style="float: right">
+						<input type="search" class="form-control ng-pristine ng-valid ng-touched" ng-model="keyword" 
+							ng-search="onSearch()" placeholder="按商城类目名搜索">
+						<div class="input-group-btn">
+							<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table ng-table="kindContrastTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+				<thead>
+					<tr>
+						<th width="30">序号</th>
+						<th width="100">来源</th>
+						<th width="100">商城品牌</th>
+						<th width="100">类目</th>
+						<th width="100">商城类目</th>
+						<th width="100">创建人</th>
+						<th width="100">更新人</th>
+						<th width="100">更新时间</th>
+						<th width="150">网址</th>
+						<th width="80">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="contrast in $data">
+						<td class="text-center">{{($index + 1)}}</td>
+						<td ng-bind="contrast.resource"></td>
+						<td ng-bind="contrast.b2cBrand.nameCn"></td>
+						<td ng-bind="contrast.kindName"></td>
+						<td ng-bind="contrast.b2cKind.nameCn"></td>
+						<td ng-bind="contrast.creater.userName"></td>
+						<td ng-bind="contrast.updater.userName"></td>
+						<td ng-bind="contrast.updateDate | date: 'yyyy-MM-dd HH:mm'"></td>
+						<td  class="url"><a href="{{contrast.url}}" ng-bind="contrast.url" target="blank"></a></td>
+						<td>
+							<button type="button" class="btn btn-default btn-sm" ng-click="preview(contrast.id)">查 看</button>
+							<button type="button" class="btn btn-default btn-sm" ng-click="chooseContrast(contrast)">确 认</button>
+						</td>
+					</tr>
+					<tr ng-if="$data.length == 0">
+						<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的属性对照资料</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- ng-tableEnd -->
+	</div>
+<div class="modal-footer">
+	<button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>

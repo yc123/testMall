@@ -1,0 +1,123 @@
+<style type="text/css">
+.tr-height{
+	height: 35px;
+}
+.text-tip {
+    color: #F30A26;
+    font-family: AriaMT;
+    font-weight: bold;
+}
+</style>
+<div class="container">
+	<p class="text-tip">温馨提醒：当银盛支付余额小于退款金额时，无法完成退款</p>
+</div>
+<div>
+	<div class="container">
+	<h3>银盛支付账户余额</h3>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td>账户号</td>
+			<td>账户余额</td>
+			<td>币种</td>
+		</tr>
+		<tr class="tr-height">
+			<td ng-bind="accountInfo[0].account_no"></td>
+			<td ng-bind="accountInfo[0].available_amount"></td>
+			<td ng-bind="accountInfo[0].available_cur"></td>
+		</tr>
+	</table>
+	</div>
+<hr/>
+
+<!-- 此部分页面先不展示 -->
+
+	<div class="container">
+		<h3>退款</h3>
+		<div class="form-group">  
+		    <div class="input-group col-xs-4">   
+				<input type="text" class="form-control" placeholder="请填写您要退款的订单号" ng-model="refund_oderid">  
+				<span class="input-group-btn">  
+					<button type="button" class="btn btn-success"  ng-click="refund()">退款</button>  
+				</span>  
+		    </div>  
+		</div>
+		<div>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<td>订单号</td>
+					<td>退款日期</td>
+					<td>退款金额</td>
+					<td>退款状态</td>
+				</tr>
+				<tr class="tr-height">
+					<td ng-bind="refundInfo.out_trade_no"></td>
+					<td ng-bind="refundInfo.account_date"></td>
+					<td ng-bind="refundInfo.refund_amount"></td>
+					<td ng-bind="refundInfo.msg"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+<hr/>
+	<div class="container">
+		<h3>查询订单</h3>
+		<div class="form-group">
+			<div class="input-group col-xs-4">   
+				<input type="text" class="form-control" placeholder="请填写您要查询的订单号" ng-model="orderQuery_oderid">  
+				<span class="input-group-btn">  
+					<button type="button" class="btn btn-success"  ng-click="orderQuery()">查询订单</button>  
+				</span>  
+		    </div>
+		</div>
+		<div>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<td>订单号</td>
+					<td>交易状态</td>
+					<td>金额</td>
+					<td>实收金额</td>
+					<td>入账时间/退款时间</td>
+				</tr>
+				<tr class="tr-height">
+					<td ng-bind="orderQueryInfo.out_trade_no"></td>
+					<td ng-bind="orderQueryInfo.trade_status"></td>
+					<td ng-bind="orderQueryInfo.total_amount"></td>
+					<td ng-bind="orderQueryInfo.receipt_amount"></td>
+					<td ng-bind="orderQueryInfo.account_date"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+<hr/>
+
+	<div class="container">
+		<h3>退款查询</h3>
+		<div class="form-group">
+			<div class="input-group col-xs-4">   
+				<input type="text" class="form-control" placeholder="请填写您要查询的退款订单号" ng-model="refundQuery_oderid">  
+				<span class="input-group-btn">  
+					<button type="button" class="btn btn-success"  ng-click="refundQuery()">退款查询</button>  
+				</span>  
+		    </div>
+		</div>
+		<div>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<td>订单号</td>
+					<td>退款交易状态</td>
+					<td>退款金额</td>
+					<td>退款原因</td>
+					<td>退款入账时间</td>
+				</tr>
+				<tr class="tr-height">
+					<td ng-bind="refundQueryInfo.out_trade_no"></td>
+					<td ng-bind="refundQueryInfo.refund_state"></td>
+					<td ng-bind="refundQueryInfo.refund_amount"></td>
+					<td ng-bind="refundQueryInfo.refund_reason"></td>
+					<td ng-bind="refundQueryInfo.account_date"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+<hr/>
+</div>

@@ -1,0 +1,143 @@
+<style>
+    #messageLogsList .messagelog-select {
+        width: 50px;
+        height: 20px;
+        font-size: 12px;
+        padding: 0;
+    }
+    #messageLogsList .ng-table-pagination a {
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    #messageLogsList ul.pagination.ng-table-pagination > li > a > span {
+        height: 17px;
+        line-height: 17px;
+    }
+    #messageLogsList div.ng-table-pager {
+        margin-right: 0 !important;
+    }
+    #messageLogsList div.ng-table-pager .pagination {
+        margin: 0;
+    }
+    #messageLogsList div.ng-table-pager  input.page-number {
+        vertical-align: inherit;
+        display: inline-block;
+        width: 25px;
+        height: 28px;
+        padding: 0;
+        font-size: 12px;
+        line-height: 1.42857143;
+        color: #9B9792;
+        text-align: center;
+        background-color: #F6F5F4;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    #messageLogsList div.ng-table-pager a.page-a {
+        color: #fff;
+        cursor: pointer;
+        background-color: #4574E8;
+        border-color: #4574E8;
+        padding: 5.55px 6px;
+        font-size: 12px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        text-decoration: none;
+        height: 31px;
+    }
+    #messageLogsList div.ng-table-pager div.page-go-block {
+        float: right;
+        font-size: 0px;
+        height: 31px;
+        margin-top: 20px;
+        line-height: 25px;
+    }
+    #messageLogsList .ng-table-pager .ng-table-pagination{
+        text-align: center;
+        max-width: 201px;
+    }
+    #messageLogsList .messagelog-a{
+        padding: 0px 5px;
+        boder: none;
+    }
+    #messageLogsList .search-input {
+        border: 1px solid #cfedfe;
+        margin-top: 10px;
+    }
+    #messageLogsList .search-input button {
+        color: #fff;
+        background-color: #cfedfe;
+    }
+    #messageLogsList .table {
+        margin-top: 10px;
+    }
+    #messageLogsList .table td {
+        border-color: #cfedfe;
+    }
+    #messageLogsList .table>thead>tr {
+        background-color: #a1dafa;
+        color: #fff;
+    }
+</style>
+<div class="modal-header title">
+    <button type="button" class="close" ng-click="cancel()"><span >×</span></button>
+</div>
+<div class="modal-body" id="messageLogsList">
+    <div>
+        <div style="background-color: #f3f5f6; padding: 10px;"><span ng-bind="isReadCount"></span>人已读 (<span style="color:#4eafea" ng-bind="isReadCount*100/allCount | number:2"></span><span style="color:#4eafea">%</span>)，<span ng-bind="unReadCount" style="color: #87e28b"></span>人未读(<span style="color:#4eafea" ng-bind="unReadCount*100/allCount | number:2"></span><span style="color:#4eafea">%</span>)</div>
+        <div class="input-group search-input">
+            <input type="search" class="form-control input-sm"
+                   placeholder="接收人/所属企业" ng-model="keyword" ng-search="onSearch()">
+            <span class="input-group-btn">
+                <button class="btn btn-sm" type="button" ng-click="onSearch()"><i class="fa fa-search fa-lg"></i></button>
+            </span>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <td>接收人</td>
+                <td>所属企业</td>
+                <td>
+                    <select class="form-control messagelog-select" ng-change="chooseStatus()" ng-model="status">
+                        <option value="">全部</option>
+                        <option value="ISREAD">已读</option>
+                        <option value="UNREAD">未读</option>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="log in messageCurrent">
+                <td ng-bind="log.receiver.userName"></td>
+                <td ng-bind="log.recenterprise.enName"></td>
+                <td>
+                    <span ng-if="log.status=='ISREAD'">已读</span>
+                    <span ng-if="log.status=='UNREAD'" style="color:#96caee;">未读</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="ng-cloak ng-table-pager text-center" ng-if="pages.length">
+            <ul class="pagination ng-table-pagination">
+                <li ng-class="{'disabled': !page.active && !page.current, 'active': page.current}" ng-repeat="page in pages" ng-switch="page.type">
+                    <a class="messagelog-a" ng-switch-when="prev" ng-click="setPage(page.type, -1)">&laquo;</a>
+                    <a class="messagelog-a" ng-switch-when="first" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                    <a class="messagelog-a" ng-switch-when="page" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                    <a class="messagelog-a" ng-switch-when="more" ng-click="setPage(page.type, -1)">&#8230;</a>
+                    <a class="messagelog-a" ng-switch-when="last" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                    <a class="messagelog-a" ng-switch-when="next" ng-click="setPage(page.type, -1)">&raquo;</a>
+                </li>
+            </ul>
+            <div class="page-go-block">
+                <input class="page-number" type="number" ng-model="params.currentPage" ng-keydown="listenEnter()"/>
+                <a class="page-a" ng-click="setPage('page', params.currentPage)">GO</a>
+            </div>
+        </div>
+    </div>
+</div>

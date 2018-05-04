@@ -1,0 +1,924 @@
+<style>
+	/* common start */
+	h2 {
+		margin: 0;
+		color: #000000;
+		font-size: 18px;
+		line-height: 33px;
+		font-weight: 600;
+	}
+
+	.font-size-14 {
+		font-size: 14px;
+	}
+
+	.font-size-16 {
+		font-size: 16px;
+	}
+
+	.font-size-18 {
+		font-size: 18px;
+	}
+
+	.font-micro {
+		font-family: "Microsoft Yahei", "微软雅黑";
+	}
+
+	.text-line {
+		line-height: 40px;
+		font-size: 20px;
+	}
+
+	.text-normal-s {
+		color: #000000;
+		font-size: 14px;
+		font-family: "Microsoft Yahei", "微软雅黑";
+	}
+
+	.text-price {
+		color: #F30A26;
+		font-weight: bold;
+		font-size: 16px;
+	}
+
+	.color-red {
+		color: #F30A26;
+	}
+
+	.color-gray {
+		color: #858585;
+	}
+
+	.clear-fix {
+		clear: both;
+	}
+	/* common End */
+
+	/* Content Start */
+	.content {
+		color: #000000;
+		font-size: 12px;
+		margin: 40px 0 0;
+		font-family: "Microsoft Yahei", "微软雅黑";
+	}
+
+	.content a {
+		height: 22px;
+		color: #0C3894;
+	}
+
+	.content a.color-red {
+		color: #F30A26;
+	}
+
+	.content a.color-gray {
+		color: #858585;
+	}
+
+	/* 标题和搜索框行 Start */
+	.content div.row:first-child {
+		margin: 0 0 35px;
+		clear: both;
+	}
+
+	.content div.row:first-child div {
+		height: 33px;
+		line-height: 33px;
+		display: inline-block;
+	}
+
+	/* 搜索框区域 Start */
+	.content div.search {
+		width: 494px;
+		min-width: 494px;
+		height: 33px;
+		display: inline;
+		background-image: url('static/img/order/btn-search.png');
+	}
+
+	/* 搜索文本框 Start */
+	.content div.search div input.search-text {
+		width: 414px;
+		height: 33px;
+		color: #858585;
+		font-size: 14px;
+		font-family: "Microsoft Yahei", "微软雅黑";
+		vertical-align: top;
+		border: 1px #858585 solid;
+	}
+	/* 搜索文本框 End */
+
+	/* 搜索按钮 Start */
+	.content div.search div button {
+		border: 0;
+		width: 80px;
+		height: 33px;
+		color: #FFFFFF;
+		font: 18px/1.5 "Microsoft Yahei", "微软雅黑";
+		background-color: transparent;
+		margin: 0 0 0 -4px;
+	}
+	/* 搜索按钮 End */
+
+	.content div.search div.tip-search {
+		padding: 0;
+		width: 414px;
+		height: 20px;
+		text-align: center;
+		line-height: 20px;
+		color: #68A3D0;
+	}
+	/* 搜索框区域 End */
+	/* 标题和搜索框行 End */
+
+	/* 状态栏 Start */
+	.content div.statuschoosebar{
+		padding-left: 15px;
+	}
+
+	.content div.statuschoosebar div div.btn-group button {
+		border: 0;
+		color: #575757;
+		width: 120px;
+		height: 40px;
+		text-align: left;
+		position: relative;
+		font: 18px/1 "Microsoft Yahei", "微软雅黑";
+		margin-left: -15px;
+		padding-left: 12px;
+		padding-right: 30px;
+		outline: none;
+		background: #E6E6E5;
+		background: linear-gradient(-127deg, transparent 24px, #E6E6E5 0);
+	}
+
+	.content div.statuschoosebar div div.btn-group button.marginleft10 {
+		margin-left: 10px;
+	}
+
+	.content div.statuschoosebar div div.btn-group button span {
+		color: #F30A26;
+	}
+
+	.content div.statuschoosebar div div.btn-group button:first-child {
+		margin-left: 0;
+	}
+
+	/* 状态按钮选中 Start */
+	.content div.statuschoosebar div div.btn-group button:hover,
+	.content div.statuschoosebar div div.btn-group button.btn-primary-choosed {
+		color: #FFFFFF;
+		background: #F39800;
+		background: linear-gradient(-127deg, transparent 25px, #F39800 0);
+	}
+
+	.content div.statuschoosebar div div.btn-group button:hover span,
+	.content div.statuschoosebar div div.btn-group button.btn-primary-choosed span {
+		color: #FFFFFF;
+	}
+	/* 状态按钮选中 End */
+	/* 状态栏 End */
+
+	/* 订单列表 Start */
+	.content div.list {
+		border: 1px #7DA1EC solid;
+		/*overflow-x: auto;*/
+	}
+
+	.content div table {
+		margin-bottom: 0;
+		border-color: #2D57AF;
+	}
+
+	.content div table thead {
+		color: #FFFFFF;
+		font: 14px/1 "Microsoft Yahei", "微软雅黑";
+	}
+
+	.content div table tbody tr {
+		height: 70px;
+	}
+
+	.content div table tbody tr.tr-oper td {
+		height: 100px;
+	}
+
+	/* 下拉菜单 Start*/
+	.table th div.popmenu {
+		position: relative;
+	}
+
+	.table th div.popmenu ul {
+		position: absolute;
+		display: none;
+		top: 34px;
+		left: -4px;
+		width: 102px;
+		font-size: 12px;
+		background: #FFFFFF;
+		border: 4px #2E56AC solid;
+		border-top: none;
+	}
+
+	.table th div.popmenu ul.popmenu-down {
+		display: block;
+	}
+
+	.table th div.popmenu ul li {
+		text-align: center;
+	}
+
+	.table th div.popmenu ul li:hover {
+		background: #D3D3D3;
+	}
+
+	.table th div.popmenu ul li a {
+		color: #000000;
+		text-decoration: none;
+	}
+	/* 下拉菜单 End */
+
+	.content div table tbody tr td input[type="checkbox"] {
+		border: 0;
+		width: 16px;
+		height: 16px;
+		outline: none;
+		background-image: url('static/img/order/check-unselect.png');
+		-webkit-appearance: none;
+	}
+
+	.content div table tbody tr td input[type="checkbox"]:checked {
+		background-image: url('static/img/order/check-select.png');
+	}
+	/* 分页 Start */
+	.content div.text-normal-s {
+		margin: 20px 0;
+		width: 100%;
+	}
+
+	.content div.text-normal-s>div:first-child {
+		float: right;
+		display: inline;
+		height: 28px;
+		line-height: 28px;
+	}
+
+	.content div.text-normal-s>div:first-child div {
+		padding: 0;
+		margin: 0;
+		height: 26px;
+		line-height: 26px;
+		vertical-align: top;
+		display: inline-block;
+	}
+
+	.content td.operations>div {
+		height: 22px;
+		line-height: 22px;
+	}
+
+	.content div.text-normal-s>div:first-child input[type="button"] {
+		border: 0;
+		margin: 0;
+		padding: 0;
+		height: 26px;
+		vertical-align: top;
+		background-color: transparent;
+		outline: none;
+	}
+
+	.content div.text-normal-s>div:first-child input[type="button"]:hover {
+		color: #000000;
+	}
+
+	.content div.text-normal-s>div:first-child span {
+		vertical-align: top;
+	}
+
+	.content div.text-normal-s>div:first-child input[type="text"]{
+		border: 0;
+		width: 20px;
+		height: 20px;
+		margin: 4px 0;
+		vertical-align: top;
+		text-align: center;
+		background-image: url('static/img/order/number-box.png');
+	}
+
+	.content div.text-normal-s input[type="button"].btn-jump {
+		width: 56px;
+		height: 26px;
+		border: 0;
+		padding: 0;
+		background-image: url('static/img/order/page-jump.png');
+	}
+	/* 分页 End */
+	/* 订单列表 End */
+
+	/* 订单操作 Start */
+	/* 订单操作 End */
+	/* Content End */
+	.tr-default {
+	}
+
+	.tr-default th {
+		font-weight: normal;
+		background-image: url("static/img/product/th-tr-bg.png");
+	}
+
+	.tr-default > div {
+		margin-bottom: 5px;
+	}
+
+	.text-head-default {
+		color: #fff;
+	}
+
+	td {
+		height: 70px;
+		line-height: 1.1;
+	}
+
+	/* 页面样式 Start */
+	div.content {
+		color: #000000;
+		font-size: 12px;
+		font-family: "Microsoft Yahei", "微软雅黑";
+	}
+	/* 页面样式 End */
+	.total ul>li {
+		float: left;
+		margin-left: -2px;
+		padding-left: 15px;
+		padding-right: 15px;
+		border-left: 2px #fff solid;
+		border-right: 2px #fff solid;
+	}
+
+	.total ul>li:hover {
+		background-color: #337ab7;
+	}
+
+	.total ul>li>a {
+		color: #fff;
+		cursor: pointer;
+		text-decoration: none;
+	}
+
+	div.row.total button:HOVER {
+		border-left: 1px solid #fff;
+		border-right: 1px solid #fff;
+	}
+
+	.total button {
+		height: 30px;
+	}
+
+	table.table>thead>tr>th,
+	table.table>tbody>tr>td {
+		padding: 4px;
+		font-weight: normal;
+		vertical-align: middle;
+	}
+
+	table.table-bordered {
+		border: none;
+	}
+	.u-dropdown-container {
+		position: relative;
+	}
+	.u-dropdown-container .u-dropdown {
+		position: absolute;
+		top: 2.2em;/* bottom : 2.4em */
+		left: 0;
+		display: none;
+		width: 85%;
+		box-shadow: 0px 6px 5px #888888;
+		font-size: 15px;
+	}
+	.u-dropdown-container:hover .u-dropdown {
+		display: block;
+	}
+	.u-dropdown > ul {
+		margin-bottom: 0;
+	}
+	.u-dropdown > ul > li {
+		padding: 0.2em 1em;
+		text-align: left;
+	}
+	.u-dropdown > ul > li:nth-child(1) {
+		background: hsl(31, 2%, 98%);
+	}
+	.u-dropdown > ul > li:nth-child(2) {
+		background: hsl(31, 2%, 98%);
+	}
+	.u-dropdown > ul > li:nth-child(3) {
+		background: hsl(31, 2%, 98%);
+	}
+	.u-dropdown > ul > li:nth-child(4) {
+		background: hsl(31, 2%, 98%);
+	}
+	.u-dropdown > ul > li.list-item > a > span {
+		color: #0C3894 !important;
+	}
+	.purchase .tab > button {
+		width: 140px !important;
+	}
+
+	/* 异常通知 */
+	.content .ex-notify a.ex {
+		color: red;
+	}
+	.ex-notify a.ex > span {
+		color: red !important;
+	}
+
+	.second-time  {
+		background-color: #41f555;
+	    border-radius: 8px;
+	}
+	.info-from-buyer {
+		padding: 5px;
+	    border-radius: 5px;
+	    background-color: red;
+	}
+	.color-white {
+		color: white;
+	}
+	.location ul {
+	    border-bottom: solid 1px #ddd;
+	}
+
+	.location {
+	    line-height: 28px;
+	}
+
+	.padding-zero {
+		padding: 0px 0px !important;
+	}
+	.tips div {
+		line-height: 20px;
+	}
+
+	.indent {
+		text-indent: 2em;
+	}
+	.statuschoosebar button.u-dropdown-container:hover {
+		z-index: 110 !important;
+	}
+	.time-blue {
+		background: linear-gradient(#275cca, #111213) !important;
+	}
+
+    .ensure-receiving {
+		background-color: red;
+		color: white;
+		padding: 0.3em 0.5em;
+        position: relative;
+	}
+    .receiving-dialog {
+        width: 40em;
+        border: 1px solid #eee;
+        box-shadow: 0 3px 12px 3px rgba(0,0,0,.175);
+		border-radius: 5px;
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+    }
+	.receiving-dialog h1.title {
+		padding: 0.6em 1em;
+		margin-top: 0;
+		text-align: center;
+		background-color: #00CAF2;
+		font-size: 20px;
+		color: white;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+    .receiving-dialog .info {
+        text-align: center;
+        margin-bottom: 1em;
+        font-size: 1.4em;
+    }
+    .receiving-dialog .op {
+        vertical-align: middle;
+        text-align: center;
+		margin-bottom: 1em;
+    }
+    .known {
+        margin-right: 4em;
+    }
+    .not-hint-anymore {
+
+    }
+
+	/*异常消息状态*/
+	.msg-un-read {
+        background-color: red;
+        color: white;
+        padding: 0.25em 0.35em;
+        border-radius: 0.2em;
+	}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>交易管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>销售订单管理</li>
+	</ul>
+</div>
+<div class="content purchase">
+	<!-- 标题和搜索行 Start -->
+	<div class="row">
+		<div class="col-md-2">
+			<h2>订单管理</h2>
+		</div>
+		<div class="search">
+			<div class="input-group">
+				<input class="search-text form-control" type="search" ng-model="keyword" ng-search="onSearch()" ng-change="upper()"
+					   placeholder="  型号 / 品牌 / 发货人 / 订单号">
+				<button ng-click="onSearch()" type="button" class="input-group-addon padding-zero">搜索</button>
+			</div><br/>
+			<div class="tip-search">多重搜索示例：品牌 型号 收货人</div>
+		</div>
+	</div>
+	<!-- 标题和搜索行 End -->
+	<!-- 状态行 Start -->
+	<div class="row statuschoosebar">
+		<div>
+			<div class="btn-group tab">
+				<button type="button" class="btn font-size-18 u-dropdown-container" style="z-index: 38;"
+					ng-class="{'btn-primary-choosed': active=='all'}">
+					<span ng-click="setActive('all')">全部 <span ng-bind="counts['all'] || 0"></span></span><i class="fa fa-caret-down" aria-hidden="true"></i>
+                    <div class="u-dropdown">
+						<ul class="list-unstyled" role="menu">
+							<li class="list-item ex-notify" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exApplyStatusFromBuyer-exApplyStatusFromMall', 'all')">异常通知 <span ng-bind="counts['totalReceive'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('launchPuExApplyStatus', 'all')">异常申请 <span ng-bind="counts['totalLaunch'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('returnPuStatus', 'all')">退货 <span ng-bind="counts['totalReturn'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exchangeStatusFromBuyer-exchangeStatusFromMall', 'all')">换货 <span ng-bind="counts['totalExchange'] || 0"></span> </a></li>
+						</ul>
+                    </div>
+				</button>
+				<button type="button" class="btn font-size-18 marginleft10" style="z-index: 37;width: 140px;"
+					ng-class="{'btn-primary-choosed': active=='tobeconfirmed'}" ng-click="setActive('tobeconfirmed')">
+					意向订单 <span ng-bind="counts['tobeconfirmed'] || 0"></span>
+				</button>
+				<button type="button" class="btn font-size-18 u-dropdown-container" style="z-index: 36;"
+					ng-class="{'btn-primary-choosed': active=='comfirmed'}">
+					<span ng-click="setActive('comfirmed')">待发货 <span ng-bind="counts['comfirmed'] || 0"></span></span><i class="fa fa-caret-down" aria-hidden="true"></i>
+                    <div class="u-dropdown">
+						<ul class="list-unstyled" role="menu">
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('launchPuExApplyStatus', 'comfirmed')">异常申请 <span ng-bind="counts['comfirmedLaunch'] || 0"></span> </a></li>
+							<li class="list-item ex-notify" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exApplyStatusFromBuyer-exApplyStatusFromMall', 'comfirmed')">异常通知 <span ng-bind="counts['comfirmedReceive'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('returnPuStatus', 'comfirmed')">退货 <span ng-bind="counts['comfirmedReturn'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exchangeStatusFromBuyer-exchangeStatusFromMall', 'comfirmed')">换货 <span ng-bind="counts['comfirmedExchange'] || 0"></span> </a></li>
+						</ul>
+                    </div>
+				</button>
+				<button type="button" class="btn font-size-18 u-dropdown-container" style="z-index: 35;"
+					ng-class="{'btn-primary-choosed': active=='inbound'}">
+					<span ng-click="setActive('inbound')">待收货 <span ng-bind="counts['inbound'] || 0"></span></span><i class="fa fa-caret-down" aria-hidden="true"></i>
+                    <div class="u-dropdown">
+						<ul class="list-unstyled" role="menu">
+							<li class="list-item ex-notify" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exApplyStatusFromBuyer-exApplyStatusFromMall', 'inbound')">异常通知 <span ng-bind="counts['inboundReceive'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('returnPuStatus', 'inbound')">退货 <span ng-bind="counts['inboundReturn'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exchangeStatusFromBuyer-exchangeStatusFromMall', 'inbound')">换货 <span ng-bind="counts['inboundExchange'] || 0"></span> </a></li>
+						</ul>
+                    </div>
+				</button>
+				<button type="button" class="btn font-size-18 u-dropdown-container" style="z-index: 34;"
+					ng-class="{'btn-primary-choosed': active=='tobepaid'}">
+					<span ng-click="setActive('tobepaid')">待收款 <span ng-bind="counts['tobepaid'] || 0"></span></span><i class="fa fa-caret-down" aria-hidden="true"></i>
+                    <div class="u-dropdown">
+						<ul class="list-unstyled" role="menu">
+							<li class="list-item ex-notify" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exApplyStatusFromBuyer-exApplyStatusFromMall', 'tobepaid')">异常通知 <span ng-bind="counts['tobepaidReceive'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('returnPuStatus', 'tobepaid')">退货 <span ng-bind="counts['tobepaidReturn'] || 0"></span> </a></li>
+							<li class="list-item" role="presentation"><a role="menuitem" tabindex="-1" ng-click="setExceptionType('exchangeStatusFromBuyer-exchangeStatusFromMall', 'tobepaid')">换货 <span ng-bind="counts['tobepaidExchange'] || 0"></span> </a></li>
+						</ul>
+                    </div>
+				</button>
+				<button type="button" class="btn font-size-18 marginleft10" style="z-index: 33;"
+					ng-class="{'btn-primary-choosed': active=='completed'}" ng-click="setActive('completed')">
+					已完成 <span ng-bind="counts['completed'] || 0"></span>
+				</button>
+				<button type="button" class="btn font-size-18" style="z-index: 32;"
+					ng-class="{'btn-primary-choosed': active=='unavailable'}" ng-click="setActive('unavailable')">
+					已失效 <span ng-bind="counts['unavailable'] || 0"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- 状态行 End -->
+	<!-- 列表 Start -->
+	<div>
+		<!-- 列表显示区域 Start -->
+		<div class="list">
+			<table fixed-thead="0" class="table table-bordered">
+				<thead>
+					<tr class="tr-default text-head-default font-size-14">
+						<th width="28" class="th-default text-center">序号</th>
+						<th width="130" class="th-default text-center" ng-if="active == 'all'">订单状态</th>
+						<th width="70" class="th-default text-center time-blue">
+							<div class="popmenu">
+								下单时间 <i class="fa fa-caret-down fa-lg" ng-class="{'fa-caret-up':isShowPop}" ng-show="active == 'all'" ng-click="showPop()"></i>
+								<ul ng-class="{'popmenu-down': isShowPop}">
+									<li><a ng-click="chooseInternal(1)">近30天</a></li>
+									<li><a ng-click="chooseInternal(2)">近90天</a></li>
+									<li><a ng-click="chooseInternal(3)">90天以上</a></li>
+								</ul>
+							</div>
+						</th>
+						<th width="153" class="th-default text-center">订单号</th>
+						<th width="70" class="th-default text-center time-blue"
+							ng-if="active == 'inbound' || active == 'tobepaid' || active == 'completed'">发货时间</th>
+						<th width="70" class="th-default text-center time-blue"
+							ng-if="active == 'tobepaid' || active == 'completed'">收货时间</th>
+						<th width="70" class="th-default text-center time-blue" ng-if="active == 'completed'">开票时间</th>
+						<th width="70" class="th-default text-center time-blue" ng-if="active == 'completed'">收款时间</th>
+						<th width="58" class="th-default text-center">货源<br>批次数</th>
+						<th width="50" class="th-default text-center">型号<br>数量</th>
+						<th width="60" class="th-default text-center">总数量</th>
+						<th width="70" class="th-default text-center" ng-if="active != 'unavailable'">支付<br>总金额</th>
+						<th width="44" class="th-default text-center" ng-if="active == 'unavailable'">币别</th>
+						<th width="44" class="th-default text-center">税率</th>
+						<th width="100" class="th-default text-center time-blue" ng-if="active == 'unavailable'">失效时间</th>
+						<th width="120" class="th-default text-center time-blue" ng-if="active == 'unavailable'">失效原因</th>
+						<!-- <th width="150" class="th-default text-center" ng-if="active == 'unavailable'">退运费</th> -->
+						<!-- <th width="100" class="th-default text-center" ng-if="active == 'unavailable'">退款时间</th> -->
+						<th width="110" class="th-default text-center"
+							ng-if="active != 'all'">交易操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="purchase in pageParams.content">
+						<!-- 序号 -->
+						<td class="text-center">
+							{{ ((pageParams.number-1)*10) + $index + 1 }}<br/>
+							<!-- TODO huxz 暂时弃用多选操作 -->
+							<input type="checkbox" ng-show="active == 'tobepaid' && purchase.status == 504" ng-model="checkCodes[$index]"
+								   ng-click="checkOnePur(purchase)" ng-checked="checkedIds[purchase.id]"/>
+						</td>
+						<!-- 订单状态 -->
+						<td class="text-center" ng-if="active == 'all'" ng-bind="stateMap[purchase.status]"></td>
+						<!-- 下单时间 -->
+						<td class="text-center" ng-bind="purchase.createtime | date: 'yyyy-MM-dd HH:mm'"></td>
+						<!-- 订单号 -->
+						<td class="text-center">
+							<div ng-show="active == 'all'">
+								<a class="text-num" ng-href="vendor#/cusPurchase/{{purchase.purchaseid | EncryptionFilter}}">查看详情</a>
+							</div>
+							<span ng-bind="purchase.purchaseid"></span>
+							<div ng-if="returnInfo[purchase.purchaseid].status">
+								<span ng-switch="returnInfo[purchase.purchaseid].status">
+									<span ng-switch-when="409">待优软退货</span>
+									<span ng-switch-when="410">退货运输中</span>
+									<span ng-switch-when="405">已收到退货</span>
+								</span>
+							</div>
+							<div ng-if="purchase.exchangeStatus && purchase.exchangeStatus != 'VENDOR_RECEIVED'">
+								<span ng-switch="purchase.exchangeStatus">
+									<span ng-switch-when="TO_B2C_RETURN">待优软退货</span>
+									<span ng-switch-when="B2C_RETURNED">优软已退货</span>
+									<span ng-switch-when="VENDOR_RECEIVE">
+										<button class="btn btn-default ensure-receiving" ng-click="ensureExchangeReceiving(purchase.purchaseid)">确认收退货</button>
+									</span>
+								</span>
+							</div>
+						</td>
+						<!-- 发货时间 -->
+						<td class="text-center" ng-if="active == 'inbound' || active == 'tobepaid' || active == 'completed'">
+							<span ng-bind="purchase.inboundTime | date: 'yyyy-MM-dd HH:mm'"></span>
+							<div ng-if="purchase.secondDeliveryTime" class="second-time">
+								二次发货：<span ng-bind="purchase.secondDeliveryTime | date: 'yyyy-MM-dd HH:mm'"></span>
+							</div>
+						</td>
+						<!-- 收货时间 -->
+						<td class="text-center" ng-if="active == 'tobepaid' || active == 'completed'">
+							<span ng-bind="purchase.receivedGoodsTime | date: 'yyyy-MM-dd HH:mm'"></span>
+							<div ng-if="purchase.secondReceivedTime" class="second-time">
+								二次收货：<span ng-bind="purchase.secondReceivedTime | date: 'yyyy-MM-dd HH:mm'"></span>
+							</div>
+							<div ng-if="returnInfo[purchase.purchaseid].status == 410">
+								<button class="btn btn-default ensure-receiving" ng-click="ensureReceiving(returnInfo[purchase.purchaseid], purchase)">确认收退货</button>
+                                <div class="receiving-dialog" ng-show="receivingDialogShow[returnInfo[purchase.purchaseid].id]">
+									<h1 class="title">提示</h1>
+                                    <div class="info">此订单将失效，可在“已失效”状态下查看订单详情</div>
+                                    <div class="op">
+                                        <button ng-click="known(purchase)" class="btn tbn-default known">我知道了</button>
+                                        <button ng-click="notHint(purchase)" class="btn tbn-default not-hint-anymore">下次不再提示</button>
+                                    </div>
+                                </div>
+							</div>
+						</td>
+						<!-- 开票时间 -->
+						<td class="text-center" ng-if="active == 'completed'"
+							ng-bind="purchase.invoiceTime | date: 'yyyy-MM-dd HH:mm'"></td>
+						<!-- 收款时间 -->
+						<td class="text-center" ng-if="active == 'completed'"
+							ng-bind="purchase.receivedTime | date: 'yyyy-MM-dd HH:mm'"></td>
+						<!-- 货源批次数 -->
+						<td class="text-center" ng-bind="purchase.purchaseDetails.length"></td>
+						<!-- 型号数量 -->
+						<td class="text-center" ng-bind="purchase.codeNum"></td>
+						<!-- 总数量 -->
+						<td class="text-center" ng-bind="purchase.qty"></td>
+						<!-- 支付总金额 -->
+						<td class="text-center text-price" ng-if="active != 'unavailable'" ng-bind="purchase.price | currency : currencyTrans[purchase.currency] : 2"></td>
+						<!-- 币别 -->
+						<td class="text-center" ng-if="active == 'unavailable'" ng-bind="purchase.currency"></td>
+						<!-- 税率 -->
+						<td class="text-center">
+							<span ng-show="purchase.currency == 'RMB'">17%</span>
+							<span ng-show="purchase.currency == 'USD'">0%</span>
+						</td>
+						<!-- 失效时间 -->
+						<td class="text-center" ng-if="active == 'unavailable'" ng-bind="purchase.unavailableTime | date: 'yyyy-MM-dd HH:mm'"></td>
+						<!-- 失效原因 -->
+						<td class="text-center" ng-if="active == 'unavailable'" ng-bind="purchase.unavailableReason"></td>
+						<!-- 退货总数量 -->
+						<!--<td class="text-center" ng-if="active == 'unavailable'" ng-bind="purchase.returnQty"></td>-->
+						<!-- 退货明细 -->
+						<!--<td class="text-center" ng-if="active == 'unavailable'">
+							<div ng-if="purchase.returnPuId">
+								<a class="btn btn-xs btn-info" href="vendor#/return/{{purchase.returnPuId | EncryptionFilter}}">看退货单</a>
+							</div>
+						</td>-->
+						<!-- 交易操作 -->
+						<td class="text-center operations" ng-if="active != 'all' && active != 'unavailable'">
+							<!-- 查看订单详情 -->
+							<div ng-show="active != 'unavailable'">
+								<a class="text-num" ng-href="vendor#/cusPurchase/{{purchase.purchaseid | EncryptionFilter}}">查看详情</a>
+							</div>
+							<!-- 填写物流 -->
+							<div ng-show="active == 'comfirmed'">
+								<a class="text-num" ng-click="toBeShiped(purchase)" ng-disabled="purchase.launchPuExApplyId&&purchase.launchPuExApplyStatus!='CANCELED'&&purchase.launchPuExApplyStatus!='FINISHED'">填写物流</a>
+							</div>
+							<!-- 查看物流 -->
+							<div ng-show="active == 'inbound' || active == 'tobepaid' || active == 'completed'">
+								<a class="text-num" ng-click="listLogistics(purchase.lgtId)">查看物流</a>
+							</div>
+							<!-- 异常申请 -->
+							<div ng-show="active=='comfirmed'">
+                                <a class="text-num" ng-if="!purchase.launchPuExApplyStatus"
+								   ng-href="vendor#/exception/exceptionApply/{{purchase.purchaseid | EncryptionFilter}}">异常申请</a>
+                                <a class="text-num" ng-if="purchase.launchPuExApplyStatus"
+                                   ng-href="vendor#/exception/exceptionApplyDetails/{{purchase.launchPuExApplyId | EncryptionFilter}}">
+                                    <span ng-switch="purchase.launchPuExApplyStatus">
+                                        <span ng-switch-default class="color-red">申请处理中</span>
+                                        <span ng-class="{'msg-un-read' : applyMsgState[purchase.launchPuExApplyId] == false}" ng-switch-when="MALL_TO_SUP">申请有反馈</span>
+                                    </span>
+                                </a>
+							</div>
+							<!-- 异常通知 -->
+							<div ng-if="active != 'tobeconfirmed' && active != 'completed' && !purchase.exApplyStatusFromBuyer">异常通知</div>
+							<div ng-if="active != 'completed' && active != 'unavailable' && purchase.exApplyStatusFromBuyer && purchase.exApplyStatusFromBuyer != 'BUYER_TO_MALL' && !purchase.exchangeIdFromBuyer && !purchase.returnPuId">
+								<a class="text-num" ng-href="vendor#/exception/exceptionNotify/{{purchase.exApplyIdFromBuyer | EncryptionFilter}}">
+                                    <span ng-switch="purchase.exApplyStatusFromBuyer">
+                                        <span ng-class="{'msg-un-read' : notifyMsgState[purchase.exApplyIdFromBuyer] == false}" ng-switch-when="MALL_TO_SUP">异常通知</span>
+                                        <span ng-switch-when="FINISHED">异常通知处理已完成</span>
+                                        <span ng-switch-when="CANCELED">商城已取消异常申请</span>
+                                        <span ng-switch-default>异常通知</span>
+                                    </span>
+                                </a>
+							</div>
+							<div ng-if="purchase.exchangeIdFromBuyer && applyMsgState[order.launchOrExApplyId]!==false">
+								<a class="btn btn-xs btn-warning" href="vendor#/change/{{purchase.exchangeIdFromBuyer | EncryptionFilter }}">看换货单</a>
+							</div>
+							<div ng-if="purchase.returnPuId">
+								<a class="btn btn-xs btn-info" href="vendor#/return/{{purchase.returnPuId | EncryptionFilter}}">看退货单</a>
+							</div>
+							<div ng-if="active=='tobepaid'">
+								<a ng-if="purchase.drawBillTime" title="当前的订单已经开票或还不是待结算的状态">开发票</a>
+								<a ng-href="vendor#/bill/open/{{purchase.purchaseid | EncryptionFilter}}" ng-if="!purchase.drawBillTime">开发票</a>
+							</div>
+							<!-- 现在商城不做异常申请 -->
+<!-- 							<div ng-show="active != 'completed' && active != 'unavailable'" ng-if="purchase.exApplyIdFromMall">
+								<a class="text-num ex-notify" ng-href="vendor#/exception/exceptionNotify/{{purchase.exApplyIdFromMall | EncryptionFilter}}">
+                                    <span ng-switch="purchase.exApplyStatusFromMall">
+                                        <span ng-switch-when="MALL_TO_SUP">异常通知</span>
+                                        <span ng-switch-when="FINISHED">异常通知处理已完成</span>
+                                        <span ng-switch-when="CANCELED">商城已取消异常申请</span>
+                                        <span ng-switch-default>异常通知</span>
+                                    </span>
+								</a>
+							</div> -->
+						</td>
+						<td class="text-center operations" ng-if="active == 'unavailable'">
+							<div>
+								<a class="text-num" ng-href="vendor#/cusPurchase/{{purchase.purchaseid | EncryptionFilter}}">查看详情</a>
+							</div>
+							<div ng-if="purchase.exchangeIdFromBuyer">
+								<a class="btn btn-xs btn-warning" href="vendor#/change/{{purchase.exchangeIdFromBuyer | EncryptionFilter }}">看换货单</a>
+							</div>
+							<div ng-if="purchase.returnPuId">
+								<a class="btn btn-xs btn-info" href="vendor#/return/{{purchase.returnPuId | EncryptionFilter}}">看退货单</a>
+							</div>
+						</td>
+					</tr>
+					<!-- 没有查找订单的时候显示 -->
+					<tr ng-if="!orderLength">
+						<td colspan="9" ng-if="active == 'all' || active == 'tobeconfirmed' || active == 'comfirmed'">
+							<div class="text-center text-line">
+								<i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息
+							</div>
+						</td>
+						<td colspan="10" ng-if="active == 'inbound'">
+							<div class="text-center text-line">
+								<i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息
+							</div>
+						</td>
+						<td colspan="11" ng-if="active == 'tobepaid'">
+							<div class="text-center text-line">
+								<i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息
+							</div>
+						</td>
+						<td colspan="13" ng-if="active == 'completed'">
+							<div class="text-center text-line">
+								<i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息
+							</div>
+						</td>
+						<td colspan="12" ng-if="active == 'unavailable'">
+							<div class="text-center text-line">
+								<i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- 列表显示区域 End -->
+		<!-- 分页 Start -->
+		<div class="text-normal-s color-gray">
+			<div>
+				<div>
+					共<span class="color-red" ng-bind="pageParams.totalPages"></span>页<span class="color-red" ng-bind="pageParams.totalElements"></span>条
+				</div>&nbsp;
+				<input class="text-normal-s color-gray" type="button" value="上一页" ng-click="topage(pageParams.number - 1)"/>
+				<span class="color-red" ng-bind="pageParams.number"></span>
+				<input class="text-normal-s color-gray" type="button" value="下一页" ng-click="topage(pageParams.number + 1)"/>&nbsp;
+				<span>第<input class="text-normal-s" type="text" ng-model="topagenum"/>页</span>&nbsp;
+				<input class="btn-jump" type="button" ng-click="topage(topagenum)"/>
+			</div>
+			<!-- 清除浮动 Start -->
+			<div class="clear-fix"></div>
+			<!-- 清除浮动 End -->
+		</div>
+		<!-- 分页 End -->
+		<!-- TODO huxz 暂时弃用 -->
+		<button ng-if="active=='tobepaid'"  ng-click="ensureReceived()" class="btn btn-primary" ng-disabled="!canEnsureRec">批量确认收款</button>
+	</div>
+	<!-- 列表 End -->
+	<!-- 意向订单说明 -->
+	<div class="row tips" style="color: blue;" ng-if="active=='tobeconfirmed'">
+		<div class="col-xs-12">•<span class="text-inverse">【 意向订单】</span>是 优软商城下给卖家的，买家尚未支付的订单。</div>
+		<div class="col-xs-12">• 二个自然日内 买家付款，则<span class="text-inverse">【意向订单】</span>变为<span class="text-inverse">【正式订单】</span>，该订单自动切换到<span class="text-inverse"> 【待发货】</span>状态。</div>
+		<div class="col-xs-12">• 二个自然日内 买家未付款，则<span class="text-inverse">【意向订单】</span>转为<span class="text-inverse">【失效订单】</span>，订单自动切换到<span class="text-inverse">【已失效】</span>状态。</div>
+	</div>
+	<!-- 发货说明-->
+	<div class="row tips" style="color: blue;" ng-if="active=='comfirmed'">
+		<div class="col-xs-12">点击<span class="text-inverse">【填写物流】</span>填写送货至优软商城的物流信息</div>
+		<p class="col-xs-12"></p>
+		<div class="col-xs-12"> 发货须知：</div>
+		<div class="col-xs-12">1、卖家承担产品从卖家到买家的所有运费；</div>
+		<div class="col-xs-12">2、物流费用币种必须与交易币种一致；</div>
+		<div class="col-xs-12">3、若买家选择UU配送，则卖家需支付 优软发货给买家的 运费， 该费用将在货款中扣除。</div>
+		<div class="col-xs-12"> 如遇换货，退货情况，{订单号}一栏 会显示 <span class="text-inverse">【待优软退货】</span>。</div>
+		<p class="col-xs-12"></p>
+		<div class="col-xs-12">点击<span class="text-inverse">【异常申请】</span>即可直接打开异常处理页。</div>
+		<p class="col-xs-12"></p>
+		<div class="col-xs-12">异常处理须知：</div>
+		<div class="col-xs-12">1、卖家可对订单中任意批次产品进行相关操作，并且不影响其他批次交易；</div>
+		<div class="col-xs-12">2、此处卖家尽可对申请的换货进行处理，并可给出相应的补充说明。</div>
+	</div>
+	<!-- 待收货说明 -->
+	<div class="row tips" style="color: blue;" ng-if="active=='inbound'">
+		<div class="col-xs-12">优软如需退换货，提交异常信息给买家后，<span class="text-inverse">【异常通知】</span>就会显红色并高亮。</div>
+		<div class="col-xs-12">如优软发生换货时，<span class="text-inverse">【异常通知】</span>被隐藏掉，出现<span class="text-inverse">【看换货单】</span>按钮，点击它可查看详情，<span class="text-inverse">{订单号}</span>一栏也会出现<span class="text-inverse">【待优软二次收货】</span>的标签。</div>
+		<div class="col-xs-12">如优软发生退货时，异常通知被隐藏掉，出现<span class="text-inverse">【看退货单】</span>按钮，点击它可查看详情。</div>
+	</div>
+		<!-- 待收款说明 -->
+	<div class="row tips" style="color: blue;" ng-if="active=='tobepaid'">
+		<div class="col-xs-12">待收款须知：</div>
+		<div class="col-xs-12">优软商城确认收货后，订单从 <span class="text-inverse">【待优软收货】</span>状态 自动转为 <span class="text-inverse">【待优软付款】</span>状态。</div>
+		<div class="col-xs-12">待收款16个自然日后，优软可为卖家结款，卖家在优软付款<span class="text-inverse">前 72小时</span>内，需寄出发票。</div>
+	</div>
+	<!-- 已完成说明 -->
+	<div class="row tips" style="color: blue;" ng-if="active=='completed'">
+		<div class="col-xs-12">操作须知：</div>
+		<div class="col-xs-12">待优软商城付款后，订单自动从<span class="text-inverse">【 待优软付款】</span>状态 转为 <span class="text-inverse">【已完成】</span>状态。</div>
+		<p class="col-xs-12"></p>
+		<div class="col-xs-12">质保时效：</div>
+		<div class="col-xs-12">• 若因质量问题，发生退货，卖家必须承担相关运费，并在<span class="text-inverse">10个自然日内提交<span class="text-inverse">【异常申请】</span>；</div>
+		<div class="col-xs-12">• 若优软收货<span class="text-inverse">10个自然日</span>后无异议，订单状态转为<span class="text-inverse">【已完成】</span>状态；</div>
+		<div class="col-xs-12">• 若订单转为<span class="text-inverse">【已完成】</span>状态，卖家可不再负责售后服务。</div>
+	</div>
+	<!-- 已失效说明 -->
+	<div class="row tips" style="color: blue;" ng-if="active=='unavailable'">
+		<div class="col-xs-12">• 在<span class="text-inverse">【待发货】</span>订单状态，可点击<span class="text-inverse">【异常申请】</span>。</div>
+		<div class="col-xs-12">• 点击<span class="text-inverse">【异常申请】</span>，可选择或填写相关取消订单理由提交申请。</div>
+		<div class="col-xs-12">• <span class="text-inverse">【异常通知】</span>为优软商城向该订单发出的异常通知，如有异常通知，则变为<span class="text-inverse">红色</span>。</div>
+		<div class="col-xs-12">• 之后订单状态转为<span class="text-inverse">【已失效】</span>状态，订单失效。</div>
+		<div class="col-xs-12">• 退款完成后，订单从<span class="text-inverse">【待卖家发货】</span>自动进入<span class="text-inverse">【已失效】</span>状态。</div>
+	</div>
+</div>

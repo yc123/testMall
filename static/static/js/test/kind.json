@@ -1,0 +1,149 @@
+[{
+			"nameCn" : "无源元件",
+			"id" : 1,
+			"parentid" : 0
+		}, {
+			"nameCn" : "电阻器",
+			"id" : 2,
+			"parentid" : 1
+		}, {
+			"nameCn" : "碳质电阻器",
+			"id" : 3,
+			"parentid" : 2
+		}, {
+			"nameCn" : "陶瓷复合电阻器",
+			"id" : 4,
+			"parentid" : 2
+		}, {
+			"nameCn" : "机箱安装电阻器",
+			"id" : 5,
+			"parentid" : 2
+		}, {
+			"nameCn" : "平面电阻器",
+			"id" : 6,
+			"parentid" : 5
+		}, {
+			"nameCn" : "电流传感电阻器",
+			"id" : 7,
+			"parentid" : 2
+		}, {
+			"nameCn" : "电流传感电阻器 - SMD",
+			"id" : 8,
+			"parentid" : 7
+		}, {
+			"nameCn" : "电流传感电阻器 - 透孔",
+			"id" : 9,
+			"parentid" : 7
+		}, {
+			"nameCn" : "薄膜电阻器",
+			"id" : 10,
+			"parentid" : 2
+		}, {
+			"nameCn" : "碳膜电阻器 - 透孔",
+			"id" : 11,
+			"parentid" : 10
+		}, {
+			"nameCn" : "金属膜电阻器 - 透孔",
+			"id" : 12,
+			"parentid" : 10
+		}, {
+			"nameCn" : "厚膜电阻器 - SMD",
+			"id" : 13,
+			"parentid" : 10
+		}, {
+			"nameCn" : "厚膜电阻器 - 透孔",
+			"id" : 14,
+			"parentid" : 10
+		}, {
+			"nameCn" : "薄膜电阻器 - SMD",
+			"id" : 15,
+			"parentid" : 10
+		}, {
+			"nameCn" : "薄膜电阻器 - 透孔",
+			"id" : 16,
+			"parentid" : 10
+		}, {
+			"nameCn" : "高频/射频电阻",
+			"id" : 17,
+			"parentid" : 2
+		}, {
+			"nameCn" : "MELF电阻器",
+			"id" : 18,
+			"parentid" : 2
+		}, {
+			"nameCn" : "金属箔电阻",
+			"id" : 19,
+			"parentid" : 2
+		}, {
+			"nameCn" : "金属箔电阻 - SMD",
+			"id" : 20,
+			"parentid" : 19
+		}, {
+			"nameCn" : "金属箔电阻 - 通孔",
+			"id" : 21,
+			"parentid" : 19
+		}, {
+			"nameCn" : "金属氧化物电阻器",
+			"id" : 22,
+			"parentid" : 2
+		}, {
+			"nameCn" : "电阻硬件",
+			"id" : 23,
+			"parentid" : 2
+		}, {
+			"nameCn" : "电阻组件",
+			"id" : 24,
+			"parentid" : 2
+		}, {
+			"nameCn" : "电阻器网络与阵列",
+			"id" : 25,
+			"parentid" : 2
+		}, {
+			"nameCn" : "SMD电阻器/芯片电阻器",
+			"id" : 26,
+			"parentid" : 2
+		}, {
+			"nameCn" : "可变电阻器",
+			"id" : 27,
+			"parentid" : 2
+		}, {
+			"nameCn" : "电位计工具及硬件",
+			"id" : 28,
+			"parentid" : 27
+		}, {
+			"nameCn" : "电位计",
+			"id" : 29,
+			"parentid" : 27
+		}, {
+			"nameCn" : "精度电位计",
+			"id" : 30,
+			"parentid" : 27
+		}, {
+			"nameCn" : "变阻器",
+			"id" : 31,
+			"parentid" : 27
+		}, {
+			"nameCn" : "滑动电位计",
+			"id" : 32,
+			"parentid" : 27
+		}, {
+			"nameCn" : "微调电阻器 - 表面贴装",
+			"id" : 33,
+			"parentid" : 27
+		}, {
+			"nameCn" : "微调电阻 - 通孔",
+			"id" : 34,
+			"parentid" : 27
+		}, {
+			"nameCn" : "线绕电阻器",
+			"id" : 35,
+			"parentid" : 2
+		}, {
+			"nameCn" : "线绕电阻器 - 底架安装",
+			"id" : 36,
+			"parentid" : 35
+		}, {
+			"nameCn" : "线绕电阻器 - SMD",
+			"id" : 37,
+			"parentid" : 35
+		}]

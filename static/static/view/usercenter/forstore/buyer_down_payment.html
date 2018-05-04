@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="static/css/pay.css" />
+<!--右侧主体部分-->
+<div class="user_right fr">
+    <div class="down-payment">
+        <div class="content">
+            <div class="payment-title">请您在 <em ng-bind="availabletime | restTime"></em> 内，完成支付，否则订单会被自动取消</div>
+            <div class="common-title">订单号</div>
+            <div class="order-list">
+                <ul>
+                    <li ng-repeat="list in orderList">
+                        <a href="user#/transfer/{{list}}" target="_blank"><em ng-bind="$index+1"></em>{{list}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="common-title">收款账户</div>
+            <div class="payment-style">
+                <ul style="height: 80px">
+                    <li style="margin-top: 5px;">
+                        <label class="check-act">
+                            <input type="radio" id="2" name="name" value="2" ng-checked="type == 'PAIDTOPLATFORM'"/>
+                            <label for="2"></label>
+                            <em>平台代收</em>
+                        </label>
+                        <div class="tip-content" style="margin-right: 45px;">
+                            <img src="static/img/common/notice-tip.png" />
+                            <div class="tip-content-01" style="top: 33px;">
+                                选择【平台代收】，货款将由优软商城<br/>
+                                在银行开立的第三方账户暂为保管，待<br/>
+                                您确认收货后，优软商城再和卖家结清。
+                            </div>
+                        </div>
+                        <div ng-bind="saleAccount.number">125963528469526354</div>
+                        <div ng-bind="saleAccount.accountname">开户人名称</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="pay-price">
+            <div class="row">
+                <div class="fr">总价： <em>{{$$bankTransfer.total | formateNumber : 2 | currencySysmbol : $$bankTransfer.currency}}</em></div>
+            </div>
+            <div class="row" style="margin-top: 12px;" ng-click="confirmOrder()"><button>确认</button></div>
+        </div>
+    </div>
+</div>

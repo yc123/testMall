@@ -1,0 +1,213 @@
+<style>
+.modal-dialog{
+    width: 590px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10%;
+}
+.modal-content{
+    border: none;
+}
+.modal-body{
+    padding: 0;
+}
+.apply-content{
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    padding-bottom: 22px;
+}
+.apply-content .head{
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+    line-height: 30px;
+    color: #333;
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+.apply-content .head a{
+    position: absolute;
+    right: 6px;
+    top: -2px;
+    font-size: 16px;
+    color: #b7b4b4;
+    font-weight: bold;
+}
+.apply-content .table{
+    width: 100%;
+    margin: 0 auto;
+    max-height: 130px;
+    overflow-y: auto;
+}
+.apply-content .table .row{
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+    color: #666;
+    background: #f8f8f8;
+    margin: 0;
+}
+.apply-content .table .row:nth-child(even){
+    background: #f2f2f2;
+}
+.apply-content .table .row .col-md-8{
+    padding-left: 54px;
+}
+.apply-content .table .row .col-md-4{
+    padding-left: 15px;
+}
+.apply-content .table .row em{
+    font-weight: bold;
+}
+.apply-content .count{
+    width: 100%;
+    margin: 0 auto;
+    height: 35px;
+    line-height: 35px;
+    background: #eceaea;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 14px;
+}
+.apply-content .count em{
+    margin: 0 3px;
+}
+.apply-content .count .red{
+    font-weight: bold;
+}
+/*全选*/
+.apply-content .check-act input{
+    display: none;
+}
+.apply-content .check-act label{
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background: url(static/img/icon/check-rule.png) no-repeat;
+    position: relative;
+    top: 0;
+}
+.apply-content .check-act label{
+    background-position: 0 0;
+}
+.apply-content .check-act input:checked + label{
+    background-position: -15px 0;
+}
+.apply-list{
+    margin-top: 10px;
+}
+.apply-list .row{
+    font-size: 14px;
+    color: #666;
+    line-height: 26px;
+}
+.apply-list .row .col-md-4{
+    text-align: right;
+    width: 140px;
+}
+.apply-list .row .col-md-8{
+    margin-left: 8px;
+}
+.deal-btn{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+}
+.deal-btn a{
+    width: 60px;
+    height: 26px;
+    display: inline-block;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+}
+.deal-btn a.off{
+    background: #cdcccc;
+    color: #666;
+    margin-right: 8px;
+}
+.deal-btn a.ok{
+    background: #5078cb;
+    color: #fff;
+}
+.deal-btn a:hover{
+    background: #337ab7;
+    color: #fff;
+}
+.apply-content label{
+        margin-bottom: 0;
+    }
+</style>
+<div class="modal-body">
+    <div class="apply-content">
+        <div class="head">申请开票<a ng-click="closeModal()">&times;</a></div>
+        <div class="table">
+            <div class="row" ng-repeat="item in submitInvoice">
+                <div class="col-md-8" ng-bind="item.storeName"></div>
+                <div class="col-md-4">金额： <em>￥<span ng-bind="item.price"></span></em> </div>
+            </div>
+        </div>
+        <div class="count">共<em class="blue" ng-bind="submitInvoice.length"></em>个商家，<em class="blue" ng-bind="orderCount"></em>个订单，发票金额总计：<em class="red">￥<span ng-bind="allPrice"></span></em>元</div>
+        <div class="apply-list">
+            <div class="row">
+                <div class="col-md-4">发票类型</div>
+                <div class="col-md-8">
+                    <label class="check-act" style="margin-right: 35px;" ng-show="hasNormal">
+                        <input type="radio" name="1" id="1206" ng-checked="invoiceData.kind == 1206" ng-click="getInvoiceData(1206)"/>
+                        <label for="1206"></label>
+                        增值税普票（不可抵扣）
+                    </label>
+                    <label class="check-act" ng-show="hasSpecial">
+                        <input type="radio" name="1" id="1205" ng-checked="invoiceData.kind == 1205" ng-click="getInvoiceData(1205)"/>
+                        <label for="1205"></label>
+                        增值税专票（可抵扣）
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">发票抬头</div>
+                <div class="col-md-8" ng-bind="invoiceData.head"></div>
+            </div>
+            <div class="row" ng-if="invoiceData.kind == 1205">
+                <div class="col-md-4">单位地址</div>
+                <div class="col-md-8" ng-bind="invoiceData.companyAddress"></div>
+            </div>
+            <div class="row" ng-if="invoiceData.kind == 1205">
+                <div class="col-md-4">单位电话</div>
+                <div class="col-md-8" ng-bind="invoiceData.companyPhone"></div>
+            </div>
+            <div class="row" ng-if="invoiceData.kind == 1205">
+                <div class="col-md-4">税务登记号</div>
+                <div class="col-md-8" ng-bind="invoiceData.companyTaxNumber"></div>
+            </div>
+            <div class="row" ng-if="invoiceData.kind == 1205">
+                <div class="col-md-4">开户银行</div>
+                <div class="col-md-8" ng-bind="invoiceData.bankName"></div>
+            </div>
+            <div class="row" ng-if="invoiceData.kind == 1205">
+                <div class="col-md-4">开户银行账户</div>
+                <div class="col-md-8" ng-bind="invoiceData.bankAccount"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">收票人</div>
+                <div class="col-md-8" ng-bind="invoiceData.name"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">联系电话</div>
+                <div class="col-md-8" ng-bind="invoiceData.telephone"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">收票地址</div>
+                <div class="col-md-8" ng-bind="invoiceData.area + ',' + invoiceData.detailAddress"></div>
+            </div>
+        </div>
+        <div class="deal-btn">
+            <a ng-click="closeModal()" class="off">取消</a>
+            <a ng-click="apply()" class="ok">确认</a>
+        </div>
+    </div>
+</div>

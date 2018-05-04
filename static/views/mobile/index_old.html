@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width">
+<title i18n="home.title">scm</title>
+<link rel="stylesheet"
+	href="static/lib/bootstrap/css/bootstrap3.min.css" />
+<link rel="stylesheet" href="static/css/main.css" />
+<link rel="stylesheet" href="static/css/mobile.css" />
+<link rel="stylesheet" href="static/css/icons.css" />
+<link rel="stylesheet/less" type="text/css"
+	href="static/css/less/theme.less">
+<script src="static/lib/less/less-1.7.1.min.js"></script>
+</head>
+<body>
+	<!-- header begin -->
+	<header class="navbar purple navbar-static-top">
+		<div class="container row">
+			<div class="col-xs-8">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a class="navbar-brand" href="#"><span
+							class="glyphicon glyphicon-th-list"></span></a></li>
+					<li><a class="navbar-brand" href="#">UU商务平台</a></li>
+				</ul>
+			</div>
+			<div class="col-xs-4">
+				<div class="pull-right">
+					<a class="btn btn-metis-4 btn-circle btn-line navbar-btn" href="signin"><span
+						class="glyphicon glyphicon-off"></span></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<!-- main content begin -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4 col-sm-3">
+				<a href="#" class="btn btn-metis-4 btn-round btn-line" title="">企业空间</a>
+			</div>
+			<div class="col-xs-4 col-sm-3">
+				<a href="#" class="btn btn-success btn-round btn-line" title="">商业资讯</a>
+			</div>
+			<div class="col-xs-4 col-sm-3">
+				<a href="#" class="btn btn-info btn-round btn-line" title="">网站导航</a>
+			</div>
+		</div>
+		<hr>
+		<div class="span6" ng-controller="CarouselCtrl">
+			<carousel interval="5000"> <slide
+				ng-repeat="slide in slides" active="slide.active"> <img
+				ng-src="{{slide.image}}" style="margin: auto;">
+			<div class="carousel-caption">
+				<h4>{{slide.text}}</h4>
+				<p>{{slide.desc}}</p>
+			</div>
+			</slide> </carousel>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xs-3 col-sm-2">
+				<a href="#" class="btn btn-metis-5 btn-round btn-grad" title="">产品</a>
+			</div>
+			<div class="col-xs-3 col-sm-2">
+				<a href="#" class="btn btn-metis-3 btn-round btn-grad" title="">询价</a>
+			</div>
+			<div class="col-xs-3 col-sm-2">
+				<a href="#" class="btn btn-primary btn-round btn-grad" title="">采购</a>
+			</div>
+			<div class="col-xs-3 col-sm-2">
+				<a href="#" class="btn btn-metis-2 btn-round btn-grad" title="">销售</a>
+			</div>
+		</div>
+		<hr>
+		<div ng-controller="MarketCtrl">
+			<ul class="list-group">
+				<h3>市场动态</h3>
+				<li class="list-group-item" ng-repeat="market in markets"><a
+					href="#"><span class="pull-right"
+						ng-class="getMarketClass(market.type)">{{market.type}}</span>{{market.title}}</a></li>
+			</ul>
+			<ul class="list-group">
+				<h3>行业资讯</h3>
+				<li class="list-group-item" ng-repeat="info in infos"><a
+					href="#"><span class="badge pull-right">{{info.type}}</span>{{info.title}}</a></li>
+			</ul>
+		</div>
+	</div>
+	<hr>
+	<!-- main content end -->
+	<!-- footer begin -->
+	<div class="navbar navbar-static-bottom">
+		<!-- footer inner -->
+		<div class="container">
+			<div class="link-group text-center">
+				<ul class="list-unstyled list-inline">
+					<li><a href="#">普通版</a></li>
+					<li><a href="#">pad版</a></li>
+					<li><a href="#" class="label label-info">手机版</a></li>
+				</ul>
+			</div>
+			<div class="text-center">
+				<small class="text-muted">© 2014 深圳市优软科技有限公司. 版权所有.</small>
+			</div>
+		</div>
+	</div>
+	<!-- footer end -->
+	<script type="text/javascript" src="static/lib/require.js"
+		data-main="static/js/main/main.js"></script>
+</body>
+</html>

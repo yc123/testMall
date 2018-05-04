@@ -1,0 +1,35 @@
+#site-nav {
+    background-color: #474443;
+    height: 36px;
+}
+#site-nav ul {
+    list-style: none;
+    width: 1190px;
+    margin: auto;
+    padding: 0;
+    text-align: right;
+    height: 100%;
+}
+#site-nav ul li {
+    vertical-align: middle;
+    font-size: 12px;
+    display: inline-block;
+    /*line-height: 36px;*/
+}
+#site-nav ul li.uas-cloud {
+    float: left;
+    line-height: 36px;
+}
+
+#site-nav ul li.uas-cloud a span {
+    margin-left: 0.5em;
+    vertical-align: middle;
+}
+
+#site-nav ul li:not(.uas-cloud) {
+    margin-left: 2em;
+}
+#site-nav ul li a {
+    color: rgb(230, 230, 230);
+    text-decoration: none;
+}

@@ -1,0 +1,58 @@
+<style>
+	#introduction-fragment .intro-title h3 {
+		font-size: 24px;
+		color: rgb(50,50,50);
+	}
+
+	#introduction-fragment .intro-title a {
+		font-size: 14px;
+		color: rgb(33,71,151);
+		margin-top: 25px;
+		margin-left: -50px;
+	}
+
+	#introduction-fragment .intro-text {
+		font-size: 14px;
+		color: rgb(50,50,50);
+		margin-top: 10px;
+		line-height: 30px;
+	}
+
+	#introduction-fragment .intro-text{
+		text-indent:2em;
+	}
+</style>
+<div id="introduction-fragment">
+	<div class="container">
+		<div class="menu-com row">
+			<div class="menu-title col-md-12">
+				<a href=".">商城首页</a> >
+				<a href="providers#/home" ng-if="storeInfo.type == 'AGENCY' || storeInfo.type == 'DISTRIBUTION'" title="代理经销">代理经销</a>
+				<a href="providers#/factories" ng-if="storeInfo.type == 'ORIGINAL_FACTORY'" title="原厂专区">原厂专区</a>
+				<a ng-href="{{ 'store/' + storeInfo.uuid + '#/home' }}" ng-if="storeInfo.type == 'CONSIGNMENT'" title="库存寄售">库存寄售</a>
+				>
+				<span ng-if="storeInfo.type != 'CONSIGNMENT'"><a ng-href="{{ 'store/' + storeInfo.uuid + '#/home'}}" title="{{storeInfo.storeName}}">{{storeInfo.storeName}}</a>> </span>
+				<span>了解更多</span>
+			</div>
+		</div>
+		<div class="intro-title row">
+			<h3 class="col-xs-2">
+				商家介绍
+			</h3>
+			<a class="col-xs-10" ui-sref="home">返回店铺</a>
+		</div>
+		<div class="intro-text" ng-bind="storeInfo.description">
+			<p>宇声20年，代理多家国际国内著名品牌电子元器件，从事家电、通信、数码、信息等领域技术方案开发和产品推广，销售网点遍布全国。</p>
+			<p>宇声20年的经营奠定了品牌实力，20年的兢兢业业，诚信经营，先后成立了六家子公司，在全国设立了十多个办事处。
+				为谋求将来更大的发展机会，从2014年12月1日起，宇声整合旗下所有子公司并入新公司——“深圳市华商龙商务互联科技有限公司”，
+				办公地点设在深圳市南山区科技园科技南五路英唐大厦，占据两层近3000平方米的办公场地，开始新的征程。</p>
+			<p>深圳市华商龙商务互联科技有限公司，在互联网大潮涌动的时代，将一如既往秉承和发扬宇声的经营理念和企业文化，进一步拓展经营模式，
+				搭建网络销售平台，采用多元化销售模式为用户提供综合配套的供应链解决方案、电子产品的设计方案和定制服务，
+				以应对客户的更高要求、更大需求。</p>
+			<p>我们永远秉承“诚信，谦和；用心，专业”的企业精神，融合国际尖端技术，成就民族电子信息产业，
+				在家电、手机、通讯、安防、电力、车载、医疗、新能源、轨道交通、高铁、新材料等电子信息相关领域，为客户提供增值服务，
+				做客户最值得信赖的合作伙伴，为创造更美好的未来而努力。
+			</p>
+		</div>
+	</div>
+</div>

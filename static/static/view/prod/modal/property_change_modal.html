@@ -1,0 +1,14 @@
+<div class="modal-header">
+	<h3 class="modal-title">编辑属性</h3>
+</div>
+<div class="modal-body">
+	<div class="form-group">
+		<label>属性中文名：</label>
+		<input type="text" class="form-control" ng-model="property.labelCn"
+		 typeahead="property.labelCn for property in allProperties | filter : $viewValue | limitTo : 5" typeahead-min-length="0" items="5"/>
+	</div>
+</div>
+<div class="modal-footer">
+	<button  class="btn btn-success" ng-click="confirm()">确认</button>
+	<button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>

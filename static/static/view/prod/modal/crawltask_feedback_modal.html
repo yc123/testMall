@@ -1,0 +1,32 @@
+<style>
+#crawltask_feedback_title {
+	margin-bottom: 15px;
+}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title">任务反馈</h3>
+</div>
+<div class="modal-body f14 row">
+	<h4 class="col-sm-offset-1 col-sm-4" id="crawltask_feedback_title">
+		<span ng-if="type=='CROWLED'">任务完成</span>
+		<span ng-if="type=='CROWLED_FAILED'">任务异常</span>
+	</h4>
+	<form name="taskfeedbackFrom" class="row">
+		<div class="col-sm-offset-1 col-sm-6 form-group" ng-if="type=='CROWLED'">
+			<span class="col-sm-4">调用程序：</span>
+			<div class="col-sm-8">
+				<input type="text" ng-model="task.python" class="form-control" required/>
+			</div>
+		</div>
+		<div class="col-sm-offset-1 col-sm-6 form-group">
+			<span class="col-sm-4">任务反馈：</span>
+			<div class="col-sm-8">
+				<textarea ng-model="task.feedback" cols="40" rows="8" required></textarea>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button  class="btn btn-success" ng-click="confirm()" ng-disabled="taskfeedbackFrom.$invalid">确认</button>
+	<button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>

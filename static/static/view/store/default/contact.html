@@ -1,0 +1,31 @@
+<style>
+	#contact-fragment .contact-title h3 {
+		font-size: 24px;
+		color: rgb(50,50,50);
+
+	}
+
+	#contact-fragment .contact-text {
+		font-size: 14px;
+		color: rgb(50,50,50);
+		margin-top: 10px;
+		line-height: 28px;
+	}
+</style>
+<div id="contact-fragment">
+	<div class="container" style="margin-top: 30px;">
+		<div class="contact-title">
+			<h3>
+				联系我们
+			</h3>
+		</div>
+		<div ng-if="storeInfo.enterprise">
+			<div class="contact-text">
+				<div ng-bind="storeInfo.enterprise.enName">深圳市华商龙商务互联科技有限公司</div>
+				<div ng-if="storeInfo.enterprise.enAddress.length >0">地址：<span ng-bind="storeInfo.enterprise.enAddress">深圳市南山区科技园科技南五路英唐大厦一楼</span></div>
+				<div ng-if="storeInfo.enterprise.enTel.length >0">电话：<span ng-bind="storeInfo.enterprise.enTel">0755-26038000/26038047/26038008/86140880</span></div>
+				<div ng-if="storeInfo.enterprise.enFax.length > 0">传真：<span ng-bind="storeInfo.enterprise.enFax">0755-26038111</span></div>
+			</div>
+		</div>
+	</div>
+</div>

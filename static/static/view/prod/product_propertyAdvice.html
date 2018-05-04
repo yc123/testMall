@@ -1,0 +1,76 @@
+<style>
+.advice-item {
+	padding-left: 30px;
+	/* border-top: solid 1px #5bc0de; */
+	border-left: solid 3px #5bc0de;
+	border-radius: 4px;
+	margin-bottom: 20px;
+}
+</style>
+
+<!-- 用与普通用户对类目属性设置有意见，提建议的页面 -->
+<div class="main-content">
+	<div class="panel panel-default panel-shadow">
+		<div class="panel-title">
+			<h4>
+				<span class="fa fa-fw fa-sitemap"></span> <span>对类目属性调整的建议</span>
+			</h4>
+		</div>
+		<div class="panel-body">
+			<p>
+			尊敬的用户： <br>
+			您好！非常感谢您为我们的产品提出宝贵的建议，我们会努力做出更优秀的产品以回报广大用户。
+			</p>
+			<div class="advice-item">
+				<h3>1、请选择您建议调整的类目</h3>
+				<p class="">你已选择了类目：
+					<span ng-repeat="a in actives">
+						<span class="label label-info">{{a.name}}</span>
+						<span ng-if=" ! $last">&nbsp;>&nbsp;</span>
+					</span> <a class="btn btn-default btn-xs" ng-click="changeKind()"><i class="fa fa-refresh"></i> 重新选择</a>
+				</p>
+			</div>
+			<div class="advice-item">
+				<h3>2、请选择您建议调整的方案类型</h3>
+				<div class="radio">
+					<label for="radio1">
+						<input ng-model="advice.type" type="radio" id="radio1" name="adviceType" value="1"/>
+						新增描述属性
+					</label>
+				</div>
+				<div class="radio">
+					<label for="radio2">
+						<input ng-model="advice.type" type="radio" id="radio2" name="adviceType" value="2"/>
+						对原有描述属性进行修改
+					</label>
+				</div>
+				<div class="radio">
+					<label for="radio3">
+						<input ng-model="advice.type" type="radio" id="radio3" name="adviceType" value="3"/>
+						删除描述属性
+					</label>
+				</div>
+			</div>
+			<div class="advice-item">
+				<h3>3、请输入您的建议调整方案</h3>
+				<div class="row">
+					<div class="col-sm-8">
+						<textarea ng-model="advice.schema" class="form-control" rows="3" placeholder="请描述您的建议方案描述..."></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="advice-item">
+				<h3>4、请输入您的建议理由</h3>
+				<div class="row">
+					<div class="col-sm-8">
+						<textarea ng-model="advice.reason" class="form-control" rows="3" placeholder="请陈述您这样建议的理由..."></textarea>
+					</div>
+				</div>
+			</div>
+			<div>
+				<br />
+				<button ng-click="submit()" type="button" class="btn btn-primary">提交您的建议</button>
+			</div>
+		</div>
+	</div>
+</div>

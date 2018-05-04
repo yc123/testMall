@@ -1,0 +1,1000 @@
+<style class="ng-scope">
+    .tab.active {
+        display: inline-block !important;
+    }
+    *{-webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;}
+    div.wanted_list01 dt.paging-bar>span {
+        float: right;
+        width: 322px;
+        height: 40px;
+        font-weight: normal;
+    }
+    div.wanted_list01 dt.paging-bar>span button.paging-button {
+        padding: 0;
+        height: 40px;
+        line-height: 40px;
+        border: none;
+        background: #FFFFFF;
+    }
+    div.wanted_list01 dt.paging-bar>span button.paging-button:hover {
+        color: #0C3894;
+    }
+    div.wanted_list01 dt.paging-bar>span input.page-num {
+        width: 25px;
+        height: 25px;
+        line-height: 40px;
+        border: 1px #C7BEBE solid;
+        text-align: center;
+    }
+    label[disabled] {
+        cursor: not-allowed;
+    }
+    .com_tab ul li.down-goods span:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    .materrial-list span.length01{
+        width: 10% !important;
+    }
+    .materrial-list span{
+        width: 20% !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    ul.pagination.ng-table-pagination > li > a > span {
+        height: 17px;
+        line-height: 17px;
+    }
+
+    div.ng-table-pager  input.page-number {
+        vertical-align: inherit;
+        display: inline-block;
+        width: 40px;
+        height: 31px;
+        padding: 6px 6px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #9B9792;
+        text-align: center;
+        background-color: #F6F5F4;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+
+    div.ng-table-pager a.page-a {
+        color: #fff;
+        cursor: pointer;
+        background-color: #4574E8;
+        border-color: #4574E8;
+        padding: 6px 6px;
+        font-size: 14px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        text-decoration: none;
+        height: 31px;
+    }
+
+    div.ng-table-pager div.page-go-block {
+        float: right;
+        margin-left: 20px;
+        margin-top: 15px;
+        font-size: 0px;
+        height: 31px;
+        line-height: 31px;
+    }
+    /*公用table*/
+    .public-tab{
+        margin-bottom: 0;
+    }
+    .public-tab.table tr td, .public-tab.table tr th {
+        font-size: 14px;
+        vertical-align: middle !important;
+    }
+    .public-tab.table>tbody+tbody{
+        border-top: none;
+    }
+    .public-tab.table>thead>tr{
+        height: 40px !important;
+    }
+    .public-tab.table>thead>tr>th,.public-tab.table>tbody>tr>td{
+        border-bottom: #e8e8e8 1px solid;
+        text-align: center;
+        word-break: break-all;
+    }
+    .public-tab.table>tbody>tr>td{
+        border-top: none;
+        border-bottom: #cfcfcf 1px dashed;
+    }
+    .hei16{
+        border-bottom: none !important;
+    }
+    .public-tab.table>tbody>tr>td a{
+        margin: 0 10px;
+    }
+    .grey{
+        color: #999;
+    }
+    .search-check{
+        width: 100%;
+        height: 54px;
+        background: #fff;
+        padding-top: 10px;
+        margin-bottom: 16px;
+    }
+    .search-check .search{
+        width: 550px;
+        margin-left: 150px;
+    }
+    .search-check .search .form-control{
+        width: 340px;
+        float: left;
+        height: 34px;
+        border-radius: 0;
+        box-shadow: none;
+        border-right: none;
+    }
+    .search-check .search button,.search-check .search a{
+        display: inline-block;
+        width: 94px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        font-size: 14px;
+    }
+    .search-check .search button{
+        background: #d3e1fc;
+        border-radius: 0;
+        border: #e2dbdb 1px solid;
+        border-left: none;
+    }
+    .search-check .search a{
+        background: #5078cb;
+        color: #fff;
+        float: right;
+    }
+    .search-check .search button:hover,.search-check .search a:hover{
+        color: #fff;
+        background: #3f7ae3;
+    }
+    .search-check .check{
+        font-size: 14px;
+        line-height: 35px;
+    }
+    .search-check .check a{
+        font-size: 14px;
+        margin-right: 20px;
+        color: #333;
+    }
+    .search-check .check a:hover{
+        color: #5078cb;
+    }
+    .search-check .check .check-active{
+        margin-right: 15px;
+    }
+    .search-check .check .check-active span{
+        font-weight: normal;
+        color: #333;
+    }
+    .search-check .check .check-active label{
+        margin-right: 0 !important;
+    }
+    .check-input input{
+        display: none;
+    }
+    .check-input label {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        background: url(static/img/user/images/check.png) no-repeat;
+        position: relative;
+        padding-left: 0 !important;
+        overflow: hidden;
+        margin-bottom: 0 !important;
+        vertical-align: sub;
+        min-height: 15px !important;
+        left: 0 !important;
+    }
+    .check-input input[type="checkbox"]:checked + label{
+        background-position: -15px 0;
+    }
+    .record-line{
+        min-height: 30px;
+        font-size: 12px;
+        line-height: 35px;
+        /* margin-top: 5px; */
+        padding-right: 22px;
+    }
+    .device .tab{
+        padding-bottom: 40px;
+    }
+    .wanted_list01 .pagination{
+        margin: 4px 0;
+    }
+    .ng-table-pager{
+        padding-bottom: 20px;
+    }
+    .com-del-box{
+        position: fixed;
+        z-index: 2;
+        height: 152px;
+        opacity: 1;
+        background-color: white;
+        width: 310px;
+        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        margin: -155px 0 0 -75px;
+        top: 55%;
+        left: 50%;
+    }
+    .com-del-box .title{
+        height: 30px;
+        background-color: #5078cb;
+        text-align: right;
+        padding-right: 15px;
+        line-height: 30px;
+    }
+    .com-del-box .title a{
+        color: white;
+        font-size: 16px;
+    }
+    .com-del-box .content{
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .com-del-box .content p{
+        line-height: 50px;
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .com-del-box .content p i{
+        color: #5078cb;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+    .com-del-box .content div{
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .com-del-box .content div a{
+        width: 55px;
+        height: 26px;
+        line-height: 26px;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+    }
+    .com-del-box .content div a:first-child{
+        background: #b4b5b9;
+        color: #333;
+        margin-right: 10px;
+    }
+    .com-del-box .content div a:last-child{
+        background: #5078cb;
+        color: #fff;
+    }
+    .com-del-box .content div a:hover{
+        background: #3f7ae3;
+        color: #fff;
+    }
+    .record-line .prompt{
+        text-align: left;
+        width: 495px;
+        float: left;
+        line-height: 16px;
+        padding-left: 25px;
+        padding-top: 10px;
+    }
+    .record-line .prompt a{
+        color: #5078cb;
+    }
+    /*   编辑*/
+    .edit-content td{
+        background: #daecfb;
+        padding-bottom: 20px !important;
+    }
+    .edit-content img{
+        width: 60px;
+        border: #dfdfdf 1px solid;
+        height: 60px;
+    }
+    .edit-content .form-control{
+        height: 24px;
+        padding: 0;
+        text-align: center;
+        margin-bottom: 5px;
+        line-height: 24px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+    .edit-content select.form-control{
+        padding-left: 28px;
+        line-height: 23px;
+    }
+    .edit-content p{
+        font-size: 14px;
+    }
+    .edit-content select{
+        -webkit-appearance: inherit;
+        appearance: inherit;
+    }
+    .edit-content select option{
+        text-align: center;
+    }
+    .edit-content div.content,.edit-content div.img{
+        float: left;
+        margin: 0 5px;
+    }
+    .edit-content .wid36{
+        width: 36px;
+    }
+    .edit-content .wid48{
+        width: 48px;
+    }
+    .edit-content .wid42{
+        width: 42px;
+    }
+    .edit-content .wid92{
+        width: 92px;
+    }
+    .edit-content div .input-list p span{
+        float: left;
+        line-height: 24px;
+        color: #999;
+    }
+    .edit-content div .input-list p span input:first-child{
+        margin-left: 5px;
+    }
+    .edit-content .title{
+        height: 40px;
+        line-height: 40px;
+    }
+    .edit-content .reduce{
+        color: #faa002 !important;
+        margin: 0 !important;
+    }
+    .edit-content .add{
+        color: #2ea001 !important;
+        margin: 0 !important;
+    }
+    .edit-content button{
+        width: 56px;
+        height: 24px;
+        border: none;
+        color: #fff;
+        float: left;
+    }
+    .edit-content button.off{
+        background: #f15601;
+        margin-bottom: 5px;
+    }
+    .edit-content button.ok{
+        background: #33b401;
+    }
+    .edit-content button:hover{
+        background: #5078cb;
+    }
+    .wanted_list01 .tab table tr.active{
+        height: 35px;
+    }
+    .wanted_list01 .tab table tr.active td{
+        background: #c2dff7;
+    }
+    div.user_right input::-webkit-outer-spin-button,
+    div.user_right input::-webkit-inner-spin-button{
+        -webkit-appearance: none !important;
+        margin: 0;
+    }
+    div.user_right input[type="number"]{
+        -moz-appearance:textfield;
+    }
+    .public-tab td>div.ellipsis-div {
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+    .restrict-color {
+        color: #c7c7c7;
+    }
+    a:focus {
+        text-decoration: none;
+    }
+    .col-xs-4 .f16{
+        font-size: 14px;
+    }
+
+    .public-tab.table>tbody.list-tbody:nth-child(even){
+        /* background: #dff3fc;*/
+    }
+    .width90{
+        width: 90px;
+    }
+    .width64{
+        width: 64px;
+    }
+    .width74{
+        width: 84px;
+    }
+    .width113{
+        width: 113px;
+    }
+    .storage-tr div{
+        float: left;
+        margin: 0 23px;
+        text-align: left;
+        bottom: -3px;
+        position: relative;
+        line-height: 26px;
+        color: #666;
+    }
+    .storage-tr .form-control {
+        height: 24px;
+        padding: 0;
+        text-align: center;
+        margin-bottom: 5px;
+        line-height: 24px;
+        font-size: 12px;
+        border-radius: 3px;
+        float: right;
+        margin-left: 5px;
+    }
+    .storage-tr{
+        background: #eaf7fd !important;
+    }
+    .storage-tr td span.price{
+        position: absolute;
+       /* right: 0;*/
+        width: 15px;
+        height: 24px;
+        line-height: 24px;
+        display: inline-block;
+        background: #bfbdbd;
+        text-align: center;
+        color: #fff;
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+    .storage-tr td span.data-input{
+        right: 0;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+    .storage-tr td span.price i{
+        line-height: 24px;
+    }
+    .storage-tr td .red{
+        color: #f00;
+    }
+    .storage-tr td .blue{
+        color: #5078cb;
+    }
+    .storage-tab{
+        margin: 0 auto;
+    }
+    .storage-tab.table tr, .storage-tab.table>thead>tr{
+        height: 30px !important;
+    }
+    .storage-tab.table tr td, .storage-tab.table>thead>tr th{
+        padding: 2px 8px !important;
+    }
+    .storage-tab.table>thead>tr{
+        background: #e1dede;
+    }
+    .storage-tab.table>tbody>tr{
+        background: #f2f0f0;
+    }
+    .storage-tab.table>tbody>tr:hover{
+        background: #dff3fd;
+    }
+    .storage-tab.table>tbody>tr:last-child td{
+        border-bottom: none;
+    }
+    .storage-tab.table>tbody>tr td{
+        border-bottom: #fff 1px solid;
+    }
+    .storage-tab.table>tbody>tr td i{
+        font-size: 12px;
+        margin-right: 4px;
+    }
+    .storage-tab.table>tbody>tr td i.fa-plus{
+        color: #fc5901;
+    }
+    .storage-tab.table>tbody>tr td i.fa-minus{
+        color: #36ba02;
+    }
+    .storage-tab.table>tbody>tr td{
+        color: #666;
+    }
+    /*.storage-tab.table>tbody>tr td span{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        text-align: center;
+        background: #fff;
+    }*/
+    .storage-tab.table>thead>tr th{
+        font-weight: normal;
+    }
+    .public-tab.table>tbody>tr>td p a{
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        background: #fff;
+        border-radius: 100%;
+        margin: 0 1px;
+        text-align: center;
+    }
+    .public-tab.table>tbody>tr>td p a i{
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .public-tab.table>tbody>tr>td p a.storage-btn i,.public-tab.table>tbody>tr>td p a.ok-btn i{
+        color: #36ba02;
+    }
+    .public-tab.table>tbody>tr>td p a.storage-btn:hover,.public-tab.table>tbody>tr>td p a.ok-btn:hover{
+        background: #36ba02;
+    }
+    .public-tab.table>tbody>tr>td p a.storage-btn:hover i,.public-tab.table>tbody>tr>td p a.ok-btn:hover i{
+        color: #fff;
+    }
+    .public-tab.table>tbody>tr>td p a.off-btn i{
+        color: #fc5901;
+    }
+    .public-tab.table>tbody>tr>td p a.library-btn i{
+        color: #5078cb;
+    }
+    .public-tab.table>tbody>tr>td p a.library-btn:hover{
+        background: #5078cb;
+    }
+    .public-tab.table>tbody>tr>td p a.off-btn:hover{
+        background: #fc5901;
+    }
+    .public-tab.table>tbody>tr>td p a.library-btn:hover i,.public-tab.table>tbody>tr>td p a.off-btn:hover i{
+        color: #fff;
+    }
+    .public-tab.table>tbody>tr>td p a.open-btn i{
+        color: #fcc239;
+        font-size: 16px;
+    }
+    .public-tab.table>tbody>tr>td p a.open-btn:hover{
+        background: #fcc239;
+    }
+    .public-tab.table>tbody>tr>td p a.open-btn:hover i{
+        color: #fff;
+    }
+    .public-tab.table .list-tbody tr.hover-bg-tr:hover{
+        background: #c7ebfd;
+    }
+    .public-tab.table .list-tbody tr.hover-bg-tr p{
+        display: none;
+    }
+    .public-tab.table .list-tbody tr.hover-bg-tr:hover p{
+        display: block;
+    }
+    .storage-tr select.form-control{
+        padding-left: 10px;
+        background-color: #fff;
+        text-align: left;
+    }
+    .form-control{
+        height: 24px;
+        padding: 0;
+        text-align: center;
+        margin-bottom: 5px;
+        line-height: 24px;
+        font-size: 14px;
+        border-radius: 3px;
+        float: right;
+        margin-left: 5px;
+    }
+    .public-tab.table .list-tbody tr.hover-bg-tr p.edit{
+        display: block;
+    }
+    .public-tab.table .list-tbody tr.act-edit{
+        background: #c7ebfd;
+    }
+    .public-tab.table .list-tbody tr.act-edit td{
+        border-bottom: none;
+    }
+    .overmax_class{
+        border: 1px #f00 solid !important;
+    }
+    .overmax_class:focus{
+        border: 1px #f00 solid !important;
+        box-shadow: none;
+    }
+    .select-1{
+        background: url(static/img/icon/select-1.png) no-repeat right;
+    }
+    .public-tab.table>tbody>tr>td.active-1{
+        background: #c7ebfd;
+    }
+    .public-tab.table>tbody>tr.storage-tr>td{
+        border-bottom:#c7ebfd 1px solid ;
+    }
+    .public-tab.table>tbody>tr.storage-tr{
+        border: #c7ebfd 1px solid ;
+    }
+    .public-tab.table .list-tbody tr.act-edit td{
+        border-top:#c7ebfd 1px solid ;
+    }
+    .public-tab.table .list-tbody tr.hover-bg-tr p.no-btn{
+        display: none;
+    }
+    .public-tab.table .list-tbody tr.tab-list{
+        border:#c7ebfd 1px solid ;
+    }
+    .public-tab.table .list-tbody tr.tab-list td.bottom{
+        border-bottom:#c7ebfd 1px solid ;
+    }
+</style>
+<!--右侧主体部分-->
+<div class="user_right fr">
+    <!--货品管理-->
+    <div class="pro_management device">
+        <div class="com_tab">
+            <ul class="fl" style="width: 100%">
+                <li class="active"><a href="#">仓库管理</a></li>
+            </ul>
+        </div>
+        <div class="com_tab">
+            <ul class="fl" style="width: 100%">
+                <li ng-class="{'active' : status == 'standard'}" ng-click="toggleStandardStatus('standard')"><a>标准产品</a></li>
+                <li ng-class="{'active' : status == 'nStandard'}" ng-click="toggleStandardStatus('nStandard')"><a>非标产品</a></li>
+            </ul>
+        </div>
+        <!--搜索-->
+        <div class="search-check">
+            <div class="search fl">
+                <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="keyword" ng-search="onSearch()" placeholder="类目/品牌/型号" style="text-align: left;
+    padding-left: 15px;">
+                <button ng-click="onSearch()">搜索</button>
+                <a ng-click="download()">批量导出</a>
+            </div>
+            <!--<div class="check fr">
+                <a ng-show="" ng-click="" class="ng-hide"><span ng-show="" class="ng-hide">一键匹配</span></a>
+                <a ng-show="!isBatch" ng-click="enterBatch()"><span ng-show="!isBatch">批量操作</span></a>
+                <span class="check-btn ng-hide" ng-show="isBatch">
+                    <label class="check-active">
+                        <input type="checkbox" ng-click="chooseAll()" ng-checked="isChoosedAll" id="AllChoose">
+                        <label for="AllChoose"></label>
+                        <span>全选</span>
+                    </label>
+                    <a ng-click="deleteBatch()">删除</a>
+                    <a ng-click="exitBatch()">取消</a>
+                </span>
+            </div>-->
+        </div>
+        <div class="wanted_list01">
+            <!--标准-->
+            <div class="tab" ng-if="status == 'standard'">
+                <table class="public-tab table" ng-table="ngRepositoryTable">
+                    <thead>
+                    <tr>
+                        <th width="60">序号</th>
+                        <th width="140">产品名称（类目）</th>
+                        <th width="100">品牌</th>
+                        <th width="100">型号</th>
+                        <th width="100">封装</th>
+                        <th width="80">包装</th>
+                        <th width="80">包装数量</th>
+                        <th width="60">单位</th>
+                        <th width="120">生产日期</th>
+                        <th width="80">库存总数</th>
+                        <th width="90">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 14px;">
+                            <td colspan="11" class="hei16"></td>
+                        </tr>
+                    </tbody>
+                    <tbody class="list-tbody" ng-repeat="standardPro in $data">
+                        <tr class="hover-bg-tr" ng-class="{'act-edit': standardPro.stockIn || standardPro.displayDetail && standardPro.detailStockInOut.length > 0}">
+                            <td>{{$index + 1}}</td>
+                            <td ng-bind="standardPro.kind" title="{{standardPro.kind}}">继电器</td>
+                            <td ng-bind="standardPro.pbranden" title="{{standardPro.pbranden}}">Panasonic</td>
+                            <td ng-bind="standardPro.pcmpcode" title="{{standardPro.pcmpcode}}">LPC1313</td>
+                            <td ng-bind="standardPro.encapsulation || '-'" title="{{standardPro.encapsulation}}">BGA</td>
+                            <td>
+                                <span ng-if="!standardPro.stockOut" ng-bind="standardPro.packaging || '-'" title="{{standardPro.packaging}}">盒装</span>
+                                <span ng-if="standardPro.stockOut"><input type="text" ng-model="currentPro.packaging" class="form-control" style="width: 56px;" placeholder="包装" ng-class="{ 'overmax_class' : currentPro.packaging.length > 10}"/></span>
+                            </td>
+                            <td>
+                                <span ng-if="!standardPro.stockOut" ng-bind="standardPro.minPackQty || '-'" title="{{standardPro.minPackQty}}">包装数量</span>
+                                <span ng-if="standardPro.stockOut"><input type="text" ng-model="currentPro.minPackQty" class="form-control" style="width: 65px;" placeholder="包装数量"/></span>
+                            </td>
+                            <td ng-bind="standardPro.unit || 'PCS'" title="{{standardPro.unit}}">PCS</td>
+                            <td>
+                                <span ng-if="!standardPro.stockOut" ng-bind="standardPro.produceDate || '-'" title="{{standardPro.produceDate}}">生产日期</span>
+                                <span ng-if="standardPro.stockOut"><input type="text" ng-model="currentPro.produceDate" class="form-control" style="width: 100px;" placeholder="生产日期" ng-class="{ 'overmax_class' : currentPro.produceDate.length > 20}" /></span>
+                            </td>
+                            <td ng-bind="standardPro.repositoryQty || '-'" title="{{standardPro.repositoryQty}}">500</td>
+                            <td>
+                                <p ng-if="!standardPro.stockOut" ng-class="{'no-btn': standardPro.displayDetail && standardPro.detailStockInOut.length > 0}">
+                                    <a ng-click="editProduct(standardPro)" class="storage-btn" title="编辑"><i class="fa fa-pencil"></i></a>
+                                    <a ng-click="stockInAndOut(standardPro)" class="library-btn" title="出/入库"><i class="fa fa-inbox"></i></a>
+                                    <a ng-click="displayDetail(standardPro)" class="open-btn" title="明细"><i class="fa fa-angle-down"></i></a>
+                                </p>
+                                <p ng-if="standardPro.stockOut" class="edit">
+                                    <a ng-click="updateProduct(standardPro)" class="ok-btn" title="保存"><i class="fa fa-check"></i></a>
+                                    <a ng-click="stockCancle(standardPro)" class="off-btn" title="取消"><i class="fa fa-remove"></i></a>
+                                </p>
+                                <p class="edit" ng-if="standardPro.displayDetail && standardPro.detailStockInOut.length > 0">
+                                    <a ng-click="displayDetail(standardPro)" class="open-btn" title="明细" style="margin-left: 45px;"><i class="fa fa-angle-up"></i></a>
+                                </p>
+                            </td>
+                        </tr>
+                       <!-- <tr class="storage-tr" ng-if="standardPro.stockOut">
+                            <td colspan="13">
+                                <div>生产日期<input ng-model="$$stock.produceDate" type="text" class="form-control width90"></div>
+                                <div>包装<input ng-model="$$stock.pack" type="text" class="form-control width64"></div>
+                                <div>最小包装数<input ng-model="$$stock.minPackQty" type="text" class="form-control width64"></div>
+                                <div>单位<input ng-model="$$stock.unit" type="text" class="form-control width64"></div>
+                                <div class="red">*出库数<input ng-model="$$stock.stockQty" type="text" class="form-control width64"></div>
+                                <div>成本<input ng-model="$$stock.cost" type="text" class="form-control width74"><span class="price" ng-bind="$$repository.currency == 'RMB' ? '￥' : '$'">$</span></div>
+                                <div>仓库<input ng-model="$$stock.repository" type="text" class="form-control width113"></div>
+                                <div>
+                                    <p>
+                                        <a ng-click="stockInMainten(standardPro, false)" class="ok-btn" title="保存"><i class="fa fa-check"></i></a>
+                                        <a ng-click="stockCancle(standardPro)" class="off-btn" title="取消"><i class="fa fa-remove"></i></a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>-->
+                        <tr class="storage-tr" ng-if="standardPro.stockIn">
+                            <td colspan="11">
+                                <div style="margin-left: 212px;"><span class="fl"><em class="red">*</em>数量</span><input ng-model="currentStock.stockQty" type="number" class="form-control width90" required="required"></div>
+                                <div><span class="fl">出/入库</span>
+                                    <select class="select-1 form-control" style="width: 62px;" ng-model="standardPro.defaultValue" ng-change="toggleInOut(standardPro)">
+                                        <option value="1" selected>出库</option>
+                                        <option value="2">入库</option>
+                                    </select>
+                                    <!--<span class="data-input price" ng-click=""><i class="fa fa-caret-down"></i></span>-->
+                                </div>
+                                <div style="width:123px;">
+                                    <span class="fl">成本</span>&nbsp;
+                                <span class="fr" style="position: absolute;">
+                                    <input ng-model="currentStock.cost" type="number" class="form-control width74" ng-disabled="!currentStock.currentIsStockIn">
+                                    <!--<input placeholder="-" type="number" class="form-control width74"  disabled="disabled" ng-if="!currentStock.currentIsStockIn" >-->
+                                    <span class="price" ng-bind="$$repository.currency == 'RMB' ? '￥' : '$'">$</span>
+                                </span>
+                                </div>
+                                <div><span class="fl">仓库</span>
+                                    <input ng-model="currentStock.repository" type="text" class="form-control" style="width: 150px;" placeholder="可输入可选择" ng-class="{ 'overmax_class' : currentStock.repository.length > 20}">
+                                </div>
+                                <div>
+                                    <p>
+                                        <a ng-click="stockInMainten(standardPro)" class="ok-btn" title="保存"><i class="fa fa-check"></i></a>
+                                        <a ng-click="stockCancle(standardPro)" class="off-btn" title="取消"><i class="fa fa-remove"></i></a>
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="standardPro.displayDetail && standardPro.detailStockInOut.length > 0" class="tab-list">
+                            <td colspan="11" style="padding: 0 8px;" class="bottom">
+                                <div style="/*width: 100%; height: 180px; overflow-y: auto; margin-left: 1px;*/">
+                                    <table class="storage-tab public-tab table">
+                                        <thead>
+                                        <tr>
+                                            <th width="30"></th>
+                                            <th width="120">仓库</th>
+                                            <th width="100">成本(<em ng-bind="$$repository.currency == 'RMB' ? '￥' : '$'"></em>)</th>
+                                            <th width="140">出/入库数</th>
+                                            <th width="120">操作</th>
+                                            <th width="60">操作人</th>
+                                            <th width="180">出入库时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="detail in standardPro.detailStockInOut">
+                                                <td><span>{{$index + 1}}</span></td>
+                                                <td ng-bind="detail.repository || '-'">深圳市优软商城</td>
+                                                <td ng-bind="detail.cost || '-'">0.56664</td>
+                                                <td>
+                                                    <i class="fa" ng-class="{'fa-plus': detail.ioSellerType == 1666, 'fa-minus' : detail.ioSellerType == 1667 || detail.ioSellerType == 1668}"></i>
+                                                    <em ng-bind="detail.stockQty"></em>
+                                                </td>
+                                                <td>
+                                                    <em ng-bind="detail.ioSellerType | ioSellerFilter"></em>
+                                                </td>
+                                                <td ng-bind="detail.userName">王某某</td>
+                                                <td ng-bind="detail.operateDate | date : 'yyyy-MM-dd HH:mm:ss' || '-'">2017-02-20 18:16:25</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="standardPro.detailStockInOut.length == 0 && standardPro.displayDetail" style="background: #e1dede;">
+                            <td colspan="11" style="border-bottom: none;">暂无出库/入库明细</td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="$data.length > 0">
+                        <tr style="height: 30px;">
+                            <td colspan="11" style="border-bottom: none; padding: 0;border-top: #e8e8e8 1px solid;">
+                                <div class="record-line text-right ng-scope">显示<span ng-bind="$$repository.start"></span>-<span ng-bind="$$repository.end">10</span>个，共：<span style="color: #5078cb;" ng-bind="$$repository.totalElements">2333</span>个</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="no-record-list" ng-if="!$data">
+                        <tr>
+                            <td colspan="11"><img src="static/img/all/empty-cart.png"><span>暂无标准产品信息！</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--<div class="record-line text-right ng-scope">显示1-<span class="ng-binding">10</span>个，共：<span style="color: #5078cb;">2333</span>个</div>-->
+            </div>
+            <!-- 非标准-->
+            <div class="tab" ng-if="status == 'nStandard'">
+                <table class="public-tab table" ng-table="ngRepositoryTable">
+                    <thead>
+                    <tr>
+                        <th width="60">序号</th>
+                        <th width="140">产品名称（类目）</th>
+                        <th width="100">品牌</th>
+                        <th width="100">型号</th>
+                        <th width="100">封装</th>
+                        <th width="80">包装</th>
+                        <th width="80">包装数量</th>
+                        <th width="60">单位</th>
+                        <th width="120">生产日期</th>
+                        <th width="80">库存总数</th>
+                        <th width="90">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="height: 14px;">
+                        <td colspan="11" class="hei16"></td>
+                    </tr>
+                    </tbody>
+                    <tbody class="list-tbody" ng-repeat="nStandard in $data">
+                    <tr class="hover-bg-tr"  ng-class="{'act-edit': nStandard.stockIn || nStandard.displayDetail && nStandard.detailStockInOut.length > 0}">
+                        <td>{{$index + 1}}</td>
+                        <td ng-bind="nStandard.kind" title="{{nStandard.kind}}">继电器</td>
+                        <td ng-bind="nStandard.pbranden" title="{{nStandard.pbranden}}">Panasonic</td>
+                        <td ng-bind="nStandard.pcmpcode" title="{{nStandard.pcmpcode}}">LPC1313</td>
+                        <td ng-bind="nStandard.encapsulation || '-'" title="{{nStandard.encapsulation}}">BGA</td>
+                        <td>
+                            <span ng-if="!nStandard.stockOut" ng-bind="nStandard.packaging || '-'" title="{{nStandard.packaging}}">盒装</span>
+                            <span ng-if="nStandard.stockOut"><input type="text" ng-model="currentPro.packaging" class="form-control" style="width: 56px;" placeholder="包装" ng-class="{ 'overmax_class' : currentPro.packaging.length > 10}"/></span>
+                        </td>
+                        <td>
+                            <span ng-if="!nStandard.stockOut" ng-bind="nStandard.minPackQty || '-'" title="{{nStandard.minPackQty}}">包装数量</span>
+                            <span ng-if="nStandard.stockOut"><input type="text" ng-model="currentPro.minPackQty" class="form-control" style="width: 65px;" placeholder="包装数量"/></span>
+                        </td>
+                        <td ng-bind="nStandard.unit || 'PCS'" title="{{nStandard.unit}}">PCS</td>
+                        <td>
+                            <span ng-if="!nStandard.stockOut" ng-bind="nStandard.produceDate || '-'" title="{{nStandard.produceDate}}">生产日期</span>
+                            <span ng-if="nStandard.stockOut"><input type="text" ng-model="currentPro.produceDate" class="form-control" style="width: 100px;" placeholder="生产日期" ng-class="{ 'overmax_class' : currentPro.produceDate.length > 20}" /></span>
+                        </td>
+                        <td ng-bind="nStandard.repositoryQty" title="{{nStandard.repositoryQty}}">500</td>
+                        <td>
+                            <p ng-if="!nStandard.stockOut" ng-class="{'no-btn': nStandard.displayDetail && nStandard.detailStockInOut.length > 0}">
+                                <a ng-click="editProduct(nStandard)" class="storage-btn" title="编辑"><i class="fa fa-pencil"></i></a>
+                                <a ng-click="stockInAndOut(nStandard)" class="library-btn" title="出/入库"><i class="fa fa-inbox"></i></a>
+                                <a ng-click="displayDetail(nStandard)" class="open-btn" title="明细"><i class="fa fa-angle-down"></i></a>
+                            </p>
+                            <p class="edit" ng-if="nStandard.displayDetail && nStandard.detailStockInOut.length > 0">
+                                <a ng-click="displayDetail(nStandard)" class="open-btn" title="明细" style="margin-left: 45px;"><i class="fa fa-angle-up"></i></a>
+                            </p>
+                            <p ng-if="nStandard.stockOut" class="edit">
+                                <a ng-click="updateProduct(nStandard)" class="ok-btn" title="保存"><i class="fa fa-check"></i></a>
+                                <a ng-click="stockCancle(nStandard)" class="off-btn" title="取消"><i class="fa fa-remove"></i></a>
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- <tr class="storage-tr" ng-if="standardPro.stockOut">
+                         <td colspan="13">
+                             <div>生产日期<input ng-model="$$stock.produceDate" type="text" class="form-control width90"></div>
+                             <div>包装<input ng-model="$$stock.pack" type="text" class="form-control width64"></div>
+                             <div>最小包装数<input ng-model="$$stock.minPackQty" type="text" class="form-control width64"></div>
+                             <div>单位<input ng-model="$$stock.unit" type="text" class="form-control width64"></div>
+                             <div class="red">*出库数<input ng-model="$$stock.stockQty" type="text" class="form-control width64"></div>
+                             <div>成本<input ng-model="$$stock.cost" type="text" class="form-control width74"><span class="price" ng-bind="$$repository.currency == 'RMB' ? '￥' : '$'">$</span></div>
+                             <div>仓库<input ng-model="$$stock.repository" type="text" class="form-control width113"></div>
+                             <div>
+                                 <p>
+                                     <a ng-click="stockInMainten(standardPro, false)" class="ok-btn" title="保存"><i class="fa fa-check"></i></a>
+                                     <a ng-click="stockCancle(standardPro)" class="off-btn" title="取消"><i class="fa fa-remove"></i></a>
+                                 </p>
+                             </div>
+                         </td>
+                     </tr>-->
+                    <tr class="storage-tr" ng-if="nStandard.stockIn">
+                        <td colspan="11">
+                            <div style="margin-left: 212px;"><span class="fl"><em class="red">*</em>数量</span><input ng-model="currentStock.stockQty" type="number" class="form-control width90" required="required"></div>
+                            <div><span class="fl">出/入库</span>
+                                <select class="select-1 form-control" style="width: 62px;" ng-model="nStandard.defaultValue" ng-change="toggleInOut(nStandard)">
+                                    <option value="1" selected>出库</option>
+                                    <option value="2">入库</option>
+                                </select>
+                                <!--<span class="data-input price" ng-click=""><i class="fa fa-caret-down"></i></span>-->
+                            </div>
+                            <div style="width:123px;">
+                                <span class="fl">成本</span>&nbsp;
+                                <span class="fr" style="position: absolute;">
+                                    <input ng-model="currentStock.cost" type="number" class="form-control width74" ng-disabled="!currentStock.currentIsStockIn">
+                                    <!--<input placeholder="-" type="number" class="form-control width74"  disabled="disabled" ng-if="!currentStock.currentIsStockIn" >-->
+                                    <span class="price" ng-bind="$$repository.currency == 'RMB' ? '￥' : '$'">$</span>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="fl">仓库</span>
+                                <input ng-model="currentStock.repository" type="text" class="form-control" style="width: 150px;" placeholder="可输入可选择" ng-class="{ 'overmax_class' : currentStock.repository.length > 20}">
+                            </div>
+                            <div>
+                                <p>
+                                    <a ng-click="stockInMainten(nStandard)" class="ok-btn" title="保存"><i class="fa fa-check"></i></a>
+                                    <a ng-click="stockCancle(nStandard)" class="off-btn" title="取消"><i class="fa fa-remove"></i></a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="nStandard.displayDetail && nStandard.detailStockInOut.length > 0 ">
+                        <td colspan="11" style="padding: 0 8px;" class="bottom">
+                            <div style="/*width: 100%; height: 180px; overflow-y: auto; margin-left: 1px;*/">
+                                <table class="storage-tab public-tab table">
+                                    <thead>
+                                    <tr>
+                                        <th width="30"></th>
+                                        <th width="120">仓库</th>
+                                        <th width="100">成本(<em ng-bind="$$repository.currency == 'RMB' ? '￥' : '$'"></em>)</th>
+                                        <th width="140">出/入库数</th>
+                                        <th width="120">操作</th>
+                                        <th width="60">操作人</th>
+                                        <th width="180">出入库时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="detail in nStandard.detailStockInOut">
+                                        <td><span>{{$index + 1}}</span></td>
+                                        <td ng-bind="detail.repository || '-'">深圳市优软商城</td>
+                                        <td ng-bind="detail.cost || '-'">0.56664</td>
+                                        <td>
+                                            <i class="fa" ng-class="{'fa-plus': detail.ioSellerType == 1666, 'fa-minus' : detail.ioSellerType == 1667}"></i>
+                                            <em ng-bind="detail.stockQty"></em>
+                                        </td>
+                                        <td>
+                                            <em ng-bind="detail.ioSellerType | ioSellerFilter"></em>
+                                        </td>
+                                        <td ng-bind="detail.userName">王某某</td>
+                                        <td ng-bind="detail.operateDate | date : 'yyyy-MM-dd HH:mm:ss' || '-'">2017-02-20 18:16:25</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-if="nStandard.detailStockInOut.length == 0 && nStandard.displayDetail" style="background: #e1dede;">
+                        <td colspan="11" style="border-bottom: none">暂无出库/入库明细</td>
+                    </tr>
+                    </tbody>
+                    <tbody ng-if="$data.length > 0">
+                        <tr style="height: 30px;">
+                            <td colspan="11" style="border-bottom: none; padding: 0; border-top: #e8e8e8 1px solid;">
+                                <div class="record-line text-right ng-scope">显示<span ng-bind="$$repository.start"></span>-<span ng-bind="$$repository.end">10</span>个，共：<span style="color: #5078cb;" ng-bind="$$repository.totalElements">2333</span>个</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="no-record-list" ng-if="!$data">
+                        <tr>
+                            <td colspan="11"><img src="static/img/all/empty-cart.png"><span>暂无非标产品信息！</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--<div class="record-line text-right ng-scope">显示1-<span class="ng-binding">10</span>个，共：<span style="color: #5078cb;">2333</span>个</div>-->
+            </div>
+        </div>
+
+    </div>
+</div>

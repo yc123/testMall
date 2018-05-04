@@ -1,0 +1,247 @@
+<style>
+    .help-list{
+        width: 50%;
+        background: #fff;
+        border: #e8e8e8 1px solid;
+        display: inline-block;
+    }
+    .help-list h2{
+        background: #5078cb;
+        line-height: 34px;
+        height: 34px;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        margin: 0;
+    }
+    .help-list ul{
+        width: 100%;
+    }
+    .help-list li {
+        position: relative;
+        line-height: 33px;
+        font-size: 14px;
+        color: #333;
+        float: left;
+        width: 100%;
+    }
+
+    .help-list li a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+        width: 100%;
+        padding-left: 15px;
+    }
+    .help-list li a:hover{
+        color: #5078cb;
+        cursor: pointer;
+        background: #e8e8e8;
+    }
+    .help-list ul li:hover > .list-body li:hover{
+        background: #e8e8e8;
+    }
+    .help-list li:hover > .operate-icon{
+        display: inline-block;
+    }
+    .help-list ul.list-body {
+        /*display: none;*/
+        color: #666;
+    }
+    .help-list ul.list-body.active {
+        display: block;
+    }
+    .help-list ul.list-body li {
+        float: none;
+        background-image: none;
+        min-height: 26px;
+        line-height: 26px;
+        font-size: 12px;
+    }
+
+    .help-list ul.list-body li a {
+        padding-left: 28px;
+        display: block;
+        color: rgb(50,50,50);
+        background: none;
+    }
+    .help-list ul.list-body li a:hover {
+        color: #5078cb;
+        cursor: pointer;
+        background: #e8e8e8;
+    }
+    .help-list ul.list-body li a:active {
+        background: #ccc;
+    }
+    .help-list ul.list-body li a.cur,.help-list ul li a.cur{
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .help-list ul li .operate-icon {
+        position: absolute;
+        right: 5px;
+        top: 1px;
+        width: 100px;
+        z-index: 200;
+        display: none;
+    }
+    .help-list ul li .operate-icon a:hover{
+        background: none;
+    }
+    .help-list li>ul>li>ul>li {
+        padding-left: 30px;
+    }
+    .help-list .panel-title{
+        border-bottom: 1px dashed #d7d7d7;
+    }
+    .help-list .panel-title h4 span{
+        font-size: 16px;
+    }
+    .help-list .panel-title h4 span.fa{
+        margin-left: 20px;
+    }
+    .help-list .operate-icon a{
+        float: right;
+        width: 20%;
+        padding-left: 0 !important;
+        text-align: center;
+        margin-left: 0 !important;
+        font-size: 14px !important;
+    }
+    .help-list .operate-icon a:hover{
+        background: none;
+    }
+    .help-list ul li.add{
+        padding-left: 0;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .help-list ul li.add button.btn{
+        text-align: center;
+        border: 1px solid #ff7300;
+        color: #ff7300;
+        border-radius: 4px;
+        cursor: pointer;
+        background: none;
+        width: 95%;
+        height: 30px;
+        margin: 0 auto;
+        padding: 0;
+        margin-left: 10px;
+    }
+    .help-list ul li.actived {
+        background-color: #ccc;
+    }
+    .help-list ul li.add button.btn:hover{
+        background: #e8e8e8;
+    }
+    .help-center-list h4{
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        padding-left: 20px;
+        margin: 0;
+    }
+    .help-center-list ul{
+        width: 99%;
+        margin-left: 20px;
+    }
+    .help-center-list ul li{
+        display: block;
+        line-height: 25px;
+    }
+    .help-center-list ul li a{
+        color: #323232;
+        font-size: 14px;
+    }
+    .help-center-list ul li em{
+        margin-right: 6px;
+        width: 3px;
+        height: 3px;
+        display: inline-block;
+        background: #323232;
+        border-radius: 100%;
+        float: left;
+        position: relative;
+        top: 12px;
+    }
+    .help-center-list ul li:hover {
+        background: #e8e8e8;
+    }
+    .help-center-list ul li:hover > .operate-icon {
+        display: inline-block;
+    }
+    .help-center-list ul li:hover a{
+        color: #5078cb;
+        text-decoration: underline;
+    }
+    .help-center-list ul li:hover em{
+        background: #5078cb;
+    }
+    .help-center-list ul li .operate-icon{
+        position: absolute;
+        right: 20%;
+        width: 100px;
+        z-index: 200;
+        display: none;
+    }
+
+    .help-center-list ul li .operate-icon a:hover{
+        background: none;
+    }
+</style>
+<div class="help-list">
+    <div class="panel-title">
+        <h4>
+            <span class="fa fa-fw fa-sitemap"></span> <span>选择您要编辑的类目</span>
+        </h4>
+    </div>
+    <ul class="list-unstyled" style="margin-top: 10px;">
+        <li ng-repeat="nav in nav1 | orderBy : 'detno'" ng-class="{'actived': nav.isSelected&&nav.isLeaf==1}">
+            <a ng-click="toggleNav(nav)" class="cur">
+                <i class="fa fa-angle-right" aria-hidden="true" ng-if="nav.count > 0 && !nav.isShow"></i>
+                <i class="fa fa-angle-down" aria-hidden="true" ng-if="nav.isShow"></i>
+                <span ng-bind="nav.item"></span>
+            </a>
+            <div class="operate-icon">
+                <a title="添加导航" ng-click="addNav(nav, false)"><i class="fa fa-plus"></i></a>
+                <a title="修改导航" ng-click="addNav(nav, true)"><i class="fa fa-edit"></i></a>
+                <a title="上移导航" ng-click="move(nav.detno, nav.detno-1, nav1)" ng-if="$index != 0"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                <a title="下移导航" ng-click="move(nav.detno, nav.detno+1, nav1)" ng-if="$index != nav1.length-1"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                <a title="删除导航" ng-click="deleteNav(nav.id, 0)"><i class="fa fa-trash-o"></i></a>
+            </div>
+            <ul class="list-unstyled list-body">
+                <li  ng-repeat="navChild in nav.children | orderBy : 'detno'" ng-class="{'actived': navChild.isSelected&&navChild.isLeaf==1}">
+                    <a ng-click="toggleNav(navChild)">
+                        <i class="fa fa-angle-right" aria-hidden="true" ng-if="navChild.count > 0 && !navChild.isShow"></i>
+                        <i class="fa fa-angle-down" aria-hidden="true" ng-if="navChild.isShow"></i>
+                        <span ng-bind="navChild.item"></span>
+                    </a>
+                    <div class="operate-icon">
+                        <a title="修改导航" ng-click="addNav(navChild, true)"><i class="fa fa-edit"></i></a>
+                        <a title="上移导航" ng-click="move(navChild.detno, navChild.detno-1, nav.children)" ng-if="$index != 0"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                        <a title="下移导航" ng-click="move(navChild.detno, navChild.detno+1, nav.children)" ng-if="$index != nav.children.length-1"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                        <a title="删除导航" ng-click="deleteNav(navChild.id, nav.id)"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="add ">
+            <span ng-if="nav1.length == 0">暂无导航信息</span>
+            <button class="btn" title="添加导航" ng-click="addNav(0, false)"><i class="fa fa-plus"></i>添加导航</button>
+        </li>
+    </ul>
+</div>
+<div  class="help-center-list" ng-show="issues">
+    <h4>问题知识列表</h4>
+    <ul>
+        <li ng-repeat="issue in issues | orderBy : 'detno'">
+            <em></em><a ui-sref="helpDetail({id:issue.id})" ng-bind="issue.title"></a>
+            <div class="operate-icon">
+                <a title="上移文章" ng-click="moveIssue(issue.detno, issue.detno-1, issues)" ng-if="$index != 0"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                <a title="下移文章" ng-click="moveIssue(issue.detno, issue.detno+1, issues)" ng-if="$index != issues.length-1"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+            </div>
+        </li>
+        <li ng-if="issues.length == 0"><em></em>暂无帮助信息</li>
+    </ul>
+</div>

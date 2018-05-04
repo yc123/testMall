@@ -1,0 +1,134 @@
+<style>
+/*滚动*/
+.gdtu {
+    width:1190px;
+    height:100px;
+    margin:0 auto;
+    background: #f1f1f1;
+    margin-top: 20px;
+}
+.gddiv {
+    margin:0 auto;
+    width:100%;
+    overflow:hidden;
+    height:96px;
+}
+.gddiv ul {
+    float:left;
+    height:91px;
+}
+.gddiv li {
+    float:left;
+    width:161px;
+    height:91px;
+    display:inline;
+    margin-right: 15px;
+    margin-top: 4px;
+}
+.innerElem {
+    width:9999px;
+}
+.gddiv li img{
+    width:161px;
+    height:91px;
+}
+</style>
+<div class="gdtu">
+    <div id="elem" class="gddiv">
+        <div class="innerElem">
+            <ul>
+                <li>
+                    <a href="http://www.usoftmall.com/store/worldshine#/home" target="_blank" title="深圳市华商龙商务互联科技有限公司">
+                        <img src="static/img/index/adv01.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/adtracon#/home" target="_blank" title="贝尔（深圳）新材料有限公司">
+                        <img src="static/img/index/adv02.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/compa#/home" target="_blank" title="上海康帕科贸有限公司">
+                    <img src="static/img/index/adv03.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/corestaff#/home" target="_blank" title="CoreStaff Hong Kong Limited">
+                        <img src="static/img/index/adv04.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/chipled#/home" target="_blank" title="深圳市光台光电子有限公司">
+                        <img src="static/img/index/adv05.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/opd#/home" target="_blank" title="深圳市欧睿达电子有限公司">
+                        <img src="static/img/index/adv06.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/jrxy#/home" target="_blank" title="深圳市景瑞兴业科技有限公司">
+                        <img src="static/img/index/adv07.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/hbt#/home" target="_blank" title="深圳市宏博通电子有限公司">
+                        <img src="static/img/index/adv08.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/yjycoin#/home" target="_blank" title="深圳市益嘉源电子有限公司">
+                        <img src="static/img/index/adv09.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/d3567635164a4811a5ba9e9adbcdcc87#/home" target="_blank" title="张家港恒芯电子有限公司">
+                        <img src="static/img/index/adv10.jpg" alt=""/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.usoftmall.com/store/winsen#/home" target="_blank" title="郑州炜盛电子科技有限公司">
+                        <img src="static/img/index/adv11.jpg" alt=""/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    function slide(id){
+        var timer;
+        var elem = document.getElementById(id);
+        var elem1 = elem.getElementsByTagName('ul')[0];
+        var elem2 = document.createElement('ul');
+        var div = elem.getElementsByTagName('div')[0];
+        this.Scroll = Scroll;
+        this.act = act;
+        function Scroll() {
+            if (elem.scrollLeft >= elem1.offsetWidth) {
+                elem.scrollLeft -= elem1.offsetWidth;
+            }
+            else {
+                elem.scrollLeft += 3;
+            }
+        }
+        function act() {
+            div.appendChild(elem2);
+            if (elem1.offsetWidth >= elem.offsetWidth) {
+                elem2.innerHTML = elem1.innerHTML;
+                timer = setInterval(this.Scroll, 100);
+                elem.onmouseover = function () {
+                    clearInterval(timer);
+                }
+                elem.onmouseout = function () {
+                    timer = setInterval(Scroll, 200);
+                }
+            }
+        }
+    }
+    $(".gddiv").each(function () {
+        var sli = new slide($(this).attr("id"));
+        sli.act();
+    });
+</script>

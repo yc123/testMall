@@ -1,0 +1,282 @@
+<style>
+	#store-list .table tr>th,
+	#store-list .table tr>td{
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	#store-list table td .info-line {
+		white-space: nowrap;
+	}
+	/*切换导航*/
+	.menu .col-sm-8{
+		padding: 0;
+		width: auto;
+	}
+	.menu{
+		width: 100%;
+		height: 40px;
+		background: #229ee6;
+		margin: 0;
+		line-height: 40px;
+		overflow: hidden;
+	}
+	.menu .btn{
+		border: none;
+		background: none;
+		color: #fff;
+		padding: 8px 30px;
+		width: 100px;
+	}
+	.menu .btn:active{
+		background: none;
+	}
+	.menu .btn-group{
+		height: 40px;
+	}
+	.menu .btn-primary:before,.menu a:hover:before{
+		content: "";
+		width: 20px;
+		height: 20px;
+		display: inline-block;
+		background: #fff;
+		transform: rotate(-45deg);
+		position: absolute;
+		bottom: -18px;
+		left: 40%;
+	}
+	.menu .col-sm-3{
+		float: right;
+		margin-right: 100px;
+		width: 270px;
+		padding: 0;
+	}
+	.menu .sreach-input{
+		position: relative;
+		margin-top: 5px;
+		width: 270px;
+		height: 40px;
+	}
+	.menu .sreach-input .form-control{
+		height: 30px;
+		float: left;
+		border-radius: 0;
+		font-size: 12px;
+	}
+	.menu .sreach-input button{
+		width: 60px;
+		height: 30px;
+		background: #b9e1f9;
+		float: right;
+		position: absolute;
+		right: 0;
+		top: 0;
+		border: none;
+		font-size: 14px;
+	}
+	.com-title h2{
+		font-size: 24px;
+		color: #219ee6;
+	}
+	/*显示记录条数*/
+	.text-rt{
+		text-align: right;
+	}
+	.record-stort{
+		line-height: 34px;
+		font-size: 12px;
+		margin-bottom: 0;
+		padding-right: 30px;
+	}
+	.record-stort em{
+		font-family: "Microsoft Yahei", "微软雅黑";
+		color: #229ee6;
+		font-style: inherit;
+		font-weight: inherit;
+		background: none;
+	}
+	/*表格样式*/
+	.application-tab table tbody tr{
+		height: 70px;
+	}
+	.application-tab table tr th,.application-tab table tr td{
+		border: #cfedfe 1px solid;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.application-tab .table-bordered{
+		border-top: #cfedfe 1px solid;
+	}
+	.application-tab table tr th{
+		background: #cfedfe;
+		height: 35px;
+	}
+	.application-tab table tbody tr:hover{
+		background: #e4f3fc;
+	}
+	.application-tab table tbody tr .btn{
+		border: none;
+		width: 60px;
+		height: 22px;
+		line-height: 22px;
+		color: #fff;
+		display: inline-block;
+		margin-bottom: 5px;
+		padding: 0;
+		font-size: 12px;
+		border-radius: 2px;
+	}
+	.text-left{
+		text-align: left !important;
+	}
+	.application-tab table tbody tr .btn:hover{
+		background: #219ee6 ;
+	}
+	.application-tab table tbody tr .apply-bg{
+		background: #fb9c06;
+	}
+	.application-tab table tbody tr .detail-bg{
+		background: #3ba9e9;
+	}
+	.application-tab table tbody tr .wait{
+		color:#e02f2f ;
+	}
+	.application-tab table tbody tr .no-pass{
+		color: #219ee6;
+	}
+	.application-tab table thead th p i{
+		color: #219ee6;
+		/*margin-left: 4px;*/
+	}
+	.application-tab table thead th p:hover{
+		cursor: pointer;
+	}
+	.application-tab .status{
+		width: 80px;
+		height: 21px;
+		text-align: center;
+		font-size: 12px;
+		border: none;
+		padding: 0;
+		padding-left: 2px;
+		text-align: center;
+		font-weight: bold;
+	}
+	.application-tab .hot-icon div{
+		text-align: left;
+		margin-left: 30px;
+	}
+	.application-tab .hot-icon i{
+		width: 17px;
+		height: 17px;
+		display: inline-block;
+		position: relative;
+		top: 3px;
+		margin-right: 3px;
+		background: url("static/img/icon/store-hot-icon.png");
+	}
+	.application-tab .hot-icon i.hot{
+		background-position: -1px 0;
+	}
+	.application-tab .hot-icon i.new{
+		background-position: 0 -19px;
+	}
+	.application-tab .hot-icon i.new-apply{
+		background-position: 0 -39px;
+	}
+	.blue{
+		color: #3ba9e9 !important;
+	}
+	.red{
+		color: #f00 !important;
+	}
+	.application-tab table tr td p{
+		margin-bottom: 0;
+	}
+</style>
+<div class="row-fluid sortable" id="store-list">
+	<div class="com-title">
+		<h2>店铺管理</h2>
+	</div>
+	<div class="menu row">
+		<div class="col-sm-8">
+			<div class="btn-group" role="group" aria-label="...">
+				<a type="button" class="btn btn-default" ng-class="{'btn-primary': storeType === 'ALL'}" ng-click="chooseStoreType('ALL')">全部</a>
+				<a type="button" class="btn btn-default" ng-class="{'btn-primary': storeType === 'ORIGINAL_FACTORY'}" ng-click="chooseStoreType('ORIGINAL_FACTORY')">原厂</a>
+				<a type="button" class="btn btn-default" ng-class="{'btn-primary': storeType === 'AGENCY'}" ng-click="chooseStoreType('AGENCY')">代理商</a>
+				<a type="button" class="btn btn-default" ng-class="{'btn-primary': storeType === 'DISTRIBUTION'}" ng-click="chooseStoreType('DISTRIBUTION')">经销商</a>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="sreach-input">
+				<input type="search" class="form-control" placeholder="请输入公司名称" ng-model="keyword" ng-search="refreshTableData()"/>
+				<button ng-click="refreshTableData()">搜索</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="text-rt col-sm-12">
+			<p class="record-stort">显示1-10条记录，&nbsp;&nbsp;共<em ng-bind="storeTableParams.total()">1000</em>条</p>
+		</div>
+	</div>
+	<!--表格-->
+	<div class="application-tab">
+		<table class="table table-bordered" ng-table="storeTableParams">
+			<thead>
+			<tr>
+				<th width="140">店铺编号</th>
+				<th width="300">公司名称</th>
+				<th width="120">类型</th>
+				<th width="220">
+					<p ng-click="changeShorting()" style="margin: 0;">创建时间
+						<i class="fa fa-long-arrow-up" ng-if="isShow === 'ALL' || isShow == 'UP'"></i>
+						<i class="fa fa-long-arrow-down" ng-if="isShow === 'ALL' || isShow == 'DOWN'"></i>
+					</p>
+				</th>
+				<th width="220">最后修改时间</th>
+				<th width="220">标签</th>
+				<th width="100">
+					<select class="form-control status" ng-model="storeStatus" ng-change="filterStoreStatus(storeStatus)">
+						<option value="" selected>状态</option>
+						<option ng-value="'OPENED'">已开店</option>
+						<option ng-value="'COMPLAINT'">申诉中</option>
+						<option ng-value="'CLOSED'">违规关店</option>
+					</select>
+				</th>
+				<th width="120">操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="store in $data">
+				<td><a ng-href="{{'store/' + store.uuid}}" target="_blank"><span ng-bind="store.id | storeId"></span></a></td>
+				<td class="text-left"><span ng-bind="store.enterprise && store.enterprise.enName && store.enterprise.enName !== '' ? store.enterprise.enName : '暂无公司名称'"></span></td>
+				<td><span ng-bind="store.type | storeType"></span></td>
+				<td><span ng-bind="store.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></span></td>
+				<td><span ng-bind="store.updateTime | date : 'yyyy-MM-dd HH:mm:ss'"></span></td>
+				<td class="hot-icon">
+					<div ng-if="newStoreMap[store.uuid]">
+						<i class="hot"></i><span>热销</span>
+					</div>
+					<div ng-if="hotSalesMap[store.uuid]">
+						<i class="new"></i><span>新入驻</span>
+					</div>
+					<div ng-if="store.tagsObject['EXCELLENCE_LIST']">
+						<i class="new-apply"></i><span>优秀供应商</span>
+					</div>
+				</td>
+				<td>
+					<p ng-if="!store.status || store.status === 'OPENED'">已开店</p>
+					<p class="blue" ng-if="store.status === 'CLOSED'">违规关店</p>
+					<p class="red" ng-if="store.status === 'COMPLAINT'">申诉中</p>
+				</td>
+				<td>
+					<a href="javascript:void(0)" ng-click="goStoreDetail(store)" class="detail-bg btn">查看详情</a>
+				</td>
+			</tr>
+			<tr ng-if="!$data || $data.length <= 0">
+				<td colspan="8">暂时没有待审核申请</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,304 @@
+<style>
+h4 {
+	font-size: 14px;
+	color: #317eac;
+	font-weight: bold;
+}
+
+.body {
+	padding: 30px;
+	padding-top: 20px !important;
+}
+
+.part {
+	margin-top: 20px;
+}
+
+.head {
+	width: 114px;
+	line-height: 30px;
+	clolor: red;
+	border: 1px solid #ddd;
+}
+
+.text-inverse {
+	color: #f40;
+}
+
+.text-info {
+	color: #008000;
+}
+
+.orderid {
+	margin-top: 15px;
+	padding-top: 12px;
+	padding-left: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.flow {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+}
+
+.flow div {
+	padding-top: 5px;
+	height: 25px;
+	margin-right: 2px;
+}
+
+.list-inline {
+	padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+	font: 16px/43px 'Microsoft Yahei';
+	display: inline;
+}
+
+.no {
+	color: #BDBDBD;
+	width: 100px;
+}
+
+.already {
+	color: #31A729;
+    font-weight: bold;
+	width: 100px;
+}
+
+span {
+	font-size: 13px;
+}
+
+.tip {
+	line-height: 25px;
+}
+
+.detailMargin {
+	border: 1px solid #ddd;
+	padding-top: 5px;
+	margin-top: 8px;
+}
+
+.newlog {
+	color: #FF7F50;
+}
+
+li.status {
+	padding: 9px 20px;
+	border: 1px solid #60C6E7;
+	margin-left: -6px;
+	position: relative;
+	width: 84px;
+	background: #E3EDF4;
+}
+
+ul.list-inline {
+	line-height: 13px;
+}
+
+li.status .angle {
+	border-top: 1px solid #60C6E7;
+	border-right: 1px solid #60C6E7;
+	padding: 5px;
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	left: 77px;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	background: #E3EDF4;
+	z-index: 21;
+}
+
+li.status.past,  li.status.past .angle{
+	background: #60C6E7;
+}
+
+li.status.past {
+	border-left: 1px solid #E3EDF4;
+}
+
+li.status.past .angle {
+	border-top: 1px solid #E3EDF4;
+    border-right: 1px solid #E3EDF4;
+}
+
+li.status.past.last .angle {
+	border-top: 1px solid #60C6E7;
+    border-right: 1px solid #60C6E7;	
+}
+
+ul li:FIRST-CHILD {
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+ul li:last-child {
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.orderid-num {
+	line-height: 38px;
+}
+
+.border-dashed {
+    border-bottom: 1px dashed rgb(125, 180, 221);
+}
+
+.color-blue {
+	color: rgb(66, 168, 102);
+}
+
+.color-yellow {
+	color: rgb(245, 190, 123);
+}
+
+tbody tr td {
+	vertical-align: middle !important;
+}
+
+.t-head {
+	background: rgb(123, 181, 221);
+	color: white;
+}
+
+.notice {
+	padding: 12px 18px;
+	text-align: right
+}
+</style>
+<div class="orderid row">
+	<div class="col-md-5 orderid-num">
+		<i class="fa fa-file-text-o"></i>
+		换货出货单号：<a ng-bind="invoiceFPur[0].invoiceid"></a>
+	</div>
+	<div class="col-md-7">
+		<ul class="list-unstyled list-inline pull-right" ng-hide="orderDetailInfo.status == 405 || orderDetailInfo.status == 511 || orderDetailInfo.status == 605">
+			<li id="step1" class="status" ng-class="{'past':styl0, 'last': last0}"><span>待出货</span><span class="angle"></span></li>
+			<li id="step1" class="status" ng-class="{'past':styl1, 'last': last1}"><span>待收货</span><span class="angle"></span></li>
+	        <li id="step2" class="status" ng-class="{'past':styl2, 'last': last2}"><span>已收货</span></li>
+	        <!-- <li id="step3" class="status" ng-class="{'past':styl3, 'last': last3}"><span>已收款</span></li> -->
+	    </ul>
+	 </div>
+</div>
+<div class="border-dashed"></div>
+<div class="body">
+	<div>
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>基本信息</h4>
+			</div>
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>订单生成时间：</span> <span
+					ng-bind="invoiceFPur[0].createtime| date:'yyyy-MM-dd HH:mm:ss'"></span>
+				<span ng-if="invoiceFPur[0].createtime == null"><strong>未录入</strong></span>
+			</div>
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>来源单：</span> <a href="vendor#/change/{{invoiceFPur[0].sourceid | EncryptionFilter}}" ng-bind="invoiceFPur[0].sourceid"></a>
+			</div>
+		</div>
+	</div>
+	<div class="part" ng-if="logistics.companyName != null">
+		<div class="row tip">
+			<div class="col-xs-4">
+				<h4>快递信息</h4>
+			</div>
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>快递公司：</span> <span ng-bind="logistics.companyName"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>快递单号：</span> <span ng-bind="logistics.number"></span>
+			</div>
+			<a  ng-click="listLogistics(logistics)" style="text-decoration : none ">点击查看物流详情</a>
+		</div>
+	</div>
+	<div class="line part">
+		<div class="row tip">
+			<div class="col-xs-2">
+				<h4>收货详情信息</h4>
+			</div>
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>收货人：</span> <span ng-bind="address.name"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>收货人联系手机：</span> <span ng-bind="address.tel"></span>
+			</div>
+			<div class="col-xs-4" ng-hide="address.email == null">
+				<span>邮箱：</span> <span ng-bind="address.email"></span>
+			</div>
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>地区：</span> <span ng-bind="address.area"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>详细地址：</span> <span ng-bind="address.detailAddress"></span>
+			</div>
+		</div>
+	</div>
+	<div class="part">
+		<div class="row tip">
+			<div class="col-xs-2">
+				<h4>费用信息</h4>
+			</div>
+		</div>
+		<div class="row tip">
+			<div class="col-xs-3">
+				<span>金额：<span class="text-inverse"
+					ng-bind="invoiceFPur[0].currencyName"></span></span> <span
+					class="text-inverse" ng-bind="invoiceFPur[0].price | number:2"></span>
+			</div>
+		</div>
+	</div>
+	<div class="part">
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>产品清单</h4>
+			</div>
+		</div>
+		<table class="table table-striped table-bordered">
+			<thead class="t-head">
+				<tr role="row">
+					<th>序号</th>
+					<th>原厂型号</th>
+					<th>图片</th>
+					<th>订单明细编号</th>
+					<th>批次号</th>
+					<th>单价</th>
+					<th>数量</th>
+					<th>金额</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="detail in invoiceFPur[0].invoiceDetails">
+					<td><span ng-bind="$index + 1"></span></td>
+					<td><a ng-href="product#/component/{{detail.uuid}}/"><span
+							ng-bind="detail.cmpCode"></span></a></td>
+					<td><a ng-href="product#/component/{{detail.uuid}}/"><img
+							alt="" ng-src="{{detail.img}}" height="100px;"></a></td>
+					<td><span ng-bind="detail.detailid"></span></td>
+					<td><span ng-bind="detail.batchCode"></span></td>
+					<td class="center text-inverse"><span
+						ng-bind="invoiceFPur[0].currencyName"></span>&nbsp;<span
+						ng-bind="detail.unitprice | number:2"></span></td>
+					<td class="color-blue"><span ng-bind="detail.number"></span></td>
+					<td class="center text-inverse"><span
+						ng-bind="invoiceFPur[0].currencyName"></span>&nbsp;<span
+						ng-bind="detail.price | number:2"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

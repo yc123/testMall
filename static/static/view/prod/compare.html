@@ -1,0 +1,133 @@
+<style>
+.box-title {
+	border-bottom: 2px solid #ddd;
+    margin-bottom: 5px;
+}
+
+.divTitle {
+	border-bottom: 2px solid #f50;
+    height: 28px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0 10px;
+    font-size: 16px;
+    font-family: 'microsoft yahei';
+	font-weight: 600;
+}
+
+</style>
+<div class="box-title">
+	<div style="display: inline-block;" class="divTitle">产品对比</div>
+	<div class="pull-right checkbox" style="padding-top: 5px;">
+		<label>
+			<input type="checkbox" ng-model="hideSame">隐藏相同属性
+		</label>
+	</div>
+</div>
+<div class="box-content compare">
+	<table class="table table-striped table-bordered">
+		<tbody>
+			<tr>
+				<td>产品</td>
+				<td width="200px" ng-repeat="i in indexes">
+					<div ng-if="components[i]">
+						<p><img width="160px" height="160px" ng-src="{{components[i].img}}" alt="{{components[i].code}}" /></p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>产品型号</td>
+				<td ng-repeat="i in indexes">
+					<div ng-if="components[i]">
+						<div class="text-num f14 text-default text-bold" ng-bind="components[i].code"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>品牌</td>
+				<td width="200px" ng-repeat="i in indexes">
+					<div ng-if="components[i]">
+						<div><a ng-href="product#/brand/{{components[i].brand.uuid}}/">{{components[i].brand.nameCn}}</a></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>产品类目</td>
+				<td width="200px" ng-repeat="i in indexes">
+					<div ng-if="components[i]">
+						<div><a href="">{{components[i].kind.nameCn}}</a></div>
+					</div>
+				</td>
+			</tr>
+<!-- 
+			<tr>
+				<td>包装方式</td>
+				<td width="200px" ng-repeat="i in indexes">
+					<div ng-if="components[i]">
+						<div>{{components[i].spec || '无'}}</div>
+					</div>
+				</td>
+			</tr>
+ -->			
+			<tr>
+				<td colspan="6" ng-click="exposeAttri()"><div class="text-left text-inverse text-bold f14" role="button">
+					<i ng-if='attribute' class="fa fa-minus-square"></i>
+					<i ng-if='!attribute' class="fa fa-plus-square"></i> 产品属性
+				</div></td>
+			</tr>
+			<tr ng-if='attribute' ng-hide="hideSame&&components.minPriceSame">
+				<td><span ng-hide="components.minPriceSame">*&nbsp;&nbsp;&nbsp;</span>最低价格</td>
+				<td ng-repeat="i in indexes" ng-class="{true: '', false: 'text-inverse'}[components.minPriceSame]">
+					<div ng-if="components[i]">
+						<div ng-if="components[i].minPrice">¥&nbsp;{{components[i].minPrice}}</div>
+					</div>
+				</td>
+			</tr>
+			<tr ng-if='attribute' ng-hide="hideSame&&components.reserveSame">
+				<td><span ng-hide="components.reserveSame">*&nbsp;</span>库存量</td>
+				<td ng-repeat="i in indexes"  ng-class="{true: '', false: 'text-inverse'}[components.reserveSame]">
+					<div ng-if="components[i]">
+						<div>{{components[i].reserve}}</div>
+					</div>
+				</td>
+			</tr>
+			<tr ng-if='attribute' ng-hide="hideSame&&components.minBuyQtySame">
+				<td><span ng-hide="components.minBuyQtySame">*&nbsp;</span>最小订购量</td>
+				<td ng-repeat="i in indexes" ng-class="{true: '', false: 'text-inverse'}[components.minBuyQtySame]">
+					<div ng-if="components[i]">
+						<div>{{components[i].minBuyQty}}</div>
+					</div>
+				</td>
+			</tr>
+			<tr ng-if='attribute' ng-hide="hideSame&&components.deliverySame">
+				<td><span ng-hide="components.deliverySame">*&nbsp;</span>交货周期</td>
+				<td ng-repeat="i in indexes" ng-class="{true: '', false: 'text-inverse'}[components.deliverySame]">
+					<div ng-if="components[i]">
+						<div>{{components[i].minDelivery?components[i].minDelivery:0}}-{{components[i].maxDelivery?components[i].maxDelivery:0}}&nbsp;天</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="6" role="button" ng-click="exposeDetail()"><div class="text-left text-inverse text-bold f14">
+					<i ng-if='detailAttri' class="fa fa-minus-square"></i>
+					<i ng-if='!detailAttri' class="fa fa-plus-square"></i> 产品详细属性
+				</div></td>
+			</tr>
+			
+			
+			<tr ng-repeat="p in properties | orderBy:['propertyid']" ng-if='detailAttri' ng-hide="hideSame&&p.same">
+				<td>
+					<div>
+						<span ng-hide="p.same">*&nbsp;</span>
+						<span ng-bind="p.labelCn"></span>
+					</div>
+				</td>
+				<td ng-repeat="i in indexes"  ng-class="{true: '', false: 'text-inverse'}[p.same]">
+					<div ng-if="p.values[i]" >
+						{{p.values[i]}}
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

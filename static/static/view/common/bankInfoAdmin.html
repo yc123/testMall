@@ -1,0 +1,70 @@
+<style>
+	body,button,input{
+		font-family: "Microsoft Yahei", "微软雅黑";
+	}
+.title{
+    padding: 10px 15px;
+    overflow: hidden;
+}
+
+.box-content{
+	margin: 5px 10px 0px 20px;
+}
+
+.btn-ensure{
+ 	width: 60px;height: 30px;
+	padding: 0;
+}
+
+.title-label{
+    height: 35px;
+    line-height: 35px;
+}
+	.modal-header h3{
+		font-size: 16px;
+	}
+	.modal-body .row{
+		line-height: 34px;
+		margin-bottom: 10px;
+		margin-left: 20px;
+	}
+	.modal-body .row .col-md-2{
+		font-size: 14px;
+	}
+	.modal-body .row .form-control{
+		height: 34px;
+	}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title">{{title}}</h3>
+</div>
+<form class="form-horizontal" name="myForm" novalidate>
+	<div class="modal-body title">
+		<div class="row">
+			<div class="col-md-2">开户银行:</div>
+			<div class="col-md-8">
+				<input name="bankname" ng-model="account.bankname"  class="form-control" type="text" placeholder="填写银行的信息" required>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">开户名称:</div>
+			<div class="col-md-8">
+				<input name="accountname" ng-model="account.accountname" class="form-control" type="text" placeholder="开户名称" required>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">银行账号:</div>
+			<div class="col-md-8">
+				<input name="number" ng-model="account.number" class="form-control" type="text" placeholder="填写银行账号" ng-pattern="/^[0-9]*$/" ng-minlength="8" ng-maxlength="30" required />
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+			<div class="pull-right">
+				<button class="btn btn-success btn-ensure" type="submit"
+					ng-disabled="!myForm.$valid" ng-click="confirm()">提交</button>
+					<button class="btn btn-primary btn-ensure" ng-click="cancel()">取消</button>
+			</div>
+		</div>
+	</div>
+</form>

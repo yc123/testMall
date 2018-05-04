@@ -1,0 +1,382 @@
+<style>
+/* breadcrumbs */
+.breadcrumbs {
+	margin: 10px 0;
+}
+
+.breadcrumbs ul.list-unstyled.list-inline {
+	margin-left: 0px;
+}
+
+.breadcrumbs ul.list-inline.list-unstyled li.crumb-item {
+	position: relative;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 1px;
+	height: 32px;
+	line-height: 30px;
+	background: #fff;
+	border: solid 1px #f39800;
+}
+
+.breadcrumbs ul li.crumb-item-angle {
+	margin-left: -5px;
+}
+
+.breadcrumbs ul li.crumb-item>a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding-left: 15px;
+	padding-right: 15px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.breadcrumbs ul li.crumb-item .angle {
+	position: absolute;
+    left: -6px;
+    top: 50%;
+    margin-top: -5px;
+	height: 10px;
+	width: 10px;
+	border-bottom: 1px solid #f39800;
+	border-left: 1px solid #f39800;
+	background: white;
+	transform: rotate(45deg);
+	-ms-transform: rotate(45deg); 	/* IE 9 */
+	-moz-transform: rotate(45deg); 	/* Firefox */
+	-webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+	-o-transform: rotate(45deg); 	/* Opera */
+	z-index: 14;
+}
+
+.breadcrumbs ul li.crumb-item .crumb-drop {
+	position: absolute;
+	display: none;
+	left: -1px;
+	top: 30px;
+	border: solid 1px #f39800;
+	background: #fff;
+	z-index: 100;
+	width: 200px;
+}
+
+.breadcrumbs ul li.crumb-item .crumb-drop li {
+	line-height: 20px;
+}
+
+.breadcrumbs ul li.crumb-item:hover .crumb-drop {
+	display: block;
+}
+
+.breadcrumbs ul li.crumb-item:hover>a {
+	border-color: #f50;
+	background: #ffffff;
+	z-index: 101;
+}
+
+/* sl_warp */
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th,
+	.table>thead>tr>td, .table>thead>tr>th {
+	padding: 10px 5px;
+}
+
+.parameter-selection {
+	position: relative;
+	background-image: url("static/img/product/title-bg.png");
+	width: 124px;
+	color: #fff;
+	margin-top: 15px;
+	font-size: 18px;
+	height: 36px;
+}
+.parameter-selection > div:first-child {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 8px;
+	transform: translateY(-50%);
+}
+.parameter-selection div:last-child {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 40px;
+	transform: translateY(-50%);
+}
+.div-table{
+	text-align: center;
+	width: 1100px;
+	height: 197px;
+}
+.div-table-left{
+	width: 100px;
+	float: left;
+}
+.parameter-selection-ul{
+	top: 30px;
+    height: 107px;
+	overflow: scroll;
+	overflow-x:hidden;
+}
+.div-table-right{
+	float:left;
+	height:170px;
+	width:1000px;
+	overflow-x:auto;
+	overflow-y:hidden;
+	border:1px solid #DBDBDB;
+}
+.text-hidden {
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space: nowrap;
+}
+.text-hidden:hover{
+	 overflow: visible;
+}
+
+.td-icon{
+	font-size:18px;
+}
+.tr-brand{
+	height:111px;
+	vertical-align: middle;
+}
+.tr-properties{
+	height:93px;
+}
+.td-brand,.td-properties{
+	line-height: 20px;
+	word-wrap : break-word;
+	word-break : break-all;
+}
+.logo-img>p {
+	display: inline-block;
+	border: solid 1px #ddd;
+}
+
+.compare-btns {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.compare-btns>.compare-btn {
+	display: inline-block;
+	line-height: 25px;
+	padding: 0px 8px;
+	margin-left: -1px;
+	cursor: pointer;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.compare-btns>.compare-btn:nth-child(odd) {
+	background: #7ab4dc;
+}
+
+.compare-btns>.compare-btn:nth-child(even) {
+	background: #f39801;
+}
+
+.compare-btns>.compare-btn[disabled] {
+	background: #fff;
+	color: #006633;
+	font-weight: 600;
+	cursor: not-allowed;
+}
+
+/* .table tr:hover .compare-btns {
+	filter:alpha(opacity=100); 
+	-moz-opacity:1.0; 
+	-khtml-opacity: 1.0; 
+	opacity: 1.0;
+	transition: opacity 500ms;
+} */
+
+ul.pagination.ng-table-pagination {
+	margin: 0px 0px;
+}
+thead tr {
+	background-image: url("static/img/product/th-tr-bg.png");
+	background-repeat: repeat-x;
+	color: #fff;
+	height: 57px;
+}
+img:hover {
+	cursor: pointer;
+}
+.selectedOrder {
+	color: #f50;
+}
+.tr-even {
+	background-color: #EDF0F2;
+}
+.price {
+	width: 110px;
+}
+.inventory-filter {
+	position: relative;
+	background-image: url("static/img/product/title-bg.png");
+	width: 124px;
+	height: 36px;
+	color: #fff;
+	font-size: 18px;
+	margin-top: 15px;
+}
+.inventory-filter > div {
+	position: absolute;
+	top: 50%;
+	left: 8px;
+	transform: translateY(-50%);
+}
+.inventory-filter > div img {
+	margin-right: 5px;
+	vertical-align: center;
+}
+.refresh-btn {
+	margin: 10px;
+}
+</style>
+<div>
+	<div class="box-header well">
+		批量修改器件类目
+	</div>
+	<div  class="box-content">
+		<div class="text-center" ng-if="!choosedKind">
+			<h3>请通过类目选择器件</h3>
+			<div class="from-group">
+				<button class="btn btn-primary" ng-click="selectKind()">选择类目</button>
+			</div>
+		</div>
+		<div ng-if="choosedKind">
+			<!-- 类目详情展示页面 -->
+			<div class="row">
+				<div class="breadcrumbs col-sm-5">
+					<ul class="list-unstyled list-inline">
+						<li class="crumb-item"><a>电子元器件</a></li>
+						<li class="crumb-item crumb-item-angle" ng-repeat="k in actives">
+							<i class="angle"></i>
+							<a><span ng-bind="k.nameCn"></span></a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm-1 refresh-btn">
+					<button class="btn btn-default btn-sm" ng-click="refresh()"><i class="fa fa-refresh"></i>重新选择</button>
+				</div>
+				<div class="col-sm-offset-1 col-sm-4 text-right">
+					<div class="input-group">
+						<input class="form-control" placeholder="请输入原厂型号" ng-model="serach.keyword"  ng-search="onSearch()" type="text">
+						<span class="input-group-btn">
+							<button class="btn btn-primary" type="button" ng-click="onSearch()">搜索</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="parameter-selection">
+					<div>
+						<img src="static/img/product/parameter-selection.png">
+					</div>
+					<div>
+						参数选型
+					</div>
+				</div>			
+				<div class="div-table" ng-if="kind.leaf">
+					<div class="div-table-left">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<td width="100px">		
+										<div class="dropdown">
+											<span>品牌 </span>
+											<div>
+												<span class="fa fa-caret-down td-icon"></span>
+											</div>
+								  			<ul class="dropdown-menu parameter-selection-ul" role="menu" aria-labelledby="dropdownMenu1" >
+								  				<li ng-repeat="b in kind.brands| orderBy:'nameCn'"><a ng-click="selectBrand(b)"><span ng-bind="b.nameCn"></span></a></li>			
+								  			</ul>
+										</div>
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="tr-brand">
+									<td class="td-brand" style="vertical-align: middle;">
+										<div class="sl-selected" ng-if="kind.selectedBrand.nameCn" ng-click="selectBrand()">
+		 									<a class="text-num" ng-bind="kind.selectedBrand.nameCn"></a>
+											<span><i class="fa fa-close"></i></span>
+		 								</div>	
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>	
+					<div class="div-table-right">
+						<table class="table table-bordered" style="table-layout:fixed;">
+							<thead>
+								<tr>
+									<td ng-repeat="pro in kind.properties" class="dropdown" width="100px">
+										<div class="dropdown">
+											<div ng-bind="pro.property.labelCn"  class="text-hidden"></div>
+											<span class="fa fa-caret-down td-icon"></span>
+								  			<ul class="dropdown-menu parameter-selection-ul" role="menu" aria-labelledby="dropdownMenu1">
+								  				<li ng-repeat="v in pro.values|orderBy:'value'"><a ng-click="selectProperty(pro, v)"><span ng-bind="v.value"></span></a></li>				
+								  			</ul>
+								  		</div>
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="tr-properties">
+									<td ng-repeat="pro in kind.properties" class="td-properties" style="vertical-align:middle;">
+		 								<div class="sl-selected" ng-if="pro.selected" ng-click="selectProperty(pro)">
+		 									<a class="text-num" ng-bind="pro.selected.value"></a>
+											<span><i class="fa fa-close"></i></span>
+		 								</div>						
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>		
+				</div>
+				<div>
+					<div class="inventory-filter">
+						<div>
+							<img src="static/img/product/inventory-filter.png">
+							器件筛选
+						</div>
+					</div>
+					<table ng-table="componentsTableParams" class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center">
+									<input type="checkbox" ng-checked="allCheck" name="allCheck" ng-click="selectAll()"/>
+								</th>
+								<th class="text-center">原厂型号</th>
+								<th class="text-center">品牌</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="cmp in $data">
+								<td class="text-center">
+									<input type="checkbox" ng-checked="cmp.check" ng-click="select(cmp)"/>
+								</td>
+								<td class="text-center">
+									<span ng-bind="cmp.code"></span>
+								</td>
+								<td class="text-center">
+									<span ng-bind="cmp.brand.nameCn"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<button class="btn btn-primary" ng-click="moveCmp()">转移器件</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

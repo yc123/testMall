@@ -1,0 +1,184 @@
+<style>
+    #internalMessageList {
+        font-size: 14px;
+    }
+    #internalMessageList .search-div {
+        background-color: #3BA8E9;
+        height: 45px;
+        margin-top: 10px;
+    }
+    #internalMessageList .search-div .search-input {
+        float: right;
+        width: 211px;
+        height: 30px;
+        margin: 7px 37px 7px 0;
+    }
+    #internalMessageList .total {
+        text-align: right;
+        padding: 10px;
+        font-size: 12px;
+    }
+    #internalMessageList .table tr {
+        height: 80px;
+    }
+    #internalMessageList .table tr>td {
+        vertical-align: middle;
+    }
+    #internalMessageList .table .messageClasses {
+        width: 80px;
+        height: 20px;
+        font-size: 13px;
+        padding: 0;
+    }
+    #internalMessageList .ng-table-pagination a {
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    #internalMessageList ul.pagination.ng-table-pagination > li > a > span {
+        height: 17px;
+        line-height: 17px;
+    }
+    #internalMessageList div.ng-table-pager {
+        margin-right: 0 !important;
+    }
+    #internalMessageList div.ng-table-pager .pagination {
+        margin: 0;
+    }
+    #internalMessageList div.ng-table-pager  input.page-number {
+        vertical-align: inherit;
+        display: inline-block;
+        width: 37px;
+        height: 28px;
+        padding: 6px 6px;
+        font-size: 12px;
+        line-height: 1.42857143;
+        color: #9B9792;
+        text-align: center;
+        background-color: #F6F5F4;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    #internalMessageList div.ng-table-pager a.page-a {
+        color: #fff;
+        cursor: pointer;
+        background-color: #4574E8;
+        border-color: #4574E8;
+        padding: 5.55px 6px;
+        font-size: 12px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        text-decoration: none;
+        height: 31px;
+    }
+    #internalMessageList div.ng-table-pager div.page-go-block {
+        float: right;
+        font-size: 0px;
+        height: 31px;
+        margin-top: 20px;
+        line-height: 31px;
+    }
+    #internalMessageList .ng-table-pager .ng-table-pagination{
+        text-align: center;
+        max-width: 460px;
+    }
+    #internalMessageList .ng-table-pager .ng-table-pagination a{
+        color: #4574E8 !important;
+        height: 31px;
+        line-height: 13px;
+    }
+</style>
+<div class="box" id="internalMessageList">
+    <div class="box-header well" data-original-title>
+        <i class="icon-user"></i> 会员信息
+    </div>
+    <div class="box-content">
+        <div class="search-div">
+            <div>
+                <div class="input-group search-input">
+                    <input type="search" class="form-control input-sm"
+                           placeholder="操作人/企业名称/内容" ng-model="keyword" ng-search="onSearch()">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm" type="button" ng-click="onSearch()">搜索</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="total"><span>显示 1-10 条记录  共 <span ng-bind="messageAllData.totalElements"></span> 条</span></div>
+            <table class="table table-striped">
+                <thead style="background-color: #cfedfe;">
+                    <tr class="text-center">
+                        <td width="35">序号</td>
+                        <td width="250">内容</td>
+                        <td width="80">接收人</td>
+                        <td width="80">有效人数</td>
+                        <td width="138">企业名称</td>
+                        <td width="90">操作人</td>
+                        <td width="148"><a style="text-decoration: none;color: #219ee6" ng-click="orderTime()"><span style="color:#555">时间</span><i class="fa fa-long-arrow-up" aria-hidden="true" ng-show="params.timeSorting == 'ASC'"></i><i class="fa fa-long-arrow-down" aria-hidden="true" ng-show="params.timeSorting == 'DESC'"></i></a></td>
+                        <td width="95">
+                            <select class="form-control messageClasses" ng-change="chooseClasses()" ng-model="classes">
+                                <option value="">消息类型</option>
+                                <option value="售后信息">售后信息</option>
+                                <option value="订单信息">订单信息</option>
+                                <option value="物流信息">物流信息</option>
+                                <option value="促销活动">促销活动</option>
+                                <option value="重要公告">重要公告</option>
+                                <option value="系统通知">系统通知</option>
+                                <option value="提醒发货">提醒发货</option>
+                                <option value="缺货预警">缺货预警</option>
+                            </select>
+                        </td>
+                        <td width="100">操作</td>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr ng-repeat="text in messageCurrent">
+                        <td ng-bind="$index+1"></td>
+                        <td ng-bind-html="text.content"></td>
+                        <td class="text-center">
+                            <div ng-if="text.count<2">
+                                <div class="text-right" style="margin: -20px 0px 0px 50px;padding-bottom: 10px;">
+                                    <span class="label label-primary f12" ng-if="text.status=='ISREAD'">已读</span>
+                                    <span class="label label-success f12" ng-if="text.status=='UNREAD'">未读</span>
+                                </div>
+                                <div>
+                                    <span ng-bind="text.receiver.userName || '-'"></span>
+                                </div>
+                            </div>
+                            <div ng-if="text.count>1"><a ng-click="showLogs(text.id)">查看</a></div>
+                        </td>
+                        <td class="text-center" ng-bind="text.count"></td>
+                        <td class="text-center">
+                            <span ng-bind="text.sendEnterprise.enName || '-'"></span>
+                        </td>
+                        <td class="text-center" ng-bind="text.sender.userName || '-'"></td>
+                        <td class="text-center" ng-bind="text.sendTime | date:'yyyy-MM-dd HH:mm'"></td>
+                        <td class="text-center" ng-bind="text.classes"></td>
+                        <td class="text-center"><!--删除--></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="ng-cloak ng-table-pager text-right" ng-if="pages.length">
+                <ul class="pagination ng-table-pagination">
+                    <li ng-class="{'disabled': !page.active && !page.current, 'active': page.current}" ng-repeat="page in pages" ng-switch="page.type">
+                        <a ng-switch-when="prev" ng-click="setPage(page.type, -1)">&laquo;</a>
+                        <a ng-switch-when="first" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                        <a ng-switch-when="page" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                        <a ng-switch-when="more" ng-click="setPage(page.type, -1)">&#8230;</a>
+                        <a ng-switch-when="last" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                        <a ng-switch-when="next" ng-click="setPage(page.type, -1)">&raquo;</a>
+                    </li>
+                </ul>
+                <div class="page-go-block">
+                    <input class="page-number" type="number" ng-model="params.currentPage" ng-keydown="listenEnter()"/>
+                    <a class="page-a" ng-click="setPage('page', params.currentPage)">GO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

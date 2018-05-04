@@ -1,0 +1,10 @@
+<div class="kind result-box">
+	<div class="result-title text-muted">
+		搜索"<span class="text-inverse" ng-bind="keyword"></span>"，下面是您可能要找的产品分类，请选择您要找的分类查看详情
+	</div>
+	<div class="result-content">
+		<ul class="list-inline">
+			<li ng-repeat="k in kindDatas.kinds"><a href="product#/kinds/{{k.id}}" ng-bind="k.nameCn"></a></li>
+		</ul>
+	</div>
+</div>

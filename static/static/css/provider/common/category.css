@@ -1,0 +1,104 @@
+#category {
+    display: none;
+    position: absolute;
+    width: 200px;
+    height: 477px;
+    z-index: 200;
+    top: 40px;
+}
+
+#category .list-group {
+    width: 200px;
+}
+
+#category a {
+    color: #fff;
+}
+
+#category .list-group .level1 {
+    height: 35px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    background-color: #5078cb;
+    text-align: left;
+    border: 0px;
+    padding-left: 20px;
+}
+
+#category .list-group :hover {
+    background-color: #a0b2eb;
+}
+
+#category .list-group .level1 .dropdown-toggle .arrow{
+    display: none;
+}
+
+#category .list-group .dropdown-menu {
+    display: none;
+    left: 200px;
+    background-color: #fff;
+    color: #000;
+    width: 890px;
+    height: 477px;
+    padding: 15px 0px;
+    overflow-y: scroll;
+    border: 0px;
+}
+
+#category .list-group .dropdown-menu :hover{
+    background-color: #fff;
+}
+
+#category .list-group .dropdown-menu .level2 {
+    display: block;
+    text-align: left;
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+    line-height: 22px;
+}
+
+#category .list-group .dropdown-menu dt span{
+    line-height: 22px;
+}
+
+#category .list-group .dropdown-menu dt i {
+    line-height: 22px;
+}
+
+#category .list-group .dropdown-menu dd {
+    display: block;
+    font-family: 'Microsoft YaHei';
+}
+
+#category .list-group .dropdown-menu dd a{
+    color: #000;
+}
+
+#category .list-group .dropdown-menu dd ul li {
+    border-left: 1px solid #ccc;
+    margin: 4px 0px;
+}
+
+#category .list-group .moreCategory {
+    background-color: #4c66bb;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#category .list-group .moreCategory:hover {
+    background-color: #a0b2eb;
+}
+    /* scroll */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d8d4d4;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #b1abab;
+}

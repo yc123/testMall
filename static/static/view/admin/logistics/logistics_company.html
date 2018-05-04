@@ -1,0 +1,27 @@
+<div class="row-fluid sortable">
+	<div class="box col-md-12">
+		<div class="box-header well" data-original-title>
+			<h2><i class="fa fa-user"></i> 快递公司管理</h2>
+		</div>
+		<div class="box-content">
+			<div>
+				<div class="col-md-9">
+					<button class="btn btn-primary" ng-click="sort()" ng-show="!sorting">排序</button>
+					<button class="btn btn-primary" ng-click="back()" ng-show="sorting">取消排序</button>
+				</div>
+				<div ng-repeat="company in companies" class="text-center row-fluuid" ng-show="!sorting">
+					<div>
+						<div class="col-md-2" ng-bind="company.name" class="text-left" style="display:inline-block;"></div>
+						<div class="col-md-1" style="display:inline-block;"><a><i ng-class="{'fa fa-toggle-off fa-2x toggle-off text-right' : (company.active == 0), 'fa fa-toggle-on fa-2x toggle-on text-right' : (company.active == 1)}" ng-click="active(company)"></i></a></div>
+					</div>
+				</div>
+				<div ng-repeat="act in actived" class="text-center row-fluid" ng-show="sorting">
+					<div class="clo-md-2"></div>
+					<div class="col-md-4" ng-bind="act.name" class="text-left" style="display:inline-block;"></div>
+					<div ng-if="!$first" class="col-md-4" style="display:inline-block;"><a><i class="fa fa-chevron-up fa-xs" ng-click="exchange(act, actived[$index-1])"></i></a></div>
+					<div ng-if="!$last" class="col-md-4" style="display:inline-block;"><a><i class="fa fa-chevron-down fa-xs" ng-click="exchange(act,  actived[$index+1])"></i></a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

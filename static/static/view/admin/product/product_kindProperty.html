@@ -1,0 +1,14 @@
+<div id="main">
+	<div class="main-guide">
+		<ul class="list-inline">
+			<li ng-class="{'active': step == 1}">选择类目<span class="caret"></span></li>
+			<li class="arrow_right"><i class="fa fa-arrow-right"></i></li>
+			<li ng-class="{'active': step == 2}">编辑类目描述属性<span class="caret"></span></li>
+			<!-- <li class="arrow_right"></li>
+		<li ng-class="{'active': step == 3}">保存成功<span class="caret"></span></li> -->
+		</ul>
+	</div>
+	<div class="main-content">
+		<div ui-view></div>
+	</div>
+</div>

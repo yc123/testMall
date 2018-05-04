@@ -1,0 +1,259 @@
+<style>
+h4 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.row.searchInputGroup {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+}
+
+button[type=button].btn-primary-choosed {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.btn-default-inline {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-default-inline:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+.price {
+	color: #f39800;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+td {
+	line-height: 1.1;
+}
+
+.total {
+	background-color: #7bb4e1;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 30px;
+}
+
+.total ul>li {
+	float: left;
+	margin-left: -2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-left: 2px #fff solid;
+    border-right: 2px #fff solid;
+}
+
+.total ul>li:hover {
+	background-color: #337ab7;
+}
+
+.total ul>li>a {
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btnactive {
+	background-color: #f39800;
+}
+
+div.row.total button:HOVER {
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.total button {
+	height: 30px;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>样品管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>客户样品申请</li>
+	</ul>
+</div>
+<div class="row searchInputGroup">
+	<div class="col-xs-3">
+		<h4>样品管理</h4>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group">
+			<input type="search" class="form-control" ng-model="keyword"
+				ng-search="onSearch()" ng-change="upper()" placeholder="请输入订单号查询">
+			<span class="input-group-btn">
+				<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+			</span>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="row total">
+		<div class="col-xs-6">
+			<div class="btn-group" role="group"
+				style="display: block; margin-left: -16px;">
+				<button type="button" class="btn btn-sm btn-default-inline"
+						ng-class="{'btn-primary-choosed': active=='tobeshipped'}"
+						ng-click="setActive('tobeshipped')">待出货</button>
+					<button type="button" class="btn btn-sm btn-default-inline"
+						ng-class="{'btn-primary-choosed': active=='inbound'}"
+						ng-click="setActive('inbound')">待收货</button>
+					<button type="button" class="btn btn-sm btn-default-inline"
+						ng-class="{'btn-primary-choosed': active=='received'}"
+						ng-click="setActive('received')">已收货</button>
+					<button type="button" class="btn btn-sm btn-default-inline"
+						ng-class="{'btn-primary-choosed':active=='unavailable'}"
+						ng-click="setActive('unavailable')">已失效</button>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div ng-table-pagination="paginationParams"
+				template-url="templates.pagination" style="margin-right: -15px">
+				<div class="ng-table-pager" ng-if="paginationParams.data.length">
+					<div ng-if="paginationParams.settings().counts.length"
+						class="pull-right">
+						<ul class="list-unstyled list-inline">
+							<li ng-repeat="count in paginationParams.settings().counts"
+								ng-class="{'btnactive':paginationParams.count()==count}"><a
+								ng-click="paginationParams.count(count)" ng-bind="count"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{orderTableParams.total()}}</span>条
+		</p>
+	</div>
+</div>
+</br>
+
+	<table ng-table="orderTableParams"
+		class="table table-bordered table-striped" style="margin-top: 10px;">
+		<thead>
+			<tr class="tr-default">
+			<th width="70" class="text-center">
+				<div>序号</div>
+			</th>
+			<th width="auto" class="text-center">
+				<div class="row">
+				<div class="col-sm-8">订单详情</div>
+				<div class="col-sm-2">单价</div>
+				<div class="col-sm-2">数量</div>
+				</div>
+			</th>
+			<th width="100" class="text-center">金额</th>
+			<th width="80" class="text-center">订单状态</th>
+		</thead>
+		<tbody ng-repeat="purchase in $data">
+			<tr>
+			<td colspan="5">
+			<div class="row">
+				<div class="col-sm-10">
+					<span style="margin-right:10px; color:#A2A2A2;">生成时间：{{purchase.createtime | date: "yyyy-MM-dd HH:mm"}}</span>
+					<span style="color:#A2A2A2;">订单号：<a ng-href="vendor#/cusPurchase/{{purchase.purchaseid}}">{{purchase.purchaseid}}</a></span>
+				</div>
+				<div class="col-sm-2 price text-num text-right">金额：￥{{purchase.price | number}}</div>
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td><div class="tdcenter">{{$index+1}}</div></td>
+			<td>
+				<div class="row">
+					<div class="col-sm-3">
+						<div>
+							<div class="p-img">
+								<a style="display: block;"
+									href="product#/component/{{purchase.purchaseDetails[0].uuid}}/">
+									<img src="" lazy-load="{{purchase.purchaseDetails[0].img}}" height="100px">
+								</a> 
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-sm-5 text-code">
+						<div>
+							<div>
+							<a class="f16 text-bold" style="display: block;" href="product#/component/{{purchase.purchaseDetails[0].uuid}}/">{{purchase.purchaseDetails[0].cmpCode}}</a>
+							<span ng-bind="purchase.purchaseDetails[0].brName"></span>
+							</div>
+							<div>
+								<i class="iconfont icon-kind f14"></i><span
+									ng-bind="purchase.purchaseDetails[0].kiName"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2 text-num text-center" style="margin-left: 55px;">￥{{purchase.purchase[0].unitprice || 0}}</div>
+					<div class="col-sm-2 text-num text-center">{{purchase.purchaseDetails[0].number}}</div>
+				</div>
+			</td>
+			<td class="text-center price text-num">￥{{purchase.price | number}}</td>
+			<td class="text-center">{{purchase.status | statusAndTypeFilter}}</td>
+		</tr>
+		<tr ng-if="!order" class="text-center">
+			<td colspan="5" class="text-center"
+				style="line-height: 40px; font-size: 20px;"><i
+				class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息</td>
+		</tr>
+		</tbody>
+	</table>
+</div>

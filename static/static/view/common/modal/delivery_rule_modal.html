@@ -1,0 +1,107 @@
+<style>
+    /*配送规则弹框*/
+    .modal-dialog .modal-content{
+        position: fixed;
+        z-index: 2;
+        opacity: 1;
+        background-color: white;
+        top: 55%;
+        left: 50%;
+        margin: -145px 0 0 -77px;
+    }
+    .com-del-box{
+        height: 161px;
+        width: 290px;
+    }
+    .com-del-box .title {
+        height: 30px;
+        background-color: #5078cb;
+        text-align: right;
+        padding-right: 15px;
+        line-height: 30px;
+    }
+    .com-del-box .title a {
+        color: white;
+        font-size: 16px;
+    }
+    .com-del-box .content{
+        padding: 15px 12px 14px 20px;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .com-del-box .content p{
+        font-size: 14px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 7px;
+        overflow: hidden;
+        line-height: 0;
+    }
+    .com-del-box .content p .fa-exclamation-circle{
+        float: left;
+        margin-top: 3px;
+        margin-right: 6px;
+        color: #5078cb;
+        font-size: 18px;
+    }
+    .com-del-box .content p span{
+        float: left;
+        width: 230px;
+        line-height: 21px;
+        text-align: left;
+        font-size: 14px;
+        color: #333333
+    }
+    .com-del-box .content div {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .com-del-box .content div a{
+        display: inline-block;
+        margin-right: 15px ;
+        width: 74px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+    }
+    .com-del-box .content div a:first-child {
+        margin-right: 15px ;
+        background: #c8c6c6;
+    }
+    .com-del-box .content div a:last-child {
+        background: #5078cb;
+    }
+    .modal{
+        box-shadow: none!important ;
+    }
+    .modal-content{
+        box-shadow: none!important ;
+    }
+    .modal.in .modal-dialog{
+        transform: none;
+    }
+    .modal.fade .modal-dialog{
+        transform: none;
+    }
+    /*.modal-backdrop {*/
+        /*background-color: transparent ;*/
+    /*}*/
+</style>
+<div class="com-del-box" name="rule_model">
+    <div class="title">
+        <a name="rule_cancel" ng-click="cancelDelete()"><i class="fa fa-close fa-lg"></i></a>
+    </div>
+    <!--卖家首页-->
+    <div class="content" ng-if="type=='center'">
+        <p><i class="fa fa-exclamation-circle"></i><span>您的店铺尚未设置配送规则，无法计算运费，建议尽快设置！</span></p>
+        <div><a name="rule_cancel" ng-click="cancelDelete()">以后再说</a><a name="rule_href" ng-click="hrefToNext('vendor#vendor_deliveryRule')">立即设置</a></div>
+    </div>
+    <!--其他页面-->
+    <div class="content" ng-if="type=='product'">
+        <p><i class="fa fa-exclamation-circle"></i><span>您当前尚未设置配送规则，买家将无法下单，建议尽快设置！</span></p>
+        <div><a name="rule_href" ng-click="hrefToNext('vendor#vendor_deliveryRule')">立即设置</a></div>
+    </div>
+</div>

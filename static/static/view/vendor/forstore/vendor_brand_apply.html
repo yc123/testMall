@@ -1,0 +1,217 @@
+<style>
+    button.brand_bt {
+        width: 128px;
+        height: 52px;
+        display: inline-block;
+        background: #5078cb;
+        text-align: center;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: inherit;
+    }
+
+    button.brand_bt:hover {
+        background: #3f7ae3;
+        color: #fff !important;
+    }
+
+    button.brand_bt:focus {
+        color: #fff !important;
+    }
+    /*文案说明*/
+    .title_row{
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .title_row .clearfix{
+        overflow: hidden;
+        height: 62px;
+        background: #e3e2e2;
+    }
+    .title_row img{
+        float: left;
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        margin:19px 65px 0 62px;
+    }
+    .title_row P{
+        margin-top: 11px;
+        font-size: 12px;
+        text-align: left;
+        color: #999;
+        line-height: 20px;
+    }
+    /*遮罩层*/
+    .brand .hover-show{
+        position: absolute;
+        width: 91%;
+        height: 100%;
+        top: 101%;
+        left: 10px;
+        background: rgba(0,0,0,.5);
+        z-index: -1;
+        display: block;
+    }
+    .brand .logoImg:hover .hover-show{
+        top: 0;
+        z-index: 10;
+    }
+    .brand .hover-show .delete{
+        position: absolute;
+        top: 2px;
+        right: 0px;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        float: right;
+        text-align: center;
+        cursor: pointer;
+    }
+    .brand .hover-show .delete i{
+        color: #fff;
+        font-size: 18px;
+    }
+    .brand .hover-show .view{
+        position: absolute;
+        display: inline-block;
+        top: 40%;
+        left: 50%;
+        margin-top: -8px;
+        margin-left: -21px;
+        font-size: 14px;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+    }
+    .brand .hover-show a i{
+        position: absolute;
+        left: 5px;
+        top: 22px;
+        margin-right: 5px;
+        font-size: 16px;
+    }
+    .brand .add_brand .choose_list div.fr p input.active + label + i{
+        color: #5078cb;
+    }
+    .brand .add_brand .choose_list div.fr p:hover{
+        cursor: pointer;
+    }
+</style>
+<!--右侧主体部分-->
+<div class="user_right fr">
+    <!--品牌申请-->
+    <div class="brand wanted">
+        <div class="com_tab">
+            <ul class="fl" style="width: 100%">
+                <li class="active"><a ui-sref="vendor_brand_apply"> 品牌申请</a></li>
+                <li><a ui-sref="vendor_brand_apply_list">申请记录</a></li>
+            </ul>
+        </div>
+        <div class="wanted_list01">
+            <!--品牌申请-->
+            <div class="tab">
+                <div class="add_brand add_ticket_form">
+                    <div class="row com_row title_row">
+                        <div class="clearfix">
+                            <img src="static/img/vendor/store/bell.png" alt="">
+                            <p>您需要出售的产品的品牌是一个新品牌或该品牌暂时未被优软商城的标准产品库收录时，若您仍希望通过优软商城出售该产品，您可以在这里进行品牌申请,<br/>让优软商城的标准产品库收录该品牌。</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <span class="fl">英文品牌<em>*</em></span>
+                            <div class="fr" id="class01">
+                                <input type="text" class="input01" name="nameEn" ng-model="brand.nameEn"
+                                   placeholder="输入品牌名称，例如：Panasonic" autocomplete="off" typeahead="brand.nameEn for brand in getSimilarBrands($viewValue) | limitTo:2"                                              typeahead-on-select="onAssociateClick($item)"
+                                   ng-blur="getBrandName(brand.nameEn, 'en')" required autofocus />
+                            </div>
+                        </li>
+                        <li>
+                            <span class="fl">中文品牌</span>
+                            <div class="fr" id="class01">
+                                <input type="text" class="input01" name="nameCn" autofocus ng-model="brand.nameCn" placeholder="输入品牌名称，例如：松下" autocomplete="off"
+                                    typeahead="brand.nameCn for brand in getSimilarBrands($viewValue) | limitTo:2" typeahead-on-select="onAssociateClick($item)"                                                             ng-blur="getBrandName(brand.nameCn, 'cn')" />
+                            </div>
+                        </li>
+                        <li>
+                            <span class="fl">官网地址<em>*</em></span>
+                            <div class="fr">
+                                <input type="text" class="input01" name="vendor" required
+                                       ng-model="brand.url" placeholder="输入品牌官网地址，例如：http://panasonic.cn/" autocomplete="off">
+                            </div>
+                        </li>
+                        <li class="brand_logo">
+                            <span class="fl">品牌标识</span><span class="prompt" style="margin-left: -30%;">提示：选择文件大小不超过3MB，支持JPG，PNG，GIF，BMP.</span>
+                            <div class="logoImg" style="float: left; padding-left: 10px;position: relative;">
+                                <input type="file" ng-if="imageUrl==''" image-upload data-src="static/img/vendor/images/upload.png" on-success="onUploadSuccess($data,$file)" non-preview="true"/>
+                                <div ng-if="imageUrl!=''">
+                                    <img ng-src="{{imageUrl}}" alt="">
+                                </div>
+                                <div class="hover-show" ng-if="imageUrl!=''">
+                                    <span class="delete" title="删除" ng-click="deleteImg()"><i class="fa fa-trash" ng-click="deleteImg()"></i></span>
+                                    <span class="view" ng-click="showImg(imageUrl)"><i class="fa fa-search" style="margin-right: 5px;"></i>查看</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="edit_text">
+                            <span class="fl">品牌简介<em>*</em></span>
+                            <div class="fr">
+                                <!--<div class="edit_content">-->
+                                    <textarea ng-model="brand.brief" required style="width:93%; height: 190px; float: left;border: #ccc 1px solid;"></textarea>
+                                <!--</div>-->
+                            </div>
+                        </li>
+                        <li class="choose_list">
+                            <span class="fl">销售区域</span>
+                            <div class="fr">
+                                <div  ng-repeat="area in areas">
+                                    <p ng-click="selectArea(area)">
+                                        <input type="checkbox" name="area" ng-model="area.checked"  ng-class="{'active': area.checked}"/>
+                                        <label></label>
+                                        <i>{{area.value}}</i>
+                                    </p>
+                                </div>
+
+                                <div class="extraAreas" ng-repeat="area in extraAreas">
+                                    <input type="text" class="input02" ng-model="area.value">
+									<button class="delete-btn" type="button" ng-click="removeExtraAreas($index)">删除</button>
+                                </div>
+                                <a ng-click="addExtraAreas()">+其它销售区域</a>
+                            </div>
+                        </li>
+                        <li class="main_pro">
+                            <span class="fl">主要产品<em>*</em></span>
+                            <div class="fr">
+                                <textarea ng-model="brand.series" placeholder="请输入主要生产产品，例如：继电器，连接器"></textarea>
+                            </div>
+                        </li>
+                        <li class="choose_list">
+                            <span class="fl">应用领域</span>
+                            <div class="fr">
+                                <div  ng-repeat="app in apps">
+                                    <p  ng-click="selectArea(app)">
+                                        <input type="checkbox" name="app" ng-model="app.checked" ng-class="{'active': app.checked }"/>
+                                        <label></label>
+                                        <i>{{app.value}}</i>
+                                    </p>
+                                </div>
+                                <div class="extraAreas" ng-repeat="app in extraApp">
+                                    <input type="text" class="input02" ng-model="app.value">
+                                    <button class="delete-btn" type="button" ng-click="removeExtraApp($index)">删除</button>
+                                </div>
+                                <a ng-click="addExtraApp()">+其它应用领域</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="brand_rule">
+                    <!--<p>点击阅读<a href="#">《优软商城品牌宣言规则》</a></p>-->
+                    <button href="" class="brand_bt btn" style=" margin-left: 840px;" ng-click="save()" ng-disabled="!submitEnable">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

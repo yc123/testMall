@@ -1,0 +1,125 @@
+<style>
+.inline {
+	display: inline;
+}
+
+.unstyled>li {
+	margin-right: 15px;
+    margin-bottom: 30px;
+}
+
+img {
+	max-height: 150px;
+	max-width: 200px;
+}
+
+.img-upload {
+	cursor: pointer;
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.toggle-off {
+	color: #B1A2A7;
+}
+
+.toggle-on {
+	color: #00E356 ;
+}
+
+i:hover{
+	color: #f39801
+}
+
+.p-img {
+	height: 150px;
+    width: 200px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+}
+</style>
+<div class="row-fluid sortable ng-scope">
+	<div class="box span12">
+		<div class="box-header well">
+			<h2>
+				<i class="icon-user"></i> 首页展示
+			</h2>
+		</div>
+		<div class="box-content">
+			<div class="text-right lead">
+				<button type="button" class="btn btn-primary" ng-click="createImg()"><span ng-show="status!='upload'">新增图片</span><span ng-show="status=='upload'">取消</span></button>
+				<button type="button" class="btn btn-primary" ng-click="showSlide()"><span ng-show="status!='show'">预览</span><span ng-show="status=='show'">取消</span></button>
+			</div>
+			<div ng-if="status=='normal'">
+				<ul class="unstyled">
+					<li ng-repeat="slide in slideImages" class="help-inline">
+						<div class="p-img">
+							<img ng-src="{{slide.url}}">
+						</div>
+						<div>
+							<a><i ng-class="{'fa fa-toggle-off fa-2x toggle-off' : (slide.active == 0), 'fa fa-toggle-on fa-2x toggle-on' : (slide.active == 1)}" ng-click="active(slide)"></i></a>
+							<a><i class="fa fa-trash-o fa-2x toggle-off box-icon" ng-click="deleteImg(slide)"></i></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div ng-if="status=='show'">
+				<ul class="unstyled">
+					<li ng-repeat="act in actived" class="help-inline">
+						<div class="p-img">
+							<img ng-src="{{act.url}}">
+						</div>
+						<div class="text-center">
+							<a ng-if="!$first"><i class="fa fa-angle-left fa-2x" ng-click="onLeft(act, actived[$index-1])"></i></a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a ng-if="!$last"><i class="fa fa-angle-right fa-2x" ng-click="onRight(act, actived[$index+1])"></i></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div ng-if="status=='upload'" class="text-center">
+				<form class="form-horizontal">
+					<div class="form-group span12">
+						<div class="f16 lead">上传图片</div>
+						<div class="lead">
+							<img class="img-upload" ng-src="{{upload.url}}"
+								style="width: 100px; height: 100px;"
+								ng-click="showImageDialog()">
+						</div>
+					</div>
+					<div class="text-center">
+						<button type="button" class="btn btn-primary"
+							ng-click="uploadImg()" ng-disabled="!upload.url">确认上传</button>
+					</div>
+				</form>
+				<!-- 产品图片插入modal Start -->
+				<script type="text/ng-template" id="offer/image/insert.html">
+					<div class="modal-header">
+						<button type="button" class="close" ng-click="close()">×</button>
+						<h4 class="modal-title">插入图片</h4>
+					</div>
+					<div class="modal-body">
+						<div class="span4">
+							<p class="help-block">提示：选择的图片单张大小不超过3MB，支持jpg,jpeg,gif,bmp,png</p>
+							<div class="upload-container" ng-disabled="getImages().length == images.length">
+								<div id="uploadify" on-success="onUploadSuccess($data)" uploadify="{buttonText:'选择图片'}"></div>
+							</div>
+						</div>
+						<div class="span2">
+							<h3>预览</h3>
+							<div class="image-content">
+								<img ng-src="{{image.src}}" class="img-thumbnail" style="width: 100px; height: 100px;">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="pull-right"><a ng-click="confirm()" class="btn btn-primary" ng-disabled="!image.src">确定</a></div>
+					</div>
+				</script>
+				<!-- 产品图片插入modal End -->
+			</div>
+		</div>

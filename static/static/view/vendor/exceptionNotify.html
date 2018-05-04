@@ -1,0 +1,299 @@
+<style>
+    /* general
+    -------------------------------------------*/
+    .ex-notify {
+        font: normal 14px/1 "Microsoft Yahei", "微软雅黑" ;
+    }
+    .ex-notify .table {
+        margin-bottom: 0;
+        box-shadow: 6px 6px 12px rgba(0,0,0,.175);
+    }
+    /*表格缝隙颜色*/
+    table .before-blank, .table-bordered>tbody>tr>td.before-blank, .table-bordered>tbody>tr>th.before-blank, .table-bordered>tfoot>tr>td.before-blank, .table-bordered>tfoot>tr>th.before-blank, .table-bordered>thead>tr>td.before-blank, .table-bordered>thead>tr>th.before-blank {
+        border-right: 13px solid #eee;
+    }
+    .ex-notify .table-bordered>thead>tr>td, .ex-notify .table-bordered>thead>tr>th {
+        border-bottom: none;
+    }
+    .ex-notify table > thead > tr > th {
+        height: 57px;
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+        background: linear-gradient(rgb(93, 134, 220), rgb(12, 53, 136));
+        vertical-align: middle !important;
+        text-align: center;
+        font-weight: normal; /* 400 */
+    }
+    .ex-notify table td {
+        text-align: center;
+    }
+    .ex-notify .table-bordered>thead>tr>td, .ex-notify .table-bordered>thead>tr>th {
+        border-bottom: none;
+    }
+    /*标题*/
+    .ex-notify .title {
+        font-size: 18px;
+        font-weight: normal;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        vertical-align: middle;
+        text-align: center;
+        padding: 0 0.6em;
+        margin-bottom: 0;
+        color: white;
+        background: linear-gradient(rgb(93, 134, 220), rgb(12, 53, 136));
+        border-radius: 3px;
+    }
+    .ex-notify textarea {
+        resize: none;
+    }
+    .ex-notify select.form-control {
+        width: auto;
+        display: inline-block;
+    }
+
+    /* 采购单信息 */
+    .pu-info {
+        margin-bottom: 30px;
+    }
+
+    /* 异常信息汇总 */
+    .ex-info-sum {
+        line-height: 1.8;
+    }
+    .ex-info-sum .time {
+        float: left;
+    }
+    .ex-info-sum .time > div > span:first-child {
+        display: inline-block;
+        width: 6em;
+        font-weight: 600;
+    }
+
+    .ex-info-sum .batch-sum {
+        float: right;
+        width: 45%;
+    }
+    .ex-info-sum .batch-sum > div:first-child {
+        display: inline-block;
+        vertical-align: top;
+        font: 600 14px/1 "Microsoft Yahei", "微软雅黑" ;
+        padding-top: 0.9em;
+    }
+    .ex-info-sum .batch-sum > ul {
+        display: inline-block;
+        width: 20em;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        margin-bottom: 0;
+        background-color: rgb(243, 254,254);
+        padding: 0.5em 1em;
+        box-shadow: 6px 6px 12px rgba(0,0,0,.175);
+    }
+    .ex-info-sum ul > li:nth-child(3n + 0) {
+        margin-bottom: 0.5em;
+    }
+    .ex-info-sum ul > li > span:first-child {
+        display: inline-block;
+        width: 7em;
+    }
+    .ex-info-sum ul > li > span:nth-child(2) {
+        color: red;
+    }
+    .ex-info-sum .currency {
+        color: hsl(219, 57%, 64%);
+    }
+    .ex-info-sum .tax > span:last-child {
+        color: hsl(219, 57%, 64%);
+    }
+    .ex-info-sum .total-amount:not(:nth-child(1)) {
+        font-weight: 600;
+    }
+
+    /* 异常明细信息 */
+    .ex-detail .u-box {
+        overflow-x: auto;
+    }
+    .ex-detail table {
+        width: 1500px;
+        background: white;
+    }
+    @media only screen and (min-width: 1920px) {
+        .ex-detail .u-box {
+            overflow-x: visible;
+        }
+    }
+    
+    /* 操作 */
+    .ex-operation {
+        padding: 2em;
+        text-align: center;
+    }
+    .ex-operation button[disabled] {
+        opacity: 0.7;
+    }    
+    .ex-operation button[disabled]:hover {
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+    .ex-operation button {
+        padding: 0.3em 0.7em;
+        font-size: 2em;
+        line-height: normal;
+        border: none;
+        width: 18%;
+        border-radius: 3px;
+    }
+    .ex-operation button:hover {
+        box-shadow: 0 0 0 2px hsl(11, 97%, 51%);
+    }
+    .ex-operation .ensure {
+        margin: 0 2em 0 0;
+        background: linear-gradient(hsla(4, 85%, 54%, 0.7), hsla(4, 85%, 54%, 1));
+        color: white;
+    }
+    .ex-operation .cancel {
+        background: linear-gradient(hsla(45, 3%, 47%, 0.7), hsla(45, 3%, 47%, 1));
+        color: white;
+    }
+
+    .u-box {
+        overflow: scroll;
+    }
+    .u-box table {
+        margin-bottom: 0;
+    }
+</style>
+<div class="ex-notify">
+    <h1 class="title">异常通知-<span ng-bind="puExSrc[apply.puExSrc]"></span></h1>
+    <article>
+        <section class="pu-info">
+            <!--<h2>采购单信息</h2>-->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>商城下单时间</th>
+                    <th>采购单号</th>
+                    <th>货源批次数</th>
+                    <th>型号数量</th>
+                    <th>总数量</th>
+                    <th>支付总金额</th>
+                    <th>币种</th>
+                    <th>税金</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span ng-bind="purchase.createtime | date : 'yyyy-MM-dd HH:mm'"></span></td>
+                    <td><a ng-href="vendor#/cusPurchase/{{purchase.purchaseid | EncryptionFilter}}">{{purchase.purchaseid}}</a></td>
+                    <td><span ng-bind="purchase.batchQty"></span></td>
+                    <td><span ng-bind="purchase.cmpQty"></span></td>
+                    <td><span ng-bind="purchase.qty"></span></td>
+                    <td><span ng-bind="purchase.price"></span></td>
+                    <td><span ng-bind="purchase.currency"></span></td>
+                    <td><span ng-bind="purchase.taxes"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="ex-info-sum clearfix">
+            <!--<h2>异常通知信息汇总</h2>-->
+            <div class="time">
+                <div><span>创建时间：</span><time ng-bind="apply.createTime | date : 'yyyy-MM-dd HH:mm'"></time></div>
+                <div><span>更新时间：</span><time ng-bind="apply.updateTime | date : 'yyyy-MM-dd HH:mm'"></time></div>
+            </div>
+            <div class="batch-sum">
+                <div>待处理批次 汇总：</div>
+                <ul class="list-unstyled">
+                    <li><span>货源批次数：</span><span ng-bind="apply.batchQty"></span></li>
+                    <li><span>货源批次数：</span><span ng-bind="apply.cmpQty"></span></li>
+                    <li><span>产品总数量：</span><span ng-bind="apply.prodQty"></span></li>
+                    <li><span>产品总金额：</span><span ng-bind="apply.prodTotalAmount | number :2"></span>&nbsp;<span class="currency" ng-bind="apply.currency"></span><br></li>
+                    <li><span>运费合计：</span><span ng-bind="apply.freight | number :2"></span>&nbsp;<span class="currency" ng-bind="apply.currency"></span></li>
+                    <li class="tax">
+                        <span>税率：</span>
+                        <span ng-switch="purchase.currency">
+                            <span ng-switch-when="RMB">17</span>
+                            <span ng-switch-when="USD">0</span>
+                        </span>
+                        <span>%</span>
+                    </li>
+                    <li class="total-amount"><span>涉及总金额：</span><span ng-bind="apply.totalAmount | number :2"></span>&nbsp;<span class="currency" ng-bind="apply.currency"></span></li>
+                </ul>
+            </div>
+        </section>
+        <section class="ex-detail">
+            <h2 class="title">异常通知明细</h2>
+            <div class="u-box">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>产品型号</th>
+                        <th>品牌</th>
+                        <th>类目</th>
+                        <th>数量</th>
+                        <th>金额</th>
+                        <th>单价</th>
+                        <th class="before-blank">币种</th>
+
+                        <th>商城要求</th>
+                        <th>补充说明</th>
+                        <th>我的意见</th>
+                        <th class="before-blank">补充说明</th>
+
+                        <th>生产日期</th>
+                        <th>库存更新日期</th>
+                        <th>包装</th>
+                        <th>最小包装数</th>
+                        <th>产品批次号</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="applyDetail in apply.applyDetails track by $index">
+                        <td>{{$index + 1}}</td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.cmpCode"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.brName"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.kiName"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.ensurePrice"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.taxUnitPrice"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.number"></span></td>
+                        <td class="before-blank"><span ng-bind="applyDetail.purchaseDetail.currencyName"></span></td>
+
+                        <td><span ng-bind="applyTypes[applyDetail.negotiations.last().mallToSupApplyType]"></span></td>
+                        <td><span ng-bind="applyDetail.negotiations.last().mallToSupApplyReason"></span></td>
+                        <td>
+                            <select class="form-control" ng-if="apply.status == 'MALL_TO_SUP'"
+                                    ng-model="applyDetail.supToMallApplyType"
+                                    ng-change="checkCanSubmit(applyDetail)">
+                                <option value="">请选择处理类型</option>
+                                <option ng-if="apply.purchase.status != 502 && apply.purchase.status != 406" value="RETURN">退货</option>
+                                <option ng-if="apply.purchase.status != 502 && apply.purchase.status != 406" value="EXCHANGE">换货</option>
+                                <option value="REFUSE">拒绝</option>
+                                <option ng-if="apply.purchase.status == 502 ||  apply.purchase.status == 406" value="CANCEL_BUY">取消购买</option>
+                            </select>
+                            <span ng-if="apply.status !== 'MALL_TO_SUP'" ng-bind="applyTypes[applyDetail.negotiations.last().supToMallApplyType]"></span>
+                        </td>
+                        <td class="before-blank">
+                            <textarea ng-if="apply.status == 'MALL_TO_SUP'" ng-model="applyDetail.supToMallApplyReason" maxlength="4000"></textarea>
+                            <span ng-if="apply.status !== 'MALL_TO_SUP'" ng-bind="applyDetail.negotiations.last().supToMallApplyReason"></span>
+                        </td>
+
+                        <td><span ng-bind="applyDetail.purchaseDetail.goodsHistory.produceDate"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.goodsHistory.updateDate | date:'yyyy-MM-dd HH:mm'"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.goodsHistory.packaging || '托盘'"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.goodsHistory.minPackQty"></span></td>
+                        <td><span ng-bind="applyDetail.purchaseDetail.batchCode"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="ex-operation">
+            <!--<h2>操作</h2>-->
+            <button class="ensure" ng-click="ensure()" ng-disabled="!canSubmit" ng-if="apply.status == 'MALL_TO_SUP'">确认</button>
+            <a href="vendor#/cusPurchase"><button class="cancel">返回</button></a>
+        </section>
+    </article>
+</div>

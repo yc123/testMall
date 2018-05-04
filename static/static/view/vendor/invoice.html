@@ -1,0 +1,308 @@
+<style>
+h4 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.row.searchInputGroup {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+}
+
+button[type=button].btn-primary-choosed {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.btn-default-inline {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+	border-left-color: #fff;
+	border-right-color: #fff;
+}
+
+.btn-default-inline:hover {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+.price {
+	color: #f39800;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+td {
+	line-height: 1.1;
+}
+
+.total {
+	background-color: #7bb4e1;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 30px;
+}
+
+.total ul>li {
+	float: left;
+	margin-left: -2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-left: 2px #fff solid;
+    border-right: 2px #fff solid;
+}
+
+.total ul>li:hover {
+	background-color: #337ab7;
+}
+
+.total ul>li>a {
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btnactive {
+	background-color: #f39800;
+}
+
+div.row.total button:HOVER {
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+.total button {
+	height: 30px;
+}
+
+table>tbody>tr>td .btn-primary {
+	width: 70px;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>交易管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>出货单管理</li>
+	</ul>
+</div>
+<div class="row searchInputGroup">
+	<div class="col-xs-3">
+		<h4>出货单</h4>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group">
+			<input type="search" class="form-control" ng-model="keyword"
+				ng-search="onSearch()" ng-change="upper()" placeholder="请输入出货单号查询"> <span class="input-group-btn">
+				<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+			</span>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="row total">
+		<div class="col-xs-6">
+			<div class="btn-group" role="group"
+				style="display: block; margin-left: -16px;">
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='tobeshipped'}"
+					ng-click="setActive('tobeshipped')">待出货</button>
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='inbound'}"
+					ng-click="setActive('inbound')">待收货</button>
+				<!-- <button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='received'}"
+					ng-click="setActive('received')">已收货</button> -->
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='toreceivemoney'}"
+					ng-click="setActive('toreceivemoney')">待收款</button>
+				<button type="button" class="btn btn-sm btn-default-inline"
+					ng-class="{'btn-primary-choosed':active=='moneyreceived'}"
+					ng-click="setActive('moneyreceived')">已收款</button>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div ng-table-pagination="paginationParams"
+				template-url="templates.pagination" style="margin-right: -15px">
+				<div class="ng-table-pager" ng-if="paginationParams.data.length">
+					<div ng-if="paginationParams.settings().counts.length"
+						class="pull-right">
+						<ul class="list-unstyled list-inline">
+							<li ng-repeat="count in paginationParams.settings().counts"
+								ng-class="{'btnactive':paginationParams.count()==count}"><a
+								ng-click="paginationParams.count(count)" ng-bind="count"></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<div class="col-xs-1">
+		<p style="margin-top: 8px; font-weight: bold;">
+			共<span class="totalNum">{{invoiceTableParams.total()}}</span>条
+		</p>
+	</div>
+</div>
+</br>
+
+<table ng-table="invoiceTableParams"
+	class="table table-bordered table-striped" style="margin-top: 10px;">
+	<thead>
+		<tr class="tr-default">
+			<th width="70" class="text-center">
+				<div>序号</div>
+				<input ng-show="active=='tobeshipped'" type="checkbox" ng-checked="batchShipcheck" ng-click="batchSelectShip()">
+			</th>
+			<th width="auto" class="text-center">订单详情</th>
+			<th width="114" class="text-center">单价</th>
+			<th width="114" class="text-center">金额</th>
+			<th width="100" class="text-center">合计</th>
+			<th width="80" class="text-center">订单状态</th>
+			<th width="60" class="text-center" ng-show="active=='tobeshipped'">操作</th>
+		</tr>
+	</thead>
+	<tbody ng-repeat="invoice in $data">
+		<tr>
+			<td rowspan="2" class="tdcenter">
+				<div>{{$index+1}}</div>
+				<div ng-show="active=='tobeshipped'">
+					<input type="checkbox" ng-click="doSelect(invoice)" ng-checked="invoice.choose" ng-model="invoice.choose">
+				</div>
+			</td>
+			<td colspan="6">
+				<div class="row">
+					<div class="col-sm-9 text-muted">
+						<span>
+							<i class="fa fa-clock-o"></i>
+							<span ng-bind="invoice.creattime | date: 'yyyy-MM-dd HH:mm'" class="text-num"></span>
+						</span>
+						<span>订单号：
+							<a ng-href="vendor#/invoice/{{invoice.invoiceid | EncryptionFilter}}" ng-bind="invoice.invoiceid" class="text-num"></a>
+						</span>
+						<span>来源单号：
+							<a ng-href="vendor#/cusPurchase/{{invoice.sourceid | EncryptionFilter}}" ng-bind="invoice.sourceid" class="text-num"></a>
+						</span>
+					</div>
+					<div class="col-sm-3 text-muted text-num text-right">
+						币别：<strong><span class="text-inverse" ng-bind="invoice.invoiceFPurchaseDetails[0].currencyName"></span></strong>
+						产品总数：<strong><span ng-bind="invoice.number | number : 2"></span></strong>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<div class="row cmp-item" ng-repeat="invoiceDetail in invoice.invoiceFPurchaseDetails">
+					<div class="col-sm-7">
+						<div class="p-img">
+							<a href="product#/component/{{invoiceDetail.uuid}}/">
+								<img src="" lazy-load="{{invoiceDetail.img}}" height="78px" width="78px">
+							</a> 
+						</div>
+						<div class="cmp-info col-sm-8">
+							<div>
+								<a class="f16 text-bold" style="display: block;" href="product#/component/{{invoiceDetail.uuid}}/" ng-bind="invoiceDetail.cmpCode"></a>
+								<span ng-bind="invoiceDetail.brName"></span>
+							</div>
+							<div>
+								<span ng-bind="invoiceDetail.batchCode"></span>
+							</div>
+							<div>
+								<i class="iconfont icon-kind f14"></i><span
+									ng-bind="invoiceDetail.kiName"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 text-num text-center">
+						<div class="text-num">
+							<span ng-bind="invoiceDetail.unitprice | number:6"></span>
+						</div>
+						<div class="text-num text-muted">
+							×<strong><span ng-bind="invoiceDetail.number"></span></strong>
+						</div>
+					</div>
+					<div class="col-sm-2 text-num price text-center text-inverse">
+						<div>
+							<span ng-bind="invoiceDetail.price"></span>
+						</div>
+					</div>
+				</div>
+			</td>
+			<td class="text-center tdcenter">
+				<div class="text-inverse text-bold f16 text-num">
+					<span ng-bind="invoice.price | number"></span>
+				</div>
+			</td>
+			<td class="text-center tdcenter">
+				<div>
+					<span ng-bind="invoice.status | statusAndTypeFilter" class="text-muted"></span>
+				</div>
+			</td>
+			<td class="tdcenter" ng-show="active=='tobeshipped'">
+				<a ng-show="active=='tobepurcchange'" ng-click="purcchange(invoice)">
+					<button type="button" class="btn btn-primary btn-sm">生成出货</button>
+				</a>
+				<a ng-show="active=='tobeshipped'" ng-click="send(invoice)">
+					<button type="button" class="btn btn-primary btn-sm">确认出货</button>
+				</a>
+			</td>
+		</tr>
+		<tr ng-if="!invoice" class="text-center">
+			<td colspan="5" class="text-center"
+				style="line-height: 40px; font-size: 20px;"><i
+				class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息</td>
+		</tr>
+	</tbody>
+</table>
+
+<div ng-show="active=='tobeshipped'">
+	<button role="button" ng-click="send()" ng-disabled="count==0"
+		class="btn btn-primary">批量出货</button>
+</div>

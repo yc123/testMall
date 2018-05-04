@@ -1,0 +1,318 @@
+<style>
+	.count .count01 {
+		display: block;
+	}
+	/*新增自提点*/
+	.takeSelf{
+		width: 1026px;
+		background: #fff;
+	}
+	.takeSelf .content-header{
+		padding-top: 25px;
+		overflow: hidden;
+	}
+	.takeSelf .content-header span{
+		padding-left: 23px;
+		font-size: 14px;
+		color: #333;
+	}
+	.takeSelf .content-header a{
+		float: right;
+		margin-right: 50px;
+		color: #333;
+		font-size: 14px;
+	}
+	.takeSelf .content-header i{
+		color: #32b500;
+		font-size: 16px;
+		position: relative;
+		top: 1px;
+	}
+	.takeSelf .content-body {
+		width: 1000px;
+		margin: 0 auto;
+		text-align: center;
+		padding-bottom:20px;
+	}
+	.takeSelf .content-body table{
+		box-sizing: border-box;
+		margin-top: 15px;
+	}
+	.takeSelf .content-body thead{
+		height: 40px;
+		width: 100%;
+		background: #89aefa;
+	}
+	.takeSelf .content-body thead th{
+		color: #fff;
+		font-weight: normal;
+		font-size: 14px;
+		text-align: center;
+		border-bottom: none;
+	}
+	.takeSelf .content-body tbody td{
+		font-size: 14px;
+		color: #666;
+		border: 1px solid #dae5fd;
+		height: 50px;
+		vertical-align: middle;
+	}
+	.takeSelf .content-body tbody td.del{
+		font-size: 12px;
+	}
+	.takeSelf .content-body tbody td a{
+		margin: 0 3px;
+		text-decoration: none;
+		color: #5078cb;
+		font-size: 12px;
+		cursor: pointer;
+	}
+	.takeSelf .content-body tbody td.address,.takeSelf .content-body tbody td.takeSelfName{
+		text-align: left;
+	}
+	.takeSelf .content-body tbody td.address p{
+		font-size: 14px;
+		color: #666;
+	}
+	.takeSelf .content-body tbody td p.switch .checkbox {
+		width: 54px;
+		margin: 0 auto;
+		text-align: center;
+		position: relative;
+		display: block;
+	}
+	.takeSelf .content-body tbody td p.switch .checkbox span {
+		width: 46px;
+		height: 12px;
+		display: inline-block;
+		border-radius: 18px;
+		border: #e4e4e4 1px solid;
+		cursor: pointer;
+		position: relative;
+		box-shadow: 1px 1px 5px #eee;
+		background: -webkit-gradient(linear,0% 0%, 0% 100%, from(#E0E0E0), to(#E8E8E8), color-stop(0.5,#F2F2F2));
+		transition: background-color .1s ease-out;
+	}
+	.takeSelf .content-body tbody tr:hover{
+		background: #f1f5ff;
+		cursor: pointer;
+	}
+	.takeSelf .content-body tbody tr.record-num:hover{
+		background: #fff;
+	}
+	.takeSelf .content-body tbody td p.switch .checkbox.active span{
+		background: #b9cffa;
+	}
+	.takeSelf .content-body tbody td p.switch .checkbox.active span em{
+		left: 34px;
+	}
+	.checkbox span em{
+		position: absolute;
+		width: 16px;
+		top: -4px;
+		left: 0;
+		height: 16px;
+		line-height: 16px;
+		background-color: #fff;
+		border: #eee 1px solid;
+		border-radius: 50%;
+		box-shadow: -1px 2px 1px #999;
+		transition: background-color .1s ease-out;
+		color: #666;
+		font-size: 12px;
+	}
+	.checkbox span em:after{
+		content: '';
+		width: 6px;
+		height: 6px;
+		display: inline-block;
+		background: #dedcdc;
+		border-radius: 100%;
+		position: absolute;
+		top: 4px;
+		left: 4px;
+	}
+
+	.takeSelf .content-body .count-tip{
+		float: right;
+		font-size: 12px;
+		color: #333;
+	}
+	.table>tbody>tr.record-num td{
+		padding: 0;
+		border: none;
+	}
+	/*防误删*/
+	.com-del-box{
+		position: fixed;
+		z-index: 22;
+		height: 152px;
+		opacity: 1;
+		background-color: white;
+		width: 310px;
+		-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		box-shadow: 0 5px 15px rgba(0,0,0,.5);
+		margin: -155px 0 0 -75px;
+		top: 55%;
+		left: 50%;
+	}
+	.com-del-box .title{
+		height: 30px;
+		background-color: #5078cb;
+		text-align: right;
+		padding-right: 15px;
+		line-height: 30px;
+	}
+	.com-del-box .title a{
+		color: white;
+		font-size: 16px;
+	}
+	.com-del-box .content{
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.com-del-box .content p{
+		line-height: 50px;
+		font-size: 14px;
+		padding-top: 10px;
+	}
+	.com-del-box .content p i{
+		color: #5078cb;
+		font-size: 16px;
+		margin-right: 10px;
+	}
+	.com-del-box .content div{
+		width: 100%;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.com-del-box .content div a{
+		width: 55px;
+		height: 26px;
+		line-height: 26px;
+		display: inline-block;
+		text-align: center;
+		font-size: 14px;
+	}
+	.com-del-box .content div a:first-child{
+		background: #b4b5b9;
+		color: #333;
+		margin-right: 10px;
+	}
+	.com-del-box .content div a:last-child{
+		background: #5078cb;
+		color: #fff;
+	}
+	.com-del-box .content div a:hover{
+		background: #3f7ae3;
+		color: #fff;
+	}
+	/**/
+	.takeSelf .empty{
+		overflow: hidden;
+		margin: 0!important;
+		width:100%;
+		display:inline-flex;
+		justify-content:center;
+		align-items: center;
+		height:370px;
+	}
+	.takeSelf .empty-info{
+		line-height: 28px;
+		padding-top:10px;
+		margin-left:10px;
+		text-align: left;
+	}
+	.takeSelf .empty-info .grey{
+		color: #999;
+		font-size: 14px;
+	}
+	.takeSelf .empty .empty-info>a{
+		font-size: 14px;
+		color: #5078cb;
+	}
+	.takeSelf .empty .empty-info i{
+		margin-right:5px;
+	}
+</style>
+<!--右侧主体部分-->
+<div class="count user_right fr">
+	<div class="count_center">
+		<div class="com_tab">
+			<ul class="fl">
+				<li ng-class="{'active': tab=='deliverRule'}"><a ui-sref="vendor_deliveryRule">配送规则</a></li>
+				<li ng-class="{'active': tab=='distributor'}"><a ui-sref="vendor_distributor">配送商</a></li>
+				<li ng-class="{'active': tab=='takeSelf'}"><a ui-sref="vendor_takeSelf">自提点</a></li>
+				<li ng-class="{'active': tab=='logistic'}"><a ui-sref="vendor_logistics">发货地址</a></li>
+			</ul>
+		</div>
+		<!--自提点-->
+		<div class="takeSelf">
+			<div class="content-header">
+				<a ng-click="editTakeSelf()"><i class="fa fa-plus-circle"></i>&nbsp;新增自提点</a>
+				<span>已设置的自提点</span>
+			</div>
+			<div class="content-body">
+				<table class="table" ng-table="takeSelfTableParams">
+					<thead>
+						<tr>
+							<th width="50">序号</th>
+							<th width="180">自提点名称</th>
+							<th width="400">地址</th>
+							<th width="190">营业时间</th>
+							<th width="90">是否生效</th>
+							<th width="95">操作</th>
+						</tr>
+					</thead>
+					<tbody ng-if="$data">
+						<tr ng-repeat="takeSelf in $data">
+							<td>{{$index + 1}}</td>
+							<td class="takeSelfName" ng-bind="takeSelf.takename">深圳市南山区科技园店</td>
+							<td class="address"><p ng-bind="takeSelf.area">广东省&nbsp;&nbsp;深圳市&nbsp;&nbsp;南山区</p><p ng-bind="takeSelf.detailAddress">南山街道科技南五路英唐大厦三楼</p></td>
+							<td ng-bind="takeSelf.businesstime">周一至周五 &nbsp;8:30-18:30</td>
+							<td>
+								<p class="switch">
+									<span class="checkbox" ng-if="takeSelf.active==0" ng-click="changeActive(takeSelf, true)">
+										<span><em></em></span>
+									</span>
+									<span class="checkbox active" ng-if="takeSelf.active==1" ng-click="changeActive(takeSelf, false)">
+										<span><em></em></span>
+									</span>
+								</p>
+							</td>
+							<td class="del">
+								<a ng-click="editTakeSelf(takeSelf)">修改</a>|<a ng-click="showDeleteFrame(takeSelf)">删除</a>
+							</td>
+						</tr>
+						<tr class="record-num" ng-if="$$takeSelf.totalElements != 0">
+							<td colspan="6">
+								<span class="count-tip">显示<span ng-bind="$$takeSelf.start">23</span>-<span ng-bind="$$takeSelf.end">10</span>，共：<span ng-bind="$$takeSelf.totalElements" style="color: #5078cb;">23</span>个</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="empty" ng-if="$$takeSelf.totalElements == 0">
+					<p class="empty-img">
+						<img src="static/img/all/empty-cart.png">
+					</p>
+					<div class="empty-info">
+						<p class="grey"> 暂无自提点,赶快去新增吧 </p>
+						<!--<a href="javascript:history.go(-1)"><i class="fa fa-mail-reply fa-xs"></i>返回上一页</a>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--防误删-->
+<div class="com-del-box" ng-if="deleteFrame">
+	<div class="title">
+		<a ng-click="cancelDelete()"><i class="fa fa-close fa-lg"></i></a>
+	</div>
+	<div class="content">
+		<p><i class="fa fa-exclamation-circle"></i>是否要删除此提点？</p>
+		<div><a ng-click="cancelDelete()">取消</a><a ng-click="deleteTakeSelf(deleteObject.id)">确认</a></div>
+	</div>
+</div>
+</div>

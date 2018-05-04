@@ -1,0 +1,139 @@
+<style>
+	#store-list{
+		width: 1190px;
+		padding: 0;
+	}
+
+	#store-list table {
+		border: 1px solid #d8d4d4;
+		font-size: 14px;
+	}
+
+	#store-list table>thead>tr {
+		background-color: #f7f7f7;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgb(50,50,50);
+	}
+
+	#store-list table>thead>tr input {
+		font-weight: 100;
+	}
+
+	#store-list .text-message {
+		color: rgb(80,120,203);
+		font-family: "Microsoft Yahei";
+	}
+
+	#store-list .btn-primary {
+		background-color: rgb(80,120,203);
+		color: #fff;
+		width: 100px;
+		height: 30px;
+		line-height: 14px;
+	}
+
+	#store-list table>tbody .logo {
+		width: 150px;
+		height: 76px;
+		text-align: center;
+		line-height: 72px;
+		border:1px solid #ccc;
+	}
+
+	#store-list table>tbody img {
+		max-width: 148px;
+		max-height: 72px;
+	}
+
+	#store-list table>tbody .vertical-middle{
+		vertical-align: middle;
+	}
+
+	#store-list table>tbody .store-mark {
+		margin: 10px 0;
+	}
+
+	#store-list table>tbody .text-point {
+		font-family: "Microsoft Yahei", "微软雅黑";
+		color: #ff3737;
+		font-weight: 600;
+	}
+
+	#store-list table>tbody .store-name {
+		font-size: 17px;
+		font-weight: 600;
+		color: #000;
+	}
+	
+	#store-list table>tbody .store-message {
+		color: #999;
+		width: 95%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		line-height: 18px;
+	}
+	#store-list table>tbody tr td{
+		padding: 15px;
+	}
+</style>
+
+<div class="container" id="store-list">
+	<table ng-table="storesTableParams" class="table">
+		<thead>
+			<tr>
+				<td width="175"></td>
+				<td width="auto"></td>
+				<td width="200">
+					<div class="input-group">
+						<input class="form-control" type="text" ng-model="stores.keyword" placeholder="请输入商家名称" ng-search="search()" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
+						</span>
+					</div>
+				</td>
+				<td width="150" style="vertical-align: middle"><span>入驻商家：</span><span class="text-message" ng-bind="storesTableParams.total()"></span><span>家</span></td>
+				<td width="150">
+					<a ng-href="vendor#/store-apply"><button class="btn btn-primary" style="margin-left: 6px;">立即入驻</button></a>
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<!--<tr>{{$data}}</tr>-->
+			<tr ng-repeat="store in $data">
+				<td>
+					<div class="logo">
+						<a ng-href="store/{{store.uuid}}#/home" target="_blank"><img ng-src="{{store.logoUrl || 'static/img/all/default.png'}}" alt="{{store.storeName}}"></a>
+					</div>
+				</td>
+				<td colspan="3">
+					<a class="store-name" ng-href="store/{{store.uuid}}#/home" target="_blank"><div ng-bind="store.storeName" title="{{store.storeName}}"></div></a>
+					<div class="store-message">
+						<span>商家介绍：</span>
+						<span ng-bind="store.description"></span>
+					</div>
+				</td>
+				<!--<td class="vertical-middle">
+					&lt;!&ndash;<div class="store-mark"><span>物流服务：</span><span class="text-point">4.7分</span></div>
+					<div class="store-mark"><span>产品质量：</span><span class="text-point">4.7分</span></div>
+					<div class="store-mark"><span>服务态度：</span><span class="text-point">4.7分</span></div>&ndash;&gt;
+				</td>
+				<td class="vertical-middle">
+					&lt;!&ndash;TODO 修改为真实的本月订单数量&ndash;&gt;
+					&lt;!&ndash;<span>本月订单量：</span><span class="text-message">21单</span>&ndash;&gt;
+				</td>-->
+				<td class="vertical-middle">
+					<a ng-href="store/{{store.uuid}}#/home" target="_blank"><button class="btn btn-primary">进入店铺&nbsp;&gt;</button></a>
+				</td>
+			</tr>
+			<tr ng-if="$data.length == 0">
+				<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;">
+					<i class="fa fa-smile-o fa-lg"></i> 暂无店铺信息
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

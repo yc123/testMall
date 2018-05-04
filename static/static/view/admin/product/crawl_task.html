@@ -1,0 +1,115 @@
+<style>
+#crawlTask .box-content .search-input {
+	margin-top: 10px
+}
+
+#crawlTask .box-content .more-search {
+	margin-top: 25px
+}
+</style>
+<div class="box" id="crawlTask">
+	<div class="box-header well" data-original-title>
+		<i class="icon-user"></i> 数据爬取任务
+	</div>
+	<div class="box-content">
+		<!-- ng-tableStart -->
+		<div class="fullscreen" style="padding: 10px;">
+			<div class="row">
+				<div class="col-sm-1">
+					共<span class="badge">{{crawlTaskTableParams.total()}} </span>条
+				</div>
+				<div class="col-sm-5">
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='to_crawl'}" ng-click="setActive('to_crawl')">未完成</button>
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='running'}" ng-click="setActive('running')">进行中</button>
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='crawled'}" ng-click="setActive('crawled')">已完成</button>
+						<button type="button" class="btn btn-default" ng-class="{'btn-primary':active=='failed'}" ng-click="setActive('failed')">异常</button>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="col-sm-9 text-right">
+						<div class="input-group">
+							<input type="search" class="form-control ng-pristine ng-valid ng-touched" ng-model="contrast" 
+								ng-search="onSearch()" placeholder="按来源、商城品牌、目标类目、商城类目搜索">
+							<div class="input-group-btn">
+								<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 f14 more-search text-right">
+						<a ng-click="showMore()">
+							<span ng-if="!searchMore">更多搜索</span>
+							<i class="fa fa-angle-double-down" aria-hidden="true" ng-if="!searchMore"></i>
+							<span ng-if="searchMore">收起搜索</span>
+							<i class="fa fa-angle-double-up" aria-hidden="true" ng-if="searchMore"></i>
+						</a>
+					</div>
+				</div>
+				<div class="col-sm-offset-1 col-sm-5 search-input" ng-show="searchMore">
+					<div class="input-group">
+						<input type="search" class="form-control ng-pristine ng-valid ng-touched" ng-model="taskId" 
+							ng-search="onSearch()" placeholder="按任务号搜索">
+						<div class="input-group-btn">
+							<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-offset-1 col-sm-3 search-input" ng-show="searchMore">
+					<div class="input-group">
+						<input type="search" class="form-control ng-pristine ng-valid ng-touched" ng-model="creater" 
+							ng-search="onSearch()" placeholder="按创建人搜索">
+						<div class="input-group-btn">
+							<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<table ng-table="crawlTaskTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+				<thead>
+					<tr>
+						<th width="30">序号</th>
+						<th width="100">任务单号</th>
+						<th width="100">来源</th>
+						<th width="100">商城品牌</th>
+						<th width="100">目标类目</th>
+						<th width="100">商城类目</th>
+						<th width="100">创建人</th>
+						<th width="100">创建时间</th>
+						<th width="100">状态</th>
+						<th width="80">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="task in $data">
+						<td class="text-center">{{($index + 1)}}</td>
+						<td>{{task.taskId}}
+							<span class="label label-success f12" ng-if="brand.isUpdate == 0">新增</span>
+							<span class="label label-warning f12" ng-if="brand.isUpdate == 1">更新</span>
+						</td>
+						<td ng-bind="task.contrast.resource"></td>
+						<td ng-bind="task.contrast.b2cBrand.nameCn"></td>
+						<td ng-bind="task.contrast.kindName"></td>
+						<td ng-bind="task.contrast.b2cKind.nameCn"></td>
+						<td>{{task.creater.userName}}</td>
+						<td>{{task.createDate | date: "yyyy-MM-dd HH:mm"}}</td>
+						<td>
+							<span ng-if="task.status == 812">未完成</span>
+							<span ng-if="task.status == 813">已完成</span>
+							<span ng-if="task.status == 814">任务失败</span>
+						</td>
+						<td>
+							<a ng-href="#audit/crawlTask/{{task.id}}">
+								<button type="button" class="btn btn-default btn-sm"
+								>查 看</button>
+							</a>
+						</td>
+					</tr>
+					<tr ng-if="$data.length == 0">
+						<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的属性对照资料</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- ng-tableEnd -->
+	</div>
+</div><!--/span-->

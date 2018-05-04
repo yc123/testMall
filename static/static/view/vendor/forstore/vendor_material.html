@@ -1,0 +1,2363 @@
+<!--右侧主体部分-->
+<style>
+	.tab.active {
+		display: inline-block !important;
+	}
+	*{-webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;}
+	div.wanted_list01 dt.paging-bar>span {
+		float: right;
+		width: 322px;
+		height: 40px;
+		font-weight: normal;
+	}
+	div.wanted_list01 dt.paging-bar>span button.paging-button {
+		padding: 0;
+		height: 40px;
+		line-height: 40px;
+		border: none;
+		background: #FFFFFF;
+	}
+	div.wanted_list01 dt.paging-bar>span button.paging-button:hover {
+		color: #0C3894;
+	}
+	div.wanted_list01 dt.paging-bar>span input.page-num {
+		width: 25px;
+		height: 25px;
+		line-height: 40px;
+		border: 1px #C7BEBE solid;
+		text-align: center;
+	}
+	label[disabled] {
+		cursor: not-allowed;
+	}
+	.com_tab ul li.down-goods span:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+	.materrial-list span.length01{
+		width: 10% !important;
+	}
+	.materrial-list span{
+		width: 20% !important;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	ul.pagination.ng-table-pagination > li > a > span {
+		height: 17px;
+		line-height: 17px;
+	}
+
+	div.ng-table-pager  input.page-number {
+		vertical-align: inherit;
+		display: inline-block;
+		width: 40px;
+		height: 31px;
+		padding: 6px 6px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #9B9792;
+		text-align: center;
+		background-color: #F6F5F4;
+		background-image: none;
+		border: 1px solid #ccc;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	}
+
+	div.ng-table-pager a.page-a {
+		color: #fff;
+		cursor: pointer;
+		background-color: #4574E8;
+		border-color: #4574E8;
+		padding: 6px 6px;
+		font-size: 14px;
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+		text-decoration: none;
+		height: 31px;
+	}
+
+	div.ng-table-pager div.page-go-block {
+		float: right;
+		margin-left: 20px;
+		margin-top: 15px;
+		font-size: 0px;
+		height: 31px;
+		line-height: 31px;
+	}
+	/*公用table*/
+	.public-tab{
+		margin-bottom: 0;
+	}
+	.public-tab.table tr td, .public-tab.table tr th {
+		font-size: 14px;
+		vertical-align: middle !important;
+	}
+	.public-tab.table>tbody+tbody{
+		border-top: none;
+	}
+	.public-tab.table>thead>tr{
+		height: 40px !important;
+	}
+	.public-tab.table>thead>tr>th,.public-tab.table>tbody>tr>td{
+		border-bottom: #e8e8e8 1px solid;
+		text-align: center;
+	}
+	.public-tab.table>tbody>tr>td{
+		border-top: none;
+		border-bottom: #e8e8e8 1px solid;
+	}
+	.public-tab.table>tbody>tr>td a{
+		margin: 0;
+	}
+	.public-tab.table>tbody>tr>td a.brand-type{
+		display: inline-block;
+		margin: 0;
+		width: 80%;
+		color: #333;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.public-tab.table>tbody>tr>td span{
+		margin: 0;
+	}
+	.public-tab.table>tbody>tr>td span.brand-type{
+		display: inline-block;
+		margin: 0;
+		width: 80%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.public-tab.table>tbody>tr>td span:hover span {
+		color: #fff;
+		background: #5078cb;
+		border-radius: 2px;
+	}
+	.public-tab.table>tbody>tr>td.edit span span{
+		padding: 0 8px;
+		display: inline-block;
+		/*width: 50px;*/
+		height: 24px;
+		line-height: 24px;
+		text-align: center;
+		font-size: 12px;
+		color: #5078cb;
+		cursor: pointer;
+	}
+	.public-tab.table>tbody>tr>td.edit span span:hover{
+		color: #fff;
+	}
+	/*展开收起按钮同一位置显示*/
+	.public-tab.table>tbody>tr>td.edit span.packUp{
+		margin-left: 112px;
+	}
+		/*已上架*/
+	.public-tab.table>tbody>tr>td span.has-on{
+		font-size: 14px;
+		color: #33b401;
+	}
+	/*未上架*/
+	.public-tab.table>tbody>tr>td span.not-on{
+		font-size: 14px;
+		color: #666;
+	}
+	.grey{
+		color: #999;
+	}
+	.search-check{
+		width: 100%;
+		height: 54px;
+		background: #fff;
+		padding-top: 10px;
+		margin-bottom: 16px;
+	}
+	.search-check .search{
+		width: 532px;
+		margin-left: 150px;
+	}
+	.search-check .search .form-control{
+		width: 340px;
+		float: left;
+		height: 34px;
+		border-radius: 0;
+		box-shadow: none;
+		border-right: none;
+	}
+	.search-check .search button,.search-check .search a{
+		display: inline-block;
+		width: 94px;
+		height: 34px;
+		line-height: 34px;
+		text-align: center;
+		font-size: 14px;
+	}
+	.search-check .search button{
+		background: #d3e1fc;
+		border-radius: 0;
+		border: #e2dbdb 1px solid;
+		border-left: none;
+	}
+	.search-check .search a{
+		background: #5078cb;
+		color: #fff;
+		float: right;
+	}
+	.search-check .search button:hover,.search-check .search a:hover{
+		color: #fff;
+		background: #3f7ae3;
+	}
+	.search-check .check{
+		font-size: 14px;
+		line-height: 35px;
+	}
+	.search-check .check > .operate-btn{
+		font-size: 14px;
+		margin-right: 20px;
+		color: #fff !important;
+		background: #5078cb;
+		position: relative;
+		display: inline-block;
+		height: 30px;
+		line-height: 30px;
+		padding: 0 10px;
+		cursor: pointer;
+	}
+	.search-check .check > .operate-btn .expander {
+		position: absolute;
+		color: #333;
+		right: 0;
+		display: none;
+		height: 57px;
+		line-height: 26px;
+		text-align: center;
+		background: #fff;
+		bottom: -57px;
+		width: 98px;
+		z-index: 10;
+		border: 1px solid #e4e5e5;
+	}
+	.search-check .check > .operate-btn.more-operate {
+		padding: 0;
+		width: 98px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		display: inline-block;
+	}
+	.search-check .check > .operate-btn.more-operate:hover .expander {
+		display: block;
+	}
+	.search-check .check > .operate-btn.more-operate .expander span {
+		display: block;
+	}
+	.search-check .check > .operate-btn.more-operate .expander span:hover {
+		color: #5078cb;
+	}
+	.pro_management .table .check-active {
+		margin-right: 15px;
+		user-select: none;
+	}
+	.pro_management .table .check-active span {
+		color: #333 !important;
+	}
+	.pro_management .table .check-active label {
+		margin-right: 0 !important;
+	}
+	.check-input input{
+		display: none;
+	}
+	.check-input label {
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		background: url(static/img/user/images/check.png) no-repeat;
+		position: relative;
+		padding-left: 0 !important;
+		overflow: hidden;
+		margin-bottom: 0 !important;
+		vertical-align: sub;
+		min-height: 15px !important;
+		left: 0 !important;
+	}
+	.check-input input[type="checkbox"]:checked + label{
+		background-position: -15px 0;
+	}
+	.record-line{
+		min-height: 30px;
+		font-size: 12px;
+		line-height: 35px;
+		/* margin-top: 5px; */
+		padding-right: 22px
+	}
+	.device .tab{
+		padding-bottom: 20px;
+	}
+	.wanted_list01 .pagination{
+		margin: 0;
+	}
+	.ng-table-pager{
+		padding-bottom: 20px;
+	}
+
+	.record-line .prompt{
+		text-align: left;
+		width: 495px;
+		float: left;
+		line-height: 16px;
+		padding-left: 25px;
+		padding-top: 10px;
+	}
+	.record-line .prompt a{
+		color: #5078cb;
+	}
+	/*   编辑*/
+	.edit-content td{
+		background: #daecfb;
+		padding-bottom: 20px !important;
+	}
+	.edit-content img{
+		width: 60px;
+		border: #dfdfdf 1px solid;
+		height: 60px;
+	}
+	.edit-content .form-control{
+		height: 24px;
+		padding: 0;
+		text-align: center;
+		margin-bottom: 5px;
+		line-height: 24px;
+		font-size: 12px;
+		border-radius: 3px;
+	}
+	.edit-content select.form-control{
+		margin-top: -3px;
+		padding-left: 10px;
+		line-height: 23px;
+	}
+	.edit-content p{
+		font-size: 14px;
+	}
+	.edit-content select{
+		-webkit-appearance: inherit;
+		appearance: inherit;
+	}
+	.edit-content select option{
+		text-align: center;
+	}
+	.edit-content div.content,.edit-content div.img{
+		float: left;
+		margin: 0 7px;
+	}
+	.edit-content div.content .clearfix span:first-child {
+		text-align: right;
+		width: 64px;
+		float: left;
+	}
+	.edit-content div.content .clearfix span.switch {
+		float: left;
+	}
+	.edit-content div.width140{
+		width: 150px;
+	}
+	.edit-content div.width130{
+		width: 185px;
+	}
+	.edit-content div.width150{
+		margin-right: 53px;
+		margin-top: 6px;
+		width: 157px;
+	}
+	.edit-content div.width80{
+		width: 80px;
+	}
+	.edit-content div.width80 p.upload{
+		color: #33b401;
+	}
+	.edit-content div.content5{
+		margin: 0 5px;
+	}
+	.edit-content div.floatLeft {
+		overflow: hidden;
+		padding-top: 22px;
+	}
+	.edit-content div.floatLeft .title.height29{
+		float: left;
+		height: 29px;
+		line-height: 26px;
+	}
+	.edit-content div.floatLeft .input-list{
+		float: left;
+	}
+	.edit-content .input-list .dropdown{
+		position: relative;
+	}
+	.edit-content .input-list .button-select{
+		width: 96px;
+		height: 24px;
+		border: 1px solid #a9a9a9;
+		font-size: 12px;
+		text-align: center;
+	    padding: 0;
+	}
+	.edit-content .input-list .select-package{
+		width: 96px;
+		height: 24px;
+		border: 1px solid #a9a9a9;
+		font-size: 12px;
+		text-align: center;
+		border-radius: 3px;
+		padding-left: 6px;
+	}
+	.edit-content .input-list .button-option{
+		position: absolute;
+		top: 22px;
+		left: 69px;
+		height: 63px;
+		min-width: 119px;
+		overflow: auto;
+	}
+	.edit-content .input-list .button-option li{
+		height: 30px;
+		line-height: 30px;
+		padding: 0;
+	}
+	.edit-content .produceDate-fix{
+		position: relative;
+		top: 4px;
+	}
+	.edit-content div.margin10{
+		padding-top: 24px;
+	}
+	.edit-content .wid36{
+		width: 36px;
+	}
+	.edit-content .wid48{
+		width: 48px;
+	}
+	.edit-content .wid42{
+		width: 42px;
+	}
+	.edit-content .wid92{
+		width: 92px;
+	}
+	.edit-content .wid70{
+		width: 70px;
+	}
+	.edit-content .wid83{
+		width: 83px;
+	}
+	.edit-content .wid56{
+		width: 56px;
+	}
+	.edit-content div .input-list p span{
+		float: left;
+		line-height: 24px;
+		color: #999;
+	}
+	.edit-content div .input-list p span input:first-child{
+		margin-left: 5px;
+	}
+	.edit-content div .input-list span.tit{
+		float: left;
+		width: 70px;
+		text-align: right;
+	}
+	.edit-content div .input-list input{
+		float: left;
+	}
+	.edit-content .title{
+		height: 40px;
+		line-height: 40px;
+	}
+	.edit-content .height24{
+		height: 24px;
+		line-height: 24px;
+	}
+	.edit-content .reduce{
+		color: #faa002 !important;
+		margin: 0 !important;
+	}
+	.edit-content .add{
+		color: #2ea001 !important;
+		margin: 0 !important;
+	}
+	.edit-content button{
+		width: 56px;
+		height: 24px;
+		border: none;
+		color: #fff;
+		float: left;
+	}
+	.edit-content button.off{
+		background: #f15601;
+		margin-bottom: 5px;
+	}
+	.edit-content button.ok{
+		background: #33b401;
+		margin-bottom: 3px;
+	}
+	.edit-content button:hover{
+		background: #5078cb;
+	}
+	.wanted_list01 .tab table tr.active{
+		height: 35px;
+	}
+    .wanted_list01 .tab table tr.hei12{
+        height: 2px;
+        background: #fff
+    }
+	.wanted_list01 .tab table tr.active td{
+		background: #c2dff7;
+	}
+	.wanted_list01 .tab table tbody tr:hover{
+		background: #c7ebfd;
+	}
+    .user_content .user_right {
+        position: relative ;
+    }
+	div.user_right input::-webkit-outer-spin-button,
+	div.user_right input::-webkit-inner-spin-button{
+		-webkit-appearance: none !important;
+		margin: 0;
+	}
+	div.user_right input[type="number"]{
+		-moz-appearance:textfield;
+	}
+	.public-tab td>div.ellipsis-div {
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+	.restrict-color {
+		color: #faa002;
+	}
+	a:focus {
+		text-decoration: none;
+	}
+	.col-xs-4 .f16{
+		font-size: 14px;
+	}
+	.pro_management .table tr td div span.switch{
+		width:39px;
+		height: 14px;
+		display: inline-block;
+	}
+	.pro_management .table tr td div span.switch button{
+		border: none;
+		position: relative;
+		top: 2px;
+		left: 5px;
+		width: 39px;
+		height: 14px;
+		background: url(static/img/icon/check-off.png) no-repeat center;
+	}
+	.pro_management .table tr td div span.switch button.active{
+		background: url("static/img/icon/check-ok.png") no-repeat center;
+	}
+	/*分页鼠标悬停效果*/
+	.device .wanted_list01 a:hover {
+		 border-bottom: 1px solid #ddd!important;
+	}
+	.device .wanted_list01 a.page-a:hover{
+		color: #fff!important;
+	}
+	/*非标产品文案提示 */
+	.public-tab.table>tbody>tr>td.hei17{
+		padding:0;
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		font-size: 14px;
+		color: #f15601;
+		background: #fef6f2;
+		border: 1px solid #ec854d;
+		overflow: hidden;
+	}
+	.public-tab.table>tbody>tr>td.hei17 span{
+		font-size: 14px;
+		color: #f15601;
+	}
+	.public-tab.table>tbody>tr>td.hei17 a{
+		padding-right: 10px;
+		float: right;
+		font-size: 20px;
+		font-weight: bold;
+		color: #ef1d1d;
+	}
+	.public-tab.table>tbody>tr>td.hei17 a:hover{
+		color: #a10606!important;
+	}
+	.public-tab.table>tbody>tr>td.edit{
+		text-align: left;
+		padding: 8px 0;
+		overflow: visible;
+	}
+	/*如果没有展开就添加*/
+	.public-tab.table>tbody>tr>td.edit span.first{
+		margin-left: -39px;
+	}
+	.public-tab.table>tbody>tr>td a span{
+		padding: 0 5px;
+		display: inline-block ;
+		/*width: 50px;*/
+		height: 24px!important ;
+		line-height: 24px;
+		text-align: center;
+		font-size: 12px;
+		color: #5078cb;
+	}
+	.public-tab.table>tbody>tr>td a span.add{
+		width: 60px;
+	}
+	.public-tab.table>tbody>tr>td a:hover span{
+		color: #fff;
+		background: #5078cb;
+		border-radius: 2px;
+	}
+
+	/*匹配结果页*/
+	.com_tab{
+		position: relative;
+	}
+	.com_tab ul.line{
+		border-bottom: 1px solid #82d2fa;
+	}
+	.match-menu{
+		width: 100%;
+		height: 23px;
+		line-height: 23px;
+		position: absolute;
+		top: 40px;
+		border-top: 1px solid #82d2fa;
+	}
+	.match-menu span{
+		display: inline-block;
+		text-align: center;
+		width: 102px;
+		height: 23px;
+		background: #fff;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		margin-left: 390px;
+		line-height: 23px;
+		border: 1px solid #82d2fa;
+		border-bottom: none;
+		position: relative;
+		bottom: 23px;
+	}
+	.match-menu span a{
+		font-size: 12px;
+		color: #999;
+		display: inline-block;
+		height: 20px;
+		width: 60px;
+	}
+	.match-menu span.active{
+		background: #fff;
+		border: #82d2fa 1px solid;
+		border-bottom: #fff 1px solid;
+	}
+	.match-menu span.active a{
+		color: #333;
+	}
+	.match-menu span i{
+		font-size: 14px;
+		color: #999;
+	}
+	.match-menu span i:hover,.match-menu span a:hover{
+		color: #5078cb;
+	}
+	.search-checks{
+		padding: 16px 25px 25px 50px;
+		background: #fff;
+		overflow: hidden;
+	}
+	.search-checks .tip .count{
+		font-size: 14px;
+		color: #333;
+	}
+	.search-checks .tip .count span{
+		font-size: 14px;
+		color: #5078cb;
+	}
+	.search-checks .tip .count em{
+		font-size: 14px;
+		font-style: normal ;
+		color: #f01a1a;
+	}
+	.search-checks .tip .apply{
+		margin-top: 5px;
+		font-size: 12px;
+		color: #333;
+	}
+	.search-checks .tip .apply a{
+		font-size: 12px;
+		color: #5078cb;
+	}
+	.search-checks .tip .apply em{
+		font-size: 12px;
+		font-style: normal ;
+		color: #e80b0b;
+	}
+	.search-checks .search{
+		position: relative;
+	}
+	.search-checks .search input{
+		width: 390px;
+		height: 36px;
+		border: 1px solid #82d2fa;
+		border-radius: 0;
+	}
+	.search-checks .search button{
+		position: absolute ;
+		right:0;
+		top: 0;
+		width: 72px;
+		height: 36px;
+		font-size: 16px;
+		text-align: center;
+		color: #fff;
+		background: #82d2fa;
+		border: none;
+	}
+	.result{
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		background: #fef6f2;
+		border: 1px solid #ec854d;
+		overflow: hidden ;
+	}
+	.result span{
+		margin-left: 330px;
+		height: 30px;
+		font-size: 14px;
+		color: #f15601;
+	}
+	.result span em{
+		font-size: 14px;
+		color: #f15601;
+	}
+	.result a{
+		padding-right: 10px;
+		float: right;
+		font-size: 20px;
+		font-weight: bold;
+		color: #ef1d1d;
+	}
+	.tab-head{
+		width: 100%;
+		height: 40px;
+		text-align: center;
+		line-height: 40px;
+		font-size: 14px;
+		background: #83d2fb;
+		color: #fff;
+		min-height: 40px;
+	}
+
+	.public-tab.table>tbody>tr>td.choose{
+		position: relative;
+		text-align: center;
+	}
+	.choose input{
+		margin: 0 auto;
+		width: 147px;
+		height: 26px;
+		background: url(static/img/vendor/images/angle-down.png) no-repeat 125px center;
+		border: 1px solid #5078cb;
+		border-radius: 0;
+		cursor: pointer;
+	}
+	.choose select.choose-brand {
+		margin: 0 auto;
+		width: 147px;
+		height: 26px;
+		border-color: #5078cb;
+		border-radius: 0;
+        background-color: #eee;
+        opacity: 1;
+		-webkit-appearance: menulist;
+		appearance: menulist;
+		-o-appearance: menulist;
+		-moz-appearance: menulist;
+		-ms-appearance: menulist;
+	}
+	/*.choose ul{*/
+		/*position: absolute;*/
+		/*top: 34px;*/
+		/*left: 52px;*/
+		/*width: 147px;*/
+		/*background: #fff;*/
+		/*box-shadow: 2px 2px 5px rgba(0,0,0,.5);*/
+		/*-moz-box-shadow: 2px 2px 5px rgba(0,0,0,.5);*/
+		/*-o-box-shadow: 2px 2px 5px rgba(0,0,0,.5);*/
+		/*-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,.5);*/
+		/*!*display: none;*!*/
+	/*}*/
+	/*.choose ul li{*/
+		/*padding-left:12px;*/
+		/*width: 100%;*/
+		/*height: 28px;*/
+		/*line-height: 28px;*/
+		/*text-align: left;*/
+		/*font-size: 14px;*/
+		/*color: #333;*/
+		/*cursor: pointer;*/
+	/*}*/
+	/*.choose ul li:hover,.choose ul li.active{*/
+		/*color: #fff;*/
+		/*background: #5078cb;*/
+	/*}*/
+	.public-tab.table>tbody>tr>td.confirm span{
+		display: inline-block;
+		width: 55px ;
+		height: 24px;
+		line-height: 24px;
+		text-align: center;
+		font-size: 12px;
+		color: #5078cb;
+		border: 1px solid #5078cb;
+        cursor: pointer;
+	}
+	.public-tab.table>tbody>tr>td.confirm span:hover,.public-tab.table>tbody>tr>td.confirm span.active{
+		background: #5078cb;
+		color: #fff!important;
+	}
+	.record-line .set-count{
+		position: relative;
+	}
+	.record-line .set-count input{
+		padding-left: 5px;
+		display: inline-block;
+		width: 45px;
+		height: 22px;
+		line-height: 22px;
+		border: 1px solid #dcdcdc;
+		background: url(static/img/vendor/images/angle-down.png) no-repeat 30px center;
+		cursor: pointer ;
+	}
+	.record-line .set-count ul{
+		position: absolute;
+		top: 22px;
+		left: 61px;
+		background: #fff;
+		width: 45px;
+		box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		-moz-box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		-o-box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		display: none;
+	}
+	.record-line .set-count ul li{
+		padding-left:6px;
+		width: 100%;
+		height: 22px;
+		line-height: 22px;
+		text-align: left;
+		font-size: 12px;
+		color: #333;
+		cursor: pointer;
+	}
+	.record-line .set-count select{
+		width: 45px;
+		height: 22px;
+		border-radius: 3px;
+		-webkit-appearance: menulist;
+		appearance: menulist;
+		-o-appearance: menulist;
+		-moz-appearance: menulist;
+		-ms-appearance: menulist;
+	}
+	.public-tabs.table>tbody.hover-table>tr{
+		height: 40px;
+		border-bottom: none!important;
+	}
+	.public-tabs.table>tbody.hover-table>tr:nth-child(even){
+		background: #f4f4f4;
+	}
+	.public-tabs.table>tbody.hover-table>tr>td{
+		border-bottom: none!important;
+	}
+	.public-tabs.table>tbody.hover-table>tr:nth-child(even){
+		background: #f4f4f4;
+	}
+	.public-tabs.table>tbody.hover-table>tr:hover{
+		/*background: #c7ebfd*/
+	}
+	/*限制非标和标准数量显示过多换行的问题*/
+	.com_tab ul.distance li {
+		width: 100px;
+		height: 40px;
+		line-height: 12px;
+		text-align: center;
+		color: #5078cb;
+		float: left;
+		margin-left: 25px;
+	}
+	.com_tab ul.distance li:first-child {
+		margin-right: 20px;
+	}
+	.com_tab ul.distance li a.standard{
+		padding-top: 15px;
+		width: 112px;
+		color: #666;
+	}
+	.com_tab ul.distance li a.standard em{
+		display: inline-block;
+		max-width: 45px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: #666;
+	}
+	.com_tab ul.distance li:hover a.standard em.count,.com_tab ul.distance li.active a.standard em.count{
+		color: #5078cb;
+	}
+	.com_tab ul.distance li.active a.standard,.com_tab ul.distance li:hover a.standard{
+		padding-top: 15px;
+		width: 112px;
+		color: #5078cb;
+	}
+	.wanted_list01 .tab table tr.gre-bg{
+		width: 100%;
+		height: 35px;
+		line-height: 35px;
+		background: #c8e6fe;
+		border: 1px solid #84c5fb;
+	}
+	.wanted_list01 .tab table tr.gre-bg td{
+		border-top: 1px solid #84c5fb;
+	}
+	.wanted_list01 .tab table tr.gre-bg:hover{
+		background: #c8e6fe;
+	}
+	.show-content{
+		width: 100%;
+		/*height: 520px;*/
+		border: 1px solid #84c5fb;
+		border-top: none;
+		overflow: hidden;
+	}
+	.show-content .content-top{
+		width: 100%;
+		height: 35px;
+		line-height: 35px;
+		background: #c8e6fe;
+	}
+	.show-content .content-top table tr:hover{
+		background: none;
+	}
+	.show-content .content-top table tr th{
+		font-size: 14px;
+		color: #333;
+		font-weight: normal;
+	}
+	.show-content .content-body{
+		max-height: 523px;
+		overflow-y: auto ;
+	}
+	.show-content .content-body .public-tab tr.defines{
+		overflow: hidden;
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		background: #f0f7fd;
+	}
+	.show-content .content-body .public-tab tr.defines td{
+		border-bottom: none;
+	}
+	.show-content .content-body .public-tab tr.defines .code{
+		padding-left: 20px;
+		float: left;
+		font-size:14px;
+		color: #333;
+	}
+	.show-content .content-body .public-tab tr.defines .code span{
+		font-size:14px;
+		color: #333;
+	}
+	.show-content .content-body .public-tab tr.defines .labelling{
+		float: left;
+		margin-left: 40px;
+		font-size: 14px;
+		color: #333;
+	}
+	.show-content .content-body .public-tab tr.defines .labelling span{
+		padding: 0 10px;
+		/*width: 124px;*/
+		height: 19px;
+		font-size: 12px;
+		color: #5078cb;
+		border-radius: 9px;
+        background: #fff;
+		border: 1px solid #5078cb ;
+	}
+	.show-content .content-body .public-tab tr.defines .labelling em{
+		color: #f00;
+	}
+	.show-content .content-body .public-tab tr.edit-contents td{
+		border-bottom: none;
+		padding-bottom: 10px !important;
+	}
+	.edit-contents td{
+		background: #f0f7fd;
+	}
+	.edit-contents td .bg{
+		background: #fff;
+		width: 100%;
+		height: 100px;
+	}
+	.edit-contents .content{
+		text-align: left;
+	}
+	.edit-contents div.contents p{
+		margin-top: 33px;
+	}
+	.edit-contents .bg .img{
+		padding-left: 15px;
+	}
+	.edit-contents .bg .img img{
+		margin-top: 20px;
+		border-radius: 3px;
+	}
+	.edit-contents .content .title{
+		/*margin-right: 40px;*/
+		height: 33px;
+		line-height: 33px;
+	}
+	.edit-contents .content .title span:first-child {
+		float: left;
+		width: 70px;
+		text-align: right;
+	}
+	.edit-contents .content .title span:last-child {
+		float: left;
+		width: 65px;
+	}
+	.edit-contents .content p.noBreak{
+		color: #f15601;
+	}
+	.edit-contents .content .list{
+		width: 170px;
+		height: 20px;
+		line-height: 20px;
+	}
+	.edit-contents .content .list:nth-child(even){
+		background: #eeeeee;
+	}
+	.edit-contents .content .list:nth-child(odd){
+		background: #f5f5f5;
+	}
+	.edit-contents .content .list span{
+		display: inline-block;
+		width: 50%;
+		text-align: center;
+	}
+	.edit-contents .content .title-price{
+		width: 170px;
+		height: 20px;
+		line-height: 20px;
+		background: #fff;
+	}
+	.edit-contents .content .title-price span{
+		float: left;
+		display: inline-block;
+		width: 50%;
+		text-align: center;
+	}
+	.edit-contents .content button{
+		color: #5078cb;
+		background: none;
+	}
+	.edit-contents .content button:hover{
+		background: #5078cb;
+		color: #fff;
+	}
+	.show-content .content-body .public-tab tr td.hei2{
+		padding: 0;
+		height: 5px;
+		width: 100%;
+		background: #fff;
+		border-bottom: none;
+	}
+	/*键匹配弹出框*/
+	.matchPop{
+		position: fixed;
+		z-index: 2;
+		opacity: 1;
+		background-color: white;
+		margin: -268px 0 0 -340px;
+		top: 50%;
+		left: 50%;
+		width: 680px;
+		height: 536px;
+		box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		-webkit-box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		-o-box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		-moz-box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+		border-radius: 5px;
+	}
+	.matchPop .title{
+		padding-left: 55px;
+		width: 100%;
+		height:  77px;
+		overflow: hidden;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	.matchPop .title .title-product{
+		padding-top: 20px;
+		float: left;
+		overflow: hidden;
+		width: 570px;
+	}
+	.matchPop .title .title-product i.fa-exclamation-circle{
+		float: left;
+		margin-top: 2px;
+		font-size: 20px;
+		color: #5078cb;
+	}
+	.matchPop .title .title-product span{
+		display: inline-block;
+		margin-left: 15px;
+		width: 530px;
+		font-size: 14px;
+		color: #333;
+		line-height: 21px;
+	}
+	.matchPop .title .close{
+		padding: 10px;
+		float: right;
+		font-size: 30px;
+		color: #9c9c9c;
+	}
+	.matchPop .content {
+		padding: 0 10px;
+		width: 100%;
+	}
+	.matchPop .content .content-box{
+		padding: 8px;
+		width: 100%;
+		max-height: 378px;
+		overflow-y: auto;
+		background: #f8f7f7;
+	}
+	.matchPop .content .content-box .content-choose{
+		margin-bottom: 5px;
+		padding-top: 8px;
+		background: #fff;
+		border: 1px dashed #5078cb;
+	}
+	.matchPop .content .content-box .content-choose .list{
+		overflow: hidden;
+		margin-bottom: 5px;
+	}
+	.matchPop .content .content-box .content-choose .fl{
+		width: 46px;
+		height: 120px;
+		line-height: 120px;
+		background: #fff;
+		text-align: center;
+	}
+	.product-detail{
+		padding: 10px 12px;
+		float:  left;
+		width: 580px;
+		height: 120px;
+		background: #f4fafd;
+		border-radius: 5px;
+		/*overflow: hidden;*/
+	}
+	.product-detail .detail{
+		float: left;
+		margin-right: 30px;
+	}
+	.product-detail .width100{
+		width: 100px;
+	}
+    .product-detail .distance {
+        margin-right: 20px !important ;
+    }
+	.product-detail .detail:last-child {
+		margin-top: -3px;
+		margin-right: 0;
+	}
+	.product-detail .detail .detail-title{
+		margin-bottom: 15px;
+		font-size: 12px;
+		color: #333;
+	}
+	.product-detail .detail .detail-title span{
+		font-size: 12px;
+		color: #333;
+	}
+	.product-detail .detail .title-price{
+		width: 170px;
+		height: 20px;
+		line-height: 20px;
+	}
+	.product-detail .detail .title-price span{
+		display: inline-block;
+		width: 50%;
+		text-align: center;
+	}
+	.product-detail .detail .detail-price{
+		width: 170px;
+		height: 20px;
+		line-height: 20px;
+	}
+	.product-detail .detail .detail-price:nth-child(even){
+		background: #eeeeee;
+	}
+	.product-detail .detail .detail-price:nth-child(odd){
+		background: #f5f5f5;
+	}
+	.product-detail .detail .detail-price span{
+		float: left;
+		display: inline-block;
+		width: 50%;
+		text-align: center;
+	}
+	.product-number{
+		/*overflow: hidden;*/
+		margin-bottom: 13px;
+	}
+	.product-number .code:first-child {
+		margin-right:90px;
+		float: left;
+	}
+	.product-number div.code{
+		font-size: 14px;
+		color: #323232;
+	}
+	.product-number div.code span{
+		font-size: 14px;
+		color: #323232;
+	}
+	.product-number div.code em{
+		font-size: 14px;
+		color: #f00;
+		font-style: normal;
+	}
+	.product-number div.code span.define{
+		padding: 0 10px;
+		height: 19px;
+		font-size: 12px;
+		color: #5078cb;
+		border-radius: 9px;
+		border: 1px solid #5078cb;
+	}
+	.matchPop .footer{
+		margin: 0 auto;
+		width: 100%;
+		height: 79px;
+		line-height: 79px;
+		text-align: center;
+	}
+	.matchPop .footer a{
+		display: inline-block;
+		width: 65px;
+		height: 25px;
+		line-height: 25px;
+		font-size: 14px;
+		color: #fff;
+		text-align: center;
+		cursor: pointer;
+	}
+	.matchPop .footer a:first-child {
+		margin-right: 10px;
+		background: #5078cb;
+	}
+	.matchPop .footer a:last-child {
+		background: #bcbcbd;
+	}
+	.matchPop .footer a:hover{
+		background: #337ab7!important ;
+	}
+	.clearfix{
+		overflow: hidden;
+	}
+	#define-content {
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		background: #ebf5fe;
+	}
+	#define-content td{
+		border-bottom: none;
+	}
+	#define-content .code{
+		padding-left: 20px;
+		float: left;
+		font-size:14px;
+		color: #333;
+	}
+	#define-content .code span{
+		font-size:14px;
+		color: #333;
+	}
+	#define-content .labelling{
+		float: left;
+		margin-left: 40px;
+		font-size: 14px;
+		color: #333;
+	}
+	#define-content .labelling span{
+		padding: 0 10px;
+		height: 19px;
+		font-size: 12px;
+		color: #5078cb;
+		border-radius: 9px;
+		border: 1px solid #5078cb ;
+	}
+	#define-content .labelling em{
+		color: #f00;
+	}
+	#define-content .labelling input{
+		padding-left: 10px;
+		width: 157px;
+		height: 24px;
+		border: 1px solid #c9c9c9;
+		background: #fff;
+		border-radius: 4px;
+	}
+	.wanted_list01 .tab table tr.edits td{
+		padding-bottom: 10px !important;
+		background: #fff;
+		border-bottom: none;
+	}
+	.wanted_list01 .tab table tr td .blue-bg{
+		overflow: hidden;
+		background: #fff!important;
+	}
+	/*图片可编辑*/
+	.wanted_list01 .tab table tr td .blue-bg .img{
+		position: relative;
+		margin: 29px 0 0 24px;
+		width: 60px;
+		height: 60px;
+	}
+	.wanted_list01 .tab table tr td .blue-bg .img img{
+		width: 60px;
+		height: 60px;
+	}
+	.wanted_list01 .tab table tr td .blue-bg .img .edit-img{
+		position: absolute;
+		left: 0;
+		top: 0;
+		margin-top: 0;
+		width: 60px;
+		height: 60px;
+		font-size: 12px;
+		background: rgba(0,0,0,.5);
+		border-radius: 3px;
+
+	}
+	.wanted_list01 .tab table tr td .blue-bg .img .edit-img a {
+		width: 100%;
+		height: 100%;
+		display: inline-block;
+		text-align: center;
+		line-height: 55px;
+		color: #fff !important;
+	}
+	.wanted_list01 .tab table tr td .blue-bg .img a.delete-img {
+		position: absolute;
+		top: 2px;
+		right: 0;
+		z-index: 20;
+		width: 20px;
+		height: 20px;
+		line-height: 16px;
+		border: none;
+	}
+	.wanted_list01 .tab table tr td .blue-bg .img .edit-img a img {
+		width: 38px;
+		height: 38px;
+	}
+	/*自定义标签*/
+	.wanted-list02{
+		padding-top: 19px;
+		margin-top: 10px;
+		width: 100%;
+		background: #fff;
+	}
+	.wanted-list02 .title{
+		overflow: hidden;
+		height: 40px;
+		line-height: 40px;
+	}
+	.wanted-list02 .title div.fl{
+        position: absolute;
+        left: -5px;
+	}
+	.wanted-list02 .title .fl img{
+		width: 105px;
+		height: 40px;
+	}
+	.wanted-list02 .title .fl span{
+		position: absolute;
+		top: 0px;
+		left: 13px;
+		font-size: 14px;
+		color: #fff;
+	}
+	.wanted-list02 .title .fr span{
+		padding-right: 73px;
+		font-size: 14px;
+		color: #5078cb;
+		cursor: pointer ;
+	}
+	.wanted-list02 .content{
+		position: relative;
+		padding-left: 15px;
+		min-height: 160px;
+	}
+	.wanted-list02 .content .hover-show {
+		position: absolute;
+		top: 21px;
+		width: 95%;
+		height: 90px;
+		background: rgba(255,255,255,.9);
+		box-shadow: 0 -15px 4px rgba(255, 255, 255, 0.8);
+		-o-box-shadow: 0 -15px 4px rgba(255, 255, 255, 0.8);
+		-moz-box-shadow: 0 -15px 4px rgba(255, 255, 255, 0.8);
+		-webkit-box-shadow: 0 -15px 4px rgba(255, 255, 255, 0.8);
+	}
+	.wanted-list02 .content h3{
+		margin: 17px 0;
+		font-size: 16px;
+		color: #333;
+	}
+	.wanted-list02 .content h3 span{
+		font-size: 16px;
+		font-weight: bold;
+		color: #fa2929;
+	}
+	.wanted-list02 .content h3 em{
+		font-size: 16px;
+		font-weight: bold;
+		color: #333;
+	}
+	.wanted-list02 .content p{
+		font-size: 14px;
+		color: #333;
+		line-height: 24px;
+	}
+	.wanted-list02 .content p span{
+		font-size:14px;
+		color: #fa2929;
+	}
+	.wanted-list02 .content .img{
+		margin: 34px auto 0;
+		padding-bottom: 40px;
+		width: 100%;
+		text-align: center ;
+		overflow: hidden;
+	}
+	.wanted-list02 .content .img div{
+		float: left;
+	}
+	.wanted-list02 .content .img div:first-child {
+		margin-right: 185px;
+		margin-left: 155px;
+	}
+	.wanted-list02 .content .img img{
+		width: 184px;
+		height: 218px;
+		margin-bottom: 19px;
+	}
+	.wanted-list02 .content .img p{
+		font-size: 14px;
+		color: #333;
+	}
+	.wanted-list02 .content .img p span{
+		font-size: 14px;
+		color: #f30a0b;
+	}
+	.public-tab.table>tbody>tr>td p em.up{
+		display: inline-block;
+		font-size: 12px;
+		margin-left: 3px;
+		margin-top: 4px;
+	}
+	/*批量导出按钮*/
+	.search-check .search a.down-goods-btn{
+		margin-top: 0!important;
+	}
+	.clearfix {
+		clear: both;
+	}
+	.public-tab.table>tbody.bg-show>tr>td.hei18{
+		height: 14px;
+		background: #f4f4f4;
+		border-bottom: none;
+	}
+
+	.edit-content .error {
+		border: 1px solid #f00!important;
+	}
+	/*一键匹配结果页头图背景色*/
+	.wanted_list01 table.fail-tab thead tr{
+		background: #dff3fd;
+	}
+	/*增加价格超过三个按钮变灰*/
+	.public-tab.table>tbody>tr>td div.plusBtn a.add[disabled] i, .public-tab.table>tbody>tr>td div.plusBtn a.reduce[disabled] i{
+		color: #c7c7c7 !important;
+	}
+	/*删除弹出框*/
+	.modal{
+		bottom: unset!important ;
+	}
+	.modal-content{
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	.com-del-box{
+		box-shadow: none;
+	}
+	.com-del-box .title i.fa-close{
+		font-size: 16px;
+	}
+	/*输入错误提示*/
+	.user_right input.error{
+		border: 1px solid red!important;
+	}
+	input.ng-invalid.ng-dirty,textarea.ng-invalid.ng-dirty {
+		background-color: #fff!important ;
+		border-color: #CCC!important ;
+	}
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+		padding: 0;
+	}
+	/*隐藏自定义标签说明*/
+	#wanted-list02{
+		display: none;
+	}
+    /*.modal-backdrop {
+        background-color: transparent ;
+        bottom: unset!important;
+    }*/
+    .modal{
+        bottom: unset!important;
+    }
+	.com-del-box .content{
+		position: relative;
+	}
+	.com-del-box .content .red{
+		position: absolute;
+		top: 45px;
+	}
+
+	.no-hover:hover {
+		background: none !important;
+	}
+	.standard-tab.table > tbody > tr.batch-tr {
+		height: 30px;
+	}
+	.standard-tab.table > tbody > tr.batch-tr.active {
+		position: fixed;
+		bottom: 0;
+		z-index: 2000;
+	}
+	.standard-tab.table > tbody > tr.batch-tr.active td {
+		width: 1029px;
+		border-top: 0;
+	}
+	.standard-tab.table > tbody > tr.batch-tr td {
+		padding: 0;
+		border-top: #dff3fd 1px solid;
+	}
+	.standard-tab.table>tbody>tr>td .batch-line {
+		width: 100%;
+		height: 30px;
+		background: #fdd6d6;
+		line-height: 30px;
+	}
+	.wanted_list01 .tab table th {
+		color: #333 !important;
+	}
+</style>
+<div class="user_right fr">
+	<!--货品管理-->
+	<div class="pro_management device">
+		<div class="com_tab">
+			<ul class="fl" style="width: 100%">
+				<li ng-class="{'active': tab == 'material'}"><a ui-sref="vendor_material">企业产品库</a></li>
+				<li ng-class="{'active': tab == 'material_person'}"><a ui-sref="vendor_material_person">个人产品库</a></li>
+				<li ng-class="{'active': tab == 'onSale'}"><a ui-sref="vendor_onSale">在售产品</a></li>
+				<li ng-class="{'active': tab == 'undercarriage'}"><a ui-sref="vendor_undercarriage">上下架历史</a></li>
+			</ul>
+		</div>
+		<div class="com_tab">
+			<ul class="fl distance" style="width: 100%">
+				<li ng-class="{active : standard_tab == 'unstandard'}"  ng-click="toggleStandard('unstandard')" title="非标产品({{nCount}})"><a href="" class="standard">非标产品(<em class="count">{{nCount}}</em>)</a></li>
+				<li ng-class="{active : standard_tab =='standard'}" ng-click="toggleStandard('standard')" title="标准产品({{sCount}})"><a href="" class="standard">标准产品(<em class="count">{{sCount}}</em>)</a></li>
+			</ul>
+			<!--匹配结果导航-->
+			<div class="match-menu" ng-if="resultFrame">
+                <span>
+                    <a ng-click="toggleTab('matchResult')">匹配结果</a>
+                    <i class="fa fa-remove" ng-click="closeResultFrame('unstandard')"></i>
+                </span>
+			</div>
+		</div>
+		<!--非标和标准产品列表页-->
+		<div ng-if="standard_tab == 'unstandard' || standard_tab =='standard'">
+			<div class="search-check">
+				<div class="search fl">
+					<input type="text" class="form-control" ng-model="param.keyword" ng-search="onSearch()" placeholder="类目/型号/品牌"/>
+					<button ng-click="onSearch()">搜索</button>
+					<!--<a ng-click="download()">批量导出</a>-->
+				</div>
+				<div class="check fr">
+					<div class="operate-btn" ng-click="setAllInPerson()"><span>加入个人产品库</span></div>
+					<div class="operate-btn" ng-show="standard_tab == 'unstandard'" ng-click="matchAll()"><span ng-show="standard_tab == 'unstandard'">匹配</span></div>
+					<div class="operate-btn more-operate">
+						<span>更多操作</span>
+						<span class="expander">
+							<span ng-click="download()">导出选中</span>
+							<span ng-click="deleteBatch()" name="delete-material">删除选中</span>
+						</span>
+					</div>
+					<!--<a ng-show="!isBatch" ng-click="enterBatch()"><span ng-show="!isBatch">批量操作</span></a>-->
+					<span class="check-btn" ng-show="isBatch">
+						<a ng-click="deleteBatch()" name="delete-material">删除</a>
+						<a ng-click="exitBatch()">取消</a>
+					</span>
+				</div>
+			</div>
+			<div class="wanted_list01">
+			<!--在售产品-->
+			<div class="tab">
+				<table class="public-tab standard-tab table">
+					<thead>
+					<tr>
+						<th width="80">
+							<label class="check-active">
+								<input ng-disabled="currenctMaterial.length == 0" type="checkbox"  ng-click="chooseAllItem()" ng-checked="chooseAll || chooseAllPage" id="AllChoose"/>
+								<label for="AllChoose"></label>
+								<span>全选</span>
+							</label>
+						</th>
+						<th width="80">序号</th>
+						<th width="180">产品名称(类目)</th>
+						<th width="200">产品型号</th>
+						<th width="150">品牌</th>
+						<th width="100">单位</th>
+						<!--<th width="80">封装</th>-->
+						<th width="180">操作</th>
+					</tr>
+					</thead>
+					<tbody class="bg-show">
+					<!--<tr style="height: 14px;" ng-show="!isBatch && standard_tab == 'standard'">-->
+					<tr style="height: 14px;">
+						<td colspan="7" class="hei18"></td>
+					</tr>
+					</tbody>
+					<tbody>
+						<tr style="height: 14px;" ng-show="currenctMaterial.length > 0 && standard_tab == 'unstandard' && showTip">
+							<td colspan="7" class="hei17">
+								<span>*匹配成为标准产品方可通过器件选型、参数搜索展示</span><a ng-click="cancelTip()">&times;</a>
+							</td>
+						</tr>
+						<tr class="no-hover batch-tr" ng-if="(chooseAll || chooseAllPage) && currenctMaterial.length != 0">
+							<td colspan="7">
+								<div class="batch-line" ng-if="chooseAll && !chooseAllPage">
+									已选中当前页
+									<em class="red" ng-bind="materialAll.numberOfElements"></em>个产品，
+									<a ng-click="turnAllPage()" class="blue">点击此处</a>切换选中所有页面<em class="red" ng-bind="materialAll.totalElements"></em>个产品
+								</div>
+								<div class="batch-line" ng-if="chooseAllPage">
+									已选中所有页面
+									<em class="red" ng-bind="materialAll.totalElements"></em>个产品，
+									<a ng-click="cancelAllPage()" class="blue">点击此处</a>全部取消选中
+								</div>
+							</td>
+						</tr>
+					</tbody>
+					<tbody ng-repeat="material in currenctMaterial">
+					<!--<tr ng-class="{ 'active': material.selected }" class="gre-bg">-->
+					<tr ng-class="{ 'active': material.selected, 'gre-bg' : material.exPandOper}">
+						<td class="check-input">
+							<span><input type="checkbox" ng-checked="material.isChoosed"  ng-click="chooseOne(material)"  id="{{$index+1}}"/><label for="{{$index+1}}"></label><br/></span>
+						</td>
+						<td>
+							<!--<span ng-show="isBatch"><input type="checkbox" ng-checked="material.isChoosed"  ng-click="chooseOne(material)"  id="{{$index+1}}"/><label for="{{$index+1}}"></label><br/></span>-->
+							<span ng-show="!isBatch" ng-bind="(param.page - 1) * 10 + $index + 1"></span>
+						</td>
+						<td>
+							<span ng-if="material.kind" ng-bind="material.kind" title="{{material.kind}}"></span>
+							<span ng-if="!material.kind" ng-bind="material.kinden || '-'" title="{{material.kinden || '-'}}"></span>
+						</td>
+						<td>
+                            <a class="brand-type" ng-if="material.cmpUuId" ng-href="product/component/{{material.cmpUuId}}/" ng-bind="material.pcmpcode" title="{{material.pcmpcode}}" target="_blank"></a>
+                            <span class="brand-type" ng-if="!material.cmpUuId" ng-bind="material.pcmpcode" title="{{material.pcmpcode}}"></span>
+						</td>
+						<td>
+							<div class="ellipsis-div" ng-if="material.pbranden" ng-bind="material.pbranden" title="{{material.pbranden}}"></div>
+							<div class="ellipsis-div" ng-if="!material.pbranden" ng-bind="material.pbrand" title="{{material.pbrand}}"></div>
+						</td>
+						<td ng-bind="material.unit || 'PCS'" title="{{material.unit  || 'PCS'}}"></td>
+						<!--<td>-->
+							<!--<span ng-bind="material.encapsulation || '-'" title="{{material.encapsulation || '-'}}"></span>-->
+						<!--</td>-->
+						<td class="edit">
+							<span name="delete-material" ng-show="!isBatch && !material.exPandOper && !material.addGoodsOper" ng-click="deleteMaterial(material)"><span>删除</span></span>
+							<span ng-show="!isBatch && !material.exPandOper && !material.addGoodsOper" ng-click="showShelfArea(material)">
+								<span ng-if="material.batchCount">添加产品</span>
+								<span ng-if="!material.batchCount">编辑上架</span>
+							</span>
+							<span ng-if="material.batchCount" ng-show="!isBatch && !material.exPandOper && !material.addGoodsOper" ng-click="expandGoods(material)"><span>展开<i class="fa fa-angle-down" style="margin-left:2px;"></i></span></span>
+							<!--收起-->
+							<span ng-show="!isBatch && material.exPandOper" ng-click="disExpandGoods(material)" class="packUp"><span>收起<i class="fa fa-angle-up" style="margin-left:2px;"></i></span></span>
+							<!--<a ng-show="!isBatch" ng-click="showShelfArea(material)"><span ng-if="!isBatch">编辑</span></a>-->
+							<!--<span ng-show="!isBatch && (material.sold == 0 && material.canSell == 1)" ng-click="publishGoods(material)"><span ng-if="!isBatch">上架</span></span>-->
+						</td>
+					</tr>
+					<!--展开内容-->
+					<tr ng-show="material.addGoodsOper  || (material.exPandOper && material.goodsArr.length > 0)">
+						<td colspan="7" style="padding: 0;">
+							<div class="show-content">
+								<div class="content-body">
+									<table class="public-tab table">
+                                        <tbody ng-if="material.addGoodsOper && material.selected">
+                                        <!--添加产品-->
+                                        <tr id="define-content">
+                                            <td colspan="10">
+                                                <div class="code">产品编码 : <span ng-bind="goods.prodNum">247823589235</span></div>
+                                                <div class="labelling">
+													<!--<em>*</em>-->
+													自定义标签 : <input maxlength="20" type="text" ng-model="goods.editTag" ng-blur="blurTag(goods)" ng-change="changeTag(goods)" placeholder="请设置产品标签"></div>
+                                            </td>
+                                        </tr>
+                                        <tr class="edit-content edits" >
+                                            <td colspan="10" style="background:#f0f7fd;">
+                                                <div class="blue-bg">
+													<div></div>
+                                                    <div class="img">
+                                                        <a><img ng-src="{{goods.editPic || 'static/img/store/common/default.png'}}" alt="img"/></a>
+                                                        <div class="edit-img">
+                                                            <a ng-click="deleteImg(goods)" class="delete-img" title="删除" ng-if="goods.editPic"><i class="fa fa-trash"></i></a>
+                                                            <a ng-click="editGoodsPicture(goods.editPic || 'static/img/store/common/default.png', goods)" title="修改图片"><img ng-src="static/img/icon/update-img.png" /></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content margin10">
+                                                        <!--<p class="title">包装/生产日期</p>-->
+                                                        <div class="input-list">
+                                                            <span class="tit">包装：</span><!--<input type="text" class="form-control" name="packaging" ng-maxlength="10" title="包装" maxlength="10" placeholder="包装方式" style="width: 96px;" ng-model="goods.editPackaging"
+                                                                                               ng-class="{'error' : goods.editPackagingInvalid}" ng-blur="editPackaging(goods, true)" ng-change="changePackaging(goods)"/>-->
+															<select ng-model="goods.editPackaging" ng-init="goods.editPackaging='请选择'"  class="select-adder select-package" title="包装">
+																<option ng-repeat="item in packageArray" ng-click="showText(item)">{{item}}</option>
+															</select>
+															<!--<div class="dropdown">
+																<input class="btn btn-default dropdown-toggle button-select select-adder" id="dropdownMenu2" type="text" ng-model="goods.editPackaging" placeholder="包装方式" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" readonly="readonly">
+																<ul class="dropdown-menu .dropdown-menu-left button-option" aria-labelledby="dropdownMenu2">
+																	<li ng-repeat="item in packageArray" ng-click="showText(item)">{{item}}</li>
+																</ul>
+															</div>-->
+                                                        </div>
+                                                        <div class="input-list produceDate-fix">
+                                                            <span class="tit">生产日期：</span><input type="text" class="form-control" name="produceDate" ng-maxlength="11" title="生产日期" maxlength="11" placeholder="生产日期" style="width: 96px;" ng-model="goods.editProduceDate"
+                                                                                                 ng-class="{'error' : goods.editProduceDateInvalid}"
+                                                                                                 ng-change="editProduceDateFa(goods, false)"/>
+                                                        </div>
+                                                        <div class="clearfix produceDate-fix">
+                                                            <span>可拆卖:</span>
+                                                            <span class="switch"><button ng-class="{'active' : goods.editBreakUp}"
+                                                                                           ng-click="toggleIsBreadUp(goods, false)"></button></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content margin10">
+                                                        <!--<p class="title">库存</p>-->
+                                                        <div class="input-list">
+                                                            <span class="tit">库存：</span><input type="number" class="wid70 form-control" name="reserve" title="库存" placeholder="数量"
+                                                                                               ng-model="goods.editReserve" maxlength="9" ng-blur="setPriceMaxAmount(goods, false)" ng-class="{'error' : goods.editReserveInvalid}" oninput="if(value.length>9)value=value.slice(0,9)"/>
+                                                        </div>
+                                                        <div class="input-list">
+                                                            <span class="tit">起订量：</span><input type="number" class="wid70 form-control" name="minBuyQty" title="起拍"  placeholder="数量"
+                                                                                                maxlength="6" oninput="if(value.length>6)value=value.slice(0,6)" ng-model="goods.editMinBuyQty" ng-blur="setPriceMinAmount(goods, false)" ng-change="updateStartNumber(goods)" ng-class="{'error' : goods.editMinBuyQtyInValid}"/>
+                                                        </div>
+                                                        <div class="input-list">
+										                    <span class="tit">包装数量：</span><input type="number" maxlength="6" oninput="if(value.length>6)value=value.slice(0,6)" class="wid70 form-control" name="minPackQty" title="包装数量" placeholder="数量" ng-model="goods.editMinPackQty" ng-blur="setPriceMinPackAmount(goods)" ng-class="{'error' : goods.editMinPackQtyInValid}" style="width: 70px;"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content">
+                                                        <p class="title height24">梯度/pcs</p>
+                                                        <div class="input-list" ng-repeat="price in goods.editPrices">
+                                                            <p>
+                                                                <span style="overflow: hidden;"><input ng-disabled="$index == 0" type="number" class="wid42 form-control fl" ng-class="{'error' : price.startInValid}"
+                                                                                   placeholder="数量" ng-model="price.start" ng-blur="editQty(goods, $index, false, price.start)" oninput="if(value.length>9)value=value.slice(0,9)"/></span><em
+																	class="up fl" ng-if="$last">以上</em>
+                                                                <span style="margin-left: 4px;" ng-if="!$last">–</span>
+                                                                <span ng-if="!$last"><input type="number" class="wid42 form-control" ng-class="{'error' : price.endInValid}"  placeholder="数量" ng-model="price.end" ng-blur="editQty(goods, $index, true, price.end)"
+                                                                                                                       oninput="if(value.length>9)value=value.slice(0,9)"/></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content" ng-if="!store.enType || store.enType === 'HK'">
+                                                        <p class="title height24">单价($)</p>
+                                                        <div
+                                                                class="input-list" ng-repeat="price in goods.editPrices">
+                                                                <input type="number" name="usd" class="wid92 form-control"  placeholder="单价($)" ng-blur="changePrices(goods.editPrices, price.uSDPrice, $index)" ng-class="{'error' : price.priceInvalid}" ng-model="price.uSDPrice" oninput="if(value.length>11)value=value.slice(0,11)" autocomplete="off" validata-price/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content" ng-if="!store.enType || store.enType === 'MAINLAND'">
+                                                        <p class="title height24">单价(￥)</p>
+                                                        <div
+                                                                class="input-list" ng-repeat="price in goods.editPrices">
+                                                                <input type="number" name="rmb" class="wid92 form-control"  placeholder="单价(￥)" ng-blur="changePrices(goods.editPrices, price.rMBPrice, $index)" ng-class="{'error' : price.priceInvalid}" ng-model="price.rMBPrice" oninput="if(value.length>11)value=value.slice(0,11)" autocomplete="off" validata-price/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content plusBtn">
+                                                        <p class="title height24">&nbsp;</p>
+                                                        <div class="input-list" ng-repeat="price in goods.editPrices" style="height: 24px;line-height: 24px;margin-bottom: 5px;">
+                                                            <a class="reduce" ng-disabled="goods.editPrices.length < 2" ng-click="deleteFragment(goods, $index)"><i class="fa fa-minus-circle" ng-class="{ 'restrict-color': goods.editPrices.length === 1 }"></i></a>
+                                                            <a class="add" ng-click="addFragment(goods)"  ng-disabled="goods.editPrices.length >= 3"><i class="fa fa-plus-circle"
+                                                                                                          ng-class="{ 'restrict-color': $index === 2 }"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content floatLeft">
+                                                        <p class="title height29">交期(天)：</p>
+                                                        <div class="input-list">
+                                                            <p>
+											<span><input type="number" class="wid36 form-control" name="minDelivery" title="最小交期" placeholder="天数" oninput="if(value.length>3)value=value.slice(0,3)"
+                                                         ng-model="goods.editMinDelivery"
+                                                         ng-blur="changeDelivery(goods.editMinDelivery, goods.editMaxDelivery, true, goods)"
+                                                         ng-class="{'error' : goods.editMinDeliveryinValid}"/></span>
+                                                                <span style="margin-left: 4px;">–</span>
+                                                                <span><input type="number" class="wid36 form-control" name="maxDelivery" title="最大交期" placeholder="天数" oninput="if(value.length>3)value=value.slice(0,3)" ng-model="goods.editMaxDelivery" ng-blur="changeDelivery(goods.editMinDelivery, goods.editMaxDelivery, false, goods)"
+                                                                             ng-class="{'error' : goods.editMaxDeliveryinValid}"/></span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content margin10">
+                                                        <!--<p class="title">自营 / 寄售</p>-->
+                                                        <div class="input-list">
+                                                            <select ng-disabled="!$$nonProduct.canSelfSale" name="selfSale" class="wid56 select-adder form-control" ng-model="goods.editSelfSale">
+                                                                <option value="1">自营</option>
+                                                                <option value="2">寄售</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content" style="width: 56px; float: right; margin-right: 10px;">
+                                                        <p class="title">&nbsp;</p>
+                                                        <div class="input-list">
+                                                            <button class="ok" ng-mouseenter="impedeBlur()" ng-mouseleave="recoveryBlur()"
+																	ng-click="addGoods(material)">保存</button>
+                                                            <button class="off" ng-click="closeShelArea(material)">取消</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+										<tr class="hei12">
+											<td colspan="10" class="hei2"></td>
+										</tr>
+                                        </tbody>
+										<tbody ng-repeat="goods in material.goodsArr">
+										<tr class="define defines" ng-if="!goods.edit">
+											<td colspan="10">
+												<div class="code">产品编码 : <span ng-bind="goods.prodNum || '-'">247823589235</span></div>
+												<div class="labelling">
+													<!--<em>*</em>-->
+													自定义标签 : <span ng-bind="goods.tag">散装出售</span></div>
+											</td>
+										</tr>
+										<tr class="edit-content edit-contents" ng-if="!goods.edit">
+											<td colspan="10">
+												<div class="bg">
+													<div></div>
+													<div class="img">
+														<img ng-src="{{goods.img || 'static/img/store/common/default.png'}}" alt="img"/>
+													</div>
+													<div class="content width140">
+														<p class="title"><span>包装：</span><span ng-bind="goods.packaging">盘装</span></p>
+														<p class="title"><span>生产日期：</span><span ng-bind="goods.produceDate">20160123</span></p>
+														<p class="title" ng-class="{'noBreak' : !goods.breakUp}" ng-if="goods.breakUp" ng-bind="goods.breakUp ? '可拆卖' : '不可拆卖'">不可拆卖</p>
+													</div>
+													<div class="content width130">
+														<p class="title"><span>库存：</span><span ng-bind="goods.reserve">9023492</span></p>
+														<p class="title"><span>起订量：</span><span ng-bind="goods.minBuyQty">90492</span></p>
+														<p class="title"><span>包装数量：</span><span ng-bind="goods.minPackQty">980</span></p>
+													</div>
+													<div class="content width150">
+														<div class="title-price">
+															<span>梯度/pcs</span>
+															<span ng-if="goods.currencyName.indexOf('USD') > -1">单价($)</span>
+															<span ng-if="goods.currencyName.indexOf('RMB') > -1">单价(￥)</span>
+														</div>
+														<div class="list" ng-repeat="price in goods.prices">
+															<span ng-bind="price.start + '+'">1+</span><span
+																ng-bind="goods.currencyName.indexOf('RMB') > -1 ? (price.rMBPrice  | formateNumber : 6): (price.uSDPrice | formateNumber : 6)">0.356</span>
+														</div>
+													</div>
+													<div class="content" style="width: 150px;">
+														<p class="title"><span>交期(天)：</span><span  ng-bind="goods.b2cMinDelivery == goods.b2cMaxDelivery ? goods.b2cMinDelivery : goods.b2cMinDelivery  + '-' + goods.b2cMaxDelivery">5-8</span></p>
+														<p class="title"><span ng-bind="(storeInfo.uuid != 'undefind' && goods.storeid == storeInfo.uuid && storeInfo.storeName.indexOf('优软测试二') < 0 && storeInfo.storeName.indexOf('优软商城') < 0) ? '自营': '寄售'" class="text-center"></span></p>
+													</div>
+													<div class="content contents width80">
+														<p class="title" ng-if="goods.status == '612' || goods.status == '613'">未上架</p>
+														<p class="title upload" style="color: #33b401;" ng-if="goods.status == '601' || goods.status == '602'">已上架</p>
+													</div>
+													<div class="content" style="width: 56px; float: right; margin-right: 2px;margin-top: 12px;">
+														<div class="input-list">
+															<button class="off" ng-click="editGoods(material, goods)">编辑</button>
+															<button ng-if="goods.status != 601 && goods.status != 602" class="ok" ng-click="putOn(material, goods)">上架</button>
+															<button class="ok" ng-click="isRecommendGoods(goods)" name ="delete-goods">删除</button>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr class="hei12">
+											<td colspan="10" class="hei2"></td>
+										</tr>
+										<!--编辑内容-->
+										<tr id="define-content" ng-if="goods.edit">
+											<td colspan="10">
+												<div class="code">产品编码 : <span ng-bind="goods.prodNum">247823589235</span></div>
+												<div class="labelling">
+													<!--<em>*</em>-->
+													自定义标签 : <input maxlength="20" type="text" ng-model="goods.editTag" ng-blur="blurTag(goods)" ng-change="changeTag(goods)" placeholder="请设置产品标签"></div>
+											</td>
+										</tr>
+										<tr class="edit-content edits" ng-show="goods.edit">
+											<td colspan="10" style="background:#f0f7fd;">
+                                                <div class="blue-bg">
+													<div></div>
+													<div class="img">
+														<a><img ng-src="{{goods.editPic || 'static/img/store/common/default.png'}}" alt="img"/></a>
+														<div class="edit-img">
+															<a ng-if="goods.editPic" ng-click="deleteImg(goods)" class="delete-img" title="删除"><i class="fa fa-trash"></i></a>
+															<a ng-click="editGoodsPicture(goods.editPic || 'static/img/store/common/default.png', goods)" title="修改图片"><img ng-src="static/img/icon/update-img.png" /></a>
+														</div>
+													</div>
+													<div class="content margin10">
+														<!--<p class="title">包装/生产日期</p>-->
+														<div class="input-list">
+															<span class="tit">包装：</span><!--<input type="text" class="select" name="packaging" ng-maxlength="10" title="包装" maxlength="10" placeholder="包装方式" style="width: 96px;" ng-model="goods.editPackaging"
+																							   ng-class="{'error' : goods.editPackagingInvalid}"
+																							   ng-blur="editPackaging(goods, true)" ng-change="changePackaging(goods)"/>-->
+															<select ng-model="goods.editPackaging" ng-init="goods.editPackaging='请选择'" class="select-adder select-package" title="包装">
+																<option ng-repeat="item in packageArray" ng-click="showClickText(goods, item)">{{item}}</option>
+															</select>
+															<!--<div class="dropdown">
+																<input class="btn btn-default dropdown-toggle button-select select-adder" type="text" id="dropdownMenu1" ng-model="goods.editPackaging" placeholder="包装方式" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" readonly="readonly">
+																<ul class="dropdown-menu .dropdown-menu-left button-option" aria-labelledby="dropdownMenu1">
+																	<li ng-repeat="item in packageArray" ng-click="showClickText(goods, item)">{{item}}</li>
+																</ul>
+															</div>-->
+														</div>
+														<div class="input-list produceDate-fix">
+															<span class="tit">生产日期：</span><input type="text" class="form-control" name="produceDate" ng-maxlength="11" title="生产日期" maxlength="11" placeholder="生产日期" style="width: 96px;" ng-model="goods.editProduceDate"
+																								 ng-class="{'error' : goods.editProduceDateInvalid}"
+																								 ng-change="editProduceDateFa(goods, true)"/>
+															<!--<select name="breakUp" title="breakUp" class="select-adder form-control" style="width: 108px;" ng-model="goods.breakUp">-->
+															<!--<option value="1">可拆卖</option>-->
+															<!--<option value="0">不可拆卖</option>-->
+															<!--</select>-->
+														</div>
+														<div class="clearfix produceDate-fix ">
+															<span>可拆卖:</span>
+															<span class="switch"><button ng-class="{'active' : goods.editBreakUp}"
+																						 ng-click="toggleIsBreadUp(goods, true)"></button></span>
+														</div>
+													</div>
+													<div class="content margin10">
+														<!--<p class="title">库存</p>-->
+														<div class="input-list">
+															<span class="tit">库存：</span><input type="number" class="wid70 form-control" name="reserve" title="库存" placeholder="数量" ng-model="goods.editReserve" ng-blur="setPriceMaxAmount(goods, true)"
+																							   maxlength="9" oninput="if(value.length>9)value=value.slice(0,9)"
+																							   ng-class="{'error' : goods.editReserveInvalid}"/>
+														</div>
+														<div class="input-list">
+															<span class="tit">起订量：</span><input type="number" class="wid70 form-control" name="minBuyQty"
+																								maxlength="6"
+																								oninput="if(value.length>6)value=value.slice(0,6)"
+																								title="起订"  placeholder="数量" ng-model="goods.editMinBuyQty" ng-change="updateStartNumber(goods)"
+																								ng-blur="setPriceMinAmount(goods, true)" ng-class="{'error' : goods.editMinBuyQtyInValid}"/>
+														</div>
+														<div class="input-list">
+															<span class="tit">包装数量：</span><input type="number" class="width70 form-control" name="minPackQty" title="包装数量"  placeholder="数量" ng-model="goods.editMinPackQty" ng-blur="setPriceMinPackAmount(goods)"
+																								 maxlength="6" oninput="if(value.length>6)value=value.slice(0,6)"
+																								 ng-class="{'error' : goods.editMinPackQtyInValid}"
+																								 style="width: 70px;"/>
+														</div>
+													</div>
+													<div class="content">
+														<p class="title height24">梯度/pcs</p>
+														<div class="input-list" ng-repeat="price in goods.editPrices">
+															<p>
+																<span  style="overflow: hidden;"><input ng-disabled="$index == 0" type="number" class="wid42 form-control fl"  placeholder="数量" ng-model="price.start" ng-blur="editQty(goods, $index, false, price.start)"
+																										oninput="if(value.length>9)value=value.slice(0,9)"/></span><em class="up fl" ng-if="$last">以上</em>
+																<span style="margin-left: 4px;" ng-if="!$last">–</span>
+																<span ng-if="!$last"><input type="number" class="wid42 form-control"  placeholder="数量" ng-model="price.end" ng-blur="editQty(goods, $index, true, price.end)"
+																														   oninput="if(value.length>9)value=value.slice(0,9)"/></span>
+															</p>
+														</div>
+													</div>
+													<div class="content" ng-if="!store.enType || store.enType === 'HK'">
+														<p class="title height24">单价($)</p>
+														<div class="input-list" ng-repeat="price in goods.editPrices">
+															<input type="number" name="usd" class="wid83 form-control"  placeholder="单价($)" ng-blur="changePrices(goods.editPrices, price.uSDPrice, $index)" ng-class="{'error' : price.priceInvalid}" ng-model="price.uSDPrice" oninput="if(value.length>11)value=value.slice(0,11)"
+																   autocomplete="off" validata-price/>
+														</div>
+													</div>
+													<div class="content" ng-if="!store.enType || store.enType === 'MAINLAND'">
+														<p class="title height24">单价(￥)</p>
+														<div class="input-list" ng-repeat="price in goods.editPrices">
+															<input type="number" name="rmb" class="wid92 form-control"  placeholder="单价(￥)" ng-blur="changePrices(goods.editPrices, price.rMBPrice, $index)" ng-class="{'error' : price.priceInvalid}" ng-model="price.rMBPrice" oninput="if(value.length>11)value=value.slice(0,11)" autocomplete="off" validata-price/>
+														</div>
+													</div>
+													<div class="content content5 plusBtn">
+														<p class="title height24">&nbsp;</p>
+														<div class="input-list" ng-repeat="price in goods.editPrices" style="height: 24px;line-height: 24px;margin-bottom: 5px;">
+															<a class="reduce" ng-disabled="goods.editPrices.length < 2" ng-click="deleteFragment(goods, $index)"><i class="fa fa-minus-circle" ng-class="{ 'restrict-color': goods.editPrices.length === 1 }"></i></a>
+															<a class="add" ng-click="addFragment(goods)"  ng-disabled="goods.editPrices.length >= 3"><i class="fa fa-plus-circle"
+																														ng-class="{ 'restrict-color': $index === 2 }"></i></a>
+														</div>
+													</div>
+													<div class="content floatLeft">
+														<p class="title height29">交期(天)：</p>
+														<div class="input-list">
+															<p>
+																<span><input type="number" class="wid36 form-control" name="minDelivery" title="最小交期" placeholder="天数" oninput="if(value.length>3)value=value.slice(0,3)" ng-model="goods.editMinDelivery"
+																			 ng-blur="changeDelivery(goods.editMinDelivery, goods.editMaxDelivery, true, goods)" ng-class="{'error' : goods.editMinDeliveryinValid}"/></span>
+																<span style="margin-left: 4px;">–</span>
+																<span><input type="number" class="wid36 form-control" name="maxDelivery" title="最大交期" placeholder="天数" oninput="if(value.length>3)value=value.slice(0,3)" ng-model="goods.editMaxDelivery"
+																			 ng-blur="changeDelivery(goods.editMinDelivery, goods.editMaxDelivery, false, goods)" ng-class="{'error' : goods.editMaxDeliveryinValid}"/></span>
+															</p>
+														</div>
+													</div>
+													<div class="content margin10">
+														<!--<p class="title">自营 / 寄售</p>-->
+														<div class="input-list">
+															<select name="editSelfSale" ng-change="changeSaleMode(goods)" class="wid56 select-adder form-control" ng-model="goods.editSelfSale" ng-disabled="!$$nonProduct.canSelfSale">
+																<option value="1">自营</option>
+																<option value="2">寄售</option>
+															</select>
+														</div>
+														<div class="content contents">
+															<p class="title" ng-if="goods.status == '612'">未上架</p>
+															<p class="title" style='color: #33b401;' ng-if="goods.status == '601' || goods.status == '602'">已上架</p>
+														</div>
+													</div>
+													<div class="content" style="width: 56px; float: right; margin-right: 10px;">
+													<p class="title">&nbsp;</p>
+													<div class="input-list">
+														<button class="ok" ng-mouseenter="impedeBlur()" ng-mouseleave="recoveryBlur()" ng-click="updateGoods(material, goods)">保存</button>
+														<button class="off" ng-click="closeEditGoods(material, goods)">取消</button>
+													</div>
+												</div>
+												</div>
+											</td>
+										</tr>
+										</tbody>
+										<!--空状态-->
+										<tbody ng-if="currenctMaterial.length == 0">
+										<tr style="height: 190px;">
+											<td colspan="7" style="border-bottom: none;">
+												<div class="col-xs-2"  style="margin-left: 34%; margin-top: 65px;">
+													<img src="static/img/all/empty-cart.png">
+												</div>
+												<div class="col-xs-4">
+													<p class="grey f16" style="line-height: 80px; text-align: left; margin-top: 70px;">暂无物料资料记录</p>
+												</div>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+					<tbody>
+					<!--<tr class="no-hover batch-tr" ng-if="chooseAll && !chooseAllPage" ng-class="{'active': $data.length > 10}">-->
+					</tbody>
+				</table>
+				<div class="empty" ng-if="currenctMaterial.length == 0">
+					<p class="empty-img">
+						<img src="static/img/all/empty-cart.png">
+					</p>
+					<div class="empty-info">
+						<p class="grey"> 暂无产品信息，赶快上传让更多人看到你的产品吧 </p>
+						<a href="vendor#/vendor_upload?type=company"><i></i>马上去上传</a>
+					</div>
+				</div>
+				<div class="record-line text-right" ng-if="currenctMaterial.length != 0">
+					<!--<div class="prompt" ng-show="standard_tab == 'unstandard'">-->
+						<!--<strong class="text-inverse">*</strong>商城暂未收录的 品牌/器件，”原厂型号“将会显示为空且不可上架售卖，<br/>-->
+						<!--如需上架可先点击 【匹配】按钮，若匹配不成功，可前往<a ui-sref="vendor_brand_apply" target="_blank"> 品牌申请/</a><a ui-sref="vendor_component_apply" target="_blank">器件申请</a>，提出申请-->
+					<!--</div>-->
+					<div ng-if="currenctMaterial.length != 0">显示 {{(param.page - 1) * 10 + 1}}-
+						<span ng-if="param.currentPage == materialAll.totalPages" ng-bind="materialAll.totalElements"></span>
+						<span ng-if="param.currentPage != materialAll.totalPages" ng-bind="param.page * param.count"></span>， 共： <span ng-bind="materialAll.totalElements" style="color: #5078cb;"></span> 个</div>
+				</div>
+				<div class="ng-cloak ng-table-pager" style="text-align: right;margin-right: 60px; padding-bottom: 80px;" ng-if="materialAll.totalPages>1">
+					<ul class="pagination ng-table-pagination">
+						<li ng-class="{'disabled': !page.active && !page.current, 'active': page.current}" ng-repeat="page in pages" ng-switch="page.type">
+							<a ng-switch-when="prev" ng-click="setPage(page.type, -1)" href="">&laquo;</a>
+							<a ng-switch-when="first" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="page" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="more" ng-click="setPage(page.type, -1)" href="">&#8230;</a>
+							<a ng-switch-when="last" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="next" ng-click="setPage(page.type, -1)" href="">&raquo;</a>
+						</li>
+					</ul>
+					<div class="page-go-block">
+						<input
+								class="page-number" type="text" ng-model="param.currentPage" ng-keyup="listenEnter()"/>
+						<a class="page-a"
+						   ng-click="setPage('page', param.currentPage)" href="">GO</a> {{param.currentPage}}
+					</div>
+				</div>
+			</div>
+			</div>
+			<!--自定义标签-->
+			<div class="wanted-list02" id="wanted-list02">
+				<div class="title">
+					<div class="fl">
+						<img src="static/img/vendor/images/label.png" alt=""/>
+						<span>自定义标签</span>
+					</div>
+					<div class="fr">
+						<span ng-click="selfTagTaggle(false)" ng-if="$$nonProduct.selfTagNoticeShow">收起 <i class="fa fa-angle-up"></i></span>
+						<span ng-click="selfTagTaggle(true)" ng-if="!$$nonProduct.selfTagNoticeShow">展开 <i class="fa fa-angle-down"></i></span>
+					</div>
+				</div>
+				<div class="content">
+					<h3>什么是自 <span>定义标签</span> <em>?</em></h3>
+					<p>自定义标签是可以让买家快速判断同一个型号品牌产品主要属性区别的标识。
+					</p>
+					<p>未填写的情况下会自动显示为 <span>“类型A”</span>、<span>“类型B"</span>，以此类推。填写后在产品详情页的展示效果如下：</p>
+					<div class="hover-show" ng-if="!$$nonProduct.selfTagNoticeShow"></div>
+					<div class="show-up" ng-if="$$nonProduct.selfTagNoticeShow">
+						<div class="img">
+							<div>
+								<img src="static/img/vendor/images/detail.png" alt=""/>
+								<p>只有一种类型的情况，<span>不显示</span>小标签</p>
+							</div>
+							<div>
+								<img src="static/img/vendor/images/detail.png" alt=""/>
+								<p>存在2种及以上类型的情况，<span>显示</span>小标签</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--匹配结果列表页-->
+		<div ng-if="standard_tab == 'matchResult'" style="margin-top: -15px;">
+			<div class="search-checks">
+				<div class="tip fl">
+					<div class="count">共 <span ng-bind="matchTotal">1000</span> 个产品进行匹配,成功 <span ng-bind="matchSuccess">500</span> 个,失败 <em ng-bind="matchFail">500</em> 个</div>
+					<div class="apply"><em>*</em> 以下部分产品商城暂未收录,可前往<a href="vendor#/brand/apply/">品牌中心/</a><a href="vendor#/component/apply"> 器件申请</a>中提出申请</div>
+				</div>
+				<div class="search fr">
+					<input type="text" class="form-control ng-pristine ng-valid ng-touched" ng-model="param.keyword" ng-search="onSearch()" placeholder="类目/品牌/型号">
+					<button ng-click="onSearch()">搜索</button>
+				</div>
+			</div>
+			<div class="wanted_list01">
+				<div style="width: 96%; margin: 0 auto">
+					<div class="result" ng-if="resultTip"><span class="fl"><em>*</em>匹配成为标准产品方可通过器件选型、参数搜索展示</span><a ng-click="closeTip()" class="fr">&times;</a></div>
+					<div class="tab-head">匹配失败的产品</div>
+					<table class="fail-tab public-tab table public-tabs">
+						<thead>
+						<tr>
+							<th width="60">序号</th>
+							<th width="120">产品名称(类目)</th>
+							<th width="120">品牌</th>
+							<th width="100">型号</th>
+							<!--<th width="100">封装</th>-->
+							<th width="80"></th>
+						</tr>
+						</thead>
+						<tbody class="hover-table">
+						<tr  ng-repeat="product in currenctMaterial">
+							<td>{{$index+1}}</td>
+							<td title="{{product.kind}}" ng-bind="product.kind || '-'">继电器</td>
+							<td ng-show="product.matchresults.length == 0" title="{{product.pbranden}}" ng-bind="product.pbranden">Pionhhkhnkkkkkguf</td>
+							<td class="choose" ng-show="product.matchresults.length != 0">
+								<!--<input type="text" class="form-control" ng-model="product.editBrandEn" ng-focus="onFocus(product)" ng-blur="onItemBlur()" readonly="readonly">-->
+								<!--<p>{{product.isFocus}}</p>-->
+								<!--<ul ng-if="showBrand && product.isFocus">-->
+									<!--<li ng-click="fitBrandToProduct(product, product.pbranden, null)" class="active" ng-bind="product.pbranden">主控管道</li>-->
+									<!--<li ng-click="fitBrandToProduct(product, item.branden, item.id)" ng-repeat="item in product.matchresults">{{item.branden}}</li>-->
+								<!--</ul>-->
+                                <select ng-model="product.selectBrandId" class="choose-brand" ng-init="product.selectBrandId=product.pbranden" ng-change="fitBrandToProduct(product)">
+                                    <option ng-value="product.pbranden" selected="selected">{{product.pbranden}}</option>
+                                    <option ng-value="item.id" ng-repeat="item in product.matchresults">{{item.branden}}</option>
+                                </select>
+							</td>
+							<td title="{{product.pcmpcode}}" ng-bind="product.pcmpcode || '-'">Lhhjhj-3</td>
+							<!--<td title="{{product.encapsulation}}" ng-bind="product.encapsulation  || '-'">BGA</td>-->
+							<td class="confirm"><span ng-if="product.matchresults.length != 0 && product.canMatch" ng-click="updateNStandardOne(product)">确认</span></td>
+						</tr>
+						</tbody>
+						<tr style="height: 40px;" class="no-hover">
+							<td colspan="7" style="border-bottom: none; padding: 0;">
+								<div class="record-line text-right" ng-if="chooseAllPage">
+									<span class="set-count">
+										每页显示:
+										<select ng-model="$$nonProduct.count" ng-change="fitCountToTable($$nonProduct.count)">
+											<option value="10">10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+										</select>
+									</span>
+									显示<span>{{(param.currentPage - 1) * param.count + 1}}</span>-
+									<span ng-if="param.currentPage != materialAll.totalPages">{{param.currentPage * param.count}}</span>
+									<span ng-if="param.currentPage == materialAll.totalPages">{{materialAll.totalElements}}</span>
+									，共：<span style="color: #5078cb;">{{materialAll.totalElements}}</span>个
+								</div>
+								<div class="record-line text-right" ng-if="!chooseAllPage">
+									显示<span>1</span>-
+									<span ng-bind="currenctMaterial.length"></span>
+									，共：<span style="color: #5078cb;">{{currenctMaterial.length}}</span>个
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="ng-cloak ng-table-pager" style="text-align: right;margin-right: 60px;" ng-if="materialAll.totalPages>1">
+					<ul class="pagination ng-table-pagination">
+						<li ng-class="{'disabled': !page.active && !page.current, 'active': page.current}" ng-repeat="page in pages" ng-switch="page.type">
+							<a ng-switch-when="prev" ng-click="setPage(page.type, -1)" href="">&laquo;</a>
+							<a ng-switch-when="first" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="page" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="more" ng-click="setPage(page.type, -1)" href="">&#8230;</a>
+							<a ng-switch-when="last" ng-click="setPage(page.type, page.number)" href=""><span ng-bind="page.number"></span></a>
+							<a ng-switch-when="next" ng-click="setPage(page.type, -1)" href="">&raquo;</a>
+						</li>
+					</ul>
+					<div class="page-go-block">
+						<input class="page-number" type="number" ng-model="param.currentPage" ng-keydown="listenEnter()"/>
+						<a class="page-a" ng-click="setPage('page', param.currentPage)" href="">GO</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--一键匹配弹出框-->
+<div class="matchPop" ng-if="haveRepeat">
+	<div class="title">
+		<div class="title-product">
+			<i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+			<span>标准产品(型号：{{backData.brandAndCode.code}},品牌：{{backData.brandAndCode.brandEn}})已存在属性相同的子产品，请选择您需要保留的其中一条产品信息</span>
+		</div>
+		<div class="close" ng-click="cancelChoose()">&times;</div>
+	</div>
+	<div class="content">
+		<div class="content-box">
+			<div class="content-choose" ng-repeat="(key, goodsList) in repeatList">
+				<div class="list" ng-repeat="goods in goodsList">
+					<div class="fl"><input type="radio" ng-model="goodsList.selected" value="{{goods.id}}" name="{{key}}"></div>
+					<div class="product-detail">
+						<div class="product-number">
+							<div class="code">产品编号 ：<span ng-bind="goods.prodNum">234353646546</span></div>
+							<div class="code"><em>*</em>自定义标签 ：<span class="define" ng-bind="goods.tag">散装出售</span></div>
+						</div>
+						<div class="clearfix">
+							<div class="detail">
+								<div class="detail-title">包装：<span ng-bind="goods.packaging">盘装</span></div>
+								<div class="detail-title">库存：<span ng-bind="goods.reserve">9023492</span></div>
+								<div class="detail-title">起订量：<span ng-bind="goods.minBuyQty">90492</span></div>
+							</div>
+							<div class="detail distance">
+								<div class="detail-title">交期(天)：
+									<span ng-if="goods.maxDelivery == goods.minDelivery">{{goods.minDelivery}}</span>
+									<span ng-if="goods.maxDelivery != goods.minDelivery">{{goods.minDelivery}}-{{goods.maxDelivery}}</span>
+								</div>
+								<div class="detail-title">包装数量：<span ng-bind="goods.minPackQty">980</span></div>
+								<div class="detail-title">生产日期：<span ng-bind="goods.produceDate">20160123</span></div>
+							</div>
+							<div class="detail">
+								<div class="detail-title">销售方式：<span ng-bind="goods.selfSale">寄售</span></div>
+								<div class="detail-title" ng-bind="goods.breakUp ? '可拆卖':'不可拆卖'"></div>
+							</div>
+							<div class="detail width100">
+								<div class="title-price"><span>梯度/pcs</span><span>单价(<i ng-bind="goods.currencyName == 'RMB' ? '￥':'$'"></i>)</span></div>
+								<div class="detail-price" ng-repeat="price in goods.prices">
+									<span>{{price.start}}+</span>
+									<span ng-bind="goods.currencyName == 'RMB' ? price.rMBPrice : price.uSDPrice">0.356</span>
+								</div>
+								<!--<div class="detail-price"><span>200+</span><span>0.256</span></div>-->
+								<!--<div class="detail-price"><span>800+</span><span>0.156</span></div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<a ng-click="cancelChoose()">取消</a><a ng-click="ensureDeleteRepeat()">确认</a>
+	</div>
+</div>
+
+<style>
+    /**/
+    .wanted_list01 .empty{
+        overflow: hidden;
+        width:100%;
+        display:inline-flex;
+        justify-content:center;
+        align-items: center;
+        height:305px;
+    }
+    .wanted_list01 .empty-info{
+        line-height: 28px;
+        padding-top:10px;
+        margin-left:10px;
+        text-align:left;
+    }
+    .wanted_list01 .empty-info .grey{
+        color: #999;
+        font-size: 14px;
+    }
+    .wanted_list01 .empty .empty-info>a{
+        font-size: 14px;
+        color: #5078cb;
+    }
+    .wanted_list01 .empty .empty-info i{
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+        background: url('static/img/vendor/images/upload-icon.png')no-repeat 0px 0px;
+        position: relative;
+        top: 7px;
+    }
+</style>
+
+<!--
+<script>
+	$(function(){
+		$(document).on('click', function () {
+			if ($(document).scrollTop() + $(window).height() < $('.record-line').offset().top + $('.record-line').height()) {
+				$('.standard-tab.table>tbody>tr.batch-tr').addClass('active')
+			} else {
+				$('.standard-tab.table>tbody>tr.batch-tr').removeClass('active')
+			}
+		})
+		$(window).bind("scroll",function() {
+			if ($(document).scrollTop() + $(window).height() < $('.record-line').offset().top + $('.record-line').height()) {
+				$('.standard-tab.table>tbody>tr.batch-tr').addClass('active')
+			} else {
+				$('.standard-tab.table>tbody>tr.batch-tr').removeClass('active')
+			}
+		});
+	})
+</script>-->

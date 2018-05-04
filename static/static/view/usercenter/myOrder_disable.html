@@ -1,0 +1,68 @@
+<style>
+h3 {
+	font-size: 20px;
+	font-weight: 600;
+}
+</style>
+<div class="body_header">
+	<!-- <div class="mod-main mod-comm">
+		<div class="header_h3">您的当前位置:会员中心 &nbsp;>>我的订单 >>已完成订单</div>
+	</div> -->
+	<div>
+		<h3>已作废订单</h3>
+		<div>
+			<div class="row">
+				<div class="col-xs-6">
+					<p style="margin-top: 10px;">
+						共<span class="badge">{{orderdisableTableParams.total()}} </span>条
+					</p>
+				</div>
+				<div class="col-xs-6">
+					<div class="input-group">
+						<input type="search" class="form-control" ng-model="keyword"
+							placeholder="请输入订单号查询"> <span class="input-group-btn">
+							<button ng-click="onSearch()" class="btn btn-default"
+								type="button">搜索</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</br>
+
+		<table ng-table="orderdisableTableParams"
+			class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr>
+					<th width="50" class="text-center">序号</th>
+					<th width="auto" class="text-center">订单号</th>
+					<th width="100" class="text-center">金额</th>
+					<th width="130" class="text-center">过期时间</th>
+					<th width="120" class="text-center">订单状态</th>
+					<th width="140" class="text-center">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="order in $data" ng-class=>
+					<td class="text-center">{{$index + 1}}</td>
+					<td><a ng-href="user#/home/order/{{order.orderid}}">{{order.orderid}}</a></td>
+					<td class="text-right">{{order.price | number: 2}}</td>
+					<td class="text-center">{{order.availabletime | date: "yyyy-MM-dd HH:mm"}}</td>
+					<td class="text-center">{{order.status | statusAndTypeFilter}}</td>
+					<td class="text-center"><a ng-click="afterSale(order)">
+							<button type="button" class="btn btn-default btn-sm">申请售后</button>
+					</a></td>
+				</tr>
+				<tr ng-if="$data.length == 0">
+					<td colspan="10" class="text-center"
+						style="line-height: 40px; font-size: 20px;"><i
+						class="fa fa-smile-o fa-lg"></i> 当前没有对应的标准器件资料</td>
+				</tr>
+			</tbody>
+
+		</table>
+		</br>
+	</div>
+</div>
+

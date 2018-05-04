@@ -1,0 +1,418 @@
+<style>
+.modal-header {
+	padding: 5px 15px 5px 15px;
+}
+
+.modal-body {
+	padding-top: 5px;
+}
+
+.modal-body .tabbable .nav>li>a {
+	padding: 5px 10px;
+}
+
+.modal-body .tips {
+	margin-top: 5px;
+	margin-right: 8px;
+}
+
+.nav-tabs>li {
+	cursor: pointer;
+}
+
+.panel-sm .panel-heading {
+	padding: 5px 10px;
+}
+
+.panel-sm .panel-title {
+	font-size: 100%;
+}
+
+.image-content li {
+	float: left;
+	margin-right: 10px;
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	overflow: hidden;
+	border: dotted 1px #d9d9d9;
+	background-color: #f7f7f7;
+	font-size: 18px;
+	font-family: 'Arial';
+	font-style: italic;
+	color: #e1e1e1;
+	text-align: center;
+}
+
+.tab-pane {
+	padding-top: 15px;
+}
+
+/*main*/
+#main {
+	background-color: #f0f0f0;
+	border-top: 1px solid #e7e7e7;
+	border-bottom: 1px solid #e7e7e7;
+	padding-bottom: 30px;
+}
+
+#main [ng-view] .container {
+	width: 990px;
+}
+
+#main .main-guide {
+	width: 600px;
+	margin: 0 auto;
+	text-align: center;
+	font: 16px/43px 'Microsoft Yahei';
+}
+
+#main .main-guide ul {
+	margin-bottom: 0;
+}
+
+#main .main-guide li {
+	cursor: pointer;
+	position: relative;
+}
+
+#main .main-guide li.arrow_right:before {
+	font-family: 'Glyphicons Halflings';
+	content: "\e092";
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	color: #ddd;
+	font-weight: normal;
+	font-size: 100%;
+}
+
+#main .main-guide li:nth-child(1):before {
+	content: "";
+	padding: 0;
+}
+
+#main .main-guide li.active {
+	color: #ff7300;
+	border-bottom: 3px solid #ff7300;
+}
+
+#main .main-guide li .caret {
+	position: absolute;
+	display: none;
+	bottom: 1px;
+	left: 50%;
+	margin-left: -2px;
+	border-bottom: 5px solid !important;
+	border-top: none;
+}
+
+#main .main-guide li.active .caret {
+	display: block;
+}
+
+#main .main-content {
+	margin-top: 10px;
+}
+
+#main .main-content .panel {
+	padding: 10px;
+	border-color: #d6d6d6;
+	margin-bottom: 10px;
+}
+
+#main .main-content .panel-shadow {
+	-webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
+}
+
+#main .main-content .panel .panel-title {
+	border-bottom: 1px dashed #d7d7d7;
+	padding-left: 7px;
+}
+
+#main .main-content .panel .panel-title * {
+	display: inline-block;
+}
+
+#main .main-content .panel .panel-title h4 {
+	color: #926437;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+#main .main-content .panel .panel-title h5 {
+	color: #444;
+	font-size: 12px;
+}
+
+#main .main-content .panel .panel-title .glyphicon {
+	margin-right: 7px;
+}
+
+#main .main-content .panel .panel-body {
+	padding-bottom: 0;
+}
+
+.choose-body {
+	display: table;
+	width: 100%;
+	margin-top: 10px;
+	padding: 10px;
+	table-layout: fixed;
+	border-collapse: separate;
+	border: 1px solid #ccc;
+}
+
+.choose-body>.choose-item {
+	display: table-cell;
+}
+
+.choose-body>.choose-item>ul {
+	height: 380px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.choose-body>.choose-item>ul>li {
+	line-height: 30px;
+	padding-left: 5px;
+	position: relative;
+}
+
+.choose-body>.choose-item>ul>li.add {
+	margin: 10px 5px;
+	text-align: center;
+	border: 1px solid #ff7300;
+	color: #ff7300;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.choose-body>.choose-item>ul>li:hover {
+	background: #f1f1f1;
+}
+
+.choose-body>.choose-item>ul>li.active {
+	background: #fff1d0;
+}
+
+.choose-body>.choose-item>ul>li.active a {
+	color: #ff7300;
+}
+
+.choose-body>.choose-item>ul>li>a {
+	display: block;
+	color: #666666;
+}
+
+.choose-body>.choose-item .caret {
+	float: right;
+	margin-top: 14px;
+	margin-right: 8px;
+	border-left: 3px solid;
+	border-right: none;
+	border-top: 3px solid transparent;
+	border-bottom: 3px solid transparent;
+}
+
+.choose-body>.choose-item .setting {
+	display: none;
+	position: absolute;
+	right: 20px;
+	top: 1px;
+}
+
+.choose-body>.choose-item>ul>li:hover .setting {
+	display: block;
+}
+
+.choose-result {
+	margin-top: 10px;
+}
+
+.choose-result .breadcrumb {
+	border: 1px solid #ffdbab;
+	background-color: #fffbf2;
+	color: #b68571;
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+#main .form-group {
+	margin-bottom: 8px;
+}
+
+#main .modal-body .form-group {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#main .form-horizontal .control-subinfo {
+	text-align: left;
+	margin-bottom: 0;
+	padding-top: 7px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#main .form-horizontal .control-subinfo * {
+	display: inline;
+}
+
+#main .text-danger {
+	color: #e42a2a;
+}
+
+#main .well label.control-label {
+	font-weight: normal;
+	color: #444;
+}
+
+#main .img-thumbnail {
+	cursor: pointer;
+	margin-right: 15px;
+}
+
+.side-box {
+    padding-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 14px 14px;
+    border: 1px solid #e6e6e6;
+    background: #fcfcfc;
+    line-height: 22px;
+    color: #555;
+}
+
+.side-box .title {
+	font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 4px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    margin-top: 12px;
+    color: #555;
+}
+
+.base-info {
+	margin-bottom: 10px;
+}
+
+.base-info .item {
+	line-height: 26px;
+	border-bottom: 1px dotted #e8e8e8;
+	padding: 5px 15px;
+	margin: 0;
+}
+
+.base-info .title {
+	float: left;
+	width: 78px;
+	color: #999;
+	font-weight: bold;
+}
+
+.base-info .content {
+	float: left;
+	white-space: nowrap;
+}
+
+.headerline {
+	font-size: 22px;
+	font-family: Microsoft YaHei, SimHei, Verdana;
+	font-weight: 500;
+	line-height: 22px;
+	margin: 25px 0 25px -10px;
+	clear: both;
+	zoom: 1;
+	border-top: 1px solid #eee;
+	position: relative;
+}
+
+.headerline .title {
+	float: left;
+	line-height: 24px;
+	margin-top: -12px;
+	padding: 0 15px 0 18px;
+	border-left: 12px solid #4F9CEE;
+	background: #fff;
+	z-index: 2;
+}
+
+.text-box {
+	padding: 20px;
+	font-size: 14px;
+    word-wrap: break-word;
+    color: #333;
+    margin-bottom: 15px;
+    text-indent: 2em;
+    line-height: 24px;
+    zoom: 1;
+}
+/*mgr*/
+#main .mgr {
+	font-family: "microsoft yahei";
+}
+
+#main .mgr a {
+	color: #666;
+}
+
+#main .mgr a:hover {
+	color: #3ba354 !important;
+}
+</style>
+<!-- 类目修改模态框，修改类目名称 -->
+<div class="modal-header">
+	<h3 class="modal-title">
+		<i class="fa fa-fw fa-sitemap text-default"></i>
+		<span>选择类目（只能选择子类目）</span>
+	</h3>
+</div>
+<div class="modal-body">
+	<div class="choose-body">
+		<div class="choose-item">
+			<ul class="list-unstyled">
+				<li ng-repeat="k in kinds[0]" ng-class="{active: k.$active}"><a
+					ng-click="onItemClick(k, 0)">{{k.nameCn}}<span class="caret"
+						ng-show="!k.isLeaf"></span></a></li>
+			</ul>
+		</div>
+		<div class="choose-item">
+			<ul class="list-unstyled" ng-show="kinds[1].length>0">
+				<li ng-repeat="k in kinds[1]" ng-class="{active: k.$active}"><a
+					ng-click="onItemClick(k, 1)">{{k.nameCn}}<span class="caret"
+						ng-show="!k.isLeaf"></span></a></li>
+			</ul>
+		</div>
+		<div class="choose-item">
+			<ul class="list-unstyled" ng-show="kinds[2].length>0">
+				<li ng-repeat="k in kinds[2]" ng-class="{active: k.$active}"><a
+					ng-click="onItemClick(k, 2)">{{k.nameCn}}<span class="caret"
+						ng-show="!k.isLeaf"></span></a></li>
+			</ul>
+		</div>
+		<div class="choose-item">
+			<ul class="list-unstyled" ng-show="kinds[3].length>0">
+				<li ng-repeat="k in kinds[3]" ng-class="{active: k.$active}"><a
+					ng-click="onItemClick(k, 3)">{{k.nameCn}}<span class="caret"
+						ng-show="!k.isLeaf"></span></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="choose-result">
+		<ol class="breadcrumb" ng-show="actives.length > 0">
+			<span class="text-muted">您当前选择的类目：</span>
+			<li ng-repeat="a in actives">{{a.nameCn}}</li>
+		</ol>
+	</div>
+</div>
+<div class="modal-footer">
+	<div class="pull-left">
+		如果您觉得类目结构设置有待改善，您可以<a class="text-primary" href="product#/kindAdvice" target="_blank">提出您的宝贵建议</a>。
+	</div>
+	<button class="btn btn-primary" type="button"
+		ng-disabled="!active.isLeaf" ng-click="check()">确认</button>
+	<button class="btn btn-default" ng-click="cancel()" type="button">取消</button>
+</div>

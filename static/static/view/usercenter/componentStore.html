@@ -1,0 +1,345 @@
+<style>
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #7bb4e1;
+	border-color: #7bb4e1;
+}
+
+.btn-primary:hover {
+	color: #fff;
+	background-color: #5078cb;
+	border-color: #5078cb;
+	border-left-color: #5078cb;
+	border-right-color: #5078cb;
+}
+
+.btn-primary:active {
+	color: #fff;
+	background-color: #f39800;
+	border-color: #f39800;
+}
+
+.tr-default {
+	color: #fff;
+	background-color: #7bb4e1;
+}
+
+.totalNum {
+	font-weight: bold;
+	color: #f39800;
+}
+
+td {
+	line-height: 1.1;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+.table-bordered{
+	border: none !important;
+	background: #fff;
+}
+.table-bordered .tr-default{
+	color: #323232;
+	background: #fff;
+	height: 40px;
+}
+.table-bordered .tr-default th{
+	border-bottom: none;
+	font-size: 14px;
+}
+.table-bordered td,.table-bordered th{
+	border: none !important;
+	font-size: 14px;
+	vertical-align: middle !important;
+	background: #fff;
+}
+.table-bordered td{
+	height: 50px;
+}
+.table-bordered td{
+	border-top: #cfcfcf 1px dashed !important;
+}
+
+#collect-container {
+    width: 1026px;
+    padding: 0;
+    margin:10px 0 0 0;
+	display: inline-block;
+	background: #fff;
+}
+.collect-item{
+    width: 193px;
+    height: 210px;
+    float:left;
+    margin:8px 4px;
+	border: 1px solid #d8d8d8;
+	position: relative;
+	background:#fff;
+	text-align: center;
+		
+}
+
+.collect-dobatch{
+	background:url(static/img/user/images/collect-select.png) no-repeat right top;
+	border: 1px solid #5078cb;
+}
+.cancle-batch{
+	background:url(static/img/user/images/collect-noselect.png) no-repeat right top;
+	border: 1px solid #d8d8d8;
+}
+
+.collect-img{
+    width: 120px;
+    height: 100px;
+    margin-bottom:10px;
+    text-align: center;
+    margin-top:15px;
+}
+.collect-content{
+	text-align: center;
+}
+.collect-content>p{
+	padding-bottom:10px;
+}
+.collect-batch{
+	display:inline-block;
+}
+.collect-delete{
+    position: absolute;
+    top:3px;
+    left:170px;
+}
+#collect{
+	display: inline-block;
+	margin: 10px;
+}
+.page{
+	float: left;
+	height: 40px;
+	background: #fff;
+	top: 0;
+	padding: 10px 0;
+	border-top: #e8e8e8 1px solid;
+}
+.page-not-allowed{
+	cursor : not-allowed!important;
+}
+.page-allowed{
+	cursor : pointer!important;
+	color : #5078cb;
+}
+.com-del-box{
+	position: fixed;
+	z-index: 2;
+	height: 152px;
+	opacity: 1;
+	background-color: white;
+	width: 310px;
+	-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+	box-shadow: 0 5px 15px rgba(0,0,0,.5);
+	margin: -155px 0 0 -75px;
+	top: 55%;
+	left: 50%;
+}
+.com-del-box .title{
+	height: 30px;
+	background-color: #5078cb;
+	text-align: right;
+	padding-right: 15px;
+	line-height: 30px;
+}
+.com-del-box .title a{
+	color: white;
+	font-size: 16px;
+}
+.com-del-box .content{
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+.com-del-box .content p{
+	line-height: 50px;
+	font-size: 14px;
+	padding-top: 10px;
+}
+.com-del-box .content p i{
+	color: #5078cb;
+	font-size: 16px;
+	margin-right: 10px;
+}
+.com-del-box .content div{
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+.com-del-box .content div a{
+	width: 55px;
+	height: 26px;
+	line-height: 26px;
+	display: inline-block;
+	text-align: center;
+	font-size: 14px;
+}
+.com-del-box .content div a:first-child{
+	background: #b4b5b9;
+	color: #333;
+	margin-right: 10px;
+}
+.com-del-box .content div a:last-child{
+	background: #5078cb;
+	color: #fff;
+}
+.com-del-box .content div a:hover{
+	background: #3f7ae3;
+	color: #fff;
+}
+.collect-batch{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+}
+.check-active label{
+	margin-right: 0 !important;
+}
+.check-active span{
+	font-weight: normal;
+}
+.collect-delete:hover{
+	color: #f00;
+	cursor: pointer;
+}
+.collect-item:hover .collect-delete{
+	color: #f00;
+}
+.page button{
+	border: #ccc 1px solid;
+	background: #fff;
+	padding: 0 5px;
+}
+
+.no-collect{
+	height: 255px;
+	width:100%;
+	display:inline-flex;
+	justify-content: center;
+	align-items: center;
+	background: white;
+}
+.no-collect p{
+	padding-top:10px;
+	font-size: 14px;
+	color: #999;
+	margin-left:15px;
+	line-height: 28px;
+}
+.no-collect p a{
+	color: #5078cb;
+	display: block;
+	background: url(static/img/all/icon_nianxian.jpg)no-repeat;
+	background-position: 0px 7px;
+	padding-left: 25px;
+}
+</style>
+<div class="user_right fr">
+	<div class="rt_menu">
+		<span style="color:#5078cb">产品收藏({{totalElements}})</span>
+		<span ng-click="doBatch()" style="margin-left:840px" ng-hide="isBatch || collectInfo.length == 0 || !collectInfo"><a>批量操作</a></span>
+		<div ng-show="isBatch" class="collect-batch">
+			<span ng-click="cancleBatch()"><a>取消</a></span>
+			<span ng-click="deleteByselected()"><a>移除</a></span>
+			<span>
+				<label class="check-active">
+					<input type="checkbox" id="isChooseAll" ng-checked="isChooseAll" ng-click="chooseAllCollect()">
+					<label for="isChooseAll"></label>
+					<span style="margin-left: 0;">全选</span>
+				</label>
+			</span>
+		</div>	
+	</div>
+	<!-- 产品收藏具体信息 -->
+	<div id="collect-container" ng-if=" collectInfo.length != 0 ">	
+		<ul id="collect">
+			<li ng-repeat="item in collectInfo" class="collect-item" ng-click="setActive(item)" ng-mouseenter="show = true" ng-mouseleave="show = false" ng-class="{'cancle-batch':!item.active && isBatch, 'collect-dobatch':item.active && isBatch}">
+				<a name="detail" href="product/component/{{item.componentinfo.uuid}}/">
+                    <img ng-src="{{item.componentinfo.img || 'static/img/user/images/default.png'}}" class="collect-img" />
+                    <div class="collect-content">
+                        <p ng-bind="item.componentinfo.code"></p>
+                        <p ng-bind="item.componentinfo.brand.nameEn">
+                        <p ng-bind="item.componentinfo.kind.nameCn">           
+                    </div> 
+                </a>
+                <span class="collect-delete" ng-click="cancleStore(item.id)" ng-show="show && !isBatch"><i class="fa fa-trash fa-2x"></i></span>      
+             </li>
+		</ul>
+	</div>
+	
+	<div class="page" ng-if=" collectInfo.length != 0 ">
+		<ul>
+			<li><button type="button" ng-disabled="overPrevious" ng-click="jumpToPage(pageInfo.page - 1)" ng-class="{'page-not-allowed': overPrevious, 'page-allowed' : !overPrevious}">上一页</button></li>
+			<li>第<input ng-model="toPage" ng-search="jumpToPage(toPage)">页</li>
+			<li><button type="button" ng-disabled="overNext" ng-click="jumpToPage(pageInfo.page + 1)" ng-class="{'page-not-allowed': overNext, 'page-allowed' : !overNext}">下一页</button></li>
+		</ul>
+	</div>
+	
+	<div class="no-collect" ng-if="collectInfo.length == 0">
+		<img src="static/img/all/empty-cart.png">
+		<p>
+			<span>暂无产品收藏</span>
+			<br>
+			<a href="/">马上去逛一逛</a>
+		</p>
+	</div>
+	
+	<!-- <table ng-table="componentTableParams"
+		   class="table table-bordered table-striped text-center">
+		<thead>
+		<tr class="text-center tr-default">
+			<th width="50" class="text-center">序号</th>
+			<th width="auto" class="text-center">器件型号</th>
+			<th width="auto" class="text-center">器件品牌</th>
+			<th width="auto" class="text-center">器件类目</th>
+			<th width="110" class="text-center">收藏时间</th>
+			<th width="90" class="text-center">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="component in $data">
+			<td>{{$index+1}}</td>
+			<td><a
+					ng-href="product#/component/{{component.componentinfo.uuid}}/"
+					ng-bind="component.componentinfo.code"></a></td>
+			<td ng-bind="component.componentinfo.brand.nameCn"></td>
+			<td ng-bind="component.componentinfo.kind.nameCn"></td>
+			<td ng-bind="component.createtime |date : 'yyyy-MM-dd'"></td>
+			<td>
+				<button class="btn btn-primary btn-sm"
+						ng-click="cancleStore(component.id)">取消收藏</button>
+			</td>
+		</tr>
+		<tr ng-if="$data.length == 0">
+			<td colspan="10" class="text-center"
+				style="line-height: 40px; font-size: 20px;"><i
+					class="fa fa-smile-o fa-lg"></i> 您还没有收藏器件</td>
+		</tr>
+		</tbody>
+	</table> -->
+</div>
+<div class="com-del-box" ng-if="deleteDiv">
+	<div class="title">
+		<a ng-click="cancleDelete()"><i class="fa fa-close fa-lg"></i></a>
+	</div>
+	<div class="content">
+		<p><i class="fa fa-exclamation-circle"></i>是否从收藏夹中移除选中产品</p>
+		<div><a ng-click="cancleDelete()">取消</a><a ng-click="confirmDelete()">确认</a></div>
+	</div>
+</div>

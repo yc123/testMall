@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-show="!isUpdate">添加导航</h3>
+    <h3 class="modal-title" ng-show="isUpdate">编辑导航</h3>
+</div>
+<div class="modal-body f14 row">
+    <h4 class="col-sm-offset-1 col-sm-11" ng-if="!isUpdate">
+        <span>上级导航：</span>
+        <span ng-bind="parent.item"></span>
+        <span ng-if="parent == 0">无上级导航，您目前创建的是一级导航</span>
+    </h4>
+    <form name="addNavForm" class="row">
+        <div class="col-sm-offset-1 col-sm-6 form-group">
+            <span class="col-sm-5">导航名称：</span>
+            <div class="col-sm-7">
+                <input type="text" ng-model="nav.item" required/>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button  class="btn btn-success" ng-click="confirm()" ng-disabled="addNavForm.$invalid">确认</button>
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>

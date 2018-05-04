@@ -1,0 +1,124 @@
+<style type="text/css">
+#bill-admin .row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.panel-heading {
+	color: #333;
+    background-color: #f5f5f5;
+    border-color: #e4e4e4;
+    font-size: 16px;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.panel-body {
+	margin-bottom: 5px;
+	margin-top: 5px;
+	font-size: 16px;
+}
+
+.margin-bottom-10 {
+	margin-bottom: 10px;
+}
+
+.a-decorate a {
+	text-decoration: none;
+	color: blue;
+}
+.a-decorate a:HOVER {
+	color: red;
+}
+
+.empty-row {
+	padding-bottom: 10px;
+	padding-top: 10px;
+	font-size: 15px;
+	line-height: 2.0;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: 600;
+}
+.location ul {
+    border-bottom: solid 1px #ddd;
+}
+
+.location {
+    line-height: 28px;
+}
+</style>
+<div class="location ng-scope">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>买家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>信息统计<i class="fa fa-angle-double-right"></i></li>
+		<li>发票信息管理</li>
+	</ul>
+</div>
+<div id="bill-admin">
+	<h2 class="title">发票资料管理</h2>
+<!-- 	<div class="panel-heading row font-size-12">增值税（普通）开票资料</div>
+	<div class="panel-body font-size-12" ng-if="normalBill.head">
+		<div class="row margin-bottom-10">
+			<div class="col-md-3">发票抬头</div>
+			<div class="col-md-2">收票人</div>
+			<div class="col-md-5">收票地址</div>
+			<div class="col-md-2">操作</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div ng-bind="normalBill.head"></div>
+			</div>
+			<div class="col-md-2">
+				<div ng-bind="normalBill.name"></div>
+			</div>
+			<div class="col-md-5">
+				<div>
+					<span ng-bind="normalBill.area"></span>
+					<span ng-bind="normalBill.detailAddress"></span>
+				</div>
+			</div>
+			<div class="col-md-2 a-decorate font-size-12">
+				<a ng-click="detail(normalBill)">查看</a>
+				<a ng-click="revise(normalBill.id)">修改</a>
+				<a ng-click="deleteById(normalBill.id)">删除</a>
+			</div>
+		</div>
+	</div>
+	<div class="row text-center empty-row font-size-12" ng-if="!normalBill.head"> 您还没有增值税普通发票信息 <a ui-sref="bill_input_normal" class="text-inverse">新建发票</a></div> -->
+	<div class="panel-heading row font-size-12">增值税（专用）开票资料</div>
+	<div class="panel-body font-size-12" ng-if="specialBill.head">
+		<div class="row margin-bottom-10">
+			<div class="col-md-3">发票抬头</div>
+			<div class="col-md-2">收票人</div>
+			<div class="col-md-5">收票地址</div>
+			<div class="col-md-2">操作</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div ng-bind="specialBill.head"></div>
+			</div>
+			<div class="col-md-2">
+				<div ng-bind="specialBill.name"></div>
+			</div>
+			<div class="col-md-5">
+				<div>
+					<span ng-bind="specialBill.area"></span>
+					<span ng-bind="specialBill.detailAddress"></span>
+				</div>
+			</div>
+			<div class="col-md-2 a-decorate">
+				<a ng-click="detail(specialBill)">查看</a>
+				<a ng-click="revise(specialBill.id)">修改</a>
+				<a ng-click="deleteById(specialBill.id)">删除</a>
+			</div>
+		</div>
+	</div>
+	<div class="row text-center empty-row font-size-12" ng-if="!specialBill.head"> 您还没有增值税专用发票信息 <a ui-sref="bill_input_special" class="text-inverse">新建发票</a></div>
+</div>

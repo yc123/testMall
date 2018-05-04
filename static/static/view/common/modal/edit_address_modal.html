@@ -1,0 +1,180 @@
+<style type="text/css">
+	.modal-body label{
+		margin-right: -15px;
+	}
+	.heigth30 {
+		height: 30px;
+		line-height: 30px;
+	}
+	.edit-rec-addr .form-control {
+		color: black;
+	}
+    .edit-rec-addr strong {
+        color: red;
+    }
+    .edit-rec-addr .format-correct {
+        color: #008000;
+        height: 30px;
+        line-height: 30px;
+    }
+    .edit-rec-addr .format-error {
+        color: red;
+        height: 30px;
+        line-height: 30px;
+    }
+	.select-adder{
+		background:url("static/img/user/images/xiala.png") right no-repeat ;
+		background-position-x: 180px;
+	}
+	.modal-dialog{
+		width: 740px;
+		margin: 0;
+	}
+	.form-control{
+		border-radius: 3px;
+	}
+	.modal-footer.edit-btn{
+		text-align: center;
+	}
+	.modal-footer.edit-btn button{
+		width: 70px;
+		height: 32px;
+		border-radius: 0;
+	}
+	.modal-footer.edit-btn button.btn-default{
+		background: #c8c6c6 !important;
+		color: #fff !important;
+		border: none !important;
+	}
+	.form-horizontal .control-label{
+		width: 105px;
+		padding-right: 5px;
+	}
+	.checkbox .col-md-3{
+		width: 177px;
+	}
+	.modal {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -370px;
+		margin-top: -205px;
+	}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title f14">
+		<span ng-if="!isModify">
+			<span ng-if="!isSendType">新增收货地址</span>
+			<span ng-if="isSendType">新增发货地址</span>
+		</span>
+		<span ng-if="isModify">
+			<span ng-if="!isSendType">修改收货地址</span>
+			<span ng-if="isSendType">修改发货地址</span>
+		</span>
+	</h3>
+</div>
+<div class="modal-body edit-rec-addr">
+	<div class="row">
+		<div class="col-md-12">
+			<form name="myForm" class="form-horizontal" role="form" ng-submit="save(address)">
+				<div class="form-group">
+					<label for="userName" class="col-md-3 control-label"><strong class="text-inverse">* </strong>
+						<span ng-show="!isSendType">收货人姓名</span>
+						<span ng-show="isSendType">发货人姓名</span>
+					</label>
+					<div class="col-md-6 ">
+	 			      	<input required ng-model="address.name" type="text" class="form-control" id="userName" name="userName"
+							   placeholder="请输入你的姓名" autocomplete="off" ng-change="checkForm(1)">
+				    </div>
+					<div class="col-md-3">
+						<span class="text-inverse error" ng-show="address.name && userError">请勿超过10个字</span>
+						<span class="text-inverse heigth30" ng-show="myForm.userName.$touched && myForm.userName.$invalid && isSendType">请输入发件人姓名</span>
+						<span class="text-inverse heigth30" ng-show="myForm.userName.$touched && myForm.userName.$invalid && !isSendType">请输入收件人姓名</span>
+						<span ng-show="!myForm.userName.$invalid && !userError" class="text-success heigth30">填写正确</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="tel" class="col-md-3 control-label"><strong class="text-inverse">* </strong>联系电话：</label>
+					<div class="col-md-6">
+						<input required ng-model="address.tel" type="text" autocomplete="off" class="form-control" ng-change="checkForm(2)" id="tel" name="tel"
+							    placeholder="请输入您的联系电话">
+					</div>
+					<div class="col-md-3" >
+						<span class="text-inverse error" ng-show="address.tel && (telError || telPatternError)">请输入正确的号码</span>
+						<span class="text-inverse heigth30" ng-show="myForm.tel.$touched && myForm.tel.$invalid">请输入联系电话</span>
+						<!--<span ng-show="myForm.tel.$dirty && myForm.tel.$invalid" class="text-inverse heigth30">格式错误，不存在的手机号</span>-->
+						<span ng-show="!myForm.tel.$invalid && !telError && !telPatternError" class="text-success heigth30">填写正确</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-md-3 control-label">邮箱：</label>
+					<div class="col-md-6">
+						<input name="email" ng-model="address.email" type="text" class="form-control" id="email"
+							   placeholder="请填写正确的邮箱，可用于接收订单提醒" maxlength="50" ng-change="checkForm(4)">
+					</div>
+					<div class="col-md-3">
+						<span ng-show="address.email && emailPatternError" class="text-inverse heigth30">请输入正确的邮箱</span>
+					</div>
+				</div>
+				<div class="form-group ">
+					<label class="col-md-3 control-label"><strong
+						class="text-inverse">* </strong>所在地区：</label>
+					<div class="mar-rt0 row checkbox">
+						<div class="col-md-3">
+							<select required="" class="select-adder form-control"
+								ng-model="address.province"
+								ng-options="key as key for (key,value) in division"
+								ng-change="address.city='';address.district='';"
+								style="opacity: 1;">
+								<option value="">省级行政区</option>
+							</select>
+						</div>
+						<div class="col-md-3 ">
+							<select class="select-adder form-control" ng-model="address.city"
+								ng-options="key as key for (key,value) in division[address.province]"
+								ng-change="address.district='';"
+								style="opacity: 1;">
+								<option value="">市</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+						<select class="select-adder form-control" ng-model="address.district" style="opacity: 1;"
+							ng-options="value as value for value in division[address.province][address.city]" required>
+							<option value="">区</option>
+						</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group" style="margin-bottom: 0;">
+						<label class="col-md-3 control-label"><strong class="text-inverse">* </strong>详细地址：</label>
+						<div class="col-md-8" style="width: 530px; padding-right: 0;">
+					      	<input required ng-model="address.detailAddress" type="text" class="form-control" name="addr" id="addr"
+					      		placeholder="建议你填写详细地址，例如街道名、门牌号，楼层和房间号等信息" autocomplete="off" ng-change="checkForm(3)">
+					    </div>
+						<div class="col-md-2" style="padding: 0; width: 100px; padding-left: 10px;">
+							<span class="text-inverse error" ng-show="address.detailAddress && addrError">请勿超过30个字</span>
+							<span ng-show="!myForm.addr.$invalid && !addrError" class="text-success heigth30">填写正确</span>
+							<span class="text-inverse error" ng-show="myForm.addr.$touched && myForm.addr.$invalid">请输入详细地址</span>
+						</div>
+				</div>
+				<div class="form-group" style="margin-bottom: 0;">
+					<div class="col-md-4" style="margin-left: 104px;">
+						<div class="checkbox">
+							<label class="check-active">
+								<input ng-model="isSetTop" type="checkbox" id="check-act">
+								<label for="check-act"></label>
+								<span ng-if="!isSendType">设置为默认收货地址</span>
+								<span ng-if="isSendType">设置为默认发货地址</span>
+							</label>
+						</div>
+					</div>
+		  		</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="edit-btn modal-footer">
+	<button class="btn btn-default" ng-click="cancel()" type="button">取消</button>
+	<!--ng-disabled="myForm.$invalid || userError || telError || addrError"-->
+	<button class="btn btn-success" ng-click="save()" type="button">保存</button>
+</div>

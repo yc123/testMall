@@ -1,0 +1,37 @@
+<style>
+.modal-body label {
+	margin-right: -15px;
+	font-size: 15px;
+}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title">更新审核人邮箱</h3>
+</div>
+<div class="modal-body form-group">
+	<div class="row-fluid sortable">
+		<form name="myform">
+			<div class="row form-group">
+				<label class="col-md-4 control-label">审核人姓名:</label>
+				<div class="col-md-8">
+					<input type="text" class="form-control"
+						ng-model="MailInfo.username" ng-length="11" required="required">
+				</div>
+			</div>
+			<div class="row form-group">
+				<label class="col-md-4 control-label">审核人邮箱:</label>
+				<div class="col-md-8">
+					<input type="email" class="form-control"
+						ng-model="MailInfo.useremail" ng-length="11" required="required">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="modal-footer">
+	<center>
+		<button class="btn btn-lg btn-primary"
+			ng-click="saveMailInfo(userName, userEmail)"
+			ng-disabled="myform.$invalid">确定</button>
+		<button class="btn btn-lg btn-danger" ng-click="cancel()">取消</button>
+	</center>
+</div>

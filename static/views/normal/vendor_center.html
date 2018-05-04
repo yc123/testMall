@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>卖家中心-优软商城</title>
+<meta name="description" content="优软商城，电子元器件搜索引擎" />
+<meta name="keywords"
+	content="优软商城，B2B，B2C，行业门户，网上贸易，电子商务，网上贸易，网上交易，交易市场，在线交易，供求信息，采购，求购信息，供应信息" />
+<link href="static/img/all/u.png" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="static/lib/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="static/css/vendor/sell.css" />
+<link rel="stylesheet" href="static/css/common.css" />
+<link rel="stylesheet" href="static/lib/fontawesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="static/lib/angular/toaster.css" />
+<link rel="stylesheet" href="static/lib/jquery/themes/uploadify/uploadify.css" />
+<link rel="stylesheet" href="static/css/vendor/base.css" />
+<link rel="stylesheet" href="static/lib/calendar/calendar.css">
+<link rel="stylesheet" href="static/lib/angular/ng-table.css">
+<link rel="stylesheet" type="text/css" href="static/lib/keyboard/css/softkeys-0.0.1.css">
+<link rel="stylesheet" href="static/css/commonComponent.css" />
+</head>
+<body>
+	<!-- 消息提示框  Start-->
+	<toaster-container
+		toaster-options="{'position-class': 'toast-bottom-center'}" style="font-size: 14px;"></toaster-container>
+	<!-- 消息提示框 End -->
+	<!-- Loading Start -->
+	<div id="loading" class="loading">
+		<i></i>
+	</div>
+	<!-- Loading End -->
+
+	<!--头部开始-->
+	<header>
+		<div ng-include src="'static/view/common/site-nav.html'"></div>
+		<div ng-include src="'static/view/vendor/header.html'"></div>
+	</header>
+
+	<!--内容开始-->
+	<section class="clearfix">
+		<div class="wrap">
+			<div class="user_content">
+				<!--左侧导航-->
+				<div ng-include src="'static/view/vendor/left_nav.html'"></div>
+				<div ui-view></div>
+			</div>
+		</div>
+	</section>
+	<footer class="clearfix" style="margin-top: 40px;">
+		<div ng-include src="'static/view/common/footer.html'"></div>
+	</footer>
+	<div ng-include src="'static/view/common/sidebar.html'"></div>
+
+	<!--&lt;!&ndash; header 标题Logo和搜索框 Start &ndash;&gt;-->
+	<!--<div ng-include src="'static/view/common/header.html'"></div>-->
+	<!--&lt;!&ndash; header 标题Logo和搜索框 End &ndash;&gt;-->
+
+	<!--&lt;!&ndash; navigation 导航栏 Start &ndash;&gt;-->
+	<!--<div ng-include src="'static/view/common/nav.html'"></div>-->
+	<!--&lt;!&ndash; navigation 导航栏  End &ndash;&gt;-->
+
+	<!--&lt;!&ndash; 主体内容 Start &ndash;&gt;-->
+	<!--<div class="main-panel" id="main">-->
+		<!--<div class="container">-->
+			<!--&lt;!&ndash; 左侧导航栏 Start &ndash;&gt;-->
+			<!--<div class="left">-->
+				<!--<div ng-include src="'static/view/vendor/left.html'"></div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; 左侧导航栏 End &ndash;&gt;-->
+			<!--&lt;!&ndash; 核心内容 Start &ndash;&gt;-->
+			<!--<div class="right">-->
+				<!--<div ui-view></div>-->
+			<!--</div>-->
+			<!--&lt;!&ndash; 核心内容 End &ndash;&gt;-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--&lt;!&ndash; 主体内容 End &ndash;&gt;-->
+
+	<!--客服咨询-->
+	<!--<div class="kefu" align="center">
+		<a href="javascript:void(0)">
+			<img src="static/img/user/images/kefu.png" width="165px" height="239px" style="position: relative;"/>
+			<span id="service-close" class="service-close">×</span>
+		</a>
+	</div>-->
+
+	<script type="text/javascript" src="static/lib/require.js"
+		data-main="static/js/vendor/main.js"></script>
+	<!-- 产品图片插入modal Start -->
+	<script type="text/ng-template" id="offer/image/insert.html">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="close()">×</button>
+			<h4 class="modal-title">插入图片</h4>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-xs-7" style="padding: 20px;">
+					<p class="help-block">提示：选择的图片单张大小不超过3MB，支持jpg,jpeg,gif,bmp,png</p>
+					<div class="upload-container" ng-disabled="getImages().length == images.length">
+						<div id="uploadify" on-success="onUploadSuccess($data)" uploadify="{buttonText:'选择图片'}"></div>
+					</div>
+				</div>
+				<div class="col-xs-5">
+					<h3>预览</h3>
+					<div class="image-content">
+						<img ng-src="{{image.src}}" class="img-thumbnail" style="width: 100px; height: 100px;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div class="pull-right"><a ng-click="confirm()" class="btn btn-primary" ng-disabled="!image.src">确定</a></div>
+		</div>
+	</script>
+	<script type="text/javascript">
+//		window.onload = function() {
+//			document.getElementById('service-close').onclick = function() {
+//				document.getElementsByClassName('kefu')[0].style.display = 'none';
+//			}
+//		}
+	</script>
+	<!-- 产品图片插入modal End -->
+	<script src="static/lib/jquery/jquery.min.js"></script>
+	<script src="static/lib/keyboard/js/softkeys-0.0.1.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<style>
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-chevron-left:before {
+    content: "\e079";
+}
+.glyphicon-chevron-right:before {
+    content: "\e080";
+}
+.datetime {
+	line-height: 28px;
+	border-radius: 5px;
+	width: 35%;
+	font-size: 15px;
+}
+
+.minTitle {
+	font-weight: 600;
+	font-size: 17px;
+}
+
+.boxbank{
+	padding: 0px 15px;
+}
+
+.marginltb {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+</style>
+<div class="row-fluid sortable">		
+	<div class="box span12">
+		<div class="box-header well" data-original-title>
+			<h2><i class="icon-user"></i> 财务结算</h2>
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px; overflow-y: auto;">
+				<div class="container">
+
+					<div class="row-fluid">
+						<div class="span3">
+							<div class="btn-group" role="group" aria-label="...">
+								<button type="button" class="btn btn-default"
+									ng-class="{'btn-primary':active=='available'}"
+									ng-click="setActive('available')">可结算</button>
+								<button type="button" class="btn btn-default"
+									ng-class="{'btn-primary':active=='unavailable'}"
+									ng-click="setActive('unavailable')">未到期</button>
+								<button type="button" class="btn btn-default"
+									ng-class="{'btn-primary':active=='availableToBeMakeBill'}"
+									ng-click="setActive('availableToBeMakeBill')">到期未开票</button>
+							</div>
+						</div>
+						<div class="span2"></div>
+						<div class="span3">
+							<div class="control-group">
+								<div class="controls">
+									<div class="input-append">
+										<input id="appendedInputButton" placeholder="请输入入库单号查询"
+											ng-model="keyword" size="16" type="text"
+											ng-search="onSearch()">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span2">
+							<a ng-click="condition.$open=!condition.$open"
+								class="text-simple"> <span
+								ng-bind="condition.$open ? '简化筛选条件' : '更多筛选条件'"></span> <i
+								class="fa fa-fw"
+								ng-class="{'fa-angle-up': condition.$open, 'fa-angle-down': !condition.$open}"></i>
+							</a>
+						</div>
+						<div class="span1" style="margin-top: 5px;">
+							共<span class="badge">{{receiptTableParams.total()}} </span>条
+						</div>
+					</div>
+					<div class="row-fluid datediv" ng-show="condition.$open">
+						<form class="form-inline">
+							<div class="form-group ">
+								<div class="span1 text-right">
+									<h5>单据日期:</h5>
+								</div>
+								<div class="span4 input-group input-trigger">
+									<input type="text" ng-model="condition.dateFrom"
+										class="form-control dateinput" placeholder="点击选择起始日期"
+										readonly="readonly" datepicker-popup="yyyy-MM-dd"
+										is-open="condition.$fromOpened" ng-required="true"
+										max-date="condition.dateTo" current-text="今天" clear-text="清除"
+										close-text="关闭"
+										datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+										ng-click="openDatePicker($event, condition, '$fromOpened')"
+										ng-change="onDateCondition()"> <span
+										class="input-group-btn dateinput">
+										<button type="button" class="btn btn-default dateinput"
+											ng-click="openDatePicker($event, condition, '$fromOpened')">
+											<i class="fa fa-calendar"></i>
+										</button>
+									</span>
+								</div>
+								<div class="span5 input-group input-trigger">
+									<input type="text" ng-model="condition.dateTo"
+										class="form-control dateinput" placeholder="点击选择截止日期"
+										readonly="readonly" datepicker-popup="yyyy-MM-dd"
+										is-open="condition.$toOpened" ng-required="true"
+										min-date="condition.dateFrom" current-text="今天"
+										clear-text="清除" close-text="关闭"
+										datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+										ng-focus="openDatePicker($event, condition, '$toOpened')"
+										ng-change="onDateCondition()"> <span
+										class="input-group-btn">
+										<button type="button" class="btn btn-default dateinput"
+											ng-click="openDatePicker($event, condition, '$toOpened')">
+											<i class="fa fa-calendar"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div>
+				<table ng-table="receiptTableParams" class="table table-bordered table-striped" style="margin-top: 10px;">
+					<thead>
+						<tr>
+							<th width="30">序号</th>
+							<th width="30">全选 &nbsp;&nbsp;<input type="checkBox" ng-model="checks.checked" ng-disabled="noticeInfo || active=='unavailable'||active=='availableToBeMakeBill'" ng-click="checkAll()"></th>
+							<th width="auto">入库单号</th>
+							<th width="150">金额</th>
+							<th width="150">创建时间</th>
+								
+							<th width="130">入库单类型</th>
+							<th width="160">来源单号</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="receipt in $data">
+							<td class="text-center" ng-bind="$index+1"></td>
+							<td class="text-center" style="padding-left: 17px;"><input type="checkBox" ng-disabled="noticeInfo || active=='unavailable'||active=='availableToBeMakeBill'" ng-model="checkCodes[$index]" ng-click="checkOne($index)"/></td>
+							<td><a target="_blank" ng-href="admin#/trade/receipt/{{receipt.receiptid}}">{{receipt.receiptid}}</a></td>
+							<td ng-bind="receipt.price"></td>
+							<td ng-bind="receipt.createtime | date: 'yyyy-MM-dd HH:mm'"></td>
+							<td ng-bind="receipt.status | statusAndTypeFilter"></td>
+							<td ng-bind="receipt.sourceid">
+							<td>
+								<a ng-click="batchCheckMoney(receipt)" ng-if="active=='available'">
+									<button type="button" class="btn btn-default btn-sm" ng-disabled="count>0 && noticeInfo" >确认结算</button></a>
+							</td>
+							<td ng-bind="receipt.type | statusAndTypeFilter"></td>
+						</tr>
+						<tr ng-if="$data.length == 0">
+							<td colspan="10" class="text-center" style="line-height: 40px; font-size: 20px;"><i class="fa fa-smile-o fa-lg"></i> 当前没有对应的入库单</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				 <div>
+					<button class="btn btn-primary" role="button" ng-disabled="count==0"  ng-if="!noticeInfo && active=='available'" ng-click="batchCheckMoney()">批量确认结算</button>
+					<button class="btn btn-primary" role="button" ng-if="noticeInfo" ng-click="cancelCheck()">重新勾选</button>
+				</div>
+			</div>
+			<!-- ng-tableEnd -->
+		</div>
+	</div><!--/span-->
+</div><!--/row-->
+
+<!-- 批量 确认结算操作 开始代码  -->
+<a id="batchCheckMoney" style="color: white;">batchCheckMoney</a>
+<div ng-if="batchCheckStatus">
+	<div class="row-fluid sortable">
+		<div class="box" >
+			<div class="box-header well">
+				<h2><i class="icon-user"></i> 确认结算操作</h2>
+			</div>
+			<div class="box-content">
+				<div class="repeatBorder row-fluid">
+					<div class="divTitle boxbank span12 f12">
+						<span>订单号:</span> <span ng-repeat="recepit in batchRecepit" class="text-inverse">{{recepit.receiptid}}&nbsp;<br ng-if="getIndex($index)"></span>
+					</div>
+				</div>
+				<div class="boxbank">
+					<div class="row-fluid ">
+						<span class="minTitle span10">平台应付账户</span>
+						<div role="button" class="span2"
+							ng-click="newAccount()">
+							<i class="fa fa-plus-square"></i>&nbsp;新增账户
+						</div>
+					</div>
+					<div class="row-fluid " ng-repeat="b2cAccountInfo in b2cAccountInfos" ng-if="salexpose">
+						<div class="span10" ng-class="{true : 'select', false: 'diselect'}[b2cAccountInfo.id == b2cAccount.id]">
+							<div class="row-fluid" ng-click="select(b2cAccountInfo)" >
+								<span class="span2 text-center" ng-bind="b2cAccountInfo.accountname" ></span>
+								<span class="span3 text-center" ng-bind="b2cAccountInfo.filterAccount"></span>
+								<span class="span3 text-center" ng-bind="b2cAccountInfo.bankname">&nbsp;&nbsp;<i
+										class="fa fa-credit-card"></i></span>
+							 	<span class="span4 text-center text-inverse"><span role="button"
+									ng-click="newAccount(b2cAccountInfo)"><i class="fa fa-edit"></i>&nbsp;编辑</span>&nbsp;
+								<span role="button" ng-click="deleteAccount(b2cAccountInfo)"><i
+										class="fa fa-remove"></i>&nbsp;删除</span></span>
+							</div>
+						</div>
+						<div class="span2 pull-right" style="padding-top: 25px;" ng-show="$index == 0">
+								<span role="button" ng-if="!salexpose"
+									ng-click="doExpose(true, false)"><i
+									class="fa fa-angle-double-down"></i>&nbsp;展开列表</span> <span
+									role="button" ng-if="salexpose"
+									ng-click="doExpose(false, false)"><i
+									class="fa fa-angle-double-up"></i>&nbsp;收起列表</span>
+						</div>
+					</div>
+					<div class="row-fluid" ng-if="!salexpose">
+						<div class="span10" ng-class="{true : 'select', false: 'diselect'}[b2cAccount.id == b2cAccount.id]" >
+							<div class="row-fluid">
+								<span class="span2 text-center" ng-bind="b2cAccount.accountname" ></span>
+								<span class="span3 text-center" ng-bind="b2cAccount.filterAccount"></span>
+								<span class="span3 text-center" ng-bind="b2cAccount.bankname"><i
+										class="fa fa-credit-card"></i></span>
+								<span class="span4 text-center text-inverse"><span role="button"
+									ng-click="newAccount(b2cAccount)"><i class="fa fa-edit"></i>&nbsp;编辑</span>&nbsp;
+								<span role="button" ng-click="deleteAccount(buyAccount)"><i
+										class="fa fa-remove"></i>&nbsp;删除</span></span> 
+							</div>
+						</div>
+						<div class="span2 pull-right" style="padding-top: 25px;" >
+								<span role="button" ng-if="!salexpose"
+									ng-click="doExpose(true, false)"><i
+									class="fa fa-angle-double-down"></i>&nbsp;展开列表</span> <span
+									role="button" ng-if="salexpose"
+									ng-click="doExpose(false, false)"><i
+									class="fa fa-angle-double-up"></i>&nbsp;收起列表</span>
+						</div>
+					</div>
+			
+					<label class="minTitle marginTop30">供应商应收账户</label>
+					<div class="row-fluid " ng-repeat="venderAccountInfo in venderAccountInfos" ng-if="venderExpose">
+						<div class="span10" ng-class="{true : 'select', false: 'diselect'}[venderAccountInfo.id == venderAccount.id]" ng-click="select(venderAccountInfo,true)">
+							<div class="row-fluid" >
+								<span class="span2 text-center" ng-bind="venderAccountInfo.accountname" ></span>
+								<span class="span3 text-center" ng-bind="venderAccountInfo.filterAccount"></span>
+								<span class="span3 text-center" ng-bind="venderAccountInfo.bankname">&nbsp;&nbsp;<i
+										class="fa fa-credit-card"></i></span>
+							</div>
+						</div>
+						<div class="span2 pull-right" style="padding-top: 25px;" ng-show="$index == 0">
+								<span role="button" ng-if="!venderExpose"
+									ng-click="doExpose(true, true)"><i
+									class="fa fa-angle-double-down"></i>&nbsp;展开列表</span> <span
+									role="button" ng-if="venderExpose"
+									ng-click="doExpose(false, true)"><i
+									class="fa fa-angle-double-up"></i>&nbsp;收起列表</span>
+						</div>
+					</div>
+					<div class="row-fluid" ng-if="!venderExpose">
+						<div class="span10" ng-class="{true : 'select', false: 'diselect'}[venderAccount.id == venderAccount.id]" >
+							<div class="row-fluid" ng-show="venderAccount != null && venderAccount.length != 0">
+								<span class="span2 text-center" ng-bind="venderAccount.accountname" ></span>
+								<span class="span3 text-center" ng-bind="venderAccount.filterAccount"></span>
+								<span class="span3 text-center" ng-bind="venderAccount.bankname"><i
+										class="fa fa-credit-card"></i></span>
+							</div>
+							<div class="row-fluid" ng-show="venderAccount == null || venderAccount.length == 0">
+								<span class="span12 text-center text-warning f14"><i class="fa fa-warning"></i>&nbsp;未能找到供应商对应的企业银行账户！</span>
+							</div>
+						</div>
+						<div class="span2 pull-right" style="padding-top: 25px;" ng-show="venderAccount != null && venderAccount.length != 0">
+								<span role="button" ng-if="!venderExpose"
+									ng-click="doExpose(true, true)"><i
+									class="fa fa-angle-double-down"></i>&nbsp;展开列表</span> <span
+									role="button" ng-if="venderExpose"
+									ng-click="doExpose(false, true)"><i
+									class="fa fa-angle-double-up"></i>&nbsp;收起列表</span>
+						</div>
+					</div>
+					<div class="row-fluid marginTop20">
+						<div class="span2">
+							<label class="f16 marginTop5"><strong>转账日期</strong></label>
+						</div>
+						<div class="span7">
+							<datetrigger name="transferTime" model="transferTime"
+							format="yyyy年MM月dd日" class="col-md-5" max-date="maxDate"></datetrigger>
+						</div>
+					</div>
+					<div class="row-fluid marginTop20">
+						<div class="row-fluid">
+							<div class="span2">
+								<label class="minTitle">交易图片</label>
+							</div>
+						</div>
+						<div class="row-fluid marginltb">
+							<label><span>*</span>付款截图：</label>
+							<div class="marginBottom5">
+								<img class="img-thumbnail" ng-src="{{imageUrl}}"
+									style="width: 100px; height: 100px;"
+									ng-click="showImageDialog()"> 
+							</div>
+							<span class="text-muted" >建议图片尺寸在750*750像素以上，图片请避免全文字</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-content" style="font-size: 15px; ">
+				<div class="row-fluid ">
+					<div class="span11 text-center">
+						<span class="text-inverse">总价：{{total}}</span>&nbsp;&nbsp;
+						<button class="btn btn-primary" ng-click="confirm(transferTime)"
+							ng-disabled="count==0 || !b2cAccount || !logoUrl || !venderAccount || !transferTime">确认并付款</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

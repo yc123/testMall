@@ -1,0 +1,208 @@
+<style>
+    .modal-content {
+        width: 575px;
+    }
+    .user-role-manage .user-role-header {
+        border-bottom: 1px solid #ededed;
+    }
+    .user-role-manage .user-role-header >span {
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        font-size: 14px;
+        color: #666;
+        margin-left: 14px;
+    }
+    .user-role-manage .default-role-area {
+        height: 256px;
+        padding: 21px 22px 10px 22px;
+        border-bottom: 1px solid #ededed;
+    }
+    .user-role-manage .default-role-box {
+        width: 170px;
+        height: 102px;
+        display: inline-block;
+        background: #89aefa;
+        color: #fff;
+        padding: 10px 17px 16px 8px;
+        vertical-align: middle;
+        margin-right: 6px;
+        margin-bottom: 10px;
+        position: relative;
+        border-radius: 3px;
+    }
+    .user-role-manage .default-role-box p {
+        text-align: center;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .user-role-manage .default-role-box:nth-child(3n) {
+        margin-right: 0;
+    }
+    .user-role-manage .default-role-box span {
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: pre-wrap;
+        word-break: normal;
+        height: 43px;
+        width: 100%;
+        display: block;
+    }
+    .user-role-manage .default-role-box img {
+        border-radius: 100%;
+        position: absolute;
+        right: 3px;
+        bottom: 3px;
+        cursor: pointer;
+    }
+    .user-role-manage .bgimg-1 {
+        background: url(static/img/vendor/authority/role-bg-1.jpg)no-repeat;
+    }
+    .user-role-manage .bgimg-2 {
+        background: url(static/img/vendor/authority/role-bg-2.jpg)no-repeat;
+    }
+    .user-role-manage .bgimg-3 {
+        background: url(static/img/vendor/authority/role-bg-3.jpg)no-repeat;
+    }
+    .user-role-manage .bgimg-4 {
+        background: url(static/img/vendor/authority/role-bg-4.jpg)no-repeat;
+    }
+    .user-role-manage .bgimg-5 {
+        background: url(static/img/vendor/authority/role-bg-5.jpg)no-repeat;
+    }
+    .user-role-manage .user-role-footer {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    .user-role-manage .user-role-footer span {
+        width: 64px;
+        height: 28px;
+        line-height: 28px;
+        display: inline-block;
+        font-size: 14px;
+        background: #5078cb;
+        color: #fff;
+        cursor: pointer;
+    }
+    .user-role-manage .user-role-footer span:first-child {
+        background: #c8c6c6;
+        margin-right: 8px;
+    }
+
+    .user-role-manage .ng-table-pagination a {
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .user-role-manage .pagination li:first-child a, .user-role-manage .pagination li:last-child a{
+        font-size: 20px;
+    }
+    .user-role-manage ul.pagination.ng-table-pagination > li > a > span {
+        height: 17px;
+        line-height: 17px;
+        color: #666;
+    }
+    .user-role-manage .ng-table-pager {
+        background: #f4f4f4;
+        margin: 0!important;
+        padding-right: 29px;
+    }
+    .user-role-manage .ng-table-pager  input.page-number {
+        vertical-align: inherit;
+        display: inline-block;
+        width: 37px;
+        height: 31px;
+        float: left;
+        padding: 6px 6px;
+        font-size: 12px;
+        line-height: 1.42857143;
+        color: #9B9792;
+        text-align: center;
+        background-color: #F6F5F4;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+
+    .user-role-manage .ng-table-pager a.page-a {
+        color: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        text-decoration: none;
+        height: 31px;
+    }
+
+    .user-role-manage .ng-table-pager .page-go-block {
+        float: right;
+        font-size: 0px;
+        height: 31px;
+        margin-top: 20px;
+        line-height: 31px;
+    }
+    .user-role-manage .ng-table-pager .ng-table-pagination{
+        text-align: center;
+        max-width: 460px;
+        margin: 0;
+    }
+    .user-role-manage .ng-table-pager .ng-table-pagination a{
+        height: 29px;
+        line-height: 13px;
+    }
+    .user-role-manage .pagination li.active a span{
+        color: white !important;
+    }
+    .user-role-manage .ng-table-pager .ng-table-pagination li.active a {
+        background: none!important;
+    }
+    .user-role-manage .ng-table-pager .ng-table-pagination li a {
+        background: none!important;
+    }
+    .user-role-manage .ng-table-pager .ng-table-pagination li.active a span {
+        color: #5078cb!important;
+    }
+</style>
+
+<div class="user-role-manage">
+    <div class="user-role-header">
+        <span>编辑角色</span>
+        <button style=" padding-right:9px; " type="button" class="close" data-dismiss="alert" ng-click="cancelModal()" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="default-role-area">
+        <div class="{{'default-role-box bgimg-'+role.color || 1}}" ng-repeat="role in currentRoles track by $index" ng-click="checkRole(role)">
+            <p title="{{role.desc}}">{{role.desc}}</p>
+            <span title="{{role.duty}}">{{role.duty}}</span>
+            <img ng-src="static/img/vendor/images/{{role.checked?'check-active':'check'}}.jpg" alt="" >
+        </div>
+    </div>
+    <div class="ng-cloak ng-table-pager text-center">
+        <ul class="pagination ng-table-pagination">
+            <li ng-class="{'disabled': !page.active && !page.current, 'active': params.page == page.number}" ng-repeat="page in pages" ng-switch="page.type">
+                <a ng-switch-when="prev" ng-click="setPage(page.type, -1)">&laquo;</a>
+                <a ng-switch-when="first" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                <a ng-switch-when="page" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                <a ng-switch-when="more" ng-click="setPage(page.type, -1)">&#8230;</a>
+                <a ng-switch-when="last" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                <a ng-switch-when="next" ng-click="setPage(page.type, -1)">&raquo;</a>
+            </li>
+        </ul>
+        <div class="page-go-block" ng-if="rolesData.length>6">
+            <input class="page-number" type="text" ng-model="params.currentPage" ng-keydown="listenEnter()"/>
+            <a class="page-a" ng-click="setPage('page', params.currentPage)">GO</a>
+        </div>
+    </div>
+    <div class="user-role-footer">
+        <span ng-click="cancelModal()">取消</span>
+        <span ng-click="close(true)">确定</span>
+    </div>
+</div>

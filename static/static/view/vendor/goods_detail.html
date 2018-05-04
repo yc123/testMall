@@ -1,0 +1,219 @@
+<style>
+.batchCode {
+	margin-top: 15px;
+	padding-top: 12px;
+	padding-left: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	height: 39px;
+}
+
+span {
+	font-size: 13px;
+}
+
+.tip {
+	line-height: 25px;
+}
+
+.part {
+	margin-top: 20px;
+	margin-left:10px;
+}
+
+.head {
+	width: 100px;
+	line-height: 30px;
+	clolor: red;
+	padding-left: 15px;
+	border: 1px solid #ddd;
+	margin-top: 30px;
+}
+
+h4 {
+	font-size: 14px;
+	color: #317eac;
+	font-weight: bold;
+}
+
+.border-dashed {
+    border-bottom: 1px dashed rgb(125, 180, 221);
+    margin-top: 10px;
+}
+</style>
+<div class="row">
+	<div class="col-xs-6">
+		<div class="batchCode">批次号：<a ng-bind="goods.batchCode"></a></div>
+	</div>
+</div>
+<div class="border-dashed"></div>
+<div class="body">
+	<div class="part">
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>器件相关信息</h4>
+			</div>
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>原厂型号:</span>
+				<span ng-bind="comp.code"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>类目名称：</span>
+				<span ng-bind="comp.kind.nameCn"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>品牌：</span>
+				<span ng-bind="comp.brand.nameCn"></span>
+			</div>	
+		</div>
+	</div>
+	<div class="part">
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>产品相关信息</h4>
+			</div>
+		</div>	
+		<div class="row tip">		
+			<div class="col-xs-4">
+				<span>批次号:</span>
+				<span ng-bind="goods.batchCode"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>发布人：</span>
+				<span ng-bind="goods.publisherName"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>上架时间：</span>
+				<span ng-bind="goods.createdDate | date:'yyyy-MM-dd HH:mm:ss'"></span>
+			</div>	
+		</div>
+		<div class="row tip">		
+			<div class="col-xs-4">
+				<span>币别:</span>
+				<span ng-bind="goods.currencyName"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>税率：</span>
+				<span ng-if="goods.currencyName == 'RMB' || goods.currencyName == 'RMB-USD'">17 <span class="text-num">%</span></span>
+				<span ng-if="goods.currencyName == 'RMB-USD'">/</span>
+				<span ng-if="goods.currencyName == 'USD' || goods.currencyName == 'RMB-USD'">0 <span class="text-num">%</span></span>
+			</div>
+			<div class="col-xs-4">
+				<span>货物类型:</span>
+				<span ng-if="goods.original == 1311">现货</span>
+				<span ng-if="goods.original == 1312">呆滞库存</span>
+			</div>
+<!-- 			<div class="col-xs-4">
+				<span>是否支持7天无理由退货：</span>
+				<span ng-if="goods.returnInWeek==1">支持</span>
+				<span ng-if="goods.returnInWeek==0">不支持</span>
+			</div> -->	
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>状态:</span>
+				<span ng-bind="goods.status  | statusAndTypeFilter"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>交期：</span>
+				<span ng-bind="goods.b2cMinDelivery"></span>-<span ng-bind="goods.b2cMaxDelivery"></span>天
+			<div class="col-xs-4">
+				<span> 生产日期：</span>
+				<span ng-bind="goods.produceDate"></span>
+			</div>	
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>本批次的库存数量:</span>
+				<span ng-bind="goods.reserve"></span>
+			</div>
+			<div class="col-xs-4">
+				<span>最小包装量：</span>
+				<span ng-bind="goods.minPackQty"></span>
+				PCS
+			</div>
+			<div class="col-xs-4">
+				<span>最小起订量：</span>
+				<span ng-bind="goods.minBuyQty"></span>
+				PCS
+			</div>	
+		</div>
+		<div class="row tip">
+			<div class="col-xs-4">
+				<span>本批次最低价格：</span>
+				<span ng-show="goods.currencyName == 'RMB' || goods.currencyName == 'RMB-USD'">&yen;{{goods.minPriceRMB}}</span>
+				<span ng-show="goods.currencyName == 'RMB-USD'">/</span>
+				<span ng-show="goods.currencyName == 'USD' || goods.currencyName == 'RMB-USD'">&dollar;{{goods.minPriceUSD}}</span>
+			</div>
+			<div class="col-xs-4">
+				<span>备注：</span>
+				<span ng-bind="goods.remark"></span>
+			</div>	
+		</div>
+	</div>
+	<div class="part">
+		<div class="row">
+			<div class="col-xs-2">
+				<h4>分段报价</h4>
+			</div>
+		</div>
+		<div class="row tip  text-center">
+			<div class="col-xs-4">
+				<span>数量</span>
+			</div>
+			<div class="col-xs-4">
+				<span>含税价格</span>
+			</div>
+			<div class="col-xs-4">
+				<span>未税价格</span>
+			</div>	
+		</div>
+		<div class="row tip  text-center" ng-repeat="p in goods.prices">
+			<div class="col-xs-4">
+				<span ng-bind="p.start"></span>
+				——
+				<span ng-bind="p.end"></span>
+			</div>
+			<div class="col-xs-4">
+				<span ng-show="goods.currencyName == 'RMB' || goods.currencyName == 'RMB-USD'">&yen;{{p.rMBPrice}}</span>
+				<span ng-show="goods.currencyName == 'RMB-USD'">/</span>
+				<span ng-show="goods.currencyName == 'USD' || goods.currencyName == 'RMB-USD'">&dollar;{{p.uSDPrice}}</span>
+			</div>
+			<div class="col-xs-4">
+				<span ng-show="goods.currencyName == 'RMB' || goods.currencyName == 'RMB-USD'">&yen;{{p.rMBNTPrice}}</span>
+				<span ng-show="goods.currencyName == 'RMB-USD'">/</span>
+				<span ng-show="goods.currencyName == 'USD' || goods.currencyName == 'RMB-USD'">&dollar;{{p.uSDNTPrice}}</span>
+			</div>
+		</div>
+		<div class="text-right">
+			<a ng-click="toggleHistory()" ng-show="!showHistory"> 查看历史记录<i class="fa fa-angle-double-right"></i></a>
+			<a ng-click="toggleHistory()" ng-show="showHistory"> 收起历史记录<i class="fa fa-angle-double-down"></i></a>
+		</div>
+		<table ng-table="GoodsHistoryTableParams" class="table table-bordered table-striped" style="margin-top: 10px;" ng-show="showHistory">
+			<thead>
+				<tr>
+					<th class="text-center" width="100">操作</th>
+					<th class="text-center" width="300">变更信息</th>
+					<th class="text-center" width="100">操作人</th>
+					<th class="text-center" width="100">操作时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="goodsHistory in $data | orderBy : 'operateDate'">
+					<td>
+						<span ng-bind="goodsHistory.operateType"></span>
+					</td>
+					<td>
+						<span ng-bind="goodsHistory.message"></span>
+					</td>
+					<td class="text-center">
+						<span ng-bind="goodsHistory.operater.userName"></span>
+					</td>
+					<td class="text-center">
+						<span ng-bind="goodsHistory.operateDate | date : 'yyyy-MM-dd HH:mm'"></span>
+					</td>
+		</table>
+	</div>
+</div>

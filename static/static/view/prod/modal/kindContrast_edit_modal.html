@@ -1,0 +1,106 @@
+<style>
+#contrastEdit .title {
+	border-bottom : 1px dashed;
+}
+#contrastEdit .item-propertyname{
+	padding : 0px;
+}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title">属性对应关系</h3>
+</div>
+<form name="kindContrastEditForm" class="modal-body f14 row" id="contrastEdit">
+	<div class="form-group title">
+		<h4>
+			<span class="col-sm-offset-1"><i class="fa fa-envelope-o"></i> 基本信息</span>
+		</h4>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-offset-1 col-sm-2 control-label">
+			<span class="text-required">*</span>来源：
+		</label>
+		<div class="col-sm-4 input-group">
+			<input type="text" class="form-control input-sm" ng-model="contrast.resource" required/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-offset-1 col-sm-2 control-label">
+			<span class="text-required">*</span>商城品牌：
+		</label>
+		<div class="col-sm-4 input-group input-group-sm">
+			<input type="text" class="form-control input-sm"  autocomplete="off"
+				ng-model="contrast.b2cBrName" required  placeholder="请输入或点击搜索按钮选取品牌" 
+				typeahead="brand.nameCn for brand in getSimilarBrands($viewValue)" autocomplete="off"
+				typeahead-on-select="onAssociateBrandClick($item)" required/>
+			<a class="input-group-addon" ng-click="selectBrand('lg')"><i class="fa fa-search"></i></a>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-offset-1 col-sm-2 control-label">
+			<span class="text-required">*</span>目标类目：
+		</label>
+		<div class="col-sm-4 input-group">
+			<input type="text" class="form-control input-sm" ng-model="contrast.kindname" required/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-offset-1 col-sm-2 control-label">
+			<span class="text-required">*</span>商城类目：
+		</label>
+		<div class="col-sm-4 input-group input-group-sm">
+			<input type="text" class="form-control input-sm" autocomplete="off"
+				ng-model="contrast.b2cKiName" required  placeholder="请输入或点击搜索按钮选取类目" 
+				typeahead="kind.nameCn for kind in getSimilarKinds($viewValue)" autocomplete="off"
+				typeahead-on-select="onAssociateKindClick($item)" required/>
+			<a class="input-group-addon" ng-click="selectKind('lg')"><i class="fa fa-search"></i></a>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-offset-3 col-sm-4 ">
+			<a ng-click="chooseContrast()">已有类似对应关系，选择已有参数关系</a>
+		</div>
+	</div>
+	<div class="form-group row" ng-if="contrast.b2cKiId">
+		<div class="col-sm-offset-3 col-sm-4 ">
+			<a ng-href="admin#/kindProperty/2/{{contrast.b2cKiId}}" target="_blank">标准参数</a>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-offset-1 col-sm-2 control-label">
+			<span class="text-required">*</span>目标网址：
+		</label>
+		<div class="col-sm-4 input-group">
+			<input type="text" class="form-control input-sm" ng-model="contrast.url" required/>
+		</div>
+	</div>
+	<div class="form-group title">
+		<h4>
+			<span class="col-sm-offset-1"><i class="fa fa-envelope-o"></i> 参数信息</span>
+		</h4>
+	</div>
+	<div ng-repeat="kp in contrast.properties" class="col-sm-offset-2">
+		<div class="form-group row">
+			<span class="col-sm-2" ng-bind="kp.property.labelCn"></span>
+			<div class="col-sm-6 item-propertyname">
+				<div class="item-property" ng-repeat="name in kp.names">
+					<span class="col-sm-4 item-propertyname">目标网址参数：</span><input type="text" ng-model="name.name" class="col-sm-7"/>
+					<button class="col-sm-1 item-propertyname" ng-click="addName(kp)" ng-if="$first"><i class="fa fa-plus"></i></button>
+					<button class="col-sm-1 item-propertyname" ng-click="deleteName(kp, $index)" ng-if="!$first"><i class="fa fa-trash-o"></i></button>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<span class="col-sm-offset-2 col-sm-2 item-propertyname">商城单位：</span>
+			<select class="col-sm-4" ng-model="kp.unit" ng-options="u.unit as u.unit for u in kp.units">
+				
+			</select>
+		</div>
+		<div class="form-group row">
+			<span class="col-sm-offset-2 col-sm-2 item-propertyname">描述：</span><input type="text" ng-model="kp.remark" class="col-sm-4"/>
+		</div>
+	</div>
+</form>
+<div class="modal-footer">
+	<button  class="btn btn-success" ng-click="confirm()" ng-disabled="kindContrastEditForm.$invalid">确认</button>
+	<button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>

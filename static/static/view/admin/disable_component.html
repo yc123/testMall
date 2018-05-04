@@ -1,0 +1,25 @@
+<div class="row-fluid sortable">		
+	<div class="box span12">
+		<div class="box-header well" data-original-title>
+			<h2><i class="icon-user"></i><a ng-click="load('disable')">禁用标准器件 </a> / <a ng-click="load('disabled')">已禁用标准器件</a></h2>
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;overflow-y:auto;" ng-if="!isDisable">
+				<input type="text" placeholder="请输入原厂型号" ng-model="code"><button ng-click="search(code)" class="btn btn-primary btn-sm">查询</button>
+			</div>
+			<div class="fullscreen" style="padding: 10px;overflow-y:auto;">
+				<table ng-table="componentsTableParams" class="table table-condensed table-bordered table-striped">
+			        <tr ng-repeat="component in $data">
+			          <td data-title="'原厂型号'">{{component.code}}</td>
+			          <td data-title="'类目'">{{component.kind.nameCn}}</td>
+			          <td data-title="'唯一标识符(UUID)'">{{component.uuid}}</td>
+			          <td data-title="'操作'"> <button ng-click="disable(component)" class="btn btn-danger btn-sm" ng-if="!isDisable"><i class="fa fa-check"></i> 禁用</button>  <button ng-click="" class="btn btn-danger btn-sm" ng-if="isDisable")><i class="fa fa-check"></i> 解除禁用</button></td>
+			        </tr>
+		        </table>
+			</div>
+			<!-- ng-tableEnd -->
+		</div>
+	</div><!--/span-->
+
+</div><!--/row-->

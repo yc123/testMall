@@ -1,0 +1,160 @@
+<style>
+.has-feedback-left {
+	position: relative;
+}
+
+.form-control-feedback-left {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	display: block;
+	width: 30px;
+	height: 34px;
+	line-height: 2.3;
+	text-align: center;
+	pointer-events: none;
+	color: #bbb;
+	font-size: 16px;
+}
+
+.has-feedback-left>.form-control {
+	padding-left: 30px;
+}
+
+.form-control {
+	border-color: #e0e0e0;
+}
+
+#login-form form {
+	padding: 15px 30px;
+	position: relative;
+}
+
+#login-form .form-group>label {
+	color: #666;
+}
+
+#login-form button[type="submit"] {
+	margin-top: 20px;
+	font-weight: bolder;
+	letter-spacing: 8px;
+	outline: none;
+}
+
+#signup {
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 30px;
+}
+
+#signup:after, #signup:before {
+	background-color: #ddd;
+	content: "";
+	height: 1px;
+	position: absolute;
+	top: 19px;
+	width: 50%;
+}
+
+#signup:after {
+	background-image: -webkit-gradient(linear, left top, right top, from(#ddd),
+		to(#fff));
+	background-image: -webkit-linear-gradient(left, #ddd, #fff);
+	background-image: -moz-linear-gradient(left, #ddd, #fff);
+	background-image: -ms-linear-gradient(left, #ddd, #fff);
+	background-image: -o-linear-gradient(left, #ddd, #fff);
+	background-image: linear-gradient(left, #ddd, #fff);
+	left: 50%;
+}
+
+#signup:before {
+	background-image: -webkit-gradient(linear, right top, left top, from(#ddd),
+		to(#fff));
+	background-image: -webkit-linear-gradient(right, #ddd, #fff);
+	background-image: -moz-linear-gradient(right, #ddd, #fff);
+	background-image: -ms-linear-gradient(right, #ddd, #fff);
+	background-image: -o-linear-gradient(right, #ddd, #fff);
+	background-image: linear-gradient(right, #ddd, #fff);
+	left: 0;
+}
+
+#signup .text {
+	position: absolute;
+	left: 50%;
+	top: 9px;
+	background-color: #fff;
+	width: 80px;
+	height: 30px;
+	margin-left: -40px;
+	text-align: center;
+	z-index: 2;
+}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title">
+		请登录优软商城
+		<a class="pull-right text-muted" ng-click="cancel()" title="关闭">
+			<i class="fa fa-close"></i>
+		</a>
+	</h3>
+</div>
+<div class="modal-body">
+	<div class="row" >
+		<div class="col-xs-8 col-xs-offset-2">
+			<div id="login-form">
+				<form ng-submit="login(user)" name="myform" novalidate>
+					<div class="form-group">
+						<label class="f14">登录账号:</label>
+						<div class="has-feedback-left">
+							<span class="fa fa-user form-control-feedback-left"></span> 
+							<input type="text" class="form-control" placeholder="手机号/邮箱/个人UU号"
+								ng-model="user.j_username" name="j_username" required
+								ng-readonly="$enSelect" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="f14">登录密码:</label>
+						<a href="http://www.ubtob.com/serve#/self/forget_pwd1" class="pull-right text-muted">忘记登录密码?</a>
+						<div class="has-feedback-left">
+							<span class="fa fa-lock form-control-feedback-left"></span> 
+							<input type="password" class="form-control" placeholder="密码"
+								ng-model="user.j_password" name="j_password" required
+								ng-readonly="$enSelect" >
+						</div>
+					</div>
+					<div class="form-group" ng-show="$enSelect">
+						<p>
+							<span class="text-primary"><i class="fa fa-fw fa-warning"></i>请选择其中一个企业登录</span>
+							<a ng-click="cancelSelect()" class="pull-right">重新输入账号</a>
+						</p>
+						<div class="radio" ng-repeat="enterprise in enterprises">
+							<label> 
+								<input type="radio" name="choose" 
+									ng-model="user.t_enuu" value="{{enterprise.uu}}" checked>
+								<span ng-bind="enterprise.enName"></span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<div>
+							<button class="btn btn-block btn-theme" type="submit">登录</button>
+						</div>
+					</div>
+					<div id="signup">
+						<a href="http://www.ubtob.com/signup" class="text">免费注册</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<div class="row">
+		<div class="col-xs-12">
+			
+		</div>
+	</div>
+</div>

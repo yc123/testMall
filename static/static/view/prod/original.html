@@ -1,0 +1,128 @@
+<style>
+	#original {box-sizing: border-box;padding: 0;margin:0;}
+	#original {-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+	#original {font-size: 12px;background: #fff;color: #323232;}
+	#original ol,table,tr,td,ul,li,dt,dd,dl,h1,h2,h3,h4,h5,h6,form,input,select,textarea,p,em,i,b,strong,span{font-size: 12px;font-weight: normal;list-style-type:none;font-style: inherit;}
+	#original a{text-decoration: none; color: #323232;}
+	#original a:hover{text-decoration: none;}
+	#original img{border: none;}
+	#original input,button,select,textarea{outline:none}
+	#original .clearfix:before,.clearfix:after{display:table;content:'';line-height:0;}
+	#original .clearfix:after{clear:both;}
+	#original .clear{clear:both;}
+	#original .fl{float: left;}
+	#original .fr{float: right;}
+	#original .textmore{display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+	#original .no-space{display: flex;}
+	/*热卖产品*/
+	#original .wrap{width:1190px;margin:0 auto;}
+	#original .hot-banner{width: 100%;height: 336px;background: #ce1a39;text-align: center;line-height: 336px;/* margin-bottom: 16px;*/}
+	#original .hot-banner img{vertical-align: middle;}
+	#original .hot-content{width: 100%;margin: 0 auto;}
+	#original .hot-content .hot-head{width: 100%;margin: 0 auto;height: 76px;line-height:90px;background: url("static/img/product/original/hot-headbg.png") no-repeat;text-align: center;color: #ffc600;font-size: 28px;}
+	#original .hot-content .hot-head img{margin-right: 8px;position: relative;top: -3px;}
+	#original .hot-content .bg01{background: #d1e0fe url("static/img/product/original/hot-headbg.png") no-repeat;}
+	#original .hot-center{width: 100%;margin: 0 auto;background: #d1e0fe;padding-top: 10px;}
+	#original .hot-center-1{width:1176px;margin: 0 auto;}
+	#original .hot-center-1 .hot-pro, .hot-center-1 .hot-pro a{width: 386px;height: 408px;float: left;display: inline-block;background: #fff;}
+	#original .hot-center-1 .hot-pro p{width: 100%;height: 344px;margin: 0;text-align: center;line-height: 344px;overflow: hidden;}
+	#original .hot-center-1 .hot-pro p img{vertical-align: middle; max-width: 300px;max-height: 300px;}
+	#original .hot-center-1 .hot-pro span{width: 100%;height: 64px;display: inline-block;text-align: center;background: #f2f1f2;overflow: hidden;}
+	#original .hot-center-1 .hot-pro span em{width: 90%;font-size: 18px;margin: 0 auto;line-height: 25px;color: #787878;display: inline-block;margin-top: 6px;}
+	#original .hot-center-1 .hot-pro span em.line01{line-height: 64px;margin-top: 0;}
+	#original .hot-center-1 .hot-pro a:hover p{border: #5078cb 1px solid;}
+	#original .hot-center-1 .hot-pro a:hover img{transform: scale(1.1); transition: transform 0.1s ease-in;}
+	#original .hot-center-1 .hot-pro a:hover span{background: #5078cb; transition: background .1s ease-out;}
+	#original .hot-center-1 .hot-pro a:hover span em{color: #fff;}
+	#original .hot-center-1 .hot-pro{margin-right: 8px;}
+	#original .hot-center-1 .hot-pro:last-child{margin-right: 0 !important;}
+	#original .hot-center-2{width:1176px;margin: 0 auto;margin-top: 16px;background: #fff;}
+	#original .hot-center-2 ul{width: 100%;margin: 0 auto;padding: 0;}
+	#original .hot-center-2 ul li{width: 20%;float: left;text-align: center;height:352px;}
+	#original .hot-center-2 ul li a{width: 100%;height: 100%;display: inline-block;}
+	#original .hot-center-2 ul li p{width: 100%;height: 260px;display: inline-block;text-align: center;line-height: 250px;overflow: hidden;}
+	#original .hot-center-2 ul li p img{vertical-align: middle; max-width: 132px;}
+	#original .hot-center-2 ul li span{width: 100%;height:92px;display: inline-block;text-align: center;overflow: hidden;}
+	#original .hot-center-2 ul li span em{width: 90%;font-size: 18px;margin: 0 auto;line-height: 25px;color: #787878;display: inline-block;margin-top: 20px;}
+	#original .hot-center-2 ul li a:hover p img{transform: scale(1.1);}
+	#original .hot-center-2 ul li a:hover span em{color: #5078cb;}
+	#original .hot-center-2 ul li a:hover{border: #5078cb 1px solid;}
+	#original .hot-center-2 ul li a span em.line02{line-height: 92px;margin-top: 0;}
+	#original .pad-b10{ padding-bottom: 10px;}
+</style>
+<!--hot banner-->
+<div id="original">
+	<div class="hot-banner">
+		<a href="#"><img src="static/img/product/original/hot-banner.png"></a>
+	</div>
+	<!--hot content-->
+	<div class="hot-content">
+		<div class="wrap">
+			<div class="hot-head"><img src="static/img/product/original/hot.png">热销专区</div>
+			<div class="hot-center clearfix">
+				<div class="hot-center-1 clearfix">
+					<div class="hot-pro" ng-repeat="pro in hotProTop">
+						<a ng-href="store/{{pro.storeid}}#/batchInfo/{{pro.batchCode}}" title="">
+							<p><img src="{{pro.img}}" alt=""></p>
+							<span><em>{{pro.code}}</em></span>
+						</a>
+					</div>
+				</div>
+				<div class="hot-center-2 clearfix">
+					<ul>
+						<li ng-repeat="pro in hotProCenter">
+							<a ng-href="store/{{pro.storeid}}#/batchInfo/{{pro.batchCode}}" title="">
+								<p><img src="{{pro.img}}" alt=""></p>
+								<span><em>{{pro.code}}</em></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="bg01 hot-head"><img src="static/img/product/original/hot-new.png">人气新品</div>
+			<div class="hot-center clearfix pad-b10">
+				<div class="hot-center-1 clearfix">
+					<div class="hot-pro" ng-repeat="pro in newProTop">
+						<a ng-href="store/{{pro.storeid}}#/batchInfo/{{pro.batchCode}}" title="">
+							<p><img src="{{pro.img}}" alt=""></p>
+							<span><em>{{pro.code}}</em></span>
+						</a>
+					</div>
+				</div>
+				<div class="hot-center-2 clearfix">
+					<ul>
+						<li ng-repeat="pro in newProCenter">
+							<a ng-href="store/{{pro.storeid}}#/batchInfo/{{pro.batchCode}}" title="">
+								<p><img src="{{pro.img}}" alt=""></p>
+								<span><em>{{pro.code}}</em></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		//产品字数超过两行时改变样式01
+		$(".hot-pro a span em").each(function(){
+			var text=$(this).text().length;
+			if(text<20){
+				$(this).addClass("line01");
+			}else {
+				$(this).removeClass("line01");
+			}
+		});
+		//产品字数超过两行时改变样式01
+		$(".hot-center-2 li span em").each(function(){
+			var text=$(this).text().length;
+			if(text<20){
+				$(this).addClass("line02");
+			}else {
+				$(this).removeClass("line02");
+			}
+		});
+	})
+</script>

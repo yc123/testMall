@@ -1,0 +1,283 @@
+<style>
+h5 {
+	font-weight: 700;
+}
+ul, ol, td {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.main {
+	margin: 20px auto;
+	width: 100%;
+	padding: 3px 3px;
+}
+.main .main-s{
+	border: 1px solid #d2d2d2;
+	margin-bottom: 15px;
+}
+.main-l dl:after, .main-l:after, .main-l ul:after {
+	clear: both;
+	content: " ";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+.main-l{
+	margin-top: 8px;
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+.main-l dl, .main-l dt,.main-l dd {
+	float: left;
+}
+.main-l dt {
+	width: 100px;
+	font-weight: bold;
+	text-align: right;
+	margin-right: 10px;
+}
+.main-l .main-dd{
+	width: 950px;
+	margin-bottom: -20px;
+}
+.main-l .main-d {
+	width: 950px;
+	max-height: 25px;
+}
+.main-l li {
+	float: left;
+	width: 137px;
+	margin-right: 18px;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.main-l li .active{
+	padding: 5px;
+	color: #fff;
+	background: #3c9cff;
+}
+.main-r {
+	float: right;
+	margin-right: 10px;
+}
+.content{
+	margin: 10px 0 20px 0;;
+}
+.content:after {
+    clear: both;
+    display: block;
+    content: "";
+}
+.main .content-f{
+	float: left;
+}
+.main  .content-r{
+	float: right;;
+}
+.samples-h2 {
+    font-family: 微软雅黑;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+.sample-list{
+	width: 225px;
+    height: 220px;
+    margin: 0;
+    float: left;
+   	border-left: 1px solid #e8e8e8;
+    background-color: #f0f7fd;
+}
+.sample-list a{
+	text-decoration:none;
+}
+.sample-list .a1:hover{
+	left:45px;
+	transition: left 0.5s ease;
+	-moz-transition: left 0.5s ease; /* Firefox 4 */
+	-webkit-transition: left 0.5s ease; /* Safari 和 Chrome */
+	-o-transition: left 0.5s ease; /* Opera */
+}
+.a2{
+	position: relative;
+	left: 75px;
+	bottom: 15px;
+}
+.a2-r{
+	position: relative;
+	left: 60px;
+	bottom: 15px;
+}
+.a1{
+	position: relative;
+	left: 50px;
+	top: 25px;
+} 
+.a1 .brandLogo{
+	margin-top: 53px;
+	margin-left: -8px;
+	max-width: 150px;
+	max-height: 100px;
+}
+.main .proofList{
+	width: 100%;
+	height: auto;
+	border: 1px solid #d2d2d2;
+	border-top: 2px solid #89c1ff;
+	margin: 15px 0 15px 0;
+}
+.proofList:after {
+	clear: both;
+	display: block;
+	content: "";
+}
+.proofList .main-proof{
+	padding: 20px 20px;
+}
+.proofList .img {
+	width: 80px;
+	height: 80px;
+	margin-right: 15px;
+}
+.proofList .pro-title {
+	width: 720px;
+	padding: 10px 10px 10px 20px;
+	height: 115px;
+}
+.proofList .pro-r {
+	padding: 15px 10px 0 0;
+}
+.proofList .pro-r div{
+	margin-top: 10px;
+}
+.proofList table>tbody+tbody {
+	border-top: none;
+}
+.proofList .table tr td {
+	border-top: 1px solid #F5EFEF;
+}
+.proofList .table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: none;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.main-s .total .ng-table-pager .pull-right ul>li {
+	float: left;
+    list-style: none;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: -2px;
+    border-left: 2px #fff solid;
+    border-right: 2px #fff solid;
+    width: inherit;
+}
+</style>
+<div class="main">
+	<!-- 广告图片  -->
+	<div>
+		<ul>
+			<li>
+				<img alt="样片中心" title="样片中心" src="static/img/product/factory.png" width="100%" height="200">
+			</li>
+		</ul>
+	</div>
+	<!-- 样品展示 -->
+	<div class="content">
+		<!-- 推荐样品  -->
+		<div class="content-f">
+			<h2 class="samples-h2">推荐品牌</h2>
+			<div class="sample-list">
+	 		 		<a class="a1" ng-href="product#/brand/30327265e47d871be050007f01003d96/">
+	 		 			<img ng-src="" lazy-load="http://218.17.158.219:8020/images/a057e1d32778406ab6beab411c9c4519_!!200040149.PNG"
+	 		 			 alt="松下" class="brandLogo">
+	 		 		</a>		
+	 		 	<center><h5 style="margin: 40px 25px;"><a ng-href="product#/brand/30327265e47d871be050007f01003d96/">松下</a></h5></center>
+	 		</div>
+	 		<div class="sample-list">
+ 				<a class="a1" ng-href="product#/brand/147fe5544d7544a59dcf26da7d49a47c/">
+ 		 			<img ng-src="" lazy-load="http://dfs.ubtoc.com/group1/M00/0E/E7/CgpkyFfh9DuAeEw7AAAOPb-Wyx8547.gif"
+ 		 			 alt="海华" class="brandLogo">
+ 		 		</a>	
+	 		 	<center><h5 style="margin: 40px 25px;"><a ng-href="product#/brand/147fe5544d7544a59dcf26da7d49a47c/">海华</a></h5></center>
+	 		</div>
+		</div>
+		<!-- 最新上架样品  -->
+		<div class="content-f" style="margin-left: 8px;">
+			<h2 class="samples-h2">最新上架产品</h2>
+	 		<div class="sample-list" ng-repeat="component in recommends">
+	 		 	<p>
+	 		 		<a class="a1" ng-href="product#/component/{{component.uuid}}/">
+	 		 			<img ng-src="" lazy-load="{{component.img || 'static/img/all/default.png'}}" alt="{{component.code}}" width="100" height="100">
+	 		 		</a>		
+	 		 		<a class="a2"><img src="static/img/product/factory_png.png"></a>
+	 		 	</p>
+	 		 	<center><h5 style="margin: 40px 25px;"><a ng-bind="component.code" ng-href="product#/component/{{component.uuid}}/"></a></h5></center>
+	 		</div>
+		</div>
+		<!-- 样品申请排行  -->
+		<div></div>
+	</div>
+    <!-- 样品分类显示 -->
+    <div class="main-s">
+           <div style="padding: 0 12px 0 15px;">	
+			<div class="total row clearfix" >
+				<div class="col-xs-1 total-content">产品分类</div>
+				<div class="col-xs-3 col-xs-offset-8">
+					<div ng-table-pagination="paginationParams" template-url="templates.pagination">
+						<div class="ng-table-pager" ng-if="paginationParams.data.length">
+							<div ng-if="paginationParams.settings().counts.length" class="pull-right">
+								<ul>
+									<li ng-repeat="count in paginationParams.settings().counts" ng-class="{'btnactive':paginationParams.count()==count}"><a ng-click="paginationParams.count(count)" ng-bind="count"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="main-l">
+            <dl>
+                <dt> 类目分类:</dt>
+                <dd ng-class="{'main-d': myflag.flag, 'main-dd': !myflag.flag}">
+                    <ul>
+                        <li ng-repeat="kind in kinds"><a ng-class="{'active': myflag.activeid == kind.id}" ng-bind="kind.nameCn" ng-click="searchKind(kind,$index)"></a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <div class="main-r">
+                <a class="btn btn-default btn-sm" ng-click="onFlag()" ng-if="myflag.flag">更多&nbsp;<i class="fa fa-angle-double-down"></i></a>
+                <a class="btn btn-default btn-sm" ng-click="onFlag()" ng-if="!myflag.flag">收起&nbsp;<i class="fa fa-angle-double-up"></i></a>
+            </div>
+        </div>
+    </div>
+	<!-- 搜索框 -->
+	<div class="search row" style="margin-bottom: 10px;">
+		<div class="col-xs-1">
+			<p style="margin-top: 8px;width: 80px;">
+				共<span class="badge">{{componentTableParams.total()}} </span>条
+			</p>
+		</div>
+		<div class="col-xs-4 pull-right">
+			<div class="input-group">
+				<input type="search" class="form-control" ng-model="keyword"
+					ng-search="onSearch()" placeholder="请输入产品型号查询">
+				<span class="input-group-btn">
+					<button ng-click="onSearch()" class="btn btn-default" type="button">搜索</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<!-- 样品展示列表 -->
+	<div ng-controller="OriginalGoodsListCtrl">
+		<div ng-include src="'static/view/common/originalGoods_list.html'"></div>
+	</div>
+</div>

@@ -1,0 +1,214 @@
+<style>
+.title {
+    padding: 10px 15px;
+    overflow: hidden;
+}
+
+.box-content {
+	margin: 5px 10px 0px 20px;
+}
+
+.btn-ensure {
+ 	width: 60px;height: 30px;
+}
+
+.title-label {
+    height: 35px;
+    line-height: 35px;
+}
+
+.price-break {
+	width: 400px;
+	pull-right;
+}
+
+#head {
+	padding: 10px;
+	font-size: 14px;
+	text-align: auto;
+}
+
+#body {
+	padding:  5px;
+}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title" style="font-weight: 700">产品信息编辑</h3>
+</div>
+<form class="form-horizontal" name="myForm" novalidate>
+	<div class="modal-body">
+		<div class="form-group">
+			<label class="col-md-3 control-label">中文品牌:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="brandNameCn" ng-model="proInfo.brandNameCn" style="width: 250px; height: 25px;" type="text">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">英文品牌:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="brandNameEn" ng-model="proInfo.brandNameEn" style="width: 250px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">产品型号:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="code" ng-model="proInfo.code" style="width: 250px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">单位:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="unit" ng-model="proInfo.unit" style="width: 100px; height: 25px;" required disabled="true">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">类型:</label>
+			<div class="col-md-5">
+				<select class="form-control input-sm" ng-model="proInfo.original" ng-init="proInfo.original" style="width:100px">
+					<option value="1311">现货</option>
+					<option value="1312">呆滞库存</option>
+				</select>
+			</div>
+		</div>
+<!-- 		<div class="form-group">
+			<label class="col-md-3 control-label">发货地区:</label>
+			<div class="col-md-5">
+				<select class="form-control input-sm" ng-model="proInfo.shipArea" style="width:100px">
+					<option value="domestic">国内发货</option>
+					<option value="overseas">国外发货</option>
+					<option value="all">所有</option>
+				</select>
+			</div>
+		</div> -->
+		<div class="form-group">
+			<label class="col-md-3 control-label">发布数量:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="reserve" ng-model="proInfo.reserve" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">数量价格分段:</label>
+		</div>
+		<div class="form-group" ng-model="proInfo.prices">
+			<div class="row" >
+				<div class="col-md-offset-1 col-md-12" id="head">
+					<div class="col-md-2">操作</div>
+					<div class="col-md-2">最小值</div>
+					<div class="col-md-2">最大值</div>
+					<div class="col-md-2">RMB</div>
+					<div class="col-md-2">USD</div>
+				</div>
+				<div class="col-md-offset-1 col-md-12" ng-repeat="price in pricesList" id="body">
+					<div class="col-md-2" ng-if="$first"><a ng-click="addPrice()"><button class="btn btn-primary btn-ensure">增加</button></a></div>
+					<div class="col-md-2" ng-if="!$first"><a ng-click="deletePrice($index)" ><button class="btn btn-danger btn-ensure">删除</button></a></div>
+					<div class="col-md-2"><input class="form-control input-sm "
+						name="start" ng-model="price.start" type="text"  disabled="true"></div>
+					<div class="col-md-2"><input class="form-control input-sm col-md-2"
+						name="end" ng-model="price.end" type="text" required></div>
+					<div class="col-md-2"><input class="form-control input-sm col-md-2"
+						name="rmbPrice" ng-disabled="proInfo.currency == 'USD'" ng-model="price.rMBPrice" type="text" required></div>
+					<div class="col-md-2"><input class="form-control input-sm col-md-2" name="usdPrice"
+						ng-disabled="proInfo.currency == 'RMB'" ng-model="price.uSDPrice" type="text" AUTOCOMPLETE="OFF" required></div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">产品生产日期:</label>
+			<div class="col-md-5">
+				<datetrigger name="productDate" model="proInfo.productDate"
+					format="yyyy-MM-dd" max-date="maxDate"
+					style="line-height: 28px; border-radius: 5px; width: '100%'; font-size: 10px;">
+				</datetrigger>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">最小包装量:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="minPackage" ng-model="proInfo.minPackage" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">RMB最小包装单价（含税17%）:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="rmbPrice" ng-model="proInfo.rmbPrice" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">USD最小包装单价:</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="usdPrice" ng-model="proInfo.usdPrice" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">交货周期(大陆):</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="deliveryTime" ng-model="proInfo.deliveryDemTime" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">最短交期(大陆):</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="mindeliveryTime" ng-model="proInfo.mindeliveryDemTime" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">最长交期(大陆):</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="maxdeliveryTime" ng-model="proInfo.maxdeliveryDemTime" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">交货周期(香港):</label>
+			<div class="col-md-5">
+				<input class="form-control input-sm" name="deliveryTime" ng-model="proInfo.deliveryHKTime" style="width: 100px; height: 25px;" type="text" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">最短交期(香港):</label>
+				<div class="col-md-5">
+					<input class="form-control input-sm" name="mindeliveryTime" ng-model="proInfo.mindeliveryHKTime" style="width: 100px; height: 25px;" type="text" required>
+				</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-3 control-label">最短交期(香港):</label>
+				<div class="col-md-5">
+					<input class="form-control input-sm" name="maxdeliveryTime" ng-model="proInfo.maxdeliveryHKTime" style="width: 100px; height: 25px;" type="text" required>
+				</div>
+		</div>
+		<!-- <div class="form-group">
+			<label class="col-md-3 control-label">税率:</label>
+			<div class="col-md-5">
+				<select class="form-control input-sm" ng-model="proInfo.tax" ng-init="proInfo.tax" style="width:100px">
+					<option value="0">0</option>
+					<option value="17">17</option>
+				</select>
+			</div>
+		</div> -->
+<!-- 		<div class="form-group">
+			<label class="col-md-3 control-label">同意7天退货:</label>
+			<div class="col-md-5">
+				<select class="form-control input-sm"
+					ng-model="proInfo.returnInWeek" ng-init="proInfo.returnInWeek"
+					style="width: 100px">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</div>
+		</div> -->
+		<div class="form-group">
+			<label class="col-md-3 control-label">备注:</label>
+			<div class="col-md-5">
+				<textarea class="form-control" name="demand"
+					ng-model="proInfo.remark" rows="3" style="width: 250px"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+			<center>
+				<button class="btn btn-primary btn-ensure" type="submit"
+					ng-disabled="!myForm.$valid" ng-click="updateInfo(proInfo)">提交</button>
+					<button class="btn btn-danger btn-ensure" ng-click="cancel()">取消</button>
+			</center>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,61 @@
+<style>
+    .row {
+        margin-bottom: 10px;
+    }
+</style>
+<div>
+    <div class="box-header well">
+        搜索预览
+    </div>
+    <div  class="box-content">
+        <div class="row">
+            <div class="col-xs-1">
+                <p style="margin-top: 8px; font-weight: bold;">
+                    共<span class="totalNum">{{result.total}}</span>条
+                </p>
+                <p style="margin-top: 8px; font-weight: bold;">
+                    共耗时<span class="totalNum">{{searchtime}}</span>ms  <br><br>
+                    类目统计共耗时 {{kindtime}} ms <br><br>
+                    品牌统计共耗时 {{brandtime}} ms
+                </p>
+            </div>
+            <div class="col-xs-offset-4 col-xs-7">
+                <div class="input-group">
+                    <input type="search" style="width:80%;" class="form-control" ng-model="keyword" ng-change="onChange()" ng-search="search()" ng-focus="onFocus()" ng-blur="onBlur()" ng-keyup="onKeyup()"placeholder="型号/类目/品牌">
+                    <span class="input-group-btn">
+					<button ng-click="search()" class="btn btn-primary" type="button">搜索</button>
+				</span>
+                </div>
+
+            </div>
+        </div>
+        <!--
+            <div class="row">
+                <div class="col-xs-offset-9 col-xs-4">
+                    <a class="btn btn-primary" ng-click="addKeyWord()"><i class="fa fa-plus"></i>添加关键词</a>
+                    <a class="btn btn-primary" ng-click="addKeyWords()"><i class="fa fa-plus"></i>批量添加关键词</a>
+                </div>
+            </div>
+            -->
+        <p ng-model="test"></p>
+        <table ng-table="searchLogTableParams"
+               class="table table-bordered table-striped table-hover" style="word-break:break-all; word-wrap:break-all;">
+            <thead>
+            <tr class="tr-default">
+                <th width="10%;" class="text-center">用户UU号</th>
+                <th width="7%;" class="text-center">企业UU号</th>
+                <th width="10%" class="text-center">搜索词</th>
+                <th width="30%" class="text-center">搜索时间</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="logUsage in $data">
+            <tr class="text-center">
+                <td><span ng-bind="logUsage.userUU"></span></td>
+                <td><span ng-bind="logUsage.userEnuu"></span></td>
+                <td><span ng-bind="logUsage.keyword"></span></td>
+                <td><span ng-bind="logUsage.searchTime | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

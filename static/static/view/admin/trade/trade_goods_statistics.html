@@ -1,0 +1,125 @@
+<style>
+	#goodsStatistics ul>li.newItem {
+		display: inline-block;
+		width: 22%;
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin: 0 10px;
+	}
+
+	#goodsStatistics ul>li.newItem .month,.count {
+		border: 1px solid #ccc;
+		padding: 5px;
+		font-family: sans-serif;
+		font-size: 15px;
+	}
+
+	#goodsStatistics .newTitle {
+		font-weight: 600;
+	}
+</style>
+<div class="row-fluid sortable" id="goodsStatistics">
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 信息统计
+		</div>
+		<div class="box-content row">
+			<div class="fullscreen" style="padding: 10px;">
+				<div class="col-sm-6 f14">
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">在售产品型号数量：</span>
+						<span class="col-sm-4" ng-bind="statistics.codes | number"></span>
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">在售产品类目数量：</span>
+						<span class="col-sm-4" ng-bind="statistics.kinds | number"></span>
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">在售产品品牌数量：</span>
+						<span class="col-sm-4" ng-bind="statistics.brands | number"></span>
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">库存合计：</span>
+						<span class="col-sm-4" ng-bind="statistics.reserves | number"></span>
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">含税金额合计(RMB)：</span>
+						<span class="col-sm-5 text-num">￥
+							<span ng-bind="statistics.sumPriceRMB | number"></span>
+						</span>
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">未税金额合计(RMB)：</span>
+						<span class="col-sm-5 text-num">￥
+							<span ng-bind="statistics.sumPriceRMBNT | number"></span>
+						</span>
+						
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">含税金额合计：</span>
+						<span class="col-sm-4">批次RMB最高单价*库存数量</span>
+					</div>
+				</div>
+				<div class="col-sm-6 f14">
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">产品型号总数量：</span>
+						<span class="col-sm-4" ng-bind="statistics.component"></span>
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">品牌总数量：</span>
+						<span class="col-sm-4" ng-bind="count[0].count"></span>
+					</div>
+					<div class="form-group row">
+						<span class="col-sm-4 text-right">规格书总数量：</span>
+						<span class="col-sm-4" ng-bind="count[3].count"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box">
+		<div class="box-header well" data-original-title>
+			<i class="icon-user"></i> 各月新增信息统计
+		</div>
+		<div class="box-content">
+			<ul class="fullscreen row f14" style="padding: 10px;">
+				<li class="newItem row">
+					<div class="text-center form-group newTitle">各月新增器件数量</div>
+					<div class="col-xs-6 form-group text-center">月份</div>
+					<div class="col-xs-6 form-group text-center">数量</div>
+					<div ng-repeat="increaseCmp in increaseCmpCount | orderBy : 'MONTH'" class="form-group">
+						<div class="col-xs-6 form-group text-center month" ng-bind="::increaseCmp.MONTH"></div>
+						<div class="col-xs-6 form-group text-right count" ng-bind="::increaseCmp.COUNT | number"></div>
+					</div>
+				</li>
+				<li class="newItem row">
+					<div class="text-center form-group newTitle">各月新增品牌数量</div>
+					<div class="col-xs-6 form-group text-center">月份</div>
+					<div class="col-xs-6 form-group text-center">数量</div>
+					<div ng-repeat="increase in increaseBrandCount | orderBy : 'MONTH'" class="form-group">
+						<div class="col-xs-6 form-group text-center month" ng-bind="::increase.MONTH"></div>
+						<div class="col-xs-6 form-group text-right count" ng-bind="::increase.COUNT | number"></div>
+					</div>
+				</li>
+				<li class="newItem row">
+					<div class="text-center form-group newTitle">各月新增批次数量</div>
+					<div class="col-xs-6 form-group text-center">月份</div>
+					<div class="col-xs-6 form-group text-center">数量</div>
+					<div ng-repeat="increase in increaseBatchCount | orderBy : 'MONTH'" class="form-group">
+						<div class="col-xs-6 form-group text-center month" ng-bind="::increase.MONTH"></div>
+						<div class="col-xs-6 form-group text-right count" ng-bind="::increase.COUNT | number"></div>
+					</div>
+				</li>
+				<li class="newItem row">
+					<div class="text-center form-group newTitle">各月新增在售器件数量</div>
+					<div class="col-xs-6 form-group text-center">月份</div>
+					<div class="col-xs-6 form-group text-center">数量</div>
+					<div ng-repeat="increase in increaseInSaleCmpCount | orderBy : 'MONTH'" class="form-group">
+						<div class="col-xs-6 form-group text-center month" ng-bind="::increase.MONTH"></div>
+						<div class="col-xs-6 form-group text-right count" ng-bind="::increase.COUNT | number"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<style>
+.margin15 {
+	margin-left: 15px; 
+	margin-right: 15px;
+	font-size: 15px;
+	font-weight: 500;
+	width: 16%;
+}
+
+.divinline {
+	display: inline-block;
+	width: 50%;
+}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title" style="font-weight: 700">{{title}}</h3>
+</div>
+<form class="form-horizontal" style="margin-left: 34px;" name="myForm" novalidate>
+	<div class="modal-body">
+			<div class="form-group">
+		    	<label class="margin15">开户银行：</label>
+		    	<div class="divinline">
+		    		<input name="bankname" ng-model="account.bankname" type="text" class="form-control" placeholder="开户行信息" required>
+		  		</div>
+		  	</div>
+		  	<div class="form-group">
+		  		<label class="margin15">开户人名称：</label>
+		  		<div class="divinline">
+		    		<input name="accountname" ng-model="account.accountname" type="text" class="form-control" placeholder="开户名称" required>
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
+		  		<label class="margin15">银行账号:</label>
+		  		<div class="divinline">
+		  			<input name="number" ng-model="account.number" type="text" class="form-control" 
+		  			placeholder="填写银行账号" ng-pattern="/^[0-9]*$/" required 
+		  			ng-minlength="8" ng-maxlength="30">
+		  		</div>
+		  	</div>
+	</div>
+	<div class="modal-footer">
+		<input class="btn btn-primary" type="submit" ng-disabled="!myForm.$valid" ng-click="confirm()" value="确认"></input>
+		<button class="btn btn-warning" ng-click="cancel()">取消</button>
+	</div>
+</form>

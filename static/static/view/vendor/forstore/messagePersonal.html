@@ -1,0 +1,242 @@
+<style>
+    #massage .ng-table-pagination a {
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    #massage ul.pagination.ng-table-pagination > li > a > span {
+        height: 17px;
+        line-height: 17px;
+    }
+    #massage div.ng-table-pager {
+        margin-right: 0 !important;
+    }
+    #massage div.ng-table-pager .pagination {
+        margin: 0;
+    }
+    #massage div.ng-table-pager  input.page-number {
+        vertical-align: inherit;
+        display: inline-block;
+        width: 37px;
+        height: 28px;
+        padding: 6px 6px;
+        font-size: 12px;
+        line-height: 1.42857143;
+        color: #9B9792;
+        text-align: center;
+        background-color: #F6F5F4;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+
+    #massage div.ng-table-pager a.page-a {
+        color: #fff;
+        cursor: pointer;
+        background-color: #4574E8;
+        border-color: #4574E8;
+        padding: 5.55px 6px;
+        font-size: 12px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        text-decoration: none;
+        height: 31px;
+    }
+
+    #massage div.ng-table-pager div.page-go-block {
+        float: right;
+        font-size: 0px;
+        height: 31px;
+        margin-top: 20px;
+        line-height: 31px;
+    }
+    #massage .ng-table-pager .ng-table-pagination{
+        text-align: center;
+        max-width: 460px;
+    }
+    #massage .ng-table-pager .ng-table-pagination a{
+        color: #4574E8 !important;
+        height: 31px;
+        line-height: 13px;
+    }
+    #massage .no-message {
+        font-size: 14px;
+        text-align: center;
+        line-height: 50px;
+    }
+</style>
+<div class="user_right fr" id="massage">
+    <!--订单中心-->
+    <div class="oder">
+        <div class="oder01">
+            <ul>
+                <li class="active"><a href="javascript:void(0)"> 全部(<span ng-bind="messageAllData.totalElements || 0"></span>)</a></li>
+            </ul>
+            <div class="select">
+                <select name="" class="select-adder form-control" ng-change="chooseClasses()" ng-model="classes">
+                    <option value="">全部</option>
+                    <option value="售后信息">售后信息</option>
+                    <option value="订单信息">订单信息</option>
+                    <option value="物流信息">物流信息</option>
+                    <option value="促销活动">促销活动</option>
+                    <option value="重要公告">重要公告</option>
+                    <option value="系统通知">系统通知</option>
+                    <option value="提醒发货">提醒发货</option>
+                    <option value="缺货预警">缺货预警</option>
+                </select>
+            </div>
+            <div class="filter-list">
+                <a ng-click="orderTime()">时间<i class="fa fa-long-arrow-up" aria-hidden="true" ng-show="params.timeSorting == 'ASC'"></i><i class="fa fa-long-arrow-down" aria-hidden="true" ng-show="params.timeSorting == 'DESC'"></i></a>
+                <a ng-click="deleteBatch()">删除</a>
+                <label class="check-active">
+                    <input type="checkbox" id="isChooseAll" ng-click="chooseAll()" ng-model="isChoosedAll">
+                    <label for="isChooseAll"></label>
+                    <span style="margin-left: 0;">全选</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="com-massage">
+        <ul>
+            <li ng-repeat="message in messageCurrent">
+                <div ng-if="message.messageText.classes=='新闻公告'" ng-click="readMessage(message)">
+                    <a href="#"><div class="icon icon-log"></div></a>
+                    <div class="content">
+                        <p><span ng-bind="message.messageText.classes"></span><time ng-bind="message.messageText.sendTime | date:'yyyy-MM-dd HH:mm'"></time></p>
+                        <p ng-bind-html="message.messageText.content"></p>
+                    </div>
+                    <div class="check"><input type="checkbox" id="check01" ng-model="message.isChoosed" ng-click="chooseOne(message)"><label for="check01"></label></div>
+                </div>
+                <div ng-if="message.messageText.classes=='重要公告'" ng-click="readMessage(message)">
+                    <a href="#"><div class="icon icon-service"></div></a>
+                    <div class="content">
+                        <p><span ng-bind="message.messageText.classes"></span><time ng-bind="message.messageText.sendTime | date:'yyyy-MM-dd HH:mm'"></time></p>
+                        <p ng-bind-html="message.messageText.content"></p>
+                    </div>
+                    <div class="check"><input type="checkbox" id="check02" ng-model="message.isChoosed" ng-click="chooseOne(message)"><label for="check02"></label></div>
+                </div>
+                <div ng-if="message.messageText.classes=='订单信息'" ng-click="readMessage(message)">
+                    <a href="#"><div class="icon icon-system"></div></a>
+                    <div class="content">
+                        <p><span ng-bind="message.messageText.classes"></span><time ng-bind="message.messageText.sendTime | date:'yyyy-MM-dd HH:mm'"></time></p>
+                        <div ng-bind-html="message.messageText.content"></div>
+                    </div>
+                    <div class="check"><input type="checkbox" id="check03" ng-model="message.isChoosed" ng-click="chooseOne(message)"><label for="check03"></label></div>
+                </div>
+                <div  ng-if="message.messageText.classes=='卖家留言'" ng-click="readMessage(message)">
+                    <a href="#"><div class="icon icon-massage"></div></a>
+                    <div class="content">
+                        <p><span ng-bind="message.messageText.classes"></span><time ng-bind="message.messageText.sendTime | date:'yyyy-MM-dd HH:mm'"></time></p>
+                        <p ng-bind-html="message.messageText.content"></p>
+                    </div>
+                    <div class="check"><input type="checkbox" id="check04" ng-model="message.isChoosed" ng-click="chooseOne(message)"><label for="check04"></label></div>
+                </div>
+            </li>
+            <li ng-if="messageCurrent.length == 0" class="text-center no-message">
+                <div>暂无消息记录</div>
+            </li>
+        </ul>
+    </div>
+    <div class="ng-cloak ng-table-pager text-right" ng-if="pages.length">
+        <ul class="pagination ng-table-pagination">
+            <li ng-class="{'disabled': !page.active && !page.current, 'active': page.current}" ng-repeat="page in pages" ng-switch="page.type">
+                <a ng-switch-when="prev" ng-click="setPage(page.type, -1)">&laquo;</a>
+                <a ng-switch-when="first" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                <a ng-switch-when="page" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                <a ng-switch-when="more" ng-click="setPage(page.type, -1)">&#8230;</a>
+                <a ng-switch-when="last" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>
+                <a ng-switch-when="next" ng-click="setPage(page.type, -1)">&raquo;</a>
+            </li>
+        </ul>
+        <div class="page-go-block">
+            <input class="page-number" type="number" ng-model="params.currentPage" ng-keydown="listenEnter()"/>
+            <a class="page-a" ng-click="setPage('page', params.currentPage)">GO</a>
+        </div>
+    </div>
+    <!--<div class="oder_list" style="margin-top: 0;">
+        <div ng-repeat="me in pageMessages.content">
+            <span ng-bind="me.messageText.content"></span>
+        </div>
+    </div>-->
+</div>
+<style>
+    .com-del-box{
+        position: fixed;
+        z-index: 2;
+        height: 152px;
+        opacity: 1;
+        background-color: white;
+        width: 310px;
+        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        margin: -155px 0 0 -75px;
+        top: 55%;
+        left: 50%;
+    }
+    .com-del-box .title{
+        height: 30px;
+        background-color: #5078cb;
+        text-align: right;
+        padding-right: 15px;
+        line-height: 30px;
+    }
+    .com-del-box .title a{
+        color: white;
+        font-size: 16px;
+    }
+    .com-del-box .content{
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 15px;
+    }
+    .com-del-box .content p{
+        line-height: 25px;
+        font-size: 14px;
+    }
+    .com-del-box .content p i{
+        color: #5078cb;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+    .com-del-box .content div{
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    .com-del-box .content div a{
+        width: 55px;
+        height: 26px;
+        line-height: 26px;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+    }
+    .com-del-box .content div a:first-child{
+        background: #b4b5b9;
+        color: #333;
+        margin-right: 10px;
+    }
+    .com-del-box .content div a:last-child{
+        background: #5078cb;
+        color: #fff;
+    }
+    .com-del-box .content div a:hover{
+        background: #3f7ae3;
+        color: #fff;
+    }
+</style>
+<div class="com-del-box" ng-if="isDelete">
+    <div class="title">
+        <a ng-click="cancleDelete()"><i class="fa fa-close fa-lg"></i></a>
+    </div>
+    <div class="content">
+        <p><i class="fa fa-exclamation-circle"></i>删除消息</p>
+        <p style="color: #999; font-size: 12px;">消息删除后不可恢复!</p>
+        <div><a ng-click="cancleDelete()">取消</a><a ng-click="confirmDelete()">确认</a></div>
+    </div>
+</div>

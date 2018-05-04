@@ -1,0 +1,59 @@
+<style>
+.row {
+	margin-bottom: 10px;
+}
+</style>
+<div>
+	<div class="box-header well">
+		属性维护
+	</div>
+	<div  class="box-content">
+		<div class="row">
+			<div class="col-xs-1">
+				<p style="margin-top: 8px; font-weight: bold;">
+					共<span class="totalNum">{{propertiesTableParams.total()}}</span>条
+				</p>
+			</div>
+			<div class="col-xs-offset-4 col-xs-7">
+				<div class="input-group">
+				<input type="search" class="form-control" ng-model="keyword"
+					ng-search="onSearch()" placeholder=请输入属性中文名查询>
+				<span class="input-group-btn">
+					<button ng-click="onSearch()" class="btn btn-primary" type="button">搜索</button>
+				</span>
+			</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-offset-11 col-xs-1">
+				<a ng-click="add()"><i class="fa fa-plus"></i>添加属性</a>
+			</div>
+		</div>
+		
+		<table ng-table="propertiesTableParams"
+			class="table table-bordered table-striped table-hover">
+			<thead>
+				<tr class="tr-default">
+					<th width="20" class="text-center">
+						<div>序号</div>
+					</th>
+					<th width="150" class="text-center">属性中文名</th>
+					<th width="150" class="text-center">属性英文名</th>
+					<th width="50" class="text-center">操作</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="property in $data">
+				<tr class="text-center">
+					<td class="tdcenter">
+						<div>{{$index+1}}</div>
+					</td>
+					<td><span ng-bind="property.labelCn"></span></td>
+					<td><span ng-bind="property.labelEn"></span></td>
+					<td>
+						<button class="btn btn-primary" ng-click="edit(property.id)">编辑</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

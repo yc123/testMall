@@ -1,0 +1,137 @@
+<style>
+.margin-bottom-10 {
+	margin-bottom: 10px;
+}
+</style>
+<div class="row-fluid sortable">		
+	<div class="box span12">
+		<div class="box-header well">
+			<h2><i class="icon-user"></i> 出售中的产品管理</h2>
+		</div>
+		<div class="box-content">
+			<!-- ng-tableStart -->
+			<div class="fullscreen" style="padding: 10px;overflow-y:auto;">
+			<div class="span12">
+				<div class="span1">
+					<p style="margin-top: 8px;">
+						共<span class="badge">{{salingGoodsTableParams.total()}} </span>条
+					</p>
+				</div>
+				<div class="span2">
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn btn-sm btn-default"
+							ng-class="{'btn-primary':active=='available'}"
+							ng-click="setActive('available')">有效</button>
+						<button type="button" class="btn btn-sm btn-default"
+							ng-class="{'btn-primary':active=='unavailable'}"
+							ng-click="setActive('unavailable')">失效</button>
+					</div>
+				</div>
+				<div class="span9">
+					<div class="input-group pull-right">
+						<input type="search" class="form-control" ng-model="keyword"
+							ng-search="onSearch()" placeholder="根据批次号、品牌、类型、型号查询、企业名称">
+							<span class="input-group-btn">
+							<button ng-click="onSearch()" class="btn btn-default margin-bottom-10" type="button">搜索</button>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			</br>
+
+			<table ng-table="salingGoodsTableParams"
+				class="table table-bordered" style="margin-top: 10px;">
+				<thead>
+					<tr>
+						<th width="30">序号</th>
+						<th width="150">批次</th>
+						<th width="auto">上架产品</th>
+						<th width="80">库存类型</th>
+						<th width="90">库存数量</th>
+						<th width="200">价格梯度</th>
+						<th width="200">企业名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="goods in $data" ng-if="active!='tobepurcchange'">
+						<td class="text-center">{{$index + 1}}</td>
+						<td class="text-center">
+							<div>
+								<a ng-href="product/component/{{goods.uuid}}/">
+									<img width="160px" height="120px" alt="{{goods.code}}" ng-src="" lazy-load="{{goods.img}}">
+								</a>
+							</div>
+							<div>
+								<a ng-href="vendor#/goodsDetail/{{goods.batchCode}} | EncryptionFilter">
+									<span ng-bind="goods.batchCode" class="text-num"></span>
+								</a>
+							</div>
+						</td>
+						<td>
+							<div>
+								<a href="product/component/{{goods.uuid}}/"><span class="text-num text-inverse f16" ng-bind="goods.code"></span></a>
+							</div>
+							<div>
+								<span class="text-muted" ng-bind="goods.kindNameCn"></span>
+							</div>
+							<div>
+								<span class="text-muted text-num" ng-bind="goods.brandNameCn"></span>
+							</div>
+							<div title="上架时间" class="text-primary">
+								<i class="fa fa-clock-o"></i> <span class="text-num" ng-bind="goods.createdDate | date:'yyyy-MM-dd HH:mm:ss'"></span>
+							</div>
+						</td>
+						<td>
+							<div>
+								<span ng-show="goods.original==1311" class="f14">现货</span>
+								<span ng-show="goods.original==1312" class="f14">呆滞库存</span>
+								<!-- <span ng-show="goods.original==1313" class="f14">废料</span> -->
+							</div>
+						</td>
+						<td>
+							<div>
+								<span class="text-num f16" ng-bind="goods.reserve | number"></span>
+							</div>
+						</td>
+						<td>
+							<div ng-repeat="prices in goods.prices">
+								<!-- <span class="text-num" ng-bind="prices.start"></span> -
+								<span class="text-num" ng-bind="prices.end"></span>: &nbsp;
+								<span class="text-num" ng-bind="prices.rMBPrice | number"></span>&nbsp;&yen -->
+								<div class="row">
+									<div class="col-xs-6 text-right price-qty">
+										<span ng-bind="prices.start"></span> - <span ng-bind="prices.end"></span>
+										个:
+									</div>
+									<div class="col-xs-6 text-inverse text-left"> 
+										<div>
+											<span ng-show="goods.currencyName == 'RMB' || goods.currencyName == 'RMB-USD'">RMB</span>
+											<span ng-show="goods.currencyName == 'RMB' || goods.currencyName == 'RMB-USD'" ng-bind="prices.rMBPrice | number:6" class="f14"></span>
+										</div>
+										<div>
+											<span ng-show="goods.currencyName == 'USD' || goods.currencyName == 'RMB-USD'">USD</span>
+											<span ng-show="goods.currencyName == 'USD' || goods.currencyName == 'RMB-USD'" ng-bind="prices.uSDPrice | number:6" class="f14"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</td>
+						<td>
+							<div>
+								<span class="text-num f16" ng-bind="goods.enterpriseName"></span>
+							</div>
+						</td>
+					</tr>
+					<tr ng-if="$data.length==0">
+						<td colspan="10" class="text-center"
+							style="line-height: 40px; font-size: 20px;"><i
+							class="fa fa-smile-o fa-lg"></i> 当前没有对应的产品信息</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>

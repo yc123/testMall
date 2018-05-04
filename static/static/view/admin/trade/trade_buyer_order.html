@@ -1,0 +1,438 @@
+<style>
+/*Common Start*/
+.btn-tip {
+	background: #00008B;
+	color: #FFFFFF;
+}
+.btn-tip:hover {
+	background: #00008B;
+	outline: #FF4500;
+}
+/*Common End*/
+/*Content Start*/
+.content {
+
+}
+/*Title Row Start*/
+.title-row{
+	margin-bottom: 30px;
+}
+.title {
+	padding-left: 0;
+	margin-bottom: 20px;
+}
+.search-area {
+	padding-right: 0;
+}
+.search-input {
+	margin-top: 20px;
+}
+/*Search Input*/
+.search-input>input::-webkit-input-placeholder {
+	text-align: center;
+}
+/*Search Button*/
+.search-input button {
+	background: #00BFFF;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.search-input button:hover {
+	background: #FFA500;
+}
+.search-input button:focus {
+	background: #00008B;
+}
+.prompt {
+	text-align: center;
+	margin-top: 5px;
+}
+/*Title Row End*/
+/*Status Row Start*/
+.status-item {
+	width: 70px;
+}
+.status-item:focus {
+	background: #FF4500;
+}
+.status-item-focus {
+	background: #FF4500;
+}
+/*Status Row End*/
+/*List Row Start*/
+.order-list {
+	margin: 0;
+	table-layout: fixed;
+}
+.order-list>thead>tr{
+	color: #FFFFFF;
+}
+.order-list>tbody>tr{
+	height: 100px;
+}
+.order-list>thead>tr>th,
+.order-list>tbody>tr>td {
+	text-align: center;
+	vertical-align: middle;
+}
+.th-normal {
+	background: #00BFFF;
+}
+.th-important {
+	background: #00008B;
+}
+.popmenu {
+	position: relative;
+}
+.popmenu-up {
+	position: absolute;
+	display: none;
+}
+.popmenu ul {
+	list-style-type: none;
+}
+.popmenu ul li {
+	list-style-type: none;
+}
+.popmenu-up a {
+	text-decoration: none;
+}
+.popmenu-down {
+	display: block;
+}
+.time-pop-body {
+	top: 34px;
+	left: -9px;
+	width: 100px;
+	background: #FFFFFF;
+	border: 4px #00BFFF solid;
+	border-top: none;
+}
+.order-noList {
+	font-size: 20px;
+}
+/*Available Order Start*/
+#available-order {
+	overflow-x: auto;
+}
+#available-order .status-pop-body {
+	top: 34px;
+	left: -9px;
+	width: 70px;
+	background: #FFFFFF;
+	border: 4px #00BFFF solid;
+	border-top: none;
+}
+#available-order .expType-pop-body {
+	top: 34px;
+	left: -9px;
+	width: 100px;
+	background: #FFFFFF;
+	border: 4px #00008B solid;
+	border-top: none;
+}
+/*Available Order End*/
+/*Unavailable Order Start*/
+#unavailable-order {
+	overflow-x: auto;
+}
+#unavailable-order .original-pop-body {
+	top: 34px;
+	left: -9px;
+	width: 100px;
+	background: #FFFFFF;
+	border: 4px #00BFFF solid;
+	border-top: none;
+}
+/*Unavailable Order End*/
+/*List Row Start*/
+
+/*Content End*/
+
+</style>
+<div class="container-fluid content">
+	<!-- 标题行 -->
+	<div class="row title-row">
+		<div class="col-md-4 title">
+			<h2>所有订单管理</h2>
+		</div>
+		<div class="col-md-5 col-md-offset-3 search-area">
+			<div class="input-group search-input">
+				<input class="form-control" type="search" placeholder="型号 / 品牌 / 收货人 / 订单型号"/>
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">搜索</button>
+				</span>
+			</div>
+			<div class="prompt">多重搜索示例：型号 + 收货人 + 品牌</div>
+		</div>
+	</div>
+	<!-- 状态行 -->
+	<div class="row" id="status-row">
+		<div class="btn-group">
+			<button class="btn btn-default status-item" type="button" ng-class="{'status-item-focus':active == 'available'}"
+					ng-click="setActive('available')">有效</button>
+			<button class="btn btn-default status-item" type="button" ng-class="{'status-item-focus':active == 'unavailable'}"
+					ng-click="setActive('unavailable')">已失效</button>
+		</div>
+	</div>
+	<!-- 列表行 -->
+	<div class="row table-responsive">
+		<!-- 有效订单 -->
+		<div id="available-order" ng-if="active == 'available'">
+			<table class="table table-bordered order-list">
+				<thead>
+					<tr>
+						<th class="th-normal" width="50">订单序号</th>
+						<th class="th-normal" width="100">
+							<div class="popmenu">
+								下单时间 <i class="fa fa-caret-down fa-lg" ng-class="{'fa-caret-up':isShowPop.time}" ng-click="showTimePop()"></i>
+								<ul class="popmenu-up time-pop-body" ng-class="{'popmenu-down': isShowPop.time}">
+									<li><a ng-click="selectTime()">全部</a></li>
+									<li><a ng-click="selectTime(1)">30天以内</a></li>
+									<li><a ng-click="selectTime(2)">60天以内</a></li>
+									<li><a ng-click="selectTime(3)">90天以内</a></li>
+								</ul>
+							</div>
+						</th>
+						<th class="th-normal" width="150">销售单号</th>
+						<th class="th-normal" width="70">
+							<div class="popmenu">
+								状态 <i class="fa fa-caret-down fa-lg" ng-class="{'fa-caret-up':isShowPop.status}" ng-click="showStatusPop()"></i>
+								<ul class="popmenu-up status-pop-body" ng-class="{'popmenu-down': isShowPop.status}">
+									<li><a ng-click="selectStatus('all')">全部</a></li>
+									<li><a ng-click="selectStatus('tobepaid')">待付款</a></li>
+									<li><a ng-click="selectStatus('tobedeliver')">待发货</a></li>
+									<li><a ng-click="selectStatus('tobereceive')">待收货</a></li>
+									<li><a ng-click="selectStatus('received')">已收货</a></li>
+									<li><a ng-click="selectStatus('success')">已完成</a></li>
+								</ul>
+							</div>
+						</th>
+						<th class="th-important" width="100">
+							<div class="popmenu">
+								有无异常 <i class="fa fa-caret-down fa-lg" ng-class="{'fa-caret-up':isShowPop.expType}" ng-click="showExpPop()"></i>
+								<ul class="popmenu-up expType-pop-body" ng-class="{'popmenu-down': isShowPop.expType}">
+									<!-- TODO huxz 此筛选条件暂时没有完成 -->
+									<li><a ng-click="selectExpType('all')">全部</a></li>
+									<li><a ng-click="selectExpType('tobepaid')">正常</a></li>
+									<li><a ng-click="selectExpType('tobedeliver')">有换货</a></li>
+									<li><a ng-click="selectExpType('tobereceive')">有退货</a></li>
+									<li><a ng-click="selectExpType('received')">有退款</a></li>
+								</ul>
+							</div>
+						</th>
+						<th class="th-normal" width="200">下单企业</th>
+						<th class="th-important" width="100">买家<br/>付款时间</th>
+						<th class="th-important" width="100">优软<br/>发货时间</th>
+						<th class="th-important" width="100">买家<br/>收货时间</th>
+						<th class="th-important" width="100">销售单<br/>完成时间</th>
+						<th class="th-important" width="100">开发票<br/>时间</th>
+						<th class="th-normal" width="150">交易操作</th>
+						<th class="th-normal" width="54">货源<br/>批次数</th>
+						<th class="th-normal" width="50">型号数量</th>
+						<th class="th-normal" width="70">总数量</th>
+						<th class="th-normal" width="100">销售<br/>总金额</th>
+						<th class="th-normal" width="50">币种</th>
+						<th class="th-normal" width="50">税率</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="order in page.content">
+						<!-- 订单序号 -->
+						<td>{{$index + 1}}</td>
+						<!-- 下单时间 -->
+						<td>{{order.creattime | date:'yyyy-MM-dd HH:mm'}}</td>
+						<!-- 销售单号 -->
+						<td>
+							<div><a target="_blank" ng-href="admin#/trade/order/{{order.orderid | EncryptionFilter}}">{{order.orderid}}</a></div>
+							<div ng-if="true"><button class="btn btn-default btn-sm btn-tip" type="button">看采购单</button></div>
+							<div ng-if="false"><a href="#">供应商有异常</a></div>
+						</td>
+						<!-- 状态 -->
+						<td>{{stateMap[order.status]}}</td>
+						<!-- 有无异常 -->
+						<td>正常</td>
+						<!-- 下单公司 -->
+						<td>{{order.buyer}}</td>
+						<!-- 买家付款时间 -->
+						<td>
+							<div>{{order.paytime | date:'yyyy-MM-dd HH:mm'}}</div>
+							<div ng-if="order.status == 504 || order.status == 503">
+								<button class="btn btn-default btn-sm btn-tip" type="button" ng-click="ensurePay(order)">确认收款</button>
+							</div>
+						</td>
+						<!-- 优软发货时间 -->
+						<td>
+							<div>{{order.deliverTime[0] | date:'yyyy-MM-dd HH:mm'}}</div>
+							<div ng-if="order.status == 407 || order.status == 408">
+								<button class="btn btn-default btn-sm btn-tip" type="button">填发货单</button>
+							</div>
+							<div ng-if="order.deliverTime.length > 1">二次发货<br/>{{order.deliverTime[1] | date:'yyyy-MM-dd HH:mm'}}</div>
+						</td>
+						<!-- 买家收货时间 -->
+						<td>
+							<div>{{order.receivedTime[0] | date:'yyyy-MM-dd HH:mm'}}</div>
+							<div ng-if="order.receivedTime.length > 1">二次收货<br/>{{order.receivedTime[1] | date:'yyyy-MM-dd'}}</div>
+						</td>
+						<!-- 销售单完成时间 -->
+						<td>
+							<div ng-if="order.status == 520">{{order.autoCompleteTime | date:'yyyy-MM-dd HH:mm'}}</div>
+							<div ng-if="order.status == 405">最迟<br/>{{order.autoCompleteTime | date:'yyyy-MM-dd'}}</div>
+						</td>
+						<!-- 开发票时间 -->
+						<td>
+							<div ng-if="false">*<br/>{{order.creattime | date:'yyyy-MM-dd HH:mm'}}</div>
+							<div ng-if="true">*最迟<br/>{{order.creattime | date:'yyyy-MM-dd'}}</div>
+						</td>
+						<!-- 交易操作 -->
+						<td>
+							<div>
+								<a href="#">查看详情</a>
+							</div>
+							<div>
+								<a href="#">看发货物流</a>
+							</div>
+							<div>
+								<a href="#">买家有咨询</a>
+							</div>
+							<div>
+								<a href="#">联系买家</a>
+							</div>
+						</td>
+						<!-- 货源批次数 -->
+						<td>{{order.batchQty}}</td>
+						<!-- 型号数量 -->
+						<td>{{order.cmpQty}}</td>
+						<!-- 总数量 -->
+						<td>{{order.qty}}</td>
+						<!-- 销售总金额 -->
+						<td>{{order.ensurePrice}}</td>
+						<!-- 币别 -->
+						<td>{{order.currency}}</td>
+						<!-- 税率 -->
+						<td><span ng-if="order.taxRate">{{order.taxRate * 100}}%</span></td>
+					</tr>
+					<tr ng-if="page.totalPages == 0">
+						<td colspan="18">
+							<div class="text-center text-line order-noList">
+								<i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- 已失效订单 -->
+		<div id="unavailable-order" ng-if="active == 'unavailable'">
+			<table class="table table-bordered order-list">
+				<thead>
+					<tr>
+						<th class="th-normal" width="50">订单序号</th>
+						<th class="th-normal" width="100">
+							<div class="popmenu">
+								下单时间 <i class="fa fa-caret-down fa-lg" ng-class="{'fa-caret-up':isShowPop.time}" ng-click="showTimePop()"></i>
+								<ul class="popmenu-up time-pop-body" ng-class="{'popmenu-down': isShowPop.time}">
+									<li><a ng-click="selectTime()">全部</a></li>
+									<li><a ng-click="selectTime(1)">30天以内</a></li>
+									<li><a ng-click="selectTime(2)">60天以内</a></li>
+									<li><a ng-click="selectTime(3)">90天以内</a></li>
+								</ul>
+							</div>
+						</th>
+						<th class="th-normal" width="150">销售单号</th>
+						<th class="th-normal" width="100">
+							<div class="popmenu">
+								失效来源 <i class="fa fa-caret-down fa-lg" ng-class="{'fa-caret-up':isShowPop.originalState}" ng-click="showOriginalStatePop()"></i>
+								<ul class="popmenu-up original-pop-body" ng-class="{'popmenu-down': isShowPop.originalState}">
+									<!-- TODO huxz 此筛选条件暂时没有完成 -->
+									<li><a ng-click="selectOriginalState('all')">全部</a></li>
+									<li><a ng-click="selectOriginalState('tobepaid')">待付款</a></li>
+									<li><a ng-click="selectOriginalState('tobedeliver')">待发货</a></li>
+									<li><a ng-click="selectOriginalState('tobereceive')">待收货</a></li>
+									<li><a ng-click="selectOriginalState('received')">已收货</a></li>
+									<li><a ng-click="selectOriginalState('success')">已完成</a></li>
+								</ul>
+							</div>
+						</th>
+						<th class="th-normal" width="200">下单买家</th>
+						<th class="th-important" width="100">销售单<br/>失效时间</th>
+						<th class="th-important" width="150">销售单<br/>失效原因</th>
+						<th class="th-important" width="90">退货详情</th>
+						<th class="th-important" width="100">退款金额</th>
+						<th class="th-important" width="100">退款时间</th>
+						<th class="th-normal" width="54">货源<br/>批次数</th>
+						<th class="th-normal" width="50">型号数量</th>
+						<th class="th-normal" width="70">订单<br/>总数量</th>
+						<th class="th-normal" width="100">订单<br/>总金额</th>
+						<th class="th-normal" width="50">币种</th>
+						<th class="th-normal" width="50">税率</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="order in page.content">
+						<!-- 订单序号 -->
+						<td>{{$index + 1}}</td>
+						<!-- 下单时间 -->
+						<td>{{order.creattime | date : 'yyyy-MM-dd HH:mm'}}</td>
+						<!-- 销售单号 -->
+						<td>
+							<div><a href="#">{{order.orderid}}</a></div>
+							<div><button class="btn btn-default btn-sm btn-tip" type="button">看采购单</button></div>
+						</td>
+						<!-- 失效来源 -->
+						<td>{{stateMap[order.status]}}</td>
+						<!-- 下单买家 -->
+						<td>{{order.buyer}}</td>
+						<!-- 销售单失效时间 -->
+						<td>{{order.unavailableTime | date : 'yyyy-MM-dd HH:mm'}}</td>
+						<!-- 销售单失效原因 -->
+						<td>取消订单原因</td>
+						<!-- 退货详情 -->
+						<td>无</td>
+						<!-- 退款金额 -->
+						<td>1254RMB</td>
+						<!-- 退款时间 -->
+						<td>{{order.unavailableTime | date : 'yyyy-MM-dd HH:mm'}}</td>
+						<!-- 货源批次数 -->
+						<td>{{order.batchQty}}</td>
+						<!-- 型号数量 -->
+						<td>{{order.comQty}}</td>
+						<!-- 订单总数量 -->
+						<td>{{order.qty}}</td>
+						<!-- 销售总金额 -->
+						<td>{{order.ensurePrice}}</td>
+						<!-- 币种 -->
+						<td>{{order.currency}}</td>
+						<!-- 税率 -->
+						<td><span ng-if="order.taxRate != null">{{order.taxRate * 100}}%</span></td>
+					</tr>
+					<tr ng-if="page.totalPages == 0">
+						<td colspan="16">
+							<div class="text-center text-line order-noList">
+								<i class="fa fa-smile-o fa-lg"></i> 当前没有对应的订单信息
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- 分页-->
+		<div>
+			<nav>
+				<ul class="pager">
+					<li>共&nbsp;{{page.totalPages}}&nbsp;页&nbsp;{{page.totalElements}}&nbsp;条</li>
+					<li><a ng-click="jumpToPage(page.number - 1)">上一页</a></li>
+					<li>{{page.number}}</li>
+					<li><a ng-click="jumpToPage(page.number +1)">下一页</a></li>
+					<li>到第 <input type="text" style="width: 25px;height: 25px;" ng-model="toPage" title="jumpPage"/> 页</li>
+					<li><button class="btn btn-default btn-sm" type="button" ng-click="jumpToPage(toPage)">确定</button></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- 功能区域行 -->
+	<div>
+
+	</div>
+	<!-- 信息展示行 -->
+</div>

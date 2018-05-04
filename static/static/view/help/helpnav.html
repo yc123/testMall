@@ -1,0 +1,18 @@
+<div class="help-center">
+    <div class="help-head"><img src="static/img/help/help-title.png"></div>
+    <div class="help-center-title">
+        <a href="#" style="font-size: 14px">帮助中心首页<i class="fa fa-angle-right"></i></a>
+        <!--<span ng-repeat="nav in structingNav | orderBy : 'level'">-->
+            <!--<a href="#" class="box" style="font-size: 16px"><span ng-bind="nav.item"></span><i class="fa fa-close"></i></a><i class="dot fa fa-angle-right" ng-if="$index!=structingNav.length-1"></i>-->
+        <!--</span>-->
+        <a ui-sref="home" class="box" style="font-size: 14px"><span ng-bind="nav.item"></span><i class="fa fa-close"></i></a>
+    </div>
+   <!-- 文章列表-->
+    <div class="help-center-list">
+        <h4>问题知识列表</h4>
+        <ul>
+            <li ng-repeat="issue in issues | orderBy : 'detno'"><em></em><a ui-sref="issue({num:issue.num})" ng-bind="issue.title"></a></li>
+            <li ng-if="issues.length == 0"><em></em>暂无帮助信息</li>
+        </ul>
+    </div>
+</div>

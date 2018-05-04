@@ -1,0 +1,372 @@
+<style>
+    /* general
+    --------------------------------------------------- */
+    .ex {
+        font: normal 14px/1 "Microsoft Yahei", "微软雅黑" ;
+    }
+    .ex h1 {
+        font-weight: 600;
+        font-size: 1.3em;
+        margin: 1em 0;
+    }
+    .ex h2 {
+        font-weight: 600;
+        font-size: 1.3em;
+    }
+    .ex .table {
+        margin-bottom: 0;
+        box-shadow: 6px 6px 12px rgba(0,0,0,.175);
+    }
+    /*表格缝隙颜色*/
+    table .before-blank, .table-bordered>tbody>tr>td.before-blank, .table-bordered>tbody>tr>th.before-blank, .table-bordered>tfoot>tr>td.before-blank, .table-bordered>tfoot>tr>th.before-blank, .table-bordered>thead>tr>td.before-blank, .table-bordered>thead>tr>th.before-blank {
+        border-right: 13px solid #eee;
+    }
+    .ex .table-bordered>thead>tr>td, .ex .table-bordered>thead>tr>th {
+        border-bottom: none;
+    }
+    .ex table > thead > tr > th {
+        height: 57px;
+        /*padding: 0;*/
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+        background: linear-gradient(rgb(93, 134, 220), rgb(12, 53, 136));
+        vertical-align: middle !important;
+        text-align: center;
+        font-weight: normal; /* 400 */
+    }
+    .ex table td {
+        text-align: center;
+    }
+    .ex select.form-control {
+        width: auto;
+        display: inline-block;
+    }
+    .ex .title {
+        font-size: 18px;
+        font-weight: normal;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        vertical-align: middle;
+        text-align: center;
+        padding: 0 0.6em;
+        margin-bottom: 0;
+        color: white;
+        background: linear-gradient(rgb(93, 134, 220), rgb(12, 53, 136));
+        border-radius: 3px;
+    }
+    .ex textarea {
+        resize: none;
+    }
+
+    /* 订单信息 */
+    .ex .order-info {
+        margin-bottom: 30px;
+    }
+    .ex .order-info .pay-amount {
+        color: red;
+        font-weight: 600;
+    }
+
+    /* 异常信息汇总 */
+    .ex-info-sum {
+        line-height: 1.8;
+    }
+    .ex-info-sum .apply-reason {
+        float: left;
+    }
+    .apply-reason > * > span:first-child {
+        font-weight: 600;
+    }
+    .apply-reason .apply-reason-desc {
+        margin-top: 0.5em;
+    }
+    .apply-reason .apply-reason-desc > * {
+        vertical-align: top;
+    }
+    .apply-reason .apply-reason-desc textarea {
+        width: 30em;
+        height: 10em;
+        padding: 0.3em 0.7em;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 14px;
+        resize: none;
+    }
+
+    .ex-info-sum .batch-sum {
+        float: right;
+        width: 45%;
+    }
+    .ex-info-sum .batch-sum > div:first-child {
+        display: inline-block;
+        vertical-align: top;
+        font: 600 14px/1 "Microsoft Yahei", "微软雅黑" ;
+        padding-top: 0.9em;
+    }
+    .ex-info-sum .batch-sum > ul {
+        display: inline-block;
+        width: 20em;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 0;
+        background-color: rgb(243, 254,254);
+        padding: 0.5em 1em;
+        box-shadow: 6px 6px 12px rgba(0,0,0,.175);
+    }
+    .ex-info-sum ul > li:nth-child(3n + 0) {
+        margin-bottom: 0.5em;
+    }
+    .ex-info-sum ul > li > span:first-child {
+        display: inline-block;
+        width: 7em;
+    }
+    .ex-info-sum ul > li > span:nth-child(2) {
+        color: red;
+    }
+    .ex-info-sum .currency {
+        color: hsl(219, 57%, 64%);
+    }
+    .ex-info-sum .tax > span:last-child {
+        color: hsl(219, 57%, 64%);
+    }
+    .ex-info-sum .total-amount:not(:nth-child(1)) {
+        font-weight: 600;
+    }
+
+    /* 选择处理批次 */
+    .choose-item {
+
+    }
+    .choose-item .u-box {
+        overflow-x: auto;
+    }
+    .choose-item table {
+        width: 1500px;
+        background-color: white;
+    }
+    @media only screen and (min-width: 1920px) {
+        .choose-item .u-box {
+            overflow-x: visible;
+        }
+    }
+    .choose-item table tbody td textarea {
+        width: auto;
+        height: 100%;
+    }
+    .consumer-apply-reason {
+        height: 95%;
+    }
+
+    /* 申请操作 */
+    .ex button[disabled], html input[disabled] {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+    .apply-operation {
+        padding: 2em;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        text-align: center;
+        color: white;
+    }
+    .apply-operation button {
+        padding: 0.3em 0.7em;
+        font-size: 2em;
+        line-height: normal; /* 清除common.css设置的默认行高 */
+        border: none;
+        width: 18%;
+        border-radius: 3px;
+    }
+    .apply-operation button:hover {
+        box-shadow: 0 0 0 2px hsl(11, 97%, 51%);
+    }
+    /* 确认申请 */
+    .ensure-apply {
+        margin: 0 2em 0 0;
+        background: linear-gradient(hsla(4, 85%, 54%, 0.7), hsla(4, 85%, 54%, 1));
+    }
+    /* 取消 */
+    .cancel > button {
+        background: linear-gradient(hsla(45, 3%, 47%, 0.7), hsla(45, 3%, 47%, 1));
+        color: white;
+    }
+
+</style>
+<div class="ex">
+    <h1 class="title">异常申请-<span ng-switch on="order.status">
+	    	<span ng-switch-when="408">待收货</span>
+	    	<span ng-switch-when="404">待收货</span>
+	    	<span ng-switch-when="405">已收货</span>
+	    	<span ng-switch-default>待发货</span>
+	    </span>订单</h1>
+    <main role="main">
+        <article>
+            <!-- ==== 订单信息start ==== -->
+            <section class="order-info">
+                <!--<h2>订单信息</h2>-->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>下单时间</th>
+                        <th>订单号</th>
+                        <th>付款时间</th>
+                        <th>货源批次数</th>
+                        <th>型号数量</th>
+                        <th>总数量</th>
+                        <th>支付总金额</th>
+                        <th>币种</th>
+                        <th>税率</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span ng-bind="order.creattime | date:'yyyy-MM-dd HH:mm'"></span></td>
+                        <td><span ng-bind="order.orderid"></span></td>
+                        <td><span ng-bind="order.paytime | date:'yyyy-MM-dd HH:mm'"></span></td>
+                        <td><span ng-bind="order.batchQty"></span></td>
+                        <td><span ng-bind="order.cmpQty"></span></td>
+                        <td><span ng-bind="order.qty"></span></td>
+                        <td class="pay-amount"><span ng-bind="order.ensurePrice | number : 2"></span></td>
+                        <td><span ng-bind="order.currency"></span></td>
+                        <td>
+                            <span ng-switch="order.currency">
+                                <span ng-switch-when="RMB">17%</span>
+                                <span ng-switch-when="USD">0%</span>
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+            <!-- 订单信息end -->
+
+            <!-- ==== 异常申请信息start ==== -->
+            <section class="ex-info-sum clearfix">
+                <!--<h2>异常申请信息</h2>-->
+                <div class="apply-reason">
+                    <div>
+                        <span>问题类型：</span>
+                        <select class="form-control" ng-model="applyInfo.applyReasonType">
+                            <option value="">选择问题类型</option>
+                            <option value="质量问题">质量问题</option>
+                            <option value="没货">没货</option>
+                            <option value="库存不足">库存不足</option>
+                            <option value="订单变更">订单变更</option>
+                            <option value="包装破损">包装破损</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div class="apply-reason-desc">
+                        <span>问题描述：</span>
+                        <textarea maxlength="4000" ng-model="applyInfo.applyReason"></textarea>
+                    </div>
+                </div>
+                <div class="batch-sum">
+                    <div>待处理批次汇总：</div>
+                    <ul class="list-unstyled">
+                        <li><span>货源批次数:</span> <span ng-bind="applyInfo.batchQty"></span></li>
+                        <li><span>型号数量：</span> <span ng-bind="applyInfo.cmpQty"></span></li>
+                        <li><span>产品总数量：</span> <span ng-bind="applyInfo.prodQty"></span></li>
+                        <li>
+                        	<span>产品总金额：</span>
+                            <span ng-bind="applyInfo.totalAmount"></span>&nbsp;
+                            <span class="currency" ng-bind="order.currency"></span>
+                        </li>
+                        <li>
+                        	<span>运费合计：</span>
+                            <span ng-bind="applyInfo.freight"></span>&nbsp;
+                            <span class="currency" ng-bind="order.currency"></span>
+                        </li>
+                        <li class="tax">
+                            <span>税率：</span>
+                            <span ng-switch="order.currency">
+                                <span ng-switch-when="RMB">17</span>
+                                <span ng-switch-when="USD">0</span>
+                            </span>
+                            <span>%</span>
+                        </li>
+                        <li class="total-amount">
+                            <span>涉及总金额：</span>
+                            <span ng-bind="applyInfo.totalAmount"></span>
+                            <span class="currency" ng-bind="order.currency"></span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- 异常申请信息end -->
+
+            <!-- ==== 选择处理批次start ==== -->
+            <section class="choose-item">
+                <h2 class="title">选择处理批次</h2>
+                <div class="u-box">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>产品型号</th>
+                            <th>品牌</th>
+                            <th>类目</th>
+                            <th>采购数量</th>
+                            <th>采购金额</th>
+                            <th>单价</th>
+                            <th class="before-blank">币别</th>
+
+                            <th>申请类型</th>
+                            <th class="before-blank">补充说明</th>
+
+                            <th>生产日期</th>
+                            <th>库存更新日期</th>
+                            <th>包装</th>
+                            <th>最小包装数</th>
+                            <th>产品批次号</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="detail in order.orderDetails">
+                            <td>
+                                <span ng-bind="$index + 1"></span>
+                                <input type="checkbox" ng-model="detail.checked" ng-change="updateDetailSummary(detail)">
+                            </td>
+                            <td><span ng-bind="detail.cmpCode"></span></td>
+                            <td><span ng-bind="detail.brName"></span></td>
+                            <td><span ng-bind="detail.kiName"></span></td>
+                            <td><span ng-bind="detail.number"></span></td>
+                            <td><span ng-bind="detail.price"></span></td>
+                            <td><span ng-bind="detail.taxUnitprice | formateNumber : 6"></span></td>
+                            <td class="before-blank"><span ng-bind="detail.currencyName"></span></td>
+
+                            <td>
+                                <select class="form-control" ng-model="detail.applyType" ng-change="checkDetails()">
+                                    <option value="">选择申请类型</option>
+                                    <option value="RETURN" ng-if="order.status == 405">退货</option>
+                                    <option value="EXCHANGE" ng-if="order.status == 405">换货</option>
+                                    <option value="CANCEL_BUY" ng-if="order.status != 405">取消购买</option>
+                                </select>
+                            </td>
+                            <td class="before-blank">
+                                <textarea ng-model="detail.applyReason" maxlength="4000" class="consumer-apply-reason"></textarea>
+                            </td>
+
+                            <td><span ng-bind="detail.produceDate"></span></td>
+                            <td><span ng-bind="detail.updateDate | date : 'yyyy-MM-dd HH:mm'"></span></td>
+                            <td>
+                                <span ng-if="detail.packaging" ng-bind="detail.packaging"></span>
+                                <span ng-if="!detail.packaging">/</span>
+                            </td>
+                            <td><span ng-bind="detail.minPackQty"></span></td>
+                            <td><span ng-bind="detail.batchCode"></span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <!-- 选择处理批次end -->
+
+            <div class="apply-operation">
+                <button class="ensure-apply" ng-click="ensureApply()" ng-disabled="!(applyInfo.applyReasonType && detailsOK)">确认申请</button>
+                <a href="#/home/myOrder_todo" class="cancel"><button>取消</button></a>
+            </div>
+        </article>
+    </main>
+</div>

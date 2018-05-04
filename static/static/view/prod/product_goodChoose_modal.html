@@ -1,0 +1,210 @@
+<style>
+.choose-header {
+	background: #5078cb;
+	color: #fff;
+}
+.sorting-box {
+	display: inline-block;
+	height: 30px;
+}
+.sorting-box>span, .sorting-box>a {
+	display: inline-block;
+	padding: 0 10px;
+	margin-right: -1px;
+	line-height: 28px;
+	font-size: 14px;
+	border: solid 1px #ccc;
+	text-decoration: none;
+}
+.sorting-box>span {
+	background: #e9e9e9;
+}
+.sorting-box>a {
+	background: #fff;
+	color: #666;
+}
+.sorting-box>a:hover {
+	color: #7bb4dc;
+	border-color: #7bb4dc;
+}
+.sorting-box>a.active {
+	background: #7bb4dc;
+	color: #fff;
+	border-color: #7bb4dc;
+}
+.sorting-box>a:hover + a {
+	border-left-color: #ef5813;
+}
+.shortage-switch {
+	vertical-align: middle;
+}
+.goodsTable {
+	margin-top: 20px;
+}
+.choose-body .table>tbody>tr.theader, .choose-body .table>thead>tr {
+	background: #7bb4dc;
+	color: #fff;
+}
+/* .table.table-striped.goodsTable tr.choosed {
+	background: rgba(0, 256, 0, 0.3);
+} */
+.goodsTable .pr-wrap .pr-qty {
+	line-height: 20px;
+	padding-right: 5px;
+}
+.goodsTable li.active .pr-wrap .pr-qty {
+	color: #ef5813;
+}
+.goodsTable .pr-wrap .pr-value {
+	line-height: 20px;
+	padding-left: 0px;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.text-blue {
+	color: #8764DA;
+}
+
+.operateBuy {
+	padding-right: 10px;
+}
+</style>
+
+<!-- 某一产品上架物品选择模态框 -->
+<div class="modal-header choose-header">
+	<h3 class="modal-title text-center text-bold">选择您想要购买的产品批次</h3>
+</div>
+<div class="modal-body choose-body">
+	<form class="form-inline">
+		<div class="row">
+			<!-- <div class="col-xs-8">
+				<div class="sorting-box">
+					<span>排序：</span><a ng-class="{'active': sort.field=='deliveryTime'}" ng-click="setSort('deliveryTime', 'asc')">交货周期<i class="fa fa-arrow-up"></i></a>
+					<a ng-class="{'active': sort.field=='minPrice'}" ng-click="setSort('minPrice')">价格 <i class="fa" ng-class="{'fa-arrow-down': sort.desc=='desc', 'fa-arrow-up': sort.desc=='asc'}"></i></a>
+					请选择币别：
+					<select class="form-control input-sm" ng-model="currency" ng-options="currencyName for currencyName in currencyNames" ng-change="setCurrency(currency)">
+						<option value="">请选择币别</option>
+					</select>
+				</div>
+			</div> -->
+			<div class="col-xs-12 text-right">
+				<div>
+					<button class="btn btn-success" ng-click="cancel()">选择完毕</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<table ng-table="goodsTableParams" class="table table-condensed table-bordered table-striped goodsTable">
+				<thead>
+					<tr>
+						<th width="20px">序号</th>
+						<th width="150px">批次信息</th>
+						<th width="100px">交货周期</th>
+						<th width="50px">最小起订量</th>
+						<th width="50px">最小包装量</th>
+						<th width="20px">库存量</th>
+						<th width="100px" ng-click="changeOrder('prices[0].rMBPrice')" ng-class="{dropup : dir === '' && selectedOrder:orderType === 'prices[0].rMBPrice'}">
+							单价 ￥ 17%
+							<span ng-class="{selectedOrder:orderType === 'prices[0].rMBPrice'}" class="caret"></span>
+						</th>
+						<th width="100px" ng-click="changeOrder('prices[0].uSDPrice')" ng-class="{dropup : dir === '' && selectedOrder:orderType === 'prices[0].uSDPrice'}">
+							单价 $
+							<span ng-class="{selectedOrder:orderType === 'prices[0].uSDprice'}" class="caret"></span>
+						</th>
+						<th width="100px">购买操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="goods in $data | orderBy : dir + orderType" ng-class="{'choosed': goods.$choosed}">
+			        	<td class="text-num">{{$index + 1 }}</td>
+				        <td class="text-left">
+				        	<div class="text-num"><span ng-bind="goods.batchCode"></span></div>
+				        	<div class="text-num text-muted" title="生产日期">
+				        		<i class="fa fa-calendar"></i> <span ng-bind="goods.produceDate"></span>
+				        	</div>
+				        	<div class="text-blue">
+				        		<div ng-if="goods.original==1311"><span class="label label-success">现货</span></div>
+				        		<div ng-if="goods.original==1312"><span class="label label-info">呆滞库存</span></div>
+				        		<!-- <div ng-if="goods.original==1313"><span class="label label-default">废料</span></div> -->
+				        	</div>
+				        	<div ng-if="goods.sampleQty && !goods.hasSample" class="text-inverse">剩余样品
+				        		<span ng-bind="goods.sampleQty - goods.sampleAppliedQty"></span> 
+				        		<a ng-click="applysample(goods)" ng-if="goods.sampleQty - goods.sampleAppliedQty && !goods.hasSample" class="text-link">立即免费申请</a>
+				        	</div>
+				        	<div ng-if="goods.hasSample" class="text-default">样品已申请</div>
+				        </td>
+				        <td width="100px" class="text-right">
+				        	<div>
+				        		交期：<span class="text-num">{{goods.b2cMinDelivery}}-{{goods.b2cMaxDelivery}}</span> 天
+				        	</div>
+				        	<br/>
+<!-- 				        	<div ng-if="goods.returnInWeek">
+				        		<img alt="支持7天无理由退货" src="static/img/product/seven-day-back.jpg" title="支持7天无理由退货">&nbsp;
+				        	</div> -->
+				        </td>
+				        <td width="50px">
+							<div>
+								<span class="text-num text-muted">{{goods.minBuyQty | number}}</span>
+							</div>
+						</td>
+				        <td width="50px">
+				        	<div>
+				        		<span class="text-num text-muted">{{goods.minPackQty | number}}</span>
+				        	</div>
+				        </td>
+				        <td width="100px">
+				        	<div>
+				        		<span class="text-num text-inverse f14">{{goods.reserve | number}}</span>
+				        	</div>
+				        </td>
+				        <td width="100px">
+				        	<div ng-if="goods.prices[0].rMBPrice">
+								￥<span ng-bind="goods.prices[0].rMBPrice | number:2"></span>
+				        		<a ng-click="showPrices(goods, 'RMB')"><i class="fa fa-angle-double-down"></i></a>
+				        		<div ng-show="goods.$pricesShowRmb">
+					        		<ul class="list-unstyled">
+						        		<li ng-repeat="p in goods.prices">
+				        					<span ng-bind="p.start"></span> - <span ng-bind="p.end"></span>:
+				        					<span ng-bind="p.rMBPrice | number:2" class="f14"></span>
+						        		</li>
+					        		</ul>
+			        			</div>
+				        	</div>
+				        	<div ng-if="!goods.prices">0</div>
+				        </td>			
+				        <td width="100px">
+				        	<div ng-if="goods.prices[0].uSDPrice">
+								$<span ng-bind="goods.prices[0].uSDPrice | number:2"></span>
+				        		<a ng-click="showPrices(goods, 'USD')"><i class="fa fa-angle-double-down"></i></a>
+				        		<div ng-show="goods.$pricesShowUsd">
+					        		<ul class="list-unstyled">
+						        		<li ng-repeat="p in goods.prices">
+				        					<span ng-bind="p.start"></span> - <span ng-bind="p.end"></span>:
+				        					<span ng-bind="p.uSDPrice | number:2" class="f14"></span>
+						        		</li>
+					        		</ul>
+			        			</div>
+				        	</div>
+				        	<div ng-if="!goods.prices">0</div>
+				        </td>
+				        <td width="100px">
+				        	<span class="operateBuy" ng-click="addToCart(goods, 'true')" >
+								<img title="立即购买" alt="立即购买" src="static/img/product/buy.png">
+							</span>
+				        	<span ng-if="!flag[goods.batchCode]" ng-click="addToCart(goods,false)">
+								<img title="加入购物车" alt="加入购物车" src="static/img/product/add-to-cart.png">
+							</span>
+							<span ng-if="flag[goods.batchCode]" ng-click="deleteFromCart(goods.batchCode)">
+								<img title="撤销产品" alt="撤销产品" src="static/img/product/delete-from-cart.png">
+							</span>
+				       	</td>
+			        </tr>
+	        	</tbody>
+	        </table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,753 @@
+<!--
+<style>
+#main {
+	background-color: #ffffff;
+}
+
+/* 滚动相册css */
+.box {
+	width: 240px;
+	margin: auto;
+}
+
+.tb-pic a {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.tb-pic a img {
+	vertical-align: middle;
+}
+
+.tb-pic a {
+	*display: block;
+	*font-family: Arial;
+	*line-height: 1;
+}
+
+.tb-thumb {
+	margin: 10px 0 0;
+	overflow: hidden;
+}
+
+.tb-thumb li {
+	background: none repeat scroll 0 0 transparent;
+	float: left;
+	height: 42px;
+	margin: 0 6px 0 0;
+	overflow: hidden;
+	padding: 1px;
+}
+
+.tb-s310, .tb-s310 a {
+	height: 240px;
+	width: 240px;
+}
+
+.tb-s310, .tb-s310 img {
+    max-height: 240px;
+    max-width: 240px;
+}
+
+.tb-s310 a {
+	*font-size: 271px;
+}
+
+.tb-s40 a {
+	*font-size: 35px;
+}
+
+.tb-s40 a img {
+	width: 40px;
+	height: 40px;
+}
+
+.tb-s40, .tb-s40 a {
+	height: 40px;
+	width: 40px;
+}
+
+.tb-booth {
+	/* border: 1px solid #CDCDCD; */
+	position: relative;
+}
+
+.tb-thumb .tb-selected {
+	background: none repeat scroll 0 0 #C30008;
+	height: 44px;
+	padding: 2px;
+}
+
+.tb-thumb .tb-selected div {
+	background-color: #FFFFFF;
+	border: medium none;
+}
+
+.tb-thumb li div {
+	border: 1px solid #CDCDCD;
+}
+
+div.zoomDiv {
+	z-index: 999;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 200px;
+	height: 200px;
+	background: #ffffff;
+	border: 1px solid #CCCCCC;
+	display: none;
+	text-align: center;
+	overflow: hidden;
+}
+
+div.zoomMask {
+	position: absolute;
+	cursor: move;
+	z-index: 1;
+}
+
+/* 新版本样式  */
+.kind_path a{
+	font-weight: 700;
+}
+
+.property {
+	margin-bottom: 10px;
+}
+
+</style>
+&lt;!&ndash; 当前类目路径 &ndash;&gt;
+<div class="kind_path">
+	<ol class="breadcrumb">
+		<li ng-repeat="kind in productKinds"><a
+			href="product#/kinds/{{kind.id}}" ng-bind="kind.nameCn"></a></li>
+	</ol>
+</div>
+
+&lt;!&ndash; 左侧产品详细信息 Start &ndash;&gt;
+<div class="left_content">
+	<div class="detail_view clearfix">
+		<div class="detail_image">
+			<div class="box">
+				<div class="tb-booth tb-pic tb-s310">
+					<a ng-href="{{componentData.img}}">
+						<img ng-src="{{componentData.img||'static/img/logo/uas_mall.png'}}" alt="{{componentData.code}}"
+							rel="{{componentData.img||'static/img/logo/uas_mall.png'}}" class="jqzoom" />
+					</a>
+				</div>
+				<ul class="tb-thumb" id="thumblist" style="display: none;">
+					<li class="tb-selected">
+						<div class="tb-pic tb-s40">
+							<a href="javascript:void(0);">
+								<img ng-src="{{componentData.img}}" alt="{{componentData.code}}"
+									mid="{{componentData.img}}" big="{{componentData.img}}" />
+							</a>
+						</div>
+					</li>
+					&lt;!&ndash; @TODO 器件图片数据库对应字段只存了1个，今后有数据了直接添加<li></li>标签就够了 &ndash;&gt;
+				</ul>
+			</div>
+		</div>
+		<div class="detail_content">
+			<div class="row">
+				<div class="message-item">
+					<strong>产品型号：</strong>
+				</div>
+				<div class="col-xs-4">
+					<span class="text-num" ng-bind="componentData.code"></span>
+				</div>
+				<div class="col-xs-3">
+					<strong>最小起订量：</strong>
+				</div>
+				<div class="col-xs-3">
+					<span ng-if="componentData.minBuyQty" class="text-num"
+						ng-bind="componentData.minBuyQty">
+					</span>
+					<span ng-if="!componentData.minBuyQty" class="text-muted f12">
+						暂无库存
+					</span>
+				</div>
+				&lt;!&ndash; 增加币别之后，最低价格不存在 &ndash;&gt;
+&lt;!&ndash; 				<div class="col-xs-3">
+					<strong>最低价格：</strong>
+				</div>
+				<div class="col-xs-3">
+					<span ng-if="componentData.minPrice" class="color_orange text-num">
+						¥{{componentData.minPrice | number}}/PCS
+					</span>
+					<span ng-if="!componentData.minPrice" class="text-muted f12">
+						暂无
+					</span>
+				</div> &ndash;&gt;
+			</div>
+			<div class="row">
+				<div class="message-item">
+					<strong>产品类别：</strong>
+				</div>
+				<div class="col-xs-4">
+					<a ui-sref="kind_detail({id: componentData.kind.id})">{{componentData.kind.nameCn}}</a>
+				</div>
+				<div class="col-xs-3">
+					<strong>交期：</strong>
+				</div>
+				<div class="col-xs-3">
+					<span ng-if="componentData.minDelivery || componentData.maxDelivery">
+						<span class="text-num" ng-bind="componentData.minDelivery || 0"></span>
+						~<span class="text-num" ng-bind="componentData.maxDelivery"></span>个工作日
+					</span>
+					<span class="text-muted f12" ng-if="!componentData.minDelivery && !componentData.maxDelivery">
+						暂无信息
+					</span>
+				</div>
+				&lt;!&ndash; <div class="col-xs-3">
+					<strong>库存类别：</strong>
+				</div>
+				<div class="col-xs-3">
+					<span ng-if="component.reserveType" class="color_orange">现货</span>
+					<span ng-if="!component.reserveType" class="text-muted f12">暂无库存</span>
+				</div> &ndash;&gt;
+			</div>
+			<div class="row">
+				<div class="message-item">
+					<strong>品牌：</strong>
+				</div>
+				<div class="col-xs-4">
+					<a class="text-num" ui-sref="brand_detail({uuid: componentData.brand.uuid})"
+						ng-bind="componentData.brand.nameCn">
+					</a>
+				</div>
+				<div class="col-xs-3">
+					<strong>总库存量：</strong>
+				</div>
+				<div class="col-xs-3">
+					<span ng-if="componentData.reserve" class="color_orange text-num"
+						ng-bind="componentData.reserve | number">
+					</span>
+					<span ng-if="!componentData.reserve" class="text-muted text-num f12">
+						暂无库存
+					</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="message-item">
+					<strong>包装方式：</strong>
+				</div>
+				<div class="col-xs-4">
+					<span ng-if="componentData.packaging" class="text-num"
+						ng-bind="componentData.packaging">
+					</span>
+					<span ng-if="!componentData.packaging" class="text-muted">
+						暂无信息
+					</span>
+				</div>
+				<div class="col-xs-3">
+					<strong>附件信息：</strong>
+				</div>
+				<div class="col-xs-3">
+					<a ng-if="componentData.attach" ng-click="downloadpdf(componentData.attach)"  title="点击下载PDF">
+						<i class="fa fa-lg fa-file-powerpoint-o"></i>
+					</a>
+					<span class="text-muted f12" ng-if="!componentData.attach">暂无附件</span>
+				</div>
+			</div>
+			<div class="row">
+&lt;!&ndash; 				<div class="col-xs-3" style="margin-right: 10px;">
+					<button ng-click="addToCart(componentData.uuid, 'true')"
+						class="btn btn-orange" ng-disabled="!componentData.reserve">
+						<i class="fa fa-balance-scale fa-fw"></i> 立即购买
+					</button>
+				</div>
+				<div class="col-xs-3" style="margin-right: 10px;">
+					<button ng-click="addToCart(componentData.uuid)"
+						class="btn btn-blue" ng-disabled="!componentData.reserve">
+						<i class="fa fa-shopping-cart fa-fw"></i> 加入购物车
+					</button>
+				</div> &ndash;&gt;
+				<div class="col-xs-5" style="margin-right: 10px;">
+					<button class="btn btn-blue"
+						ng-click="addToCompare(componentData.uuid)"
+						ng-disabled="addedCompare(component.uuid)">
+						<i class="fa fa-adjust fa-fw"></i> 加入对比
+					</button>
+				</div>
+				<div class="col-xs-6 text-center">
+					<button class="btn btn-blue"
+						ng-click="collect(componentData.id)">
+						<i class="fa fa-heart-o fa-fw"></i> 收&nbsp;藏
+					</button>
+				</div>
+				&lt;!&ndash; <div class="col-xs-3"><button class="btn btn-default"><i class="fa fa-headphones"></i> 即时通在线询价</button></div> &ndash;&gt;
+			</div>
+		</div>
+	</div>
+
+</div>
+
+&lt;!&ndash; 左侧产品详细信息 End &ndash;&gt;
+&lt;!&ndash; 右侧图文列表  Start&ndash;&gt;
+<div class="right_list">
+	<div class="detail_version">
+		<div class="side-box">
+			<div class="title">版本信息</div>
+			<div class="commtent">
+				<ul class="list-unstyled comm-ul">
+					<li>创建者：<span ng-bind="componentData.userDefine.userName"
+						class="ng-binding"></span></li>
+					<li>最近更新：<span ng-bind="componentData.userModify.userName"
+						class="ng-binding"></span></li>
+					<li>更新时间：<span
+						ng-bind="componentData.lastModifyDate | date: 'yyyy-MM-dd'"
+						class="ng-binding"></span></li>
+					<li class="ng-binding">当前版本：<span
+						ng-bind="componentData.version" class="ng-binding">4</span>(总版本数:
+						{{componentData.versionCount}})&nbsp;&nbsp;
+					</li>
+				</ul>
+				<ul class="list-unstyled">
+					<li><a ng-click="showVersionList()"><i
+							class="fa fa-caret-right"
+							ng-class="{'fa-caret-right' : !isVersionListShow, 'fa-caret-down' : isVersionListShow}"></i>
+							查看历史版本</a></li>
+					&lt;!&ndash; start ngRepeat: num in arr &ndash;&gt;
+					<li ng-show="isVersionListShow" ng-repeat="num in arr"
+						style="padding-left: 10px;" class="ng-scope ng-hide"><a
+						ng-href="product#/component/{{componentData.uuid}}/{{num}}"
+						class="ng-binding"> 版本 {{num}}</a></li>
+					&lt;!&ndash; end ngRepeat: num in arr &ndash;&gt;
+					<li><a target="_blank"
+						ng-href="product#/componentEdit_T/detail/update/{{componentData.uuid}}"><i
+							class="fa fa-pencil-square-o"></i> 维护此标准器件信息</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+&lt;!&ndash; 右侧图文列表  End&ndash;&gt;
+
+<div class="detail_tab">
+	<div class="detail_tab_title">
+		<ul >
+			<li ng-class="{ active : isShow.property }"><a ng-click="changeTab('property')">属性信息</a></li>
+			<li ng-class="{ active : isShow.transaction }"><a ng-click="changeTab('transaction')">交易记录(0)</a></li>
+			<li ng-class="{ active : isShow.comment }"><a ng-click="changeTab('comment')">评价(0)</a></li>
+		</ul>
+	</div>
+	<span class="angle" ng-class="{'left': isShow.property, 'middle': isShow.transaction, 'right': isShow.comment}"></span>
+	<div class="detail_tab_content">
+		<div ng-show="isShow.property" class="detail_tab_content_property">
+			<form class="form-horizontal">
+				<div class="well well-sm">
+					<div class="row">
+						<div class="col-xs-4">
+							<div class="col-xs-5 text-right">
+								<h4>
+									<strong class="color_orange">标准属性</strong>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-5 property" ng-repeat="property in componentData.properties">
+							<div class="row">
+								<div class="col-sm-5 text-right">{{property.property.labelCn}}：</div>
+								<div class="col-sm-7">{{property.value || '-'}}</div>
+							</div>
+						</div>
+					</div>
+					<h4 ng-show="extras.length">
+						<strong class="color_orange">额外属性</strong>
+					</h4>
+					<div class="form-group" ng-repeat="e in extras">
+						<div class="row">
+							<div class="col-sm-offset-1 col-sm-2">
+								<input disabled="disabled" type="text"
+									class="form-control input-sm" placeholder="属性名"
+									ng-model="e.label" />
+							</div>
+							<div class="col-sm-4">
+								<div class="input-group">
+									<input disabled="disabled" type="text"
+										class="form-control input-sm" placeholder="属性值"
+										ng-model="e.value"> <span class="input-group-btn">
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div ng-show="isShow.transaction"
+			class="detail_tab_content_transaction well well-sm">暂无交易记录...</div>
+		<div ng-show="isShow.comment" class="detail_tab_content_comment well well-sm">
+			暂无评价信息...</div>
+	</div>
+</div>-->
+<style>
+	#componentDetail button {
+		width: 80px;
+		height: 30px;
+		color: #214797;
+		font-size: 14px;
+		line-height: 14px;
+		text-align: center;
+		margin: 5px 0;
+		padding: 0;
+	}
+	#componentDetail button:hover{
+		background: #5078cb;
+		color: #fff;
+	}
+	#componentDetail .container {
+		width: 1190px;
+		padding: 0;
+	}
+
+	#componentDetail .container .component-img {
+		width: 260px;
+		height: 260px;
+		display: table-cell;
+		border:1px solid #ccc;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	#componentDetail .container .component-img a {
+		display: table-cell;
+		width: 258px;
+		height: 258px;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	#componentDetail .container .component-img img {
+		max-width: 258px;
+		max-height: 258px;
+	}
+
+	#componentDetail .container .component-message {
+		width: 910px;
+		display: table-cell;
+		padding-left: 20px;
+		margin-left: 10px;
+	}
+
+	#componentDetail .container .component-message .message-code {
+		font-family: "Microsoft Yahei", "微软雅黑";
+		font-size: 24px;
+		color: rgb(50,50,50);
+		font-weight: 700;
+		line-height: 40px;
+	}
+
+	#componentDetail .container .component-message .hr-grey {
+		height: 1px;
+		width: 100%;
+		background-color: #ccc;
+	}
+
+	#componentDetail .container .component-message .row {
+		margin: 12px 0;
+	}
+
+	#componentDetail .container .component-message .message-item {
+		float:left;
+		width:60px;
+		text-align: justify;
+		text-align-last: justify;
+		font-size: 14px;
+	}
+
+	#componentDetail .container .component-message .colon {
+		float:left;
+		margin: 0 10px;
+	}
+
+	#componentDetail .container .component-message .message-body {
+		float: left;
+		font-size: 14px;
+	}
+
+	#componentDetail .message-item:first-child {
+		padding-left: 0;
+	}
+
+    #componentDetail .container .storeIns .sign {
+		display: table-cell;
+		vertical-align: middle;
+		font-size: 14px;
+    }
+	#componentDetail .container .storeIns .storeInList {
+		display: table-cell;
+	}
+    #componentDetail .container .storeIn {
+        width: 98px;
+		height: 49px;
+		line-height: 30px;
+		float: left;
+        border: 1px solid #ccc;
+        text-align: center;
+        vertical-align: middle;
+        margin-right: 15px;
+		cursor: pointer;
+    }
+
+	#componentDetail .container .storeIn-active {
+		width: 98px;
+		float: left;
+		border: 1px solid #5078cb;
+		text-align: center;
+		vertical-align: middle;
+		margin-right: 15px;
+		cursor: pointer;
+	}
+
+    #componentDetail .container .storeIn a,#componentDetail .storeIn-active a {
+        display: table-cell;
+        height: 46px;
+        width: 98px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    #componentDetail .storeIn a>img,#componentDetail .storeIn-active a>img {
+        max-width: 95px;
+        max-height: 46px;
+    }
+
+	#componentDetail .container .goodsList {
+		clear: both;
+		font-size: 14px;
+	}
+
+	#componentDetail .container .goodsList .goods-item {
+		height: 30px;
+		width: 120px;
+		background-color: #5078cb;
+		color: #fff;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 30px;
+	}
+
+	#componentDetail .container .goodsList .goods-thead {
+		background-color: #F7F7F7;
+		color: #000;
+		font-size: 14px;
+		font-family: "Microsoft Yahei", "微软雅黑";
+		padding: 10px 0;
+        margin: 0px;
+	}
+
+	#componentDetail .container .goodsList thead {
+		background-color: #F7F7F7;
+	}
+
+	#componentDetail .container .goodsList tbody tr td{
+		vertical-align: middle;
+	}
+
+	#componentDetail .container .goodsList .btn-buyNow {
+		color: #fff;
+		background-color: #5078cb;
+	}
+	.form-group input{
+		vertical-align: sub;
+	}
+	#componentDetail .height54{
+		height: 54px;
+	}
+	#componentDetail .height54 th{
+		line-height: 54px;
+		border-bottom: none;
+		padding: 0;
+	}
+	#componentDetail .table tbody td{
+		border-bottom: #ddd 1px solid;
+		border-top: none;
+	}
+	#componentDetail .table tbody{
+		border-left: #ddd 1px solid;
+		border-right: #ddd 1px solid;
+	}
+	#componentDetail .table tbody td div{
+		text-align: left;
+		margin-left: 10%;
+	}
+	#componentDetail .table tbody tr:hover{
+		background: #f5f5f5;
+	}
+	#componentDetail .blue{
+	 color: #214797;
+	}
+	/*面包屑导航*/
+	.menu-com{
+		margin: 0;
+	}
+	.menu-title{
+		line-height: 40px;
+		font-size: 14px;
+	}
+	.menu-title a{
+		color: #5078cb;
+		font-size: 14px;
+	}
+	i{
+		margin-right: 5px;
+	}
+	.menu-title{
+		padding-left: 0;
+	}
+</style>
+<div id="componentDetail">
+	<div class="container">
+		<div class="menu-com row">
+			<div class="menu-title col-md-12">
+				<a ng-href="product#/home">器件选型</a> >
+				<span ng-repeat="kind in structingKinds">
+					<a ng-href="product#/kinds/{{kind.id}}"><span ng-bind="kind.nameCn"></span></a><span> > </span>
+				</span>
+				<span>器件详情</span></div>
+		</div>
+		<div style="margin-bottom: 20px">
+			<div class="component-img">
+				<img ng-src="{{component.img || 'static/img/store/common/default.png'}}" alt="">
+			</div>
+			<div class="component-message">
+				<div class="message-code">
+					<span ng-bind="component.code"></span>
+				</div>
+				<div class="hr-grey"></div>
+				<div class="row">
+					<div class="form-group row">
+						<div class="message-item">类目</div>
+						<div class="colon">:</div>
+						<div><a href="product#/kinds/{{component.kind.id}}" class="message-body blue" ng-bind="component.kind.nameCn" target="_blank"></a></div>
+					</div>
+					<div class="form-group row">
+						<div class="message-item">品牌</div>
+						<div class="colon">:</div>
+						<div><a href="product#/brand/{{component.brand.uuid}}/" class="message-body blue" ng-bind="component.brand.nameEn" target="_blank"></a></div>
+					</div>
+					<div class="form-group row">
+						<div class="message-item">总库存量</div>
+						<div class="colon">:</div>
+						<div class="message-body" ng-bind="component.reserve"></div>
+                        <div class="message-body" ng-if="!component.reserve">暂无库存</div>
+					</div>
+					<div class="form-group row">
+						<div class="message-item">封装</div>
+						<div class="colon">:</div>
+						<div class="message-body" ng-bind="component.encapsulation"></div>
+                        <div class="message-body" ng-if="!component.encapsulation">暂无信息</div>
+					</div>
+					<div class="form-group row">
+						<div class="message-item">下载</div>
+						<div class="colon">:</div>
+						<div class="message-body"><a href="{{component.attach}}" ng-show="component.attach">规格书</a><span ng-hide="component.attach">暂无规格书</span></div>
+					</div>
+					<div class="form-group" ng-if="userInfo">
+						<button class="btn btn-default btn-stroe" ng-click="collect(component.id)">加入收藏</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="storeIns">
+				<div class="sign">选择商家：</div>
+				<div ng-repeat="storeIn in storeIns" class="storeInList">
+					<div ng-class="{'storeIn-active' : storeIn.isSelected, 'storeIn' : !storeIn.isSelected}" ng-click="addStore(storeIn)">
+						<a>
+							<img ng-src="{{storeIn.logoUrl || 'static/img/all/default.png'}}" alt="storeIn.storeName" title="{{storeIn.storeName}}">
+						</a>
+					</div>
+				</div>
+                <div class="storeInList" ng-if="storeIns.length == 0" style="font-size: 14px">
+                    暂无商家信息
+                </div>
+			</div>
+		</div>
+		<div class="form-group" style="margin-bottom: 40px;">
+			<div>
+				<div style="font-size: 14px">
+					<span>产品匹配：</span>
+					<input type="checkbox" ng-checked="!ignoreUMall" ng-click="toggleUMall()" ng-if="Storeexist && Umallexist">
+					<span ng-if="Umallexist">&nbsp;库存寄售</span>
+					<input type="checkbox" ng-checked="!ignoreStore" ng-click="toggleStore()" ng-if="Storeexist && Umallexist">
+					<span ng-if="Storeexist">&nbsp;店铺自营</span>
+                    <span ng-if="storeIns.length==0">暂无可匹配的信息</span>
+				</div>
+			</div>
+		</div>
+		<div class="goodsList">
+			<div class="goods-item">按商家列表</div>
+			<table ng-table="goodsTableParams" class="table">
+				<thead>
+				<tr class="height54">
+					<th class="text-center" width="100">制造商型号</th>
+					<th class="text-center" width="120">生产日期</th>
+					<th class="text-center" width="80">包装方式</th>
+					<th class="text-center" width="150">库存</th>
+					<th class="text-center" width="80">数量</th>
+					<th class="text-center" width="100">香港交货<span style="font-size: 12px;">($)</span></th>
+					<th class="text-center" width="130">大陆交货<span style="font-size: 12px;">(￥)</span></th>
+					<th class="text-center" width="120">交期</span></th>
+					<th class="text-center" width="150">操作</th>
+				</tr>
+				</thead>
+				<tbody class="text-center">
+				<tr ng-repeat="good in $data" style="cursor: pointer;">
+					<td ng-bind="good.code" ng-click="toBatch(good)"></td>
+					<td ng-bind="good.produceDate" ng-click="toBatch(good)"></td>
+					<td ng-bind="good.packaging || '暂无包装方式'" ng-click="toBatch(good)"></td>
+					<td style="text-align: left;padding-left: 25px;" ng-click="toBatch(good)">
+						<div>
+							<span>库存：</span>
+							<span ng-bind="good.reserve"></span>
+						</div>
+						<div>
+							<span>起拍：</span>
+							<span ng-bind="good.minBuyQty"></span>
+						</div>
+						<div>
+							<span>倍数：</span>
+							<span ng-bind="good.minPackQty"></span>
+						</div>
+					</td>
+					<td ng-click="toBatch(good)">
+						<div ng-repeat="price in good.prices">
+							<span ng-bind="price.start"></span>+
+						</div>
+					</td>
+					<td ng-click="toBatch(good)">
+						<div ng-repeat="price in good.prices">
+							<span ng-bind="price.uSDPrice | formateNumber : 6 || ''"></span>
+						</div>
+					</td>
+					<td ng-click="toBatch(good)">
+						<div ng-repeat="price in good.prices">
+							<span ng-bind="price.rMBPrice | formateNumber : 6 || ''"></span>
+						</div>
+					</td>
+					<td ng-click="toBatch(good)">
+						<div ng-show="good.b2cMinDelivery">
+							<span>交期：</span>
+							<span ng-bind="good.b2cMinDelivery"></span>-<span ng-bind="good.b2cMaxDelivery"></span>
+						</div>
+					</td>
+					<td>
+ 						<button class="btn btn-buyNow" ng-click="addToCart(good, true, good.minBuyQty)">立即购买</button>
+						<button class="btn btn-default" ng-click="addToCart(good, false, good.minBuyQty)">加入购物车</button>
+					</td>
+				</tr>
+				<tr ng-if="$data.length == 0">
+					<td colspan="10" class="text-center" style="line-height: 40px; font-size: 14px;"><i class="fa fa-smile-o fa-lg"></i> 暂无现货</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,426 @@
+<style type="text/css">
+.location {
+	line-height: 28px;
+}
+
+.location ul {
+	border-bottom: solid 1px #ddd;
+}
+
+.block {
+	padding: 0px 15px;
+}
+
+.headerline {
+	font-size: 24px;
+    font-family: Microsoft YaHei, SimHei, Verdana;
+    font-weight: 500;
+    line-height: 22px;
+    margin: 30px 0 35px -15px;
+    clear: both;
+    zoom: 1;
+    border-top: 1px solid #eee;
+    position: relative;
+    font-size: 18px;
+}
+
+.headerline .index {
+	position: absolute;
+    top: -12px;
+    left: 0;
+    width: 6px;
+    height: 24px;
+    line-height: 24px;
+    background: #ff7300;
+    color: #fff;
+    text-align: center;
+    border-radius: 0 2px 2px 0;
+    z-index: 2;
+}
+
+.headerline .content {
+	position: absolute;
+    top: -12px;
+    left: 6px;
+    line-height: 24px;
+    padding: 0 15px 0 10px;
+    background: #fff;
+    z-index: 2;
+}
+
+.headerline .end {
+	position: absolute;
+    top: -12px;
+    right: 0;
+    line-height: 24px;
+    padding-left: 15px;
+    background: #fff;
+    z-index: 2;
+}
+
+.search table.table tr td {
+	border-top: none;
+}
+
+#searchInput {
+	height: 34px;
+}
+
+.suggestion {
+	position: absolute;
+	margin-top: -1px;
+	width: 374px;
+	background-color: #fff;
+	border: 1px solid #bbb;
+	border-top: none;
+	z-index: 20;
+}
+
+.suggestion ul {
+	margin-bottom: 0;
+}
+
+.suggestion ul li {
+	line-height: 20px;
+	font-size: 16px;
+	padding: 0px 12px;
+	color: #0080c0;
+	cursor: pointer;
+}
+
+.suggestion ul li:hover,.suggestion ul li.active {
+	background: #eee;
+}
+
+.productInfo {
+	overflow-x:scroll;
+}
+
+#release .tableMargin {
+	margin-top: 20px;
+}
+
+#release table {
+	margin:0 auto;
+}
+	
+#release th {
+	text-align: center;
+	height: 40px;
+}
+#release-body td {
+	text-align: center;
+	word-break: break-all;
+}
+#release-body td ul li {
+	list-style: none;
+	text-align: right;
+}
+
+#release .checkboxSize input {
+		width: 18px;
+		height: 18px;
+}
+table.table.table-striped  thead {
+	display: none;
+}
+
+.clear-fix {
+    clear: both;
+}
+
+.color-gray-f {
+    color: #858585;
+}
+
+.color-red-f {
+    color: #F30A26;
+}
+
+/* 分页 Start */
+.block div.text-normal-s {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.block div.text-normal-s>div:first-child {
+    float: right;
+    display: inline;
+    height: 28px;
+    line-height: 28px;
+}
+
+.block div.text-normal-s>div:first-child div {
+    padding: 0;
+    margin: 0;
+    height: 26px;
+    line-height: 26px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.block div.text-normal-s>div:first-child input[type="button"] {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    height: 26px;
+    vertical-align: top;
+    background-color: transparent;
+}
+
+.block div.text-normal-s>div:first-child input[type="button"]:hover {
+    color: #000000;
+}
+
+.block div.text-normal-s>div:first-child span {
+    vertical-align: top;
+}
+
+.block div.text-normal-s>div:first-child input[type="text"]{
+    border: 0;
+    width: 20px;
+    height: 20px;
+    margin: 4px 0;
+    vertical-align: top;
+    text-align: center;
+    background-image: url('static/img/order/number-box.png');
+}
+
+.block div.text-normal-s input[type="button"].btn-jump {
+    width: 56px;
+    height: 26px;
+    border: 0;
+    padding: 0;
+    background-image: url('static/img/order/page-jump.png');
+}
+
+.block div.text-normal-s input[type="button"].btn-jump:hover {
+    border-left: 1px #0000ff solid;
+    border-right: 1px #0000ff solid;
+}
+    
+  /* 分页 End */
+
+</style>
+<!-- location start -->
+<div class="location">
+	<ul class="list-unstyled list-inline">
+		<li class="text-bold">您当前的位置：</li>
+		<li>卖家中心 <i class="fa fa-angle-double-right"></i></li>
+		<li>产品管理 <i class="fa fa-angle-double-right"></i></li>
+		<li>批量发布产品(大量)</li>
+	</ul>
+</div>
+<!-- location end -->
+<!-- block start -->
+<div class="block">
+	<div class="headerline">
+		<div class="index"></div>
+		<div class="content f16 text-bold">第一步、下载Excel模板</div>
+		<div class="end">
+			<a ng-click="closeBox('box1Closed')"
+				class="btn btn-default btn-sm text-simple"> <span
+				ng-if="!box1Closed">收拢 <i class="fa fa-angle-double-up"></i></span>
+				<span ng-if="box1Closed">展开 <i
+					class="fa fa-angle-double-down"></i></span>
+			</a>
+		</div>
+	</div>
+	<div class="box-item" ng-hide="box1Closed">
+		<p>
+			<button class="btn btn-default btn-success f14" ng-click="download()">下载Excel模板 <i
+				class="fa fa-download"></i></button> 在Excel模板上录入产品发布信息，上传
+			<a class="f14 text-default" ng-click="showImg()">查看表格示例</a>。
+		</p>
+		<p>
+			<span class="text-inverse">*提示： 红色的为必填，上传之前请删除包含示例文字那一列</span>
+		</p>
+	</div>
+	<div id="image-box" style="display: none">
+		<div class="x-floating-wrap"></div>
+		<div class="x-floating">
+            <div id="item-content">
+                <div class="x-close-wrap"><a href="javascript:void(0);">&times;</a></div>
+                <div class="img"><img/></div>
+            </div>
+		</div>
+	</div>
+	<div class="headerline">
+		<div class="index"></div>
+		<div class="content f16 text-bold">第二步、上传已经填好的Excel文件</div>
+		<div class="end">
+			<a ng-click="closeBox('box2Closed')"
+				class="btn btn-default btn-sm text-simple"> <span
+				ng-if="!box2Closed">收拢 <i class="fa fa-angle-double-up"></i></span>
+				<span ng-if="box2Closed">展开 <i
+					class="fa fa-angle-double-down"></i></span>
+			</a>
+		</div>
+		<!-- <input role="button" class="btn btn-primary" value="上传文件" /> -->
+	</div>
+	<div class="box-item" ng-hide="box2Closed">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-xs-3" for="xlsFile">请上传已经填写好的Excel文件</label>
+				<div class="col-xs-4">
+					<input required ng-file-select accept="*.xls,*.xlsx"
+						ng-model="myFiles" type="file" ng-multiple="false"
+						class="form-control input-sm" id="xlsFile" name="xlsFile"
+						placeholder="请上传.xls或.xlsx文件" />
+				</div>
+				<div class="col-xs-4">
+					<button ng-click="upload()" class="btn btn-success btn-sm">
+						上传库存信息 <i class="fa fa-upload"></i>
+					</button>
+				</div class="col-xs-4">
+			</div>
+			<div >
+				<div><p>产品信息</p></div>
+				<div><p class="text-inverse">*提示：红色代表匹配信息不成功，不能选择发布</p></div>
+				<form class="form-horizontal">
+					<div class="productInfo">
+					<table class="tableMargin" width="2540px" >
+						<table  width="2530px" class="table-bordered">
+							<thead >
+							<tr id="release">
+								<th width="50px">
+									<!-- <input type="checkbox" name="checkbox" ng-model="checks.checked" ng-click="checkAll()"> -->
+									序号
+								</th>
+								<th width="120px">中文品牌</th>
+								<th width="120px">英文品牌</th>
+								<th width="100px">产品型号</th>
+								<th width="50px">单位</th>
+								<th width="80px">库存类型</th>
+								<th width="80px">发布数量</th>
+								<th width="200px">数量价格分段</th>
+								<th width="120px">产品生产日期</th>
+								<th width="120px">最小包装量</th>
+								<th width="120px">最小起订量</th>
+								<th width="160px">最小包装量单价（RMB）</th>
+								<th width="160px">最小包装量单价（USD）</th>
+								<th width="120px">最短交期(大陆)</th>
+								<th width="120px">最长交期(大陆)</th>
+								<th width="120px">最短交期(香港)</th>
+								<th width="120px">最长交期(香港)</th>
+								<th width="200px">备注</th>
+								<!-- <th width="80px">7天退货</th> -->
+<!-- 								<th width="120px">信息匹配</th>
+								<th width="150px">操作</th> -->
+							</tr>
+						</thead>
+						</table>
+						<div style="overflow-y: scroll; width: 2540px; max-height: 500px">
+						<table class="table table-striped table-bordered">
+							<tbody id="release-body">
+							<tr ng-repeat="cmp in pageParams.content">
+								<td width="50px">
+									<!-- <input ng-if="cmp.releaseCode != 101" ng-model="cmp.checked" ng-click="checkOne(cmp)" type="checkbox"> -->
+									<span>{{(((pageParams.number || 1) -1)*10) + $index + 1}}</span>
+								</td>
+								<td width="120px"><span ng-class="{'text-inverse':(!cmp.brandId)}" ng-bind="cmp.brandNameCn"></span></td>
+								<td width="120px"><span ng-class="{'text-inverse':(!cmp.brandId)}" ng-bind="cmp.brandNameEn"></span></td>
+								<td width="100px"><span ng-class="{'text-inverse':(!cmp.componentUuId)}" ng-bind="cmp.code"></span></td>
+								<td width="50px"><span ng-bind="cmp.unit"></span></td>
+								<td width="80px"><span ng-if="cmp.original==1311">现货</span> 
+								<span ng-if="cmp.original==1312">呆滞库存</span>
+								<td width="80px"><span ng-bind="cmp.reserve"></span></td>
+								<td width="200px"><span ng-repeat="price in cmp.prices">
+										<ul>
+											<li ng-if="price.rMBPrice != null || price.uSDPrice != null"><span ng-bind="price.start"></span>
+												 - <span ng-bind="price.end"></span>
+												: <span ng-if="price.rMBPrice==0">无</span>
+													<span ng-if="price.rMBPrice != 0">￥{{price.rMBPrice | formateNumber : 6}}</span> |
+												 <span ng-if="price.uSDPrice==0">无</span>
+												 <span ng-if="price.uSDPrice != 0">${{price.uSDPrice | formateNumber : 6}}</span>
+											</li>
+										</ul>
+									</span></td>
+								<td width="120px"><span ng-bind="cmp.productDate | date:'yyyy-MM-dd'"></span></td>
+								<td width="120px"><span ng-bind="cmp.minPackage"></span></td>
+								<td width="120px"><span ng-bind="cmp.minBuyQty"></span></td>
+								<td width="160px"><span ng-bind="cmp.rmbMinPackPrice"></span></td>
+								<td width="160px"><span ng-bind="cmp.usdMinPackPrice"></span></td>
+								<!-- <td width="120px"><span ng-if="cmp.shipArea=='overseas'">国外地区</span>
+									<span ng-if="cmp.shipArea=='domestic'">国内地区</span>
+									<span ng-if="cmp.shipArea=='all'">所有</span>
+								</td> -->
+								<td width="120px"><span ng-bind="cmp.mindeliveryDemTime"></span></td>
+								<td width="120px"><span ng-bind="cmp.maxdeliveryDemTime"></span></td>
+								<td width="120px"><span ng-bind="cmp.mindeliveryHKTime"></span></td>
+								<td width="120px"><span ng-bind="cmp.maxdeliveryHKTime"></span></td>
+								<td width="200px"><span ng-bind="cmp.remark"></span></td>
+								<!-- <td width="80px"><span ng-if="cmp.returnInWeek==1">是</span>
+									<span ng-if="cmp.returnInWeek==0">否</span>
+								</td> -->
+<!-- 								<td width="120px"><span ng-bind="cmp.releaseStatus"></span></td>
+								<td width="150px"><a ng-click="deleteById(cmp, $index)"><i
+										class="fa fa-close fa-lg"></i></a>|
+										<a ng-click="editProInfo(cmp)"><i class="fa fa-edit"></i>编辑</a>
+										<span ng-if="!cmp.brandId || !cmp.componentUuId">|</span><a ng-click="cmpApply(cmp)" ng-if="(!cmp.componentUuId) && cmp.brandId">器件申请</a>
+										 <a ng-if="!cmp.brandId" ng-click="brandApply(cmp)">品牌申请</a>
+										</td> -->
+							</tr>
+						</tbody>
+						</table>
+					</div>
+					</table>
+					</div>
+				</form>
+			</div>
+			<div>
+			<button ng-click="publish()" class="btn btn-success btn-ensure" ng-disabled="!pageParams.totalElements">批量发布 </button>
+<!-- 				<button ng-click="getAllInfo() || !result" class="btn btn-success btn-ensure">
+					查询历史 
+				</button>
+				<button class="btn btn-success btn-ensure" type="submit" ng-click="publish()">批量发布</button>
+				<button class="btn btn-success btn-ensure" type="submit" ng-click="deleteByQuery()">批量删除</button> -->
+			</div>
+			<!-- 分页 Start -->
+			<div class="text-normal-s color-gray-f">
+				<div>
+					<div>
+						共<span class="color-red-f" ng-bind="pageParams.totalPages"></span>页<span class="color-red-f" ng-bind="pageParams.totalElements"></span>条
+					</div>&nbsp;
+					<input class="text-normal-s color-gray-f" type="button" value="上一页" ng-click="topage(pageParams.number - 1)"/>
+					<span class="color-red-f" ng-bind="pageParams.number"></span>
+					<input class="text-normal-s color-gray-f" type="button" value="下一页" ng-click="topage(pageParams.number + 1)"/>&nbsp;
+					<span>第<input class="text-normal-s" type="text" ng-model="topagenum"/>页</span>&nbsp;
+					<input class="btn-jump" type="button" ng-click="topage(topagenum)"/>
+				</div>
+				<!-- 清除浮动 Start -->
+				<div class="clear-fix"></div>
+				<!-- 清除浮动 End -->
+			</div>
+		</form>
+	</div>
+	<div class="headerline">
+	<div class="index"></div>
+	<div class="content f16 text-bold">第三步、下载批量发布匹配不成功的的型号列表</div>
+	<div class="end">
+		<a ng-click="closeBox('box3Closed')"
+			class="btn btn-default btn-sm text-simple"> <span
+			ng-if="!box3Closed">收拢 <i class="fa fa-angle-double-up"></i></span>
+			<span ng-if="box3Closed">展开 <i
+				class="fa fa-angle-double-down"></i></span>
+		</a>
+	</div>
+</div>
+<div class="box-item" ng-hide="box3Closed">
+	<p>
+		<span class="text-danger">文件中包含了验证不通过的原因，请修改完删除错误的信息再重新上传</span>
+		<button ng-disabled="!result.failure" class="btn btn-default btn-success f14" ng-click="downloadExcel()">
+		匹配不成功的产品列表<i class="fa fa-download"></i></button>
+	</p>
+</div>
+<div id="image-box" style="display: none">
+	<div class="x-floating-wrap"></div>
+	<div class="x-floating">
+		<div id="item-content">
+			<div class="x-close-wrap"><a href="javascript:void(0);">&times;</a></div>
+			<div class="img"><img/></div>
+		</div>
+	</div>
+</div>
+</div>
+<!-- block end -->

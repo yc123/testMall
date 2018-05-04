@@ -1,0 +1,225 @@
+<style>
+    /*自提弹出框*/
+    @media (min-width: 992px) {
+        .modal-lg {
+            width: 740px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .modal-dialog {
+            width: 740px;
+        }
+    }
+
+    .modal-body {
+        width: 740px;
+        height: 370px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .modal-body .add-takeSelf {
+        width: 740px;
+        height: 370px;
+        font-size: 14px;
+        color: #333;
+    }
+    .modal-body .add-takeSelf .close{
+        position: absolute;
+        top: 6px;
+        right: 9px;
+        float: right;
+        opacity: 0.7;
+    }
+    .modal-body .add-takeSelf .close:hover,.modal-body .add-takeSelf .close:focus{
+        color: black;
+        opacity: .5;
+
+    }
+    .modal-body .add-takeSelf h2 {
+        color: #333;
+        font-size: 14px;
+        width: 100%;
+        line-height: 45px;
+        padding-left: 20px;
+        font-family: normal;
+        border-bottom: #e5e5e5 1px solid;
+    }
+
+    .modal-body .add-takeSelf .row {
+        margin-top: 15px;
+        margin-left: 0;
+    }
+
+    .modal-body .add-takeSelf .col-md-2 {
+        text-align: right;
+        line-height: 35px;
+        margin-left: -35px;
+    }
+    .modal-body .add-takeSelf .txt-info {
+        margin-left: 15px;
+    }
+    .modal-body .add-takeSelf .col-md-9 {
+        overflow: hidden;
+        margin-right: 0;
+        width: 76%;
+    }
+
+    .modal-body .add-takeSelf .colorRed {
+        color: #f36d6d;
+    }
+
+    .modal-body .add-takeSelf .col-md-9 input[type='text'] {
+        width: 320px;
+        height: 34px;
+        border-radius: 3px;
+    }
+
+    .modal-body .add-takeSelf .col-md-9 label {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .modal-body .add-takeSelf .detailAddress input[type='text'] {
+        width: 515px;
+        height: 34px;
+    }
+
+    .modal-body .add-takeSelf .col-md-9 .span4 {
+        float: left;
+        margin-right: 10px;
+        width: 162px;
+        height: 34px;
+        cursor: pointer;
+    }
+    .modal-body .add-takeSelf .modal-footer .center {
+        text-align: center;
+    }
+
+    .modal-body .add-takeSelf .modal-footer .center button {
+        width: 70px;
+        height: 32px;
+        background: #c8c6c6;
+        color: #fff;
+        line-height: 16px;
+        border: none;
+        outline: none;
+        border-radius: 0;
+    }
+
+    .modal-body .add-takeSelf .modal-footer .center .btn-success {
+        background: #5078cb;
+    }
+
+    .modal-body .add-takeSelf .modal-footer .center button:hover {
+        background: #3f7ae3;
+    }
+    .modal-body .error {
+        height: 34px;
+        line-height: 34px;
+    }
+    .heigth30{
+        height: 34px;
+        line-height: 34px;
+    }
+</style>
+<!--新增自提点弹出框-->
+<div class="modal-body">
+    <div class="box">
+        <div class="add-takeSelf">
+            <h2 ng-if="!isModify">新增自提点</h2>
+            <h2 ng-if="isModify">修改自提点</h2>
+            <div class="close" ng-click="cancel()">&times;</div>
+            <form name="myForm" class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-2"><em class="colorRed">*</em>自提点名称:
+                    </div>
+                    <div class="col-md-6">
+                        <input ng-model="takeSelf.takename" name="takeName" autocomplete="off" ng-change="checkFrom(1)" class="form-control"
+                               type="text" placeholder="请输入自提点名称" required>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="text-inverse error" ng-show="takeSelf.takename && nameError">请勿超过15个字</span>
+                        <span class="text-inverse heigth30" ng-show="myForm.takeName.$touched && myForm.takeName.$invalid">请输入自提点名称</span>
+                        <span ng-show="takeSelf.takename && repeatError" class="text-inverse error">该名称已存在，请修改</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><em class="colorRed">*</em>营业时间:</div>
+                    <div class="col-md-6">
+                        <input ng-model="takeSelf.businesstime" required autocomplete="off" name="businessTime" ng-change="checkFrom(2)" class="form-control" type="text" placeholder="请输入营业时间，如周一至周五 08:30-18:00">
+                    </div>
+                    <div class="col-md-3">
+                        <span class="text-inverse error" ng-show="takeSelf.businesstime && businessError">请勿超过15个字</span>
+                        <span class="text-inverse heigth30" ng-show="myForm.businessTime.$touched && myForm.businessTime.$invalid">请填写营业时间</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><em class="colorRed">*</em>所在地区:
+                    </div>
+                    <div class="col-md-9">
+                        <div class="span4">
+                            <select required class="form-control select-adder"
+                                    ng-model="takeSelf.province"
+                                    ng-options="key as key for (key,value) in division"
+                                    ng-change="takeSelf.city='';takeSelf.district='';">
+                                <option value="">省级行政区</option>
+                            </select>
+                        </div>
+                        <div class="span4">
+                            <select required class="form-control select-adder"
+                                    ng-model="takeSelf.city"
+                                    ng-options="key as key for (key,value) in division[takeSelf.province]"
+                                    ng-change="address.district='';">
+                                <option value="">市</option>
+                            </select>
+                        </div>
+                        <div class="span4">
+                            <select required class="form-control select-adder"
+                                    ng-model="takeSelf.district"
+                                    ng-options="value as value for value in division[takeSelf.province][takeSelf.city]"
+                                    required>
+                                <option value="">区</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><em class="colorRed">*</em>详细地址:
+                    </div>
+                    <div class="col-md-8 detailAddress">
+                        <input ng-model="takeSelf.detailAddress" required autocomplete="off"
+                               name="detailAddress" ng-change="checkFrom(3)"
+                               class="form-control" type="text"
+                               placeholder="建议您填写详细地址，例如街道名、门牌号、楼层和房间号等信息">
+                    </div>
+                    <div class="col-md-2 txt-info">
+                        <span class="text-inverse error"
+                              ng-show="takeSelf.detailAddress && addressError">请勿超过30个字</span>
+                        <span class="text-inverse heigth30"
+                              ng-show="myForm.detailAddress.$touched && myForm.detailAddress.$invalid">请填写详细地址</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">是否生效</div>
+                    <div class="col-md-9">
+                        <label class="radio-inline">
+                            <input type="radio" value="true" ng-click="isActive=true" ng-checked="isActive">生效</label>
+                        <label class="radio-inline">
+                            <input type="radio" value="false" ng-click="isActive=false" ng-checked="!isActive">暂不生效</label>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="center">
+                    <button class="btn btn-warning" ng-click="cancel()">取消
+                    </button>
+                    <button class="btn btn-success" type="button"
+                            ng-click="saveAddressTakeSelf()">保存
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,426 @@
+<style>
+    .dis-content {
+        width: 100%;
+        margin: 0 auto;
+        display: inline-block;
+        padding-bottom: 15px;
+    }
+    .dis-manage-header{
+        padding-left: 20px;
+        padding-top: 20px;
+        background: #e9e9e9;
+        min-height: 71px;
+    }
+    .dis-manage-title{
+        font-size: 14px;
+        width: 112px;
+        float: left;
+    }
+    .dis-manage-header-list {
+        display: inline-block;
+        width: 751px;
+        background: white;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-radius: 3px;
+        min-height: 34px;
+        max-height: 94px;
+        overflow-y: auto;
+    }
+    .dis-manage-header-item {
+        display: inline-block;
+        font-size: 13px;
+        padding: 0 10px;
+        height: 25px;
+        line-height: 25px;
+        background: #e5eefc;
+        text-align: center;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+    .dis-manage-header-item:hover {
+        cursor: pointer;
+        background: #8db2f4;
+    }
+    .dis-manage-header-item:hover span{
+        color:#fff;
+    }
+    .dis-manage-header-item:hover i{
+        background: #fff;
+        cursor: pointer;
+        color: #ef4644;
+        border-radius: 100%;
+    }
+    .dis-manage-header-item i {
+        color: #cbddfa;
+        font-size: 14px;
+        height: 12px;
+    }
+    .dis-manage-middle {
+        padding: 10px;
+        border-top: 1.5px solid #ccc;
+        border-bottom: 1.5px solid #ccc;
+        position: relative;
+    }
+    .dis-manage-middle-input {
+        width: 400px;
+        height: 38px;
+        line-height: 38px;
+        display: inline-block;
+        padding-left: 10px;
+        font-size: 14px;
+        float: left;
+    }
+    .dis-manage-middle-search {
+        position: absolute;
+        width: 400px;
+        background: white;
+        z-index: 100;
+        height: 170px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .dis-manage-middle-search ul{
+        padding: 10px;
+    }
+    .dis-manage-middle-search ul li{
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+    .dis-manage-middle-search ul li:hover {
+        background: #e9e9e9;
+    }
+    .dis-manage-middle-search ul li.active {
+        background: #e9e9e9;
+    }
+    .dis-manage-middle-add {
+        width: 36px;
+        height: 37px;
+        line-height: 32px;
+        text-align: center;
+        display: inline-block;
+        background: #507acb;
+        color: white;
+        width: 60px;
+        font-size: 14px;
+    }
+    .dis-manage-middle-add:hover {
+        cursor: pointer;
+    }
+    .dis-manage-middle-message {
+        font-size: 12px;
+        color: #999;
+        margin-left: 15px;
+        text-align: center;
+        display: inline-block;
+        height: 37px;
+        line-height: 37px;
+        padding-right: 10px;
+    }
+    .dis-manage-middle .dropdown-menu {
+        top: 45px;
+        left: 10px;
+        line-height: 23px;
+        max-height: 120px;
+        overflow-y: auto;
+        width: 400px;
+        display: block;
+        overflow-x: hidden;
+        border-radius: 0;
+    }
+    .dis-manage-middle .dropdown-menu li{
+        font-size: 14px;
+        cursor: pointer;
+        padding-left:13px;
+    }
+    .dis-manage-middle .dropdown-menu li:hover,.dis-manage-middle .dropdown-menu li.active{
+        color: #fff;
+        background: #5078cb;
+    }
+    .dis-manage-footer {
+        padding-top: 10px;
+        background: #e9e9e9;
+    }
+    .dis-manage-footer-title {
+        font-size: 14px;
+        font-weight: 600;
+        padding-left: 20px;
+    }
+    .dis-manage-footer-table {
+        margin-top: 20px;
+        width: 100%;
+    }
+    .dis-manage-footer-table-tr-td {
+        font-size: 14px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        overflow: hidden;
+        padding: 0 18px;
+    }
+    /*.dis-manage-bgwhite {*/
+        /*background: white;*/
+    /*}*/
+    .dis-manage-footer-table tr:nth-child(even){
+        background: #f1f1f1;
+    }
+    .dis-manage-footer-table tr td{
+        border-bottom: #e8e8e8 1px solid;
+    }
+    .dis-manage-footer-table tr td:hover{
+        background: #e4e7e7;
+    }
+    .dis-manage-footer-table tr:nth-child(odd){
+        background: #fff;
+    }
+    .dis-manage-footer-btn {
+        width: 100%;
+        float: right;
+        margin-right: 20px;
+    }
+    .dis-manage-middle button{
+        border-radius: 0;
+        height: 38px;
+    }
+    .dis-manage-footer-cancel {
+        background: #b4b5b9;
+        color: #333;
+        margin-right: 10px;
+        width: 70px;
+        height: 34px;
+        line-height: 34px;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+        float: right;
+    }
+    .dis-manage-footer-cancel:hover{
+        background: #3f7ae3;
+        color: #fff;
+        cursor: pointer;
+    }
+    .dis-manage-footer-save {
+        width: 70px;
+        height: 34px;
+        line-height: 34px;
+        display: inline-block;
+        text-align: center;
+        font-size: 14px;
+        background: #5078cb;
+        color: #fff;
+        float: right;
+    }
+    .dis-manage-footer-save:hover{
+        background: #3f7ae3;
+        cursor: pointer;
+    }
+    .dis-manage-footer-checkbox {
+        height: 15px;
+        width: 30px;
+        margin-bottom: 7px!important;
+        margin-left: 7px!important;
+    }
+    .dis-manage-footer-table-tr-td .check-act label{
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+        display: inline-block;
+        background: url(static/img/icon/check-rule.png) no-repeat;
+        position: relative;
+    }
+    .dis-manage-footer-table-tr-td .check-act input{
+        display: none;
+    }
+    .dis-manage-footer-table-tr-td >span {
+        float: left;
+        max-width: 68px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .dis-manage-footer-table-tr-td .check-act label{
+        background-position: -48px 0;
+    }
+    .dis-manage-footer-table-tr-td input:checked + label{
+        background-position: -31px 0;
+    }
+    /*分页样式*/
+   /* ul.pagination.ng-table-pagination > li > a > span {
+        height: 17px;
+        line-height: 17px;
+    }
+    div.ng-table-pager {
+        margin-right: 42px!important;
+        float: right;
+    }
+    div.ng-table-pager  input.page-number {
+        vertical-align: inherit;
+        display: inline-block;
+        width: 40px;
+        height: 31px;
+        padding: 6px 6px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #9B9792;
+        text-align: center;
+        background-color: #F6F5F4;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+
+    div.ng-table-pager a.page-a {
+        color: #fff!important;
+        cursor: pointer;
+        background-color: #4574E8;
+        border-color: #4574E8;
+        padding: 6px 6px;
+        font-size: 14px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        text-decoration: none;
+        height: 31px;
+    }
+    div.ng-table-pager a.page-a:hover{
+        color: #fff!important;
+        background-color: #4574E8!important;
+    }
+    div.ng-table-pager div.page-go-block {
+        float: right;
+        margin-left: 20px;
+        margin-top: 20px;
+        font-size: 0px;
+        height: 31px;
+        line-height: 31px;
+    }
+
+    .seller-contact-info {
+        position: absolute;
+        z-index: 2;
+        height: 210px;<!--506-->
+        border: 1px solid #E7E5E2;
+        opacity: 1;
+        background-color: white;
+        width: 600px;
+        top: 40px;
+        left: -549px;
+        border: 1px solid #E7E5E2;
+        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    }
+
+    .display-none {
+        display: none;
+    }
+
+    .ng-table-pager .ng-table-pagination a{
+        color: #4574E8 !important;
+        height: 31px;
+    }
+
+    .ng-table-pager .ng-table-pagination li.active a {
+        background-color: #4574E8;
+        color: white !important;
+    }*/
+    .dis-manage-footer .check-act label:hover{
+        cursor: pointer;
+    }
+    .dis-manage-footer-table tr.record-num{
+        height: 30px;
+        background: #fff !important;
+    }
+    .dis-manage-footer-table tr.record-num td{
+        border-bottom: none;
+    }
+    .dis-manage-footer-table tr.record-num td:hover{
+        background: none;
+    }
+    .record-num td .count-tip{
+        float: right;
+        margin-right: 10px;
+    }
+    span.text-span{
+        float: left;
+        max-width: 82px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .btn-success[disabled] {
+        background: #b4b5b9!important;
+        color: #333!important;
+        border-color: #b4b5b9!important;
+        /* border: none; */
+    }
+    .btn-success:hover {
+        border-color: #5078cb;
+    }
+</style>
+
+<div class="dis-content">
+    <div class="dis-manage-header">
+        <span class="dis-manage-title">已选中的配送商：</span>
+        <ul class="dis-manage-header-list">
+            <li class="dis-manage-header-item" ng-repeat="data in chooseList">
+                <span>{{data.companyName}}</span>
+                <i class="fa fa-minus-circle" ng-click="removeDistributor(data, $index)"></i>
+            </li>
+        </ul>
+    </div>
+    <div class="dis-manage-middle">
+        <input class="dis-manage-middle-input" type="text" placeholder="请输入配送商名称" ng-change="inputContent()" ng-model="keyword" ng-keydown="onKeyDown()" ng-blur="onBlur()" ng-focus="getFocus()">
+        <button ng-disabled="!keyword || keyword.length==0" class="btn btn-success" ng-click="addItemInSelected()" type="button">新增</button>
+        <span class="dis-manage-middle-message" ng-if="!containsItem && keyword.length > 0"><i class="fa fa-info-circle"></i>系统无法提供此物流信息，请根据物流单号到相应的官网查询。</span>
+        <!--<span class="dis-manage-middle-message" ng-if="companyError && keyword.length > 0">请输入正确的物流公司</span>-->
+        <!--<ul id="ulContent">-->
+        <!--<li ng-repeat="data in resultList" ng-click="clickItem(data)" ng-class="{'active': $index==selectIndex}">{{data.companyName}}</li>-->
+        <!--</ul>-->
+        <ul id="ulContent"  ng-if="showDownFrame && matchData" class="dropdown-menu">
+            <li ng-click="clickItem(data)" ng-repeat="data in resultList" ng-class="{'active': $index==selectIndex}" ng-bind="data.companyName"></li>
+        </ul>
+    </div>
+    <div class="dis-manage-footer">
+        <span class="dis-manage-footer-title">以下配送商均可提供物流信息</span>
+        <table class="dis-manage-footer-table" ng-table="distributorTableParams">
+            <tr class="dis-manage-footer-table-tr dis-manage-bgwhite" ng-repeat="value in showList">
+                <td class="dis-manage-footer-table-tr-td" ng-repeat="data in value" width="120">
+                    <span ng-bind="data.companyName"></span>
+                    <label class="check-act" style=" float: right;">
+                        <input type="checkbox" id="{{data.code}}" ng-click="ChooseDistributor(data)" ng-checked="selectFlag[data.code].isChoosed"/>
+                        <label for="{{data.code}}"></label>
+                    </label>
+                </td>
+            </tr>
+            <tr class="record-num">
+                <td colspan="6">
+                    <span class="count-tip">显示 <span ng-bind="$$kdnData.start">23</span>-<span ng-bind="$$kdnData.end">10</span> ，共：<span ng-bind="$$kdnData.totalElements" style="color: #5078cb;">23</span> 个</span>
+                </td>
+            </tr>
+        </table>
+        <!--<div class="ng-cloak ng-table-pager" style="float: right;margin-right: 60px;">-->
+            <!--<ul class="pagination ng-table-pagination">-->
+                <!--<li ng-class="{'disabled': !page.active && !page.current, 'active': page.current}" ng-repeat="page in pages" ng-switch="page.type">-->
+                    <!--<a ng-switch-when="prev" ng-click="setPage(page.type, -1)" >&laquo;</a>-->
+                    <!--<a ng-switch-when="first" ng-click="setPage(page.type, page.number)"><span ng-bind="page.number"></span></a>-->
+                    <!--<a ng-switch-when="page" ng-click="setPage(page.type, page.number)" ><span ng-bind="page.number"></span></a>-->
+                    <!--<a ng-switch-when="more" ng-click="setPage(page.type, -1)" >&#8230;</a>-->
+                    <!--<a ng-switch-when="last" ng-click="setPage(page.type, page.number)" ><span ng-bind="page.number"></span></a>-->
+                    <!--<a ng-switch-when="next" ng-click="setPage(page.type, -1)" >&raquo;</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="page-go-block">-->
+                <!--<input class="page-number" type="text" ng-model="param.currentPage" ng-keydown="listenEnter()"/>-->
+                <!--<a class="page-a" ng-click="setPage('page', param.currentPage)" href="">GO</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="dis-manage-footer-btn">
+            <span class="dis-manage-footer-save" ng-click="saveChooseList()">保存</span>
+            <span class="dis-manage-footer-cancel" ng-click="cancel()">取消</span>
+        </div>
+
+    </div>
+</div>

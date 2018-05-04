@@ -1,0 +1,25 @@
+/* Loading css included in common.css file */
+/* Use for some pages doesn't load the common.css */
+.loading {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.loading.in {
+    display: block;
+    z-index: 99999;
+}
+
+.loading.in>i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -66px 0 0 -33px;
+    background: url("../img/all/loading.gif") no-repeat center center;
+    width: 66px;
+    height: 66px;
+}

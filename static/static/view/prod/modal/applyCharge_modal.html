@@ -1,0 +1,49 @@
+<style type="text/css">
+.modal-body label{
+	margin-right: -15px;
+}
+.heigth30 {
+	height: 30px;
+	line-height: 30px;
+}
+</style>
+<div class="modal-header">
+	<h3 class="modal-title">申请议价</h3>
+</div>
+<div class="modal-body">
+<div class="row">
+		<div class="col-md-11">
+			<form name="myForm" class="form-horizontal" role="form" ng-submit="save(charge)">
+				<div class="form-group">
+					<label for="qty" class="col-md-2 col-sm-3 control-label">数量：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input readonly ng-model="charge.number" type="text" class="form-control" id="qty" name="qty">
+				    </div>
+					<label for="originalPrice" class="col-md-2 col-sm-3 control-label">原单价：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input readonly ng-model="charge.originalPrice" type="text" class="form-control" id="originalPrice" name="originalPrice">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label for="qty" class="col-md-3 col-sm-4 control-label"><strong class="text-inverse">* </strong>您的期望单价：</label>
+					<div class="col-md-6 col-sm-6">
+	 			      	<input ng-model="charge.chargePrice" type="number" class="form-control" id="qty" name="qty" required min="0.0001">
+	 			      	<div ng-if="charge.chargePrice > charge.originalPrice"><span class="text-inverse">您填写期望价 大于原单价，确认无误？</span></div>
+	 			      	<div ng-if="myForm.qty.$error.min"><span class="text-inverse">输入的数字必须大于0.0001</span></div>
+				    </div>
+				</div>
+				<div class="form-group">
+					<label for="remark" class="col-md-3 col-sm-4 control-label"><strong class="text-inverse">* </strong>申请备注：</label>
+					<div class="col-md-8 col-sm-9">
+						<textarea ng-model="charge.remark" class="form-control" minLength="5" id="remark" name="remark" rows="2" placeholder="在备注中写明一些申请需求\原因(5字以上)" required></textarea>
+					</div>
+				</div>
+			</form>
+		</div>
+</div>
+</div>
+<div class="modal-footer">
+	<span class="pull-left text-inverse"><i class="fa fa-fw fa-warning"></i>(申请议价，供货商确认成功后订单价格会更改！)</span>
+	<button ng-disabled="myForm.$invalid" class="btn btn-success" ng-click="save()" type="button">确认并提交</button>
+	<button class="btn btn-default" ng-click="cancel()" type="button">取消</button>
+</div>

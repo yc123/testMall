@@ -1,0 +1,368 @@
+<style>
+    .public-tab.table>thead>tr>th,.public-tab.table>tbody>tr>td{
+        color: #666;
+        font-weight: normal;
+    }
+    .public-tab.table>tbody>tr>td{
+        border-bottom: none;
+    }
+    .public-tab.table>tbody>tr:last-child>td{
+        border-bottom: #cfcfcf 1px dashed;
+    }
+    .public-tab.table>thead>tr>th:first-child,.public-tab.table>thead>tr>th:last-child,.public-tab.table>tbody>tr>td:first-child,.public-tab.table>tbody>tr>td:last-child{
+        text-align: center;
+    }
+    .public-tab.table>tbody>tr>td div{
+        min-height: inherit;
+        line-height: 25px;
+    }
+    .public-tab.table>tbody>tr{
+        height: 50px;
+    }
+    .record-line {
+        font-size: 12px;
+        padding-right: 20px;
+    }
+    .fail-tab.table>tbody>tr>td.red{
+        color: #f00;
+    }
+    .hei16{
+        border-bottom: none !important;
+    }
+    .fail-tab.table>thead>tr>th a{
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        color: #fff;
+        background: #5078cb;
+    }
+    .fail-tab.table>thead>tr>th a:hover{
+        background: #3f7ae3;
+        color: #fff !important;
+    }
+    .fail-tab.table>tbody>tr>td .check input{
+        display: none;
+        margin: 0;
+    }
+    .fail-tab.table>tbody>tr>td .check label{
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        background: url(static/img/user/images/check.png) no-repeat;
+        position: relative;
+        padding-left: 0 !important;
+        overflow: hidden;
+        margin-bottom: 0 !important;
+        vertical-align: sub;
+        min-height: 15px !important;
+        left: 0 !important;
+        bottom: 1px;
+    }
+    .fail-tab.table>tbody>tr>td .check input[type="checkbox"]:checked + label {
+        background-position: -15px 0;
+    }
+    .fail-tab.table>tbody>tr>td{
+        border-bottom: #e8e8e8 1px solid;
+    }
+    .fail-tab .type-brand p{
+        width: 43% !important;
+        display: inline-block;
+        float: left;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+        color: #999;
+    }
+   /* .fail-tab tbody:nth-child(even){
+        background: #f4f4f4;
+    }*/
+    .fail-tab .type-brand div{
+        width: 10%;
+        float: right;
+        margin-right: 10px;
+    }
+    .fail-tab.table>tbody>tr.no td {
+        color: #fff;
+        font-size: 12px;
+        background: #bcc0c1;
+    }
+    .fail-tab.table>tbody>tr.no td a {
+        color: #5078cb;
+        margin: 0;
+    }
+    .public-tab.table>tbody>tr.no{
+        height: 40px;
+    }
+    .public-tab.table>tbody>tr:hover{
+        background: #c7ebfd;
+    }
+    .no-hover:hover{
+        background: none !important;
+    }
+    .ng-isolate-scope{
+        width: 100%;
+        margin: 0 auto;
+        background: #fff;
+        min-height: 50px;
+    }
+   /* div.ng-table-pager a.page-a{
+        color: #fff;
+        padding: 6px 8px;
+    }*/
+    .wanted_list01 .pagination{
+        margin: 4px 0;
+    }
+    .public-tab.table>tbody>tr td.standard{
+        background: url("static/img/icon/standard.png") no-repeat right top;
+    }
+    .public-tab.table>tbody>tr td.nStandard{
+        background: url("static/img/icon/nStandard.png") no-repeat right top;
+    }
+    .fail-tab thead tr{
+        background: #dff3fd;
+    }
+    .fail-tab tbody:nth-child(odd) tr{
+        background: #f4f4f4;
+    }
+    .fail-tab.table>tbody>tr:last-child>td{
+        border-bottom: none;
+    }
+    .result{
+        width: 100%;
+        min-height: 50px;
+        line-height: 50px;
+        font-size: 14px;
+        color: #333;
+    }
+    .result em{
+        color: #5078cb;
+        margin: 0 8px;
+    }
+    .result i{
+        color: #f00;
+        margin: 0 8px;
+    }
+    .tab-head{
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 14px;
+        background: #83d2fb;
+        color: #fff;
+        min-height: 40px;
+    }
+    .match-result:hover a{
+        border-bottom: none !important;
+    }
+    .match-result{
+        position: relative;
+    }
+    .match-result i{
+        position: absolute;
+        top: 7px;
+        right: 6px;
+        color: #5078cb;
+        font-size: 16px;
+        z-index: 20;
+    }
+    .blue{
+        color: #5078cb !important;
+    }
+    .match-all{
+        color: #5078cb !important;
+        background: none;
+        font-size: 14px;
+        border: none;
+        margin-right: 20px;
+    }
+    .match-menu{
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        position: absolute;
+        top: 40px;
+    }
+    .match-menu span{
+        display: inline-block;
+        text-align: center;
+        width: 100px;
+        height: 20px;
+        background: #eee;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        margin-left: 390px;
+        line-height: 19px;
+        position: relative;
+        bottom: 20px;
+    }
+    .match-menu span a{
+        font-size: 12px;
+        color: #999;
+        display: inline-block;
+        height: 20px;
+        width: 60px;
+    }
+    .match-menu span.active{
+        background: #fff;
+        border: #82d2fa 1px solid;
+        border-bottom: #fff 1px solid;
+    }
+    .match-menu span.active a{
+        color: #333;
+    }
+    .match-menu span i{
+        font-size: 14px;
+        color: #999;
+    }
+    .match-menu span i:hover,.match-menu span a:hover{
+        color: #5078cb;
+    }
+    .com_tab.macth-act{
+        margin-bottom: 0 !important;
+    }
+    .com_tab.macth-act ul{
+        border-bottom: #82d2fa 1px solid;
+    }
+    .device .wanted_list01{
+       /* padding-bottom: 20px;*/
+    }
+    .match-menu > i:hover {
+        cursor: pointer;
+    }
+    .com_tab ul li.active a:focus{
+        text-decoration: none;
+    }
+</style>
+<div class="user_right fr">
+    <!--货品管理-->
+    <div class="pro_management device">
+        <div class="com_tab">
+            <ul class="fl" style="width: 100%">
+                <li ui-sref="vendor_productOn"><a href="javascript:void(0)">新产品导入</a></li>
+                <li ng-class="{'active': $$productOn.leadIn == 'product_repository'}"><a href="javascript:void(0)">产品库</a></li>
+            </ul>
+        </div>
+        <div class="com_tab" style="position: relative;" ng-class="{'macth-act': $$productRepository.status == 'matchResult'}">
+            <ul class="fl" style="width: 100%">
+                <li ng-class="{'active' : $$productRepository.status == 'all'}" ng-click="toggleStatus('all')"><a href="javascript:void(0)">全部</a></li>
+                <li ng-class="{'active' : $$productRepository.status == 'standard'}" ng-click="toggleStatus('standard')"><a href="javascript:void(0)">标准产品</a></li>
+                <li ng-class="{'active' : $$productRepository.status == 'nStandard'}" ng-click="toggleStatus('nStandard')"><a href="javascript:void(0)">非标准产品</a></li>
+               <!-- <li ng-class="{'active' : $$productRepository.status == 'matchResult'}" ng-if="$$productRepository.status == 'matchResult'"  class="match-result" ng-click="close('nStandard')"><a href="javascript:void(0)">匹配结果</a><i class="fa fa-remove"></i></li>-->
+            </ul>
+            <!--匹配结果导航-->
+            <div class="match-menu" ng-if="$$productRepository.matchError">
+                <span ng-class="{'active': $$productRepository.status == 'matchResult'}">
+                    <a ng-click="taggeleToMatchResult()">匹配结果</a>
+                    <i class="fa fa-remove" ng-click="close('nStandard')"></i>
+                </span>
+            </div>
+        </div>
+        <div class="search-check" ng-if="$$productRepository.status == 'all' || $$productRepository.status == 'standard' || $$productRepository.status == 'nStandard'">
+            <div class="search fl">
+                <input type="text" class="form-control ng-pristine ng-valid ng-touched" ng-model="$$productRepository.keyword" ng-search="onSearch()" placeholder="类目/品牌/型号">
+                <button ng-click="onSearch()">搜索</button>
+                <a ng-click="download()" class="down-goods-btn">批量导出</a>
+            </div>
+            <div class="check fr">
+                <button  ng-click="matchAll()" class="match-all" ng-if="$$productRepository.status != 'standard'">一键匹配</button>
+            </div>
+        </div>
+            <div class="wanted_list01" ng-if="$$productRepository.status != 'matchResult'">
+            <!--标准产品-->
+                    <table class="standard-tab public-tab table" ng-table="ngRepositoryTable">
+                        <thead>
+                            <tr>
+                                <th width="40">序号</th>
+                                <th width="200">产品名称（类目）</th>
+                                <th width="180">品牌</th>
+                                <th width="100">型号</th>
+                                <th width="100">封装</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr style="height: 14px;">
+                            <td colspan="6" class="hei16"></td>
+                        </tr>
+                        </tbody>
+                        <tbody ng-repeat="product in $data">
+                            <tr>
+                                <td>{{$index + 1}}</td>
+                                <td ng-bind="product.kind || '-'">继电器</td>
+                                <td ng-bind="product.pbranden || '-'">Panasonic</td>
+                                <td ng-class="{true :'standard', false : 'nStandard'} [product.standard == 1]"><span ng-bind="product.pcmpcode || '-'" class="type"></span></td>
+                                <td ng-bind="product.encapsulation || '-'">BGA</td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-if="$data.length > 0">
+                            <tr style="height: 30px;"  class="no-hover">
+                                <td colspan="6" style="border-bottom: none; padding: 0;border-top: #e8e8e8 1px solid;">
+                                    <div class="record-line text-right">
+                                        显示<span ng-bind="$$productRepository.start">1</span>-<span ng-bind="$$productRepository.end">10</span>，共：<span style="color: #5078cb;" ng-bind="$$productRepository.totalElements"></span>个
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody class="no-record-list" ng-if="!$data">
+                            <tr>
+                                <td colspan="6"><img src="static/img/all/empty-cart.png"><span>暂无产品信息！</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <!--非标准产品-->
+            <div class="wanted_list01" ng-if="$$productRepository.status == 'matchResult'">
+                <div style="width: 96%; margin: 0 auto">
+                    <div class="result">匹配成功<em ng-bind="$$productRepository.result.success || 0"></em>个，匹配失败<i ng-bind="$$productRepository.result.fail || 0"></i>个</div>
+                    <div class="tab-head">匹配失败的产品</div>
+                    <table class="fail-tab public-tab table" ng-table="matchFailureTable">
+                        <thead>
+                            <tr>
+                                <th width="40">序号</th>
+                                <th width="100">产品名称</th>
+                                <th width="100">品牌</th>
+                                <th width="80">型号</th>
+                                <th width="80">封装</th>
+                                <th width="250">商城标准</th>
+                                <th width="60"><a ng-click="updateNStandard()" ng-disabled="!$$productRepository.failProMatchArr.length">匹配</a></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="nProduct in $data">
+                            <tr class="no fail-no" ng-if="!nProduct.matchsize&&(!$index||($data[$index - 1].matchsize) )">
+                                <td colspan="7">商城暂未收录以下产品，可前往<a href="vendor#/brand/apply/">品牌中心/</a><a href="vendor#/component/apply"> 器件申请</a>中提出申请</td>
+                            </tr>
+                            <tr>
+                                <td>{{$index + 1}}</td>
+                                <td ng-bind="nProduct.prodName" title="{{nProduct.prodName}}">继电器</td>
+                                <td ng-bind="nProduct.brand" title="{{nProduct.brand}}">Pionhhkhnkkkkkguf</td>
+                                <td ng-bind="nProduct.cmpCode" title="{{nProduct.cmpCode}}">Lhhjhj-3</td>
+                                <td ng-bind="nProduct.encapsulation || '-'" title="{{nProduct.encapsulation}}">BGA</td>
+                                <td class="more-list" colspan="2">
+                                    <div class="type-brand" ng-repeat="item in nProduct.matchresults">
+                                        <p>类目：<span ng-bind="item.kindcn" title="{{item.kindcn}}">LPC1112</span></p>
+                                        <p> 品牌：<span ng-bind="item.branden" title="{{item.branden}}">LPC1112</span></p>
+                                        <div class="check">
+                                            <input type="checkbox" id="{{item.id}}" ng-model="item.checked" name="item.id" ng-click="chooseThisComponet(item, nProduct)"><label for="{{item.id}}"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-if="$data.length > 0">
+                            <tr style="height: 30px;" class="no-hover">
+                                <td colspan="7" style="border-bottom: none; padding: 0;">
+                                    <div class="record-line text-right">
+                                        显示<span ng-bind="$$productRepository.failProMatch.start">23</span>-<span ng-bind="$$productRepository.failProMatch.end">10</span>，共：<span style="color: #5078cb;" ng-bind="$$productRepository.failProMatch.totalElements"></span>个
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+</div>

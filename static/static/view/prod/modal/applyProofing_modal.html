@@ -1,0 +1,132 @@
+<style>
+	.modal-body label{
+		margin-right: -15px;
+	}
+	h5{
+    	font-weight: 700;
+	}
+	.addr-detail {
+	    margin-left: 15px;
+		float: left;
+		line-height: 24px;
+	}
+	.addr-detail span {
+		margin-left: 10px
+	}
+	.margin10{
+		margin-top: 10px;
+	}
+	.in-right {
+		color: #005ea7;
+   		margin-top: 10px;
+		float: right;
+	}
+</style>
+<div class="modal-header" style="background-color: #f2f2f2;">
+	<span class="pull-right" ng-click="cancel()"><i class="fa fa-close fa-2x"></i></span>
+	<h5 class="modal-title">
+		免费样片申请
+	</h5>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12">
+			<form name="myForm" class="form-horizontal" role="form" ng-submit="save(proofing)">
+				<div class="form-group">
+					<label for="userName" class="col-md-2 col-sm-3 control-label"><strong class="text-inverse">* </strong>产品批次号：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input readonly ng-model="proofing.batchCode" type="text" class="form-control" id="bactchcode"  name="bactchcode">
+				    </div>
+					<label for="userName" class="col-md-2 col-sm-3 control-label"><strong class="text-inverse">* </strong>申请数量：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input readonly value="1片 (默认值)" type="text" class="form-control" id="bactchcode"  name="bactchcode">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label for="userName" class="col-md-2 col-sm-3 control-label"><strong class="text-inverse">* </strong>姓名：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input required ng-model="proofing.name" type="text" class="form-control" id="name" name="name" autofocus="autofocus">
+				    </div>
+					<label for="userName" class="col-md-2 col-sm-3 control-label"><strong class="text-inverse">* </strong>企业：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input required ng-model="proofing.companyName" type="text" class="form-control" id="companyName"  name="companyName" >
+				    </div>
+				</div>
+				<div class="form-group">
+					<label for="projectName" class="col-md-2 col-sm-3 control-label"><strong class="text-inverse">* </strong>项目名称：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input required ng-model="proofing.projectName" type="text" class="form-control" id="projectName"  name="projectName">
+				    </div>
+					<label for="scope" class="col-md-2 col-sm-3 control-label"><strong class="text-inverse">* </strong>项目应用：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input required ng-model="proofing.scope" type="text" class="form-control" id="scope" name="scope">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 col-sm-3 control-label"><strong class="text-inverse">* </strong>项目状态：</label>
+					<div class="col-md-4 col-sm-4">
+						<select ng-model="proofing.projectStatus" class="form-control"
+							ng-options="key as key for (key, value) in express" required>
+							<option value="">请选择</option>
+						</select>
+				    </div>
+					<label class="col-md-2 col-sm-3 control-label">固话：</label>
+					<div class="col-md-4 col-sm-4">
+	 			      	<input ng-model="proofing.fixedcode" type="text" class="form-control" id="fixedcode" name="fixedcode" placeholder="区号" style="width:80px;display: inline;">-
+	 			      	<input ng-model="proofing.fixedtel" type="text" class="form-control" id="fixedtel" name="fixedtel" placeholder="电话号码" style="width:180px;display: inline;">
+				    </div>
+				</div>
+				<div class="form-group">
+					<label for="remark" class="col-md-2 col-sm-3 control-label">申请备注：</label>
+					<div class="col-md-9 col-sm-10">
+						<textarea ng-model="proofing.remark" class="form-control" id="remark" name="remark" rows="2" placeholder="您可在备注中写明一些申请需求，或原因"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address" class="col-md-2 col-sm-3 control-label">收货地址信息：</label>
+					<div class="col-md-10 col-sm-10">
+						<a ng-if="addrs.length != 0" ng-click="editAddr(false)" class="in-right">新增收货地址</a>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-md-12" style="margin:5px 0 0 14px;">
+						<div ng-repeat="addr in addrs" ng-show="$index<1 || moreOption" class="row" ng-class="{'margin10':$index>0}">
+							<div ng-click="selectAddr(addr, addrs)"
+								class="col-md-3 text-center"
+								ng-class="{'item-noselect': !addr.isSelect , 'item-select': addr.isSelect }">
+								<span>{{addr.name}} {{addr.tel}}<i
+									class="fa fa-check icss"></i></span>
+							</div>
+							<div class="col-md-6 addr-detail" style="text-align: left;">
+								<span class="addr-area">{{addr.area}}</span>&nbsp;&nbsp;
+								<span class="addr-detailAddress">{{addr.detailAddress}}</span>
+							</div>
+							<div class="col-md-2 addr-detail">
+								<span class="pull-right" ng-click="deleteAddr(addr)"><a
+									class="color_orange"><i class="fa fa-times"></i>删除</a></span> <span
+									class="pull-right" ng-click="editAddr(false, addr)"><a
+									class="color_orange"><i class="fa fa-pencil-square-o"></i>编辑</a></span>
+							</div>
+						</div>
+						<br>
+						<div class="address_more" ng-if="addrs.length > 1">
+							<a href="" ng-click="moreOptionTrigger()"> <span
+								ng-hide="moreOption">更多地址选项 <i class="fa fa-angle-down"></i>
+							</span> <span ng-show="moreOption">收起 <i class="fa fa-angle-up"></i></span>
+							</a>
+						</div>
+					</div>
+					
+				</div>
+	
+
+			</form>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<span class="pull-left text-inverse"><i class="fa fa-fw fa-warning"></i>需要将所有带*必填项填完才能保存</span>
+	<button class="btn btn-primary" ng-click="ok()"  ng-disabled="myForm.$invalid || !receiveAddress" type="button">提交申请</button>
+	<button class="btn btn-warning" ng-click="cancel()" type="button">取消申请</button>
+</div>

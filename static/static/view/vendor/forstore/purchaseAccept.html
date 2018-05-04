@@ -1,0 +1,572 @@
+<style>
+    .seek-purchase .seek-purchase-content {
+        margin: 10px 0 0 0;
+        padding: 20px 0;
+        background: #fff;
+        padding-bottom:50px;
+    }
+    .seek-purchase .seek-purchase-content .seek-purchase-title {
+        height: 67px;
+        line-height: 67px;
+        width: 1000px;
+        margin: 0 auto;
+        background: url("static/img/seekPurchase/purchase-title-bg.png") no-repeat;
+        background-size: contain;
+    }
+    .seek-purchase .seek-purchase-content .seek-purchase-title >div {
+        display: inline-block;
+        font-size: 14px;
+        color: #4290f7;
+    }
+    .seek-purchase .seek-purchase-content .seek-purchase-title .seek-data {
+        margin-left: 40px;
+    }
+    .seek-purchase .seek-purchase-content .seek-purchase-title .seek-data span {
+        font-size: 24px;
+        color: #faac15;
+    }
+    .seek-purchase .seek-purchase-content .seek-purchase-title .seek-rate {
+        margin-left: 85px;
+    }
+    .seek-purchase .seek-purchase-content .seek-purchase-title .seek-rate span {
+        display: inline-block;
+        height: 24px;
+        line-height: 24px;
+        background: #4290f7;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        position: relative;
+        margin-left: 10px;
+        padding:2px;
+    }
+    .seek-purchase .seek-purchase-content .seek-purchase-title .seek-rate span::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 4px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-right: 8px solid #4290f7;
+        border-bottom: 8px solid transparent;
+    }
+    /*搜索时间筛选 start*/
+    .seek-purchase .seek-purchase-content .screen {
+        font-size: 14px;
+        line-height: 32px;
+    }
+    .seek-purchase .seek-purchase-content .screen .fl {
+        margin-left: 14px;
+    }
+    .seek-purchase .seek-purchase-content .screen .fl select{
+        width: 88px;
+        height: 32px;
+        border: 1px solid #4290f7;
+        display: inline-block;
+        border-radius: 2px;
+        margin-right: 11px;
+        box-shadow: none;
+    }
+    .seek-purchase .seek-purchase-content .screen .fl select:last-child {
+        width: 85px;
+        padding: 0 0 0 6px;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach >span {
+        float: left;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach input{
+        border: #4290f7 1px solid;
+        height: 32px;
+        width: 267px;
+        box-shadow: none;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach .date{
+        margin-right: 6px;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach .date input{
+        width: 117px;
+        text-align: left;
+        border: 1px solid #4290f7;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach .date input:hover{
+        cursor: pointer;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach .date em{
+        float: left;
+        line-height: 32px;
+        color: #999;
+        margin: 0 5px;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach a.seek{
+        width: 58px;
+        height: 32px;
+        background: #4290f7;
+        color: #fff;
+        line-height: 32px;
+        float: left;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach a.seek:hover{
+        background: #3f7ae3;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach .form-control{
+        border-radius: 2px;
+    }
+    .seek-purchase .seek-purchase-content .data-input{
+        float: left;
+        position: relative;
+    }
+    .seek-purchase .seek-purchase-content .data-input button.open{
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        width: 20px;
+        height: 30px;
+        background: url('static/img/user/images/xiala.png') right no-repeat #fff !important;
+        background-position-x: 100% !important;
+        border: none;
+    }
+    .seek-purchase .seek-purchase-content .screen .sreach .date input.form-control{
+        padding: 6px 6px;
+    }
+    /*搜索时间筛选 end*/
+    .seek-purchase .seek-purchase-content >table {
+        width: 1000px;
+        margin: 0 auto;
+    }
+    .seek-purchase .seek-purchase-content >table thead {
+        background: #89aefa;
+    }
+    .seek-purchase .seek-purchase-content >table thead tr th {
+        height: 38px;
+        line-height: 38px;
+        color: #fff;
+        text-align: center;
+        font-weight: normal;
+        font-size: 14px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row {
+        border-bottom: 1px solid #dae5fd;
+        border-left: 1px solid #dae5fd;
+        border-right: 1px solid #dae5fd;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row:hover {
+        background: #f1f5ff;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td {
+        font-size: 14px;
+        text-align: center;
+        height: 80px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time {
+        position: relative;
+        padding-top: 22px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time span {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 150px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status div{
+        position: relative;
+        width: 60px;
+        padding-right: 3px;
+        height: 21px;
+        line-height: 21px;
+        background: #4290f7;
+        color: #fff;
+        float: left;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status div{
+        position: relative;
+        width: 60px;
+        padding-right: 3px;
+        height: 21px;
+        line-height: 21px;
+        background: #4290f7;
+        color: #fff;
+        float: left;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status .BOM-list-btn {
+        color: #39ae05;
+        width: 64px;
+        background: #fff;
+        font-size: 12px;
+        border-radius: 100px;
+        border: 1px solid #39ae05;
+        height: 18px;
+        line-height: 15px;
+        text-align: center;
+        padding-right: 0;
+        margin-top: 2px;
+        margin-left: 9px;
+        margin-right: 14px;
+        cursor: pointer;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status .BOM-list-btn:hover {
+        background: #39ae05;
+        color: #fff;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status div.no-grounding {
+        background: #f62d37;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status div.status::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-bottom: 21px solid #fff;
+        border-left: 5px solid transparent;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row:hover td.release-time .seek-status div.status::after {
+        border-bottom: 21px solid #f1f5ff;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.release-time .seek-status a {
+        display: block;
+        white-space: nowrap;
+        color: #4290f7;
+        height: 21px;
+        line-height: 21px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td >div {
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.left-time span{
+        color: #f62d37;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.unit-price span {
+        font-size: 12px;
+        color: #f62d37;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.operate {
+        position: relative;
+        font-size: 12px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.operate a{
+        color: #4290f7;
+        z-index: 1;
+        position: relative;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.operate div {
+        width: 64px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        color: #fff;
+        background: #4290f7;
+        margin: 8px auto 0;
+        cursor: pointer;
+        border-radius: 2px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.operate span {
+        margin: 17px 0 0 0;
+        color: #39ae05;
+        display: block;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.default-row td.operate >img {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.expand-row{
+        display: none;
+        height: 40px;
+        line-height: 40px;
+        background: #fffbf0;
+        border: 1px solid #dae5fd;
+    }
+    .seek-purchase .seek-purchase-content >table tbody.hover tr.expand-row {
+        display: table-row;
+    }
+    .seek-purchase .seek-purchase-content table tbody tr.expand-row td {
+        font-size: 14px;
+        text-align: center;
+        color: #020202;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.expand-row td >div {
+        float: left;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.expand-row td span {
+        color: #f62d37;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price {
+        display: none;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div {
+        background-color: #e7eef9;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div {
+        display: inline-block;
+        position: relative;
+        height: 50px;
+        line-height: 50px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div input,
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div select {
+        border-radius: 2px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(1) {
+        width: 189px;
+        background: #adcbfc;
+        text-align: center;
+        margin-right: 14px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(2) {
+        margin-right: 30px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(2) input {
+        display: inline-block;
+        width: 118px;
+        height: 26px;
+        border: 1px solid #5392f9;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(2) div {
+        position: absolute;
+        top: 14px;
+        left: 33px;
+        width: 32px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        color: #5392f9;
+        border-right: 1px solid #5392f9;
+        border-bottom-left-radius: 4px;
+        border-top-left-radius: 4px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(2) div + input {
+        padding-left: 34px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(3) {
+        margin-right: 52px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(3) input {
+        display: inline-block;
+        width: 32px;
+        height: 26px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(4) {
+        margin-right: 69px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(4) input {
+        display: inline-block;
+        width: 118px;
+        height: 26px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(5) span {
+        width: 71px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(5) span:first-child {
+        background: #dedddd;
+        margin-right: 10px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div:nth-child(5) span:last-child {
+        background: #fa4701;
+        color: #fff;
+    }
+    .seek-purchase .seek-purchase-content >table tbody tr.say-price td >div >div i {
+        color: #e41515;
+        position: relative;
+        top: 2px;
+        right: 3px;
+    }
+    .seek-purchase .seek-purchase-content >table tbody.active tr.say-price{
+        display: table-row;
+    }
+    .ng-table-pager {
+        margin-top: 20px;
+    }
+    .seek-purchase .BOM-header {
+        height: 164px;
+        padding: 14px;
+        background: #fff;
+        margin-bottom: 10px;
+    }
+    .seek-purchase .BOM-header > a {
+        font-size: 14px;
+        color: #4290f7;
+    }
+    .seek-purchase .BOM-header > div {
+        height: 100px;
+        margin: 14px 0 0 0;
+        line-height: 100px;
+        border: 1px dashed #fd7748;
+        padding: 0 66px 0 21px;
+    }
+    .seek-purchase .BOM-header > div .fr {
+        line-height: normal;
+        font-size: 14px;
+        margin-top: 25px;
+    }
+    .seek-purchase .BOM-header > div p.BOM-name-area {
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .seek-purchase .BOM-header > div p {
+        display: inline-block;
+    }
+</style>
+<div class="user_right fr seek-purchase">
+    <!--求购询价-->
+    <!--
+    <div class="BOM-header">
+        <a ng-click="toogleType('bomManage')">&lt;返回</a>
+        <div>
+            <p class="BOM-name-area" ng-show="!isEditName">
+                <span>我是Excel的名称哈哈哈</span>
+            </p>
+            <div class="fr">
+                配单分析：<span>本单共<span class="blue-text">100</span>个产品，<span class="red-text">10</span>个有报价。</span><br/><b class="red-text">81</b>个有现货
+            </div>
+        </div>
+    </div>-->
+    <div class="oder">
+        <div class="oder01">
+            <ul>
+                <li><a href="javascript:void(0)" ui-sref="vendorSeekPurchase">待报价</a></li>
+                <li><a href="javascript:void(0)" ui-sref="vendorPurchaseOffer">已报价</a></li>
+                <li class="active"><a href="javascript:void(0)" ui-sref="vendorPurchaseAccept">已采纳</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="seek-purchase-content">
+        <!--
+        <div class="seek-purchase-title">
+            <div class="seek-data">采纳次数：<span ng-bind="seekPurchaseRate.acceptedAmount"></span></div>
+            <div class="seek-data">报价次数：<span ng-bind="seekPurchaseRate.offerAmount"></span></div>
+            <div class="seek-rate">求购成交率<span ng-bind="seekPurchaseRate.rate+'%'"></span></div>
+        </div>
+        -->
+        <!--搜索时间筛选-->
+        <div class="screen" style="background: #f5f8fe;height: 40px;margin-bottom: 15px;margin-top: 5px;padding-top: 4px;padding-right: 11px;">
+            <div class="fl">
+                <!--
+                截止时间&nbsp;
+                <select class="form-control select-adder" ng-model="deadline" ng-change="onSearch()" ng-init="deadline='全部'">
+                    <option value="全部">全部</option>
+                    <option value="已截止">已截止</option>
+                    <option value="正在生效">正在生效</option>
+                </select>
+                -->
+                <!--
+                报价状态&nbsp;
+                <select class="form-control select-adder" ng-model="status" ng-change="onSearch()" ng-init="status=200">
+                    <option value="200">待报价</option>
+                    <option value="201">已报价</option>
+                    <option value="202">已采纳</option>
+                </select>
+                -->
+            </div>
+            <div class="sreach fr">
+                <span>发布时间&nbsp;</span>
+                <div class="date fl">
+                    <div class="data-input">
+                        <input type="text" ng-model="startDate"
+                               class="form-control select-adder" placeholder="起始时间"
+                               datepicker-popup="yyyy-MM-dd"
+                               is-open="condition.startDateOpen"
+                               max-date="endDate" current-text="今天" clear-text="清除" close-text="关闭"
+                               ng-click="openDatePicker($event, condition, 'startDateOpen',1)"
+                               datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+                               ng-change="vaildDate(true)"
+                        />
+                        <button class="open" ng-click="openDatePicker($event, condition, 'startDateOpen')"></button>
+                    </div>
+                    <em>–</em>
+                    <div class="data-input">
+                        <input type="text" ng-model="endDate"
+                               class="form-control select-adder" placeholder="结束时间"
+                               datepicker-popup="yyyy-MM-dd"
+                               is-open="condition.endDateOpen"
+                               min-date="startDate" current-text="今天" clear-text="清除" close-text="关闭"
+                               ng-click="openDatePicker($event, condition, 'endDateOpen',2)"
+                               datepicker-options="{formatDayTitle: 'yyyy年M月', formatMonth: 'M月', showWeeks: false}"
+                               ng-change="changeEndDate()"
+                        />
+                        <button class="open" ng-click="openDatePicker($event, condition, 'endDateOpen')"></button>
+                    </div>
+                </div>
+                <div class="sreach-input fr">
+                    <input type="search" placeholder="型号/品牌" class="form-control" ng-model="keyWord" ng-search="onSearch()"/>
+                    <a class="seek" href="javascript:void(0)" ng-click="onSearch()">搜索</a>
+                </div>
+            </div>
+        </div>
+        <table ng-table="seekPurchaseTableParams">
+            <thead>
+            <tr>
+                <th width="104">发布时间</th>
+                <th width="108">买家</th>
+                <th width="117">型号</th>
+                <th width="94">品牌</th>
+                <th width="84">封装</th>
+                <th width="95">生产日期</th>
+                <th width="86">采购数量</th>
+                <th width="94">单价预算</th>
+                <th width="115">剩余时间</th>
+                <th width="92">操作</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="seek in $data" ng-class="{'active': seek.$active, 'hover': seek.$hover && (seek.status == 201 || seek.status == 202)}">
+            <tr class="default-row" ng-mouseenter="seek.$hover = true;" ng-mouseleave="seek.$hover = false;" >
+                <td class="release-time">
+                    <span ng-bind="seek.inquiry.date | date:'yyyy-MM-dd'"></span>
+                    <span ng-bind="seek.inquiry.date | date:'HH:mm:ss'"></span>
+                    <!--
+                    <div class="seek-status">
+                        <div ng-show="seek.goodsEnuu" class="status">已在库</div>
+                        <div ng-show="!seek.goodsEnuu" class="no-grounding">未在库</div>
+                        <div class="BOM-list-btn" ng-if="seek.bomId">BOM清单</div>
+                        <a ng-show="!seek.goodsEnuu" target="_blank" href="vendor#/vendor_upload">产品导入>></a>
+                    </div>
+                    -->
+                </td>
+                <td class="user-name"><div title="{{seek.userName || seek.inquiry.enterprise.enName}}" ng-bind="seek.userName || seek.inquiry.enterprise.enName"></div></td>
+                <td><div title="{{seek.cmpCode || seek.prodCode || seek.product.cmpCode}}" ng-bind="seek.cmpCode || seek.prodCode || seek.product.cmpCode"></div></td>
+                <td><div title="{{seek.inbrand}}" ng-bind="seek.inbrand || '-'"></div></td>
+                <td><div title="{{seek.encapsulation}}" ng-bind="seek.encapsulation || '--'"></div></td>
+                <td><div title="{{seek.produceDate}}" ng-bind="seek.produceDate || '--'"></div></td>
+                <td><div title="{{seek.needquantity}}" ng-bind="seek.amount || '--'"></div></td>
+                <td class="unit-price">
+                    <span>{{seek.currency + seek.unitPrice | currencyStr}}</span>
+                </td>
+                <td class="left-time" ng-if="seek.remainingTime > 0">剩余&nbsp;<span ng-bind="getDay(seek.remainingTime)" ng-if="getDay(seek.remainingTime) > 0" class="red-text"></span><i ng-if="getDay(seek.remainingTime) > 0">&nbsp;天&nbsp;</i><span ng-if="getDay(seek.remainingTime) <= 0" ng-bind="getHours(seek.remainingTime)" class="red-text">5</span><i ng-if="getDay(seek.remainingTime) <= 0">&nbsp;小时</i></td>
+                <td class="left-time" ng-if="seek.remainingTime <= 0"><span>已截止</span></td>
+                <td class="left-time" ng-if="seek.remainingTime == null"><span style="color: red;">-</span></td>
+                <td class="operate" ng-switch="seek.agreed">
+                    <a>联系买家 <img src="static/img/seekPurchase/link-buyer.png" alt=""></a>
+                    <span ng-switch-when="0">已报价 <img src="static/img/seekPurchase/check.png" alt=""></span>
+                    <img ng-switch-when="1" src="static/img/seekPurchase/recieved.png" alt="">
+                </td>
+            </tr>
+            <!--
+            <tr class="expand-row">
+                <td colspan="10">
+                    <div style="width: 173px;">历史报价</div>
+                    <div style="width: 180px;">单价：<span>{{seek.currency + seek.unitPrice | currencyStr}}</span></div>
+                    <div style="width: 182px;">交期：<span ng-bind="seek.minDay"></span>
+                        -
+                        <span ng-bind="seek.maxDay"></span>
+                        <span ng-if="seek.minDay && seek.maxDay">天</span>
+                    </div>
+                    <div style="width: 271px;">生产日期：{{seek.produceDate || '-'}}</div>
+                </td>
+            </tr>
+            -->
+            </tbody>
+        </table>
+    </div>
+</div>

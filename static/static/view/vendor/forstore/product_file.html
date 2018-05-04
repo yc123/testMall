@@ -1,0 +1,417 @@
+<style>
+    .product-file{
+        width: 100%;
+        margin: 0 auto;
+        min-height: 505px;
+        background: #fff;
+        padding-top: 16px;
+        border: #e8e8e8 1px solid;
+    }
+    .product-file ul{
+        width: 100%;
+        height: 30px;
+        margin: 0 auto;
+        margin-top: 16px;
+    }
+    .product-file ul li{
+        width: 78px;
+        float: left;
+        margin: 0 15px;
+    }
+    .product-file ul li:first-child{
+        margin-left: 25px;
+    }
+    .product-file ul li a{
+        display: inline-block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+        background: #f5f8fe;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 1px;
+    }
+    .product-file ul li a.active,.product-file ul li:hover a{
+        background: #5078cb;
+        color: #fff;
+    }
+    .product-file ul li a.active:before,.product-file ul li:hover a:before{
+        content: '';
+        position: absolute;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #fff;
+        bottom: -1px;
+        left: 33px;
+    }
+    .product-file .content{
+        width: 98%;
+        border: #5078cb 1px solid;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .product-file .content .batch{
+        font-size: 14px;
+    }
+    .product-file .content .batch .row{
+        padding: 0 15px;
+        margin-bottom: 20px;
+    }
+    .product-file .content .batch .row:first-child{
+        margin-top: 10px;
+        margin-bottom: 45px;
+    }
+    .product-file .content .batch .row span.dot{
+        display: inline-block;
+        width: 22px;
+        height: 19px;
+        margin-right: 10px;
+    }
+    .product-file .content .batch .row span em{
+        display: inline-block;
+        width: 14px;
+        height: 19px;
+        background: #ff8522;
+        font-size: 14px;
+        text-align: center;
+        color: #fff;
+        position: relative;
+        line-height: 19px;
+    }
+    .product-file .content .batch .row span em:before{
+        content: '';
+        position: absolute;
+        display: inline-block;
+        border-width: 9px 0 10px 10px;
+        border-style: solid;
+        border-color: transparent transparent transparent #ff8522;
+        right: -10px;
+        top: 0;
+    }
+    .product-file .content .batch .row .btn01{
+        display: inline-block;
+        width: 70px;
+        height: 22px;
+        line-height: 22px;
+        text-align: center;
+        color: #fff;
+        background: #ff8522;
+        border-radius: 2px;
+        font-size: 12px;
+    }
+    .product-file .content .batch .row a.load-btn{
+        color: #5078cb;
+        font-size: 12px;
+        margin-left: 10px;
+    }
+    .product-file .import-area{
+        width: 940px;
+        margin-left: 22px;
+        background: #f5f8fe;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+    .product-file .import-area p{
+        font-size: 14px;
+    }
+    /*checked*/
+    .import-area .check-act{
+        font-weight: normal;
+    }
+    .import-area .check-act:last-child{
+        margin-left: 45px;
+    }
+    .import-area .check-act input{
+        display: none;
+    }
+    .import-area .check-act label{
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+        display: inline-block;
+        background: url(static/img/icon/check-rule.png) no-repeat;
+        position: relative;
+        top: 2px;
+    }
+    .import-area .check-act label{
+        background-position: 0 0;
+    }
+    .import-area input:checked + label{
+        background-position: -15px 0;
+    }
+    .import-input{
+        width: 100%;
+        margin: 15px 0 0 0;
+        padding-bottom: 10px;
+    }
+    .import-input span{
+        width: 350px;
+        margin: 0 auto;
+        float: left;
+        position: relative;
+    }
+    .import-input span #upload_text{
+        width: 265px;
+        height: 26px;
+        border: #e2e2e2 1px solid;
+        padding-left: 10px;
+        border-radius: 3px;
+    }
+    .import-input span .upload01{
+        width: 100%;
+        margin: 0 auto;
+        height: 26px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+    .import-input span a.btn01{
+        margin-left: 8px;
+    }
+    .import-input a.btn01{
+        margin-left: 10px;
+    }
+    .blue-bg{
+        background: #5078cb !important;
+    }
+    /*单个导入*/
+    .no-batch{
+        width: 100%;
+        margin: 0 auto;
+        min-height: 200px;
+    }
+    .no-batch .row{
+        background: #f5f8fe;
+        padding: 20px 15px 30px;
+        margin: 0;
+    }
+    .no-batch .row .row-line{
+        float: left;
+        line-height: 26px;
+        margin-right: 18px;
+    }
+    .no-batch .row .row-line span.title{
+        font-size: 14px;
+        margin-right: 10px;
+    }
+    .no-batch .row .row-line span.title em{
+        color: #f00;
+        margin-right: 3px;
+        position: relative;
+        top: 2px;
+    }
+    .no-batch .row .row-line input{
+        width: 168px;
+        height: 26px;
+        line-height: 26px;
+        border: #e2e2e2 1px solid;
+        border-radius: 0;
+        background: #fff;
+        float: right;
+    }
+    .no-batch .row .row-line:last-child{
+        margin-right: 0;
+    }
+    .no-batch .row .row-line:last-child input{
+        margin-right: 0;
+        width: 128px;
+    }
+    /*操作取消保存*/
+    .deal-btn{
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 80px;
+    }
+    .deal-btn a{
+        width: 70px;
+        height: 30px;
+        display: inline-block;
+        text-align: center;
+        line-height: 30px;
+        font-size: 14px;
+    }
+    .deal-btn a.off{
+        background: #cdcccc;
+        color: #666;
+        margin-right: 8px;
+    }
+    .deal-btn a.save-other{
+        width: 100px;
+        background: #ff8522;
+        color: #fff;
+        margin-right: 8px;
+    }
+    .deal-btn a.ok{
+        background: #5078cb;
+        color: #fff;
+    }
+    .deal-btn a:hover{
+        background: #337ab7;
+        color: #fff;
+    }
+    /*防误删*/
+    .com-del-box{
+        position: fixed;
+        z-index: 22;
+        height: 152px;
+        opacity: 1;
+        background-color: white;
+        width: 310px;
+        -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        margin: -155px 0 0 -75px;
+        top: 55%;
+        left: 50%;
+    }
+    .com-del-box .title{
+        height: 30px;
+        background-color: #5078cb;
+        text-align: right;
+        padding-right: 15px;
+        line-height: 30px;
+    }
+    .com-del-box .title a{
+        color: white;
+        font-size: 16px;
+    }
+    .com-del-box .content{
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .com-del-box .content p{
+        font-size: 14px;
+        padding-top: 10px;
+    }
+    .com-del-box .content p:first-child{
+        padding-top: 25px;
+    }
+    .com-del-box .content p:nth-child(2),.com-del-box .content p:nth-child(3){
+        font-size: 12px;
+    }
+    .com-del-box .content p em:first-child,.com-del-box .content p:nth-child(3) a,.com-del-box .content p:nth-child(3) em{
+        color: #5078cb;
+    }
+    .com-del-box .content p:nth-child(2) em{
+        color: #f00;
+    }
+    .com-del-box .content p i{
+        color: #5078cb;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+    .com-del-box .content div{
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+</style>
+<div class="user_right fr">
+    <!--产品导入-->
+    <div class="pro_management device">
+        <div class="com_tab">
+            <ul class="fl" style="width: 100%">
+                <li ng-class="{'active': $$productOn.leadIn == 'bathOn'}"><a href="javascript:void(0)">新产品建档</a></li>
+                <li ui-sref="product_repository"><a href="javascript:void(0)">产品库</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--产品建档-->
+    <div class="product-file">
+        <ul class="file-tab">
+            <li><a ng-class="{'active': style == 'batch'}" ng-click="checkTab('batch')">批量建档</a></li>
+            <li><a ng-class="{'active': style == 'single'}" ng-click="checkTab('single')">单个建档</a></li>
+        </ul>
+        <div class="content" ng-controller="productOnCtrl">
+            <!--批量-->
+            <div class="batch" ng-if="style == 'batch'">
+                <div class="row">
+                    <span class="dot"><em>1</em></span>
+                    下载Excle导入模板，在模板上编辑产品信息
+                    <a class="btn01" style="margin-left: 35px;" ng-click="download()" title="下载模板">下载模板</a>
+                    <a class="load-btn" ng-click="showImg()" title="查看表格示例">查看表格示例</a>
+                </div>
+                <div class="row">
+                    <span class="dot"><em>2</em></span>导入数据
+                </div>
+                <div class="import-area row">
+                    <p>
+                        产品已存在时：&nbsp;&nbsp;
+                        <label class="check-act">
+                            <input type="radio" id="1" name="radio2" checked/>
+                            <label for="1"></label>
+                            统一规定运费
+                        </label>
+                        <label class="check-act">
+                            <input type="radio" id="2" name="radio2"/>
+                            <label for="2"></label>
+                            按总金额计算
+                        </label>
+                    </p>
+                    <div class="import-input">
+                        <span>
+                            <input type="text" name="txt" id="upload_text" />
+                            <a class="btn01" ng-click="">选择文件</a>
+                            <input type="file" onchange="upload_text.value=this.value" class="upload01" />
+                        </span>
+                        <a class="btn01 blue-bg" ng-click="">导入</a>
+                    </div>
+                </div>
+            </div>
+            <!--单个-->
+            <div class="no-batch" ng-if="style == 'single'">
+                <div class="row">
+                    <div class="row-line">
+                        <span class="title">产品名称（类目）</span>
+                        <input type="text" class="form-control" ng-change="inputCategory()"/>
+                    </div>
+                    <div class="row-line">
+                        <span class="title"><em>*</em>型号</span>
+                        <input type="text" class="form-control" ng-change="inputBatch()"/>
+                    </div>
+                    <div class="row-line">
+                        <span class="title"><em>*</em>品牌</span>
+                        <input type="text" class="form-control" ng-change="inputBrand()"/>
+                    </div>
+                    <div class="row-line">
+                        <span class="title">封装</span>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+                <!--操作取消保存-->
+                <div class="deal-btn">
+                    <a ng-click="" class="off">取消</a>
+                    <a ng-click="" class="ok">保存</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示内容-->
+<div class="com-del-box" style="display: none">
+    <div class="title">
+        <a ng-click=""><i class="fa fa-close fa-lg"></i></a>
+    </div>
+    <div class="content">
+        <p><i class="fa fa-exclamation-circle"></i>共导入 <em>1000</em> 个，其中<em>600</em> 个建档成功!</p>
+        <p>（另有<em>20</em>个已存在，<em>380</em>个必填项缺失）</p>
+        <p>正在为您跳转 <a>产品库 >></a>  <em>5秒</em> </p>
+        <!--<div><a ng-click="">取消</a><a ng-click="">确认</a></div>-->
+    </div>
+</div>
+<!--查看大图-->
+<div id="image-box" style="display: none;">
+    <div class="x-floating-wrap"></div>
+    <div class="x-floating">
+        <div id="item-content">
+            <div class="x-close-wrap"><a href="javascript:void(0);">&times;</a></div>
+            <div class="img"><img src="static/img/product/excel_product_import.png"></div>
+        </div>
+    </div>
+</div>

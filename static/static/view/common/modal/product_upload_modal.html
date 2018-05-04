@@ -1,0 +1,153 @@
+<style>
+    .modal-dialog .modal-content{
+        position: fixed;
+        z-index: 2;
+        opacity: 1;
+        background-color: white;
+        top: 55%;
+        left: 50%;
+        /*height: 160px;*/
+        width: 290px;
+        margin: -145px 0 0 -80px;
+        border: none;
+    }
+    .com-del-box{
+        /*height: 160px;*/
+        width: 290px;
+    }
+    .com-del-box .title {
+        width: 100%;
+        height: 30px;
+        background-color: #5078cb;
+        text-align: right;
+        padding-right: 15px;
+        line-height: 30px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .com-del-box .title a {
+        color: white;
+        font-size: 16px;
+    }
+    .com-del-box .content{
+        padding: 15px 20px 14px;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    }
+    .com-del-box .content p{
+        font-size: 14px;
+        padding-bottom: 10px;
+        margin-bottom: 7px;
+        overflow: hidden;
+        line-height: 0;
+    }
+    .com-del-box .content p .fa-exclamation-circle{
+        float: left;
+        margin-top: 3px;
+        margin-right: 6px;
+        color: #5078cb;
+        font-size: 18px;
+    }
+    .com-del-box .content p span{
+        float: left;
+        width: 256px;
+        line-height: 21px;
+        text-align: left;
+        font-size: 14px;
+        color: #333333;
+    }
+    .com-del-box .content div {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .com-del-box .content div a{
+        /*display: inline-block;*/
+        margin-right: 15px ;
+        width: 74px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+        padding: 3px;
+        background: #5078cb;
+    }
+   .com-del-box .content div a:first-child {
+        margin-right: 15px;
+    }
+    /*.com-del-box .content div a {*/
+        /*background: #5078cb;*/
+        /*border-radius: 0.5px;*/
+    /*}*/
+    .modal{
+        box-shadow: none!important ;
+    }
+    .modal-content{
+        box-shadow: none!important ;
+    }
+    .modal.in .modal-dialog{
+        transform: none;
+    }
+    .modal.fade .modal-dialog{
+        transform: none;
+    }
+    .modal-backdrop {
+        background-color: transparent ;
+    }
+    .modal-dialog .modal-content{
+        position: fixed;
+        z-index: 2;
+        opacity: 1;
+        background-color: white;
+        top: 55%;
+        left: 50%;
+        /*height: 160px;*/
+        width: 290px;
+        margin: -145px 0 0 -80px;
+    }
+    .com-del-box{
+        /*height: 160px;*/
+        width: 290px;
+    }
+    .com-del-box .product .info{
+        margin: 0 auto;
+        width: 100%;
+        font-size: 16px;
+        color: #5078cb;
+    }
+    .com-del-box .product .info i{
+        margin-right: 12px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .com-del-box .product .info span{
+        color: #333;
+    }
+    .com-del-box .product a:first-child{
+        margin-left: 14px;
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+    .com-del-box .product a:last-child{
+        padding: 5px 10px;
+        border-radius: 2px;
+    }
+    .com-del-box .product p{
+        margin-bottom: -5px;
+    }
+    /*.modal-dialog .modal-content*/
+</style>
+<div class="com-del-box" name="rule_model">
+    <div class="title">
+        <a name="rule_cancel" ng-click="cancelDelete()"><i class="fa fa-close fa-lg"></i></a>
+    </div>
+    <!--产品导入-->
+    <div class="content product">
+        <div class="info"><i class="fa fa-check-circle"></i><span>上架成功</span></div>
+        <p ng-if="success"><span>您当前尚未设置配送规则，买家将无法下单，建议尽快设置 <a name="rule_href" ng-click="hrefToNext('vendor#vendor_deliveryRule')" style="color: blue;">前往设置</a></span></p>
+        <div style="margin-top: 10px;"><a name="rule_href" ng-click="hrefToNext('vendor#/vendor_material')" class="product-btn">前往企业库</a>
+        <a name="rule_href" ng-href="{{'store/' + uuid}}" class="product-btn">前往店铺首页</a></div>
+    </div>
+</div>

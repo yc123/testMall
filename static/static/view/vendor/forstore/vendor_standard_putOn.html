@@ -1,0 +1,663 @@
+<style>
+    .public-tab.table>thead>tr>th,.public-tab.table>tbody>tr>td{
+        color: #333;
+    }
+    .public-tab.table>tbody>tr>td{
+        font-size: 14px;
+    }
+    .public-tab.table>tbody>tr:last-child>td{
+        border-bottom: #e8e8e8 1px solid;
+    }
+    .public-tab.table>thead>tr>th:first-child,.public-tab.table>thead>tr>th:last-child,.public-tab.table>tbody>tr>td:first-child,.public-tab.table>tbody>tr>td:last-child{
+        text-align: center;
+    }
+    .public-tab.table>tbody>tr>td div{
+        min-height: inherit;
+        line-height: 25px;
+    }
+    .public-tab.table>tbody>tr{
+        height: 50px;
+    }
+    .record-line {
+        font-size: 12px;
+        padding-right: 20px;
+        text-align: right !important;
+    }
+    /*table*/
+    .shelf-tab-list{
+        width: 100%;
+        margin: 0 auto;
+        background: #fff;
+        padding-bottom: 50px;
+    }
+    .blue{
+        color: #5078cb !important;
+    }
+    .red{
+        color: #f00 !important;
+    }
+    .shelf-tab.table>tbody>tr>td{
+        vertical-align: top !important;
+    }
+    .shelf-tab.table>tbody>tr>td:first-child,.shelf-tab.table>tbody>tr>td:last-child{
+        vertical-align: middle !important;
+    }
+    .shelf-tab.table>tbody>tr>td div{
+        width: 100%;
+        margin: 0 auto;
+        height: 24px;
+       /* margin-top: 5px;*/
+    }
+    .shelf-tab.table>tbody>tr>td div.img{
+        float: left;
+        width: 60px;
+        margin-top: 24px;
+        position: relative;
+        height: 60px;
+    }
+    .shelf-tab.table>tbody>tr>td div.img a{
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        overflow: hidden;
+        border: #e8e8e8 1px solid;
+        line-height: 60px;
+    }
+    .shelf-tab.table>tbody>tr>td div.img a.delete-img{
+        position: absolute;
+        top: 2px;
+        right: 0;
+        z-index: 20;
+        width: 20px;
+        height: 20px;
+        line-height: 16px;
+        border: none;
+    }
+    .shelf-tab.table>tbody>tr>td div.img a.delete-img i{
+        color: #fff;
+        font-size: 12px;
+    }
+    .shelf-tab.table>tbody>tr>td div.img a img{
+        width: 60px;
+        height: 60px;
+        overflow: hidden;
+    }
+    .shelf-tab.table>tbody>tr>td div.content{
+        width: 121px;
+        float: right;
+        line-height: 20px;
+        margin-top: 3px;
+    }
+    .shelf-tab.table>tbody>tr>td div.content p{
+        width: 100%;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 14px;
+        text-align: left;
+    }
+    .shelf-tab.table>tbody>tr>td div.content p span{
+        display: initial;
+    }
+   .shelf-tab.table>thead>tr>th{
+        padding: 8px 2px;
+    }
+    .shelf-tab.table>tbody>tr>td{
+        padding: 15px 2px 8px 2px;
+    }
+    .shelf-tab.table>tbody>tr{
+        height: 130px;
+    }
+    .shelf-tab.table>tbody>tr>td a{
+        margin: 0;
+    }
+    .shelf-tab.table>tbody>tr>td.text-left div{
+        text-align: left;
+    }
+    .shelf-tab.table>tbody>tr>td div span{
+        display: inline-block;
+    }
+    .shelf-tab.table>tbody>tr>td.number div{
+        text-align: left;
+    }
+    .shelf-tab.table>tbody>tr>td.number div span:first-child{
+        width: 70px;
+        text-align: right;
+    }
+    .shelf-tab.table .edit-form{
+        background-color: #c7ebfd;
+    }
+    .shelf-tab.table .edit-form .edit-img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.5);
+        left: 0;
+        top: 0;
+        font-size: 12px;
+        margin-top: 0;
+        border-radius: 3px;
+    }
+    .shelf-tab.table .edit-form .edit-img a img {
+        width: 38px;
+        height: 38px;
+    }
+    .shelf-tab.table .edit-form .form-control {
+        height: 24px;
+        padding: 0;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+    .shelf-tab.table div.step span{
+        display: inline-block;
+        background: #b5b3b3;
+        font-size: 12px;
+        color: #fff;
+        text-align: center;
+        float: left;
+    }
+    .shelf-tab.table div.step span i{
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .shelf-tab.table div.step span.dot{
+        margin: 0 1px;
+    }
+   /* .shelf-tab.table div.step:first-child{
+        margin-top: 2px;
+        margin-bottom: 10px;
+    }*/
+    .shelf-tab.table div.step .first,.shelf-tab.table div.step .last{
+        width: 42px;
+        height: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .shelf-tab.table div.step .first{
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+        margin-left: 21px;
+    }
+    .shelf-tab.table div.step .last{
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
+    .shelf-tab.table div.step span.dot{
+        width: 18px;
+        height: 24px;
+    }
+    .shelf-tab.table div.step:nth-child(2),.shelf-tab.table div.step:nth-child(3){
+        margin-top: 10px;
+    }
+    .shelf-tab.table div.dot01,.shelf-tab.table div.dot01 span{
+        margin-top: 0;
+        height: 12px;
+        text-align: center;
+        position: relative;
+    }
+    .shelf-tab.table div.dot01 i{
+        position: absolute;
+        color: #b5b3b3;
+        bottom: -1px;
+    }
+    .shelf-tab.table .price-input{
+        width: 83px !important;
+        float: left;
+    }
+    .shelf-tab.table .price-input span{
+        width: 17px;
+        height: 24px;
+        line-height: 24px;
+        display: inline-block;
+        background: #bfbdbd;
+        text-align: center;
+        color: #fff;
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+        font-size: 12px;
+        float: left;
+    }
+    .shelf-tab.table .price-input .form-control{
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+    .shelf-tab.table .delete{
+        margin: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        background: #fff;
+        display: inline-block;
+        line-height: 14px;
+        text-align: center;
+    }
+    .shelf-tab.table .delete i{
+        color: #5078cb;
+        font-size: 12px;
+    }
+    .shelf-tab.table button.add {
+        width: 83px;
+        height: 24px;
+        background: #9cd9f8;
+        text-align: center;
+        border-radius: 3px;
+        font-size: 12px;
+        color: #333 !important;
+        border: none;
+        float: left;
+    }
+    .shelf-tab.table button.disabled{
+        background: #cdcccc;
+        color: #999 !important;
+    }
+    .shelf-tab.table button.disabled i{
+        color: #999 !important;
+    }
+    .shelf-tab.table button.add i {
+        color: #fc5901;
+        margin-right: 3px;
+    }
+    .shelf-tab.table .edit-icon a{
+        margin: 0 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        background: #fff;
+        display: inline-block;
+        line-height: 14px;
+        text-align: center;
+        font-size: 12px;
+    }
+    .shelf-tab.table .edit-icon a i{
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .shelf-tab.table .edit-icon a.refresh i,.shelf-tab.table .edit-icon a.edit i,.shelf-tab.table .edit-icon a.upload i{
+        color: #36ba02;
+    }
+    /* 上架按钮 */
+    .shelf-tab.table .edit-icon a.refresh i,.shelf-tab.table .edit-icon a.edit i,.shelf-tab.table .edit-icon a.upload-custom{
+        background: none;
+        color: #36ba02;;
+        border: none;
+        padding: 0;
+    }
+    .shelf-tab.table .edit-icon a.refresh i,.shelf-tab.table .edit-icon a.edit i,.shelf-tab.table .edit-icon a.upload-custom i{
+        color: #36ba02;
+    }
+    .shelf-tab.table .edit-icon a:hover i{
+        color: #fff !important;
+    }
+    .shelf-tab.table .edit-icon a.refresh:hover,.shelf-tab.table .edit-icon a.edit:hover,.shelf-tab.table .edit-icon a.upload:hover{
+        background: #36ba02;
+    }
+    .shelf-tab.table .edit-icon a.remove:hover{
+        background: #fc5901;
+    }
+    .shelf-tab.table .edit-icon a.remove i{
+        color: #fc5901;
+    }
+    .shelf-tab.table .hover-tr:hover{
+        background: #c7ebfd;
+    }
+    .shelf-tab.table .hover-tr .edit-icon a i{
+        display: none;
+    }
+    .shelf-tab.table .hover-tr:hover .edit-icon a i{
+        display: block;
+    }
+    .shelf-tab.table .edit-form select.form-control{
+        padding-left: 20px;
+    }
+    .shelf-tab.table tr td .price:first-child{
+        margin-bottom: 10px;
+    }
+    .shelf-tab.table tr td .price:nth-child(3){
+        margin-top: 10px;
+    }
+    .text-more{
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .text-more-40{
+        float: left;
+    }
+    .text-more-40 span:first-child{
+        float: left;
+    }
+    .text-more-40 span.text-more{
+        width: 40px;
+    }
+    /* 去掉按钮点击蓝框 */
+    .btn:focus,
+    .btn:active:focus,
+    .btn.active:focus,
+    .btn.focus,
+    .btn:active.focus,
+    .btn.active.focus {
+        outline: none;
+    }
+    /* 产品上架按钮 */
+    button.upload-custom {
+        width: 16px;
+        height: 16px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        color: #36BA02;
+        border: none;
+        padding: 0;
+        text-align: center;
+        line-height: 14px;
+        font-size: 12px;
+    }
+    button.upload-custom:hover,
+    button.upload-custom:focus,
+    button.upload-custom:active{
+        background-color: #36BA02;
+        color: #FFFFFF;
+    }
+    button.upload-custom:focus {
+        background-color: #FFFFFF;
+        color: #36BA02;
+    }
+    /* 产品更新按钮 */
+    button.refresh-custom {
+        width: 16px;
+        height: 16px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        color: #36BA02;
+        border: none;
+        padding: 0;
+        text-align: center;
+        line-height: 14px;
+        font-size: 12px;
+    }
+    button.refresh-custom:hover,
+    button.refresh-custom:active{
+        background-color: #36BA02;
+        color: #FFFFFF;
+    }
+    button.refresh-custom:focus {
+        background-color: #FFFFFF;
+        color: #36BA02;
+    }
+</style>
+<div class="user_right fr">
+    <!--货品管理-->
+    <div class="pro_management device">
+        <div class="com_tab">
+            <ul class="fl" style="width: 100%">
+                <li ng-class="{'active': tab == 'vendor_standardPutOn'}"><a ui-sref="vendor_standardPutOn">标库上架管理</a></li>
+                <li ng-class="{'active': tab == 'onSale'}"><a ui-sref="vendor_onSale">在售产品维护</a></li>
+                <li ng-class="{'active': tab == 'undercarriage'}"><a ui-sref="vendor_undercarriage">上下架历史</a></li>
+                <li class="down-goods">
+                    <!--<span ng-click="downGoods()">
+                        <i class="fa fa-file-excel-o fa-fw"></i>导出Excel
+                    </span>
+                    <form style="display: none;" id="down-load-goods" method="get">
+                        <input type="hidden" name="ids" ng-value="localInfo.ids">
+                    </form>-->
+                </li>
+            </ul>
+        </div>
+        <div class="search-check">
+            <div class="search fl">
+                <input type="text" class="form-control" ng-model="$$putOn.keyword" ng-search="onSearch()" placeholder="类目/品牌/型号"/>
+                <button ng-click="onSearch()">搜索</button>
+                <a ng-click="downGoods()" class="down-goods-btn">批量导出</a>
+                <form style="display: none;" id="down-load-goods" method="get">
+                    <input type="hidden" name="ids" ng-value="localInfo.ids">
+                </form>
+            </div>
+            <div class="check fr">
+                <!--<button ng-click="updatePrice()">更新分段价格</button>-->
+                <a  ng-click="batchUpdate()" class="blue">一键更新</a>
+            </div>
+        </div>
+        <div class="shelf-tab-list">
+            <table class="shelf-tab public-tab table" ng-table="standarPutOnTable">
+                <thead>
+                    <tr>
+                        <th width="40">序号</th>
+                        <th width="210">产品信息</th>
+                        <th width="140"></th>
+                        <th width="160">生产日期</th>
+                        <th width="151">梯度</th>
+                        <th width="120">单价</th>
+                        <th width="175">数量</th>
+                        <th width="70">状态</th>
+                        <th width="65">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="height: 14px;">
+                        <td colspan="9" class="hei16"></td>
+                    </tr>
+                </tbody>
+                <tbody ng-repeat="standard in $data">
+                    <tr class="hover-tr" ng-if="!standard.isEditStatus">
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            <div class="img">
+                                <a href="#"><img ng-src="{{standard.img || 'static/img/store/common/default.png'}}"/></a>
+                            </div>
+                            <div class="content">
+                                <p>类目:<span ng-bind="standard.kindCn" title="{{standard.kindCn || ''}}">Panasonic</span></p>
+                                <p>型号:<span ng-bind="standard.cmpCode" title="{{standard.cmpCode || ''}}">LPC1112</span></p>
+                                <p>品牌:<span ng-bind="standard.brandEn" title="{{standard.brandEn || ''}}">CPU</span></p>
+                                <p>封装:<span ng-bind="standard.encapsulation || '-'" title="{{standard.encapsulation || ''}}">BGA</span></p>
+                            </div>
+                        </td>
+                        <td class="text-left">
+                            <div class="text-more-40">
+                                <span>包装：</span>
+                                <span ng-bind="standard.packaging || '-'" title="{{standard.packaging}}" class="text-more" style="width: 80px;">BGA</span>
+                            </div>
+                            <div class="text-more-40">
+                                <span>单位：</span>
+                                <span ng-bind="standard.unit  || 'PCS'" title="{{standard.unit}}" class="text-more" style="width: 80px;">盘装</span>
+                            </div>
+                            <div class="text-more-40">
+                                <span>包装数量：</span>
+                                <span ng-bind="standard.minPackQty || '-'" class="text-more" title="{{standard.minPackQty}}">600</span>
+                            </div>
+                            <div class="fl">
+                                <span ng-if="standard.selfSale && (standard.status == 601 || standard.status == 602)">自营</span>
+                                <span ng-if="!standard.selfSale && (standard.status == 601  || standard.status == 602)">寄售</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <span ng-bind="standard.produceDate  || '-'" class="text-more" style="width: 100px;" title="{{standard.produceDate}}">2017-03-02</span>
+                            </div>
+                            <div>
+                                <span>交期：</span>
+                                <span>
+                                    <span  ng-if = "standard.minDelivery!= standard.maxDelivery" ng-bind="standard.minDelivery + '-' + standard.maxDelivery"></span>
+                                    <span  ng-if = "standard.minDelivery == standard.maxDelivery" ng-bind="standard.minDelivery"></span>
+                                </span>
+                            </div>
+                            <div>
+                                <span>起订量：</span>
+                                <span ng-bind="standard.minBuyQty  || '-'">100</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-repeat="prics in standard.qtyPrices">
+                                <span ng-bind="prics.start + '+'"></span>
+                            </div>
+                            <div ng-if="!standard.qtyPrices.length">-</div>
+                        </td>
+                        <td>
+                            <div ng-repeat="price in standard.qtyPrices">
+                               <span ng-if="standard.currency == 'RMB'" ng-bind="price.rMBPrice | formateNumber : 6 | currencySysmbol : standard.currency"></span>
+                               <span ng-if="standard.currency == 'USD'" ng-bind="price.uSDPrice | formateNumber : 6 | currencySysmbol : standard.currency"></span>
+                                <span ng-if="!standard.currency">-</span>
+                            </div>
+                            <div ng-if="!standard.qtyPrices.length">-</div>
+                        </td>
+                        <td class="number">
+                            <div class="text-more-40">
+                                <span>在售数量：</span>
+                                <span ng-bind="standard.onSaleQty || '0'" title="{{standard.onSaleQty}}" class="text-more" style="width: 80px;">1000</span>
+                            </div>
+                            <div  class="text-more-40">
+                                <span>锁库数：</span>
+                                <span ng-bind="standard.lockQty || '0'" title="{{standard.lockQty}}" class="text-more" style="width: 80px;">1000</span>
+                            </div>
+                            <div  class="text-more-40">
+                                <span>可上架数：</span>
+                                <span ng-class="{'red' : standard.availableOnSale > 0}" ng-bind="standard.availableOnSale || '0'" title="{{standard.availableOnSale}}" class="text-more" style="width: 80px;">10020</span>
+                            </div>
+                            <div  class="text-more-40">
+                                <span>库存总数：</span>
+                                <span ng-bind="standard.repositoryQty || '0'"  title="{{standard.repositoryQty}}" class="text-more" style="width: 80px;">500023</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="standard.status == 601">已上架</div>
+                            <div ng-if="standard.status == 1670">未上架</div>
+                            <div ng-if="standard.status == 612">已下架</div>
+                        </td>
+                        <td class="edit-icon">
+                            <a ng-if="standard.repositoryQty > 0" title="编辑" ng-click="edit(standard)" class="edit"><i class="fa fa fa-pencil"></i></a>
+                        </td>
+                    </tr>
+                    <!--编辑状态-->
+                    <tr class="edit-form" ng-if="standard.isEditStatus">
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            <div class="img">
+                                <a><img ng-src="{{standard.editImg || 'static/img/store/common/default.png'}}"/></a>
+                                <div class="edit-img">
+                                    <a ng-if="standard.editImg" ng-click="deleteStandardImg(standard)" class="delete-img" title="删除"><i class="fa fa-trash"></i></a>
+                                    <a ng-click="modifyImg(standard.editImg || 'static/img/store/common/default.png', standard)" title="修改图片"><img src="static/img/icon/update-img.png"></a>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>类目:<span ng-bind="standard.kindCn" title="{{standard.kindCn}}">Panasonic</span></p>
+                                <p>型号:<span ng-bind="standard.cmpCode" title="{{standard.cmpCode}}">LPC1112</span></p>
+                                <p>品牌:<span ng-bind="standard.brandEn" title="{{standard.brandEn}}">CPU</span></p>
+                                <p>封装:<span ng-bind="standard.encapsulation || '-'" title="{{standard.encapsulation || ''}}">BGA</span></p>
+                            </div>
+                        </td>
+                        <td class="text-left">
+                            <div class="text-more-40">
+                                <span>包装：</span>
+                                <span ng-bind="standard.packaging || '-'" title="{{standard.packaging || ''}}" class="text-more" style="width: 80px;">BGA</span>
+                            </div>
+                            <div class="text-more-40">
+                                <span>单位：</span>
+                                <span ng-bind="standard.unit || 'PCS'" title="{{standard.unit || ''}}" class="text-more" style="width: 80px;">盘装</span>
+                            </div>
+                            <div class="text-more-40">
+                                <span class="fl">包装数量：</span>
+                                <span ng-bind="standard.minPackQty || '0'" class="text-more" title="{{standard.minPackQty}}">600</span>
+                            </div>
+                            <div>
+                                <span>
+                                    <select ng-disabled="!$$putOn.isSelfStore" ng-change="changeSale(standard)" ng-model="standard.editSelfSaleNum" class="select-adder form-control" style="width: 88px;">
+										<option value="0">自营</option>
+										<option value="1">寄售</option>
+									</select>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <span ng-bind="standard.produceDate || '-'">2017-03-02</span>
+                            </div>
+                            <div class="text-right" style="margin-top: 10px;">
+                                <span>交期：</span>
+                                <span><input type="text" class="form-control" ng-blur="blurDelivery(standard.editMinDelivery, standard.editMaxDelivery, true, standard)" ng-model="standard.editMinDelivery" placeholder="{{standard.editMinDelivery}}" style="width: 28px;"></span>
+                                <span>-</span>
+                                <span><input type="text" class="form-control" ng-blur="blurDelivery(standard.editMinDelivery, standard.editMaxDelivery, false, standard)" ng-model="standard.editMaxDelivery" placeholder="{{standard.editMaxDelivery}}" style="width: 28px;"></span>
+                            </div>
+                            <div class="text-right" style="margin-top: 12px;">
+                                <span>起订量：</span>
+                                <span><input type="text" placeholder="{{standard.editMinBuyQty}}" ng-blur="validMinBuyQty(standard)" ng-model="standard.editMinBuyQty" class="form-control" style="width: 70px;"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="step" ng-repeat="price in standard.editQtyPrices">
+                                <span class="first" ng-bind="price.start" title="{{price.start}}">100</span>
+                                <span class="dot"><i class="fa fa-long-arrow-right"></i></span>
+                                <span class="last" ng-bind="price.end" title="{{price.end}}">300</span>
+                            </div>
+                            <div class="dot01" ng-if="standard.editQtyPrices.length != 3">
+                                <i class="fa fa-chevron-up"></i>
+                            </div>
+                            <div style="margin-top: 0;">
+                                <span style="margin-left: 7px;" ng-if="standard.editQtyPrices.length != 3">
+                                    <input ng-model="standard.insertQty" type="text" placeholder="分段数量" class="form-control" style="width: 104px;"/>
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price" ng-repeat="price in standard.editQtyPrices">
+                                <span class="price-input">
+                                    <span ng-if="standard.currency == 'USD'">$</span><input ng-blur="validPrice(price, price.uSDPrice, false)" ng-if="standard.currency == 'USD'" type="text" class="form-control" ng-model="price.uSDPrice" style="width: 65px;" placeholder="单价($)">
+                                    <span ng-if="standard.currency == 'RMB'">￥</span><input ng-blur="validPrice(price, price.rMBPrice, true)" ng-if="standard.currency == 'RMB'" type="text" class="form-control" ng-model="price.rMBPrice" style="width: 65px;" placeholder="单价(￥)">
+                                </span>
+                                <a ng-if="standard.editQtyPrices.length != 1" class="delete" title="删除" ng-click="deleteFragment(standard, $index)"><i class="fa fa-trash"></i></a>
+                            </div>
+                            <div style="text-align: left; margin-top: 12px;">
+                                <span ng-if="standard.editQtyPrices.length != 3"><button ng-disabled="!standard.insertQty || standard.editPrices.length == 3" class="add" ng-click="addFragment(standard)" title="插入分段" ng-class="{'disabled':!standard.insertQty || standard.editPrices.length == 3}"><i class="fa fa-plus"></i>插入分段</button></span>
+                            </div>
+                        </td>
+                        <td class="number">
+                            <div class="text-more-40">
+                                <span>在售数量：</span>
+                                <span ng-bind="standard.editOnSaleQty || 0" title="{{standard.editOnSaleQty}}" class="text-more" style="width: 80px;">1000</span>
+                            </div>
+                            <div  class="text-more-40">
+                                <span>锁库数：</span>
+                                <span><input ng-blur="blurLockQty(standard)" type="text" ng-model="standard.editLockQty" placeholder="{{standard.lockQty || '锁库数'}}" class="form-control" style="width: 72px;"/></span>
+                            </div>
+                            <div  class="text-more-40">
+                                <span>可上架数：</span>
+                                <span ng-class="{'red' : standard.editAvailableOnSale > 0}" ng-bind="standard.editAvailableOnSale || 0"  title="{{standard.editAvailableOnSale}}" class="text-more" style="width: 80px;">10020</span>
+                            </div>
+                            <div  class="text-more-40">
+                                <span>库存总数：</span>
+                                <span ng-bind="standard.repositoryQty || 0" class="text-more" title="{{standard.repositoryQty}}" style="width: 80px;">500023</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="standard.status == 601">已上架</div>
+                            <div ng-if="standard.status == 1670">未上架</div>
+                            <div ng-if="standard.status == 612">已下架</div>
+                        </td>
+                        <td class="edit-icon">
+                            <!--<a title="上架"  ng-if="(standard.status == 1670 || standard.status == 612)&&((standard.editAvailableOnSale + standard.editOnSaleQty) >= 0)" ng-click="putOn(standard, $index)" class="upload" ng-disabled="!canSubmit"><i class="fa fa-upload"></i></a>-->
+                            <!--<a title="更新" ng-if="standard.status == 601" ng-click="updateInfo(standard, $index)" class="refresh" ng-disabled="!canSubmit"><i class="fa fa-refresh"></i></a>-->
+                            <button type="button" title="上架"  ng-if="(standard.status == 1670 || standard.status == 612)&&((standard.editAvailableOnSale + standard.editOnSaleQty) >= 0)" ng-click="putOn(standard, $index)" class="btn upload-custom" ng-disabled="!canSubmit"><i class="fa fa-upload"></i></button>
+                            <button type="button" title="更新" ng-if="standard.status == 601" ng-click="updateInfo(standard, $index)" class="btn refresh-custom" ng-disabled="!canSubmit"><i class="fa fa-refresh"></i></button>
+                            <a title="取消" ng-click="cancle(standard)" class="remove"><i class="fa fa-remove"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody ng-if="$data.length > 0">
+                    <tr style="height: 30px;">
+                        <td colspan="9" style="border-bottom: none; padding: 0;">
+                            <div class="record-line text-right">
+                                显示<span ng-bind="$$putOn.start">23</span>-<span ng-bind="$$putOn.end">10</span>，共：<span ng-bind="$$putOn.totalElements" style="color: #5078cb;">23</span>个
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody class="no-record-list" ng-if="!$$putOn.totalElements">
+                    <tr>
+                        <td colspan="9"><img src="static/img/all/empty-cart.png"><span>暂无标库上架信息！</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

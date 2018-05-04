@@ -1,0 +1,100 @@
+<style>
+	.help-list{
+		width: 200px;
+		background: #fff;
+		border: #e8e8e8 1px solid;
+	}
+	.help-list h2{
+		background: #5078cb;
+		line-height: 34px;
+		height: 34px;
+		color: #fff;
+		font-size: 14px;
+		text-align: center;
+		margin: 0;
+	}
+	.help-list ul{
+		width: 200px;
+		display: inline-block;
+	}
+	.help-list li {
+		position: relative;
+		line-height: 33px;
+		font-size: 14px;
+		color: #333;
+		float: left;
+		width: 100%;
+		padding-left: 10px;
+	}
+
+	.help-list li a {
+		display: block;
+		padding-left: 15px;
+		text-decoration: none;
+		color: #333;
+	}
+
+	.help-list li a:hover{
+		color: #5078cb;
+		cursor: pointer;
+	}
+	.help-list ul.list-body {
+		/*display: none;*/
+		color: #666;
+	}
+
+	.help-list ul.list-body.active {
+		display: block;
+	}
+	.help-list ul.list-body li {
+		float: none;
+		background-image: none;
+		min-height: 26px;
+		line-height: 26px;
+		font-size: 12px;
+	}
+
+	.help-list ul.list-body li a {
+		padding-left: 15px;
+		display: block;
+		color: rgb(50,50,50);
+		background: none;
+	}
+
+	.help-list ul.list-body li a:hover {
+		color: #5078cb;
+		cursor: pointer;
+	}
+	.help-list ul.list-body li a.cur,.help-list ul li a.cur{
+		text-decoration: none;
+		font-size: 14px;
+	}
+	.help-list .operate-icon {
+		position: absolute;
+		right: 20px;
+		top: 1px;
+	}
+	.help-list li>ul>li>ul>li {
+		padding-left: 30px;
+	}
+</style>
+<div class="help-list" ng-controller="HelpNavListCtrl">
+	<h2>帮助中心</h2>
+	<ul class="list-unstyled" style="margin-top: 10px;">
+		<li ng-repeat="nav in nav1 | orderBy : 'detno'">
+			<a ng-click="toggleNav(nav)" ng-class="nav.isShow ? 'cur' : ''">
+				<span ng-bind="nav.item"></span>
+			</a>
+			<ul class="list-unstyled list-body" ng-show="nav.isShow">
+				<li  ng-repeat="navChild in nav.children | orderBy : 'detno'">
+					<a ui-sref="nav({navId : navChild.id})">
+						<span ng-bind="navChild.item"></span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<span ng-if="nav1.length == 0">暂无导航信息</span>
+		</li>
+	</ul>
+</div>
