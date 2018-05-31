@@ -1,0 +1,90 @@
+.mobile-center {
+  .block-wrap {
+    width: 7.1rem;
+    margin: .3rem auto 0;
+    background: #fff;
+    border-radius: .05rem;
+  }
+  .seek-banner {
+    height: 1.8rem;
+    line-height: 1.8rem;
+    img {
+      max-height: 1.8rem;
+      margin: 0 auto;
+    }
+    /*.s-title {
+      font-size: .42rem;
+      color: #3f84f6;
+      line-height: .38rem;
+      vertical-align: top;
+      margin-top: .5rem;
+      span {
+        color: #494949;
+      }
+      .s-text {
+        font-size: .28rem;
+        color: #999;
+      }
+    }*/
+  }
+  .seek-operation {
+    height: 2.09rem;
+    padding: 0 .24rem;
+    > p {
+      height: .55rem;
+      line-height: .55rem;
+      font-size: .28rem;
+      border-bottom: .01rem solid #d3d3d3;
+      i {
+        display: inline-block;
+        width: .05rem;
+        height: .18rem;
+        background: #3f84f6;
+        margin: 0 .05rem;
+      }
+    }
+    ul {
+      margin-top: .27rem;
+      li {
+        display: inline-block;
+        width: 1.48rem;
+        margin-right: 1.05rem;
+        text-align: center;
+        font-size: .28rem;
+        color: #666;
+        &:last-child {
+          margin-right: 0;
+        }
+        img {
+          width: .8rem;
+          margin-bottom: .05rem;
+        }
+      }
+    }
+  }
+  .collect-block {
+    height: 2.33rem;
+    padding: 0 .24rem;
+    .content-line {
+      height: 1.16rem;
+      line-height: 1.16rem;
+      &:first-child {
+        border-bottom: .01rem solid #d3d3d3;
+      }
+      img {
+        width: .8rem;
+        margin: 0 .28rem;
+      }
+      span {
+        font-size: .28rem;
+        .text {
+          color: #3f84f6;
+        }
+      }
+      i {
+        float: right;
+        color: #c1c1c6;
+      }
+    }
+  }
+}

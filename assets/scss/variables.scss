@@ -1,0 +1,64 @@
+// container
+$container-width: 1190px;
+$body-bg: #fff;
+$grey-bg: #f7f7f7;
+$dark-bg: rgba(197,197,197,0.4);
+$module-bg: rgba(255,255,255,0.6);
+$module-hover-bg: $dark-bg;
+
+//Other
+$radius: 2px;
+
+//Basic stylings
+$br: 4px;
+$xs-pad: 4px;
+$sm-pad: 8px;
+$pad: 1em;
+$md-pad: 1.2em;
+$lg-pad: 1.5em;
+$xlg-pad: 3em;
+$trans: .3s;
+
+//Breakpoints
+$small-breakpoint: 400px;
+$large-breakpoint: $container-width;
+
+//Colors
+$primary: #5078CB;
+$accent: #1162a4;
+$red: #f44336;
+$yellow: #ffeb3b;
+$dark: #999;
+$grey: rgb(230, 230, 230);
+$grey-light: #efefef;
+$white: #fff;
+$black: #000;
+$black-light: #474443;
+
+//Text
+$text: $black-light;
+$secondary: rgba(0, 0, 0, .54);
+$disabled: rgba(0, 0, 0, .38);
+$dividers: #c9c9c9;
+
+//Links
+$link-color: $text;
+$link-hover-color: darken($link-color, 20%);
+
+//Font
+$font-family: "Microsoft YaHei",'微软雅黑',serif;
+
+//Typography
+$font-size-small: 12px;
+$font-size: 14px;
+$font-size-large: 12px;
+$font-size-h1: 20px;
+$font-size-h2: 17.5px;
+$font-size-h3: 15px;
+$font-size-h4: 12px;
+$font-size-h5: 10px;
+$font-size-h6: $font-size-small;
+
+$line-height: 1.2;
+
+$border: 1px solid $dividers;
