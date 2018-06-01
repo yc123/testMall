@@ -86,7 +86,7 @@
         return this.$store.state.count.allCount.data
       },
       payMoney () {
-        return this.formatNumber(this.allCount[0].count)
+        return this.allCount[0] ? this.formatNumber(this.allCount[0].count) : 0
       },
       inquirySheet () {
         return this.$store.state.count.inquirySheet.data
