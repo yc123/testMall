@@ -13,4 +13,4 @@ RUN export PATH=$PATH:$SASS_BINARY_PATH
 RUN npm install
 RUN npm run build
 
-CMD [ "/app/run.sh" ]
+CMD [ "bash", "/app/run.sh" ]
