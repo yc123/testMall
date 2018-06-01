@@ -1,9 +1,7 @@
 #!/bin/sh
-
 echo "NODE_ENV: $NODE_ENV"
 echo "BASE_URL: $BASE_URL"
 echo "COMMON_URL: $COMMON_URL"
-
 updateHost(){
   in_ip = ${1}
   in_url = ${2}
@@ -22,7 +20,6 @@ updateHost(){
     fi
   fi
 }
-
 if [ "$NODE_ENV" == 'production' ]; then
   # updateHost 10.10.0.150 api-order.usoftmall.com
   # updateHost 10.10.0.150 api-product.usoftmall.com
